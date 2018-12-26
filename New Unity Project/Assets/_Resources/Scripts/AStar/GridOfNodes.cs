@@ -10,6 +10,8 @@ public class GridOfNodes : MonoBehaviour
     public bool drawGizmosW, drawGizmosNW;
     public bool nodeIsCreated;
 
+    public LayerMask mask;
+
     private void OnLevelWasLoaded(int level)
     {
         createGrid();
@@ -20,12 +22,6 @@ public class GridOfNodes : MonoBehaviour
     private void Start()
     {
         mainMapPos = transform.position;
-        //mainMapPos = FindObjectOfType<Tiled2Unity.TiledMap>().transform.position;
-        createGrid();
-    }
-
-    private void Update()
-    {
         //mainMapPos = FindObjectOfType<Tiled2Unity.TiledMap>().transform.position;
         createGrid();
     }
@@ -41,18 +37,18 @@ public class GridOfNodes : MonoBehaviour
     int idMaxX, idMaxY;
     void createGrid()
     {
-        mapSize = GetComponent<BoxCollider2D>().size;
         nodes = new GridsNode[(int)mapSize.x * 2, (int)mapSize.y * 2];
 
-        float x = GetComponent<BoxCollider2D>().transform.position.x - (int)mapSize.x / 2;
-        float y = GetComponent<BoxCollider2D>().transform.position.y - (int)mapSize.y / 2;
+        float x = transform.position.x - (int)mapSize.x / 2;
+        float y = transform.position.y - (int)mapSize.y / 2;
         int idX = 0, idY = 0;
 
-        while (x < GetComponent<BoxCollider2D>().transform.position.x + (int)mapSize.x / 2)
+        while (x < transform.position.x + (int)mapSize.x / 2 && idX < (int)mapSize.x * 2)
         {
-            while (y < GetComponent<BoxCollider2D>().transform.position.y + (int)mapSize.y / 2)
+            while (y < transform.position.y + (int)mapSize.y / 2 && idY < (int)mapSize.y * 2)
             {
-                nodes[idX, idY] = new GridsNode();
+                nodes[idX, idY] = 
+                    new GridsNode();
                 nodes[idX, idY].pos = new Vector2(x, y);
                 nodes[idX, idY].idX = idX;
                 nodes[idX, idY].idY = idY;
@@ -60,11 +56,11 @@ public class GridOfNodes : MonoBehaviour
                 nodes[idX, idY].walkable = isWalkable(new Vector2(x, y));
 
                 idY++;
-                y += 0.5f;
+                y += 1;
             }
 
-            x += 0.5f;
-            y = GetComponent<BoxCollider2D>().transform.position.y - (int)mapSize.y / 2;
+            x += 1;
+            y = transform.position.y - (int)mapSize.y / 2;
 
             idX++;
 
@@ -79,8 +75,8 @@ public class GridOfNodes : MonoBehaviour
 
     public bool isWalkable(Vector2 point)
     {
-        return !(Physics2D.BoxCast(new Vector2(point.x, point.y + 0.1f), new Vector2(0.1f, 0.1f), 0, new Vector2(0, 0)).collider
-                    && (!Physics2D.BoxCast(new Vector2(point.x, point.y + 0.1f), new Vector2(0.1f, 0.1f), 0, new Vector2(0, 0)).collider.isTrigger));
+        return !(Physics2D.BoxCast(new Vector2(point.x, point.y + 0.1f), new Vector2(0.1f, 0.1f), 0, new Vector2(0, 0), 1, mask).collider
+                    && (!Physics2D.BoxCast(new Vector2(point.x, point.y + 0.1f), new Vector2(0.1f, 0.1f), 0, new Vector2(0, 0), 1, mask).collider.isTrigger));
     }
 
     public List<GridsNode> GetNeighboursOf(GridsNode node, string whoCalls)
@@ -93,13 +89,8 @@ public class GridOfNodes : MonoBehaviour
             {
                 _i = i; _j = j;
 
-                if (whoCalls == "Enemy")
-                    if (i == 0 && j == 0) continue;
-
                 if (i < 0) _i = i * -1;
                 if (j < 0) _j = j * -1;
-
-                if (_i == _j && whoCalls != "Enemy") continue;
 
                 int x = node.idX + i;
                 int y = node.idY + j;
@@ -113,10 +104,10 @@ public class GridOfNodes : MonoBehaviour
 
     public GridsNode GetNodeByPos(Vector2 pos)
     {
-        pos -= mainMapPos;
+        //pos -= mainMapPos;
 
-        int x = (int)(pos.x * 2);
-        int y = idMaxY - (int)(pos.y * 2) * -1;
+        int x = (int)(pos.x) + 30;
+        int y = (int)(pos.y) + 30;
 
         return nodes[x, y];
     }

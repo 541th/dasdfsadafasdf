@@ -6,6 +6,8 @@ TagManager:
   tags:
   - PlayerAttack
   - Enemy
+  - EnemyAttack
+  - EnemyHP
   layers:
   - Default
   - TransparentFX
@@ -19,8 +21,8 @@ TagManager:
   - MapBounds
   - Collisions
   - Enemy
-  - 
-  - 
+  - EnemyAttack
+  - PlayerAttack
   - 
   - 
   - 

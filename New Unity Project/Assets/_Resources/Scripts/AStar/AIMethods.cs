@@ -13,9 +13,7 @@ public class AIMethods : MonoBehaviour {
 
     public Vector2 chooseDirectionWithException(int exclucdedDirection)
     {
-        int returnableDir;
-
-        returnableDir = Random.Range(0, 4);
+        int returnableDir = Random.Range(0, 4);
 
         if (exclucdedDirection == returnableDir) returnableDir++;
         if (returnableDir == 4) returnableDir = 0;

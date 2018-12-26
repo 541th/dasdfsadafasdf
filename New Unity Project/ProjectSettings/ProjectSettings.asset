@@ -580,10 +580,10 @@ PlayerSettings:
   facebookXfbml: 0
   facebookFrictionlessRequests: 1
   apiCompatibilityLevel: 3
-  cloudProjectId: 77e1895d-5ade-43d0-8eab-ebccfec4b999
+  cloudProjectId: a344a381-95ca-40d4-87d1-32ad7560540f
   framebufferDepthMemorylessMode: 0
-  projectName: New Unity Project
-  organizationId: sanchesebt
+  projectName: New Unity Project (1)
+  organizationId: rdlite
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
   disableOldInputManagerSupport: 0

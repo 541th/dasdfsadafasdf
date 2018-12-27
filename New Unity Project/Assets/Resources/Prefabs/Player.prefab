@@ -113,6 +113,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HP: 0
   HPslider: {fileID: 0}
+  floatingNumbers: {fileID: 7304696037472265733, guid: 9d8b31a025a27d349bbe185a3b4e58c2,
+    type: 3}
 --- !u!114 &1109941053914945034
 MonoBehaviour:
   m_ObjectHideFlags: 0

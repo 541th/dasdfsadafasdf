@@ -8,7 +8,7 @@ public class PlayerAttacker : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "EnemyHP")
+        if (collision.CompareTag("EnemyHP"))
         {
             collision.GetComponent<EnemyHP>().toDamage(damage, true);
         }

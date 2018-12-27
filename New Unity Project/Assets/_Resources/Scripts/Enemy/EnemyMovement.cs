@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
 {
+    Transform _t;
     public LayerMask mask;
 
     Animator _a;
@@ -35,6 +36,7 @@ public class EnemyMovement : MonoBehaviour
 
     void Start()
     {
+        _t = transform;
         AI = GetComponent<AIMethods>();
         _a = GetComponent<Animator>();
         if (gon == null)
@@ -71,7 +73,7 @@ public class EnemyMovement : MonoBehaviour
                     //setCollider(false);
                 }
 
-                RaycastHit2D ray = Physics2D.Raycast(transform.position, dir, 10, mask);
+                RaycastHit2D ray = Physics2D.Raycast(_t.position, dir, 10, mask);
 
                 if (ray.collider != null && !ray.collider.isTrigger)
                 {
@@ -80,7 +82,7 @@ public class EnemyMovement : MonoBehaviour
 
                 walkCounter -= Time.deltaTime;
 
-                transform.position = Vector2.MoveTowards(transform.position, (Vector2)transform.position + dir, ms * Time.deltaTime / 2);
+                _t.position = Vector2.MoveTowards(_t.position, (Vector2)_t.position + dir, ms * Time.deltaTime / 2);
 
                 _a.SetFloat("MoveX", dir.x);
                 _a.SetFloat("MoveY", dir.y);
@@ -100,7 +102,7 @@ public class EnemyMovement : MonoBehaviour
         }
         else if (curState == State.startAttack)
         {
-            Vector2 dir = player.transform.position - transform.position;
+            Vector2 dir = player.transform.position - _t.position;
             /*
             float angle = Mathf.Atan2(dir.y, dir.x) * 180 / Mathf.PI - 90;
 
@@ -123,19 +125,19 @@ public class EnemyMovement : MonoBehaviour
 
             if (delay >= Random.Range(0, 0.3f))//Random.Range(0.8f, 1.2f))
             {
-                path = AI.setDestination(transform.position, player.transform.position);
+                path = AI.setDestination(_t.position, player.transform.position);
                 points = path.Count - 1;
                 delay = 0;
             }
 
             if (delay >= Random.Range(0, 0.3f))//Random.Range(0.8f, 1.2f))
             {
-                path = AI.setDestination(transform.position, player.transform.position);
+                path = AI.setDestination(_t.position, player.transform.position);
                 points = path.Count - 1;
                 delay = 0;
             }
 
-            if ((Vector2.Distance(transform.position, player.transform.position) < 2) && !_a.GetBool("Attack"))
+            if ((Vector2.Distance(_t.position, player.transform.position) < 2) && !_a.GetBool("Attack"))
             {
                 attack();
                 //setCollider(true);
@@ -151,9 +153,9 @@ public class EnemyMovement : MonoBehaviour
                         return;
                     }
 
-                    transform.position = Vector2.MoveTowards(transform.position, path[points], ms * Time.deltaTime);
+                    _t.position = Vector2.MoveTowards(_t.position, path[points], ms * Time.deltaTime);
 
-                    if (Vector2.Distance(transform.position, path[points]) < 0.01f && points != 0)
+                    if (Vector2.Distance(_t.position, path[points]) < 0.01f && points != 0)
                     {
                         points--;
 
@@ -210,7 +212,7 @@ public class EnemyMovement : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.transform.name == "Player" || collision.transform.name == "Ally")
+        if (collision.transform.CompareTag("Player"))
         {
             _a.SetBool("Attack", true);
             _a.SetBool("Run", false);
@@ -221,7 +223,7 @@ public class EnemyMovement : MonoBehaviour
 
     private void OnCollisionStay2D(Collision2D collision)
     {
-        if (collision.transform.tag == "Player")
+        if (collision.transform.CompareTag("Player"))
         {
             if (!_a.GetBool("Attack") && curState == State.attack && _a.GetBool("Run"))
             {
@@ -232,7 +234,7 @@ public class EnemyMovement : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Player")
+        if (collision.CompareTag("Player"))
         {
             if (_a == null) _a = GetComponent<Animator>();
 
@@ -240,19 +242,6 @@ public class EnemyMovement : MonoBehaviour
             attackCounter = Random.Range(2, 5);
             curState = State.startAttack;
             _a.SetBool("Walk", false);
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if ((collision.tag == "Player") && Vector2.Distance(collision.transform.position, transform.position) > 12)
-        {
-            player = null;
-            if (_a == null) _a = GetComponent<Animator>();
-            
-            curState = State.walk;
-            _a.SetBool("Run", false);
-            //setCollider(false);
         }
     }
 

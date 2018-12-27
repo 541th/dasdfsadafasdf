@@ -132,7 +132,7 @@ public class AIMethods : MonoBehaviour {
             }
 
             iters++;
-            if (iters >= 2000) break;
+            if (iters >= 1000) break;
         }
 
         print("Path not found");

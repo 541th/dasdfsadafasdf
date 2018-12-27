@@ -129,14 +129,7 @@ public class EnemyMovement : MonoBehaviour
                 points = path.Count - 1;
                 delay = 0;
             }
-
-            if (delay >= Random.Range(0, 0.3f))//Random.Range(0.8f, 1.2f))
-            {
-                path = AI.setDestination(_t.position, player.transform.position);
-                points = path.Count - 1;
-                delay = 0;
-            }
-
+            
             if ((Vector2.Distance(_t.position, player.transform.position) < 2) && !_a.GetBool("Attack"))
             {
                 attack();

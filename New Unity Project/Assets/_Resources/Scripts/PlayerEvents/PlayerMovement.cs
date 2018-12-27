@@ -25,6 +25,10 @@ public class PlayerMovement : MonoBehaviour
     float h, v;
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.LeftShift)) glide();
+
+        if (isGlide) return;
+
         h = CnInputManager.GetAxis("Horizontal");
         v = CnInputManager.GetAxis("Vertical");
 
@@ -131,4 +135,33 @@ public class PlayerMovement : MonoBehaviour
         return -1;
     }
 
+    public bool isGlide;
+    public void glide()
+    {
+        if (h != 0 && v != 0 && !isGlide)
+        {
+            StartCoroutine(startGlide());
+        }
+    }
+
+    [SerializeField] GameObject smoke;
+
+    IEnumerator startGlide()
+    {
+        isGlide = true;
+        float _t = 0.07f;
+        Rigidbody2D _rb = GetComponent<Rigidbody2D>();
+
+        while (_t > 0)
+        {
+            Instantiate(smoke, transform.position - new Vector3(0, 1.4f), Quaternion.identity);
+            _t -= Time.deltaTime;
+            
+            _rb.velocity = new Vector3(h * 30, v * 30, 0);
+
+            yield return null;
+        }
+
+        isGlide = false;
+    }
 }

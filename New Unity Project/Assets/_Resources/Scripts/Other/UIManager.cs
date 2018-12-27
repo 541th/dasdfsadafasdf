@@ -21,4 +21,9 @@ public class UIManager : MonoBehaviour
     {
         player.GetComponent<PlayerAttack>().stopAttack();
     }
+
+    public void glide()
+    {
+        player.GetComponent<PlayerMovement>().glide();
+    }
 }

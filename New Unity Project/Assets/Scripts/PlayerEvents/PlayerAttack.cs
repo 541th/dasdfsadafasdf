@@ -26,19 +26,13 @@ public class PlayerAttack : MonoBehaviour
 
     public void startAttack()
     {
-        if (!GetComponent<PlayerMovement>().isGlide)
-        {
-            isAttacking = true;
-            _a.SetBool("isAttacking", true);
-        }
+        isAttacking = true;
+        _a.SetBool("isAttacking", true);
     }
 
     public void stopAttack()
     {
-        //if (!GetComponent<PlayerMovement>().isGlide)
-        {
-            isAttacking = false;
-            _a.SetBool("isAttacking", false);
-        }
+        isAttacking = false;
+        _a.SetBool("isAttacking", false);
     }
 }

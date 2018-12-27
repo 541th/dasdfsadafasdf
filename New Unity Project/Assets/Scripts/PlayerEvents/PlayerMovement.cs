@@ -138,7 +138,7 @@ public class PlayerMovement : MonoBehaviour
     public bool isGlide;
     public void glide()
     {
-        if ((h != 0 || v != 0) && !isGlide)
+        if (h != 0 && v != 0 && !isGlide)
         {
             StartCoroutine(startGlide());
         }

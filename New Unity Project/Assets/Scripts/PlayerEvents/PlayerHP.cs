@@ -7,7 +7,6 @@ public class PlayerHP : MonoBehaviour
 {
     [SerializeField] int HP;
     [SerializeField] Slider HPslider;
-    [SerializeField] GameObject floatingNumbers;
 
     private void Start()
     {
@@ -16,25 +15,13 @@ public class PlayerHP : MonoBehaviour
 
     public void toDamage(int damage)
     {
-        StartCoroutine(sub(damage));
+        HP -= damage;
 
-        GameObject fn = Instantiate(floatingNumbers, transform.position + new Vector3(0, 0.4f), Quaternion.identity);
-        fn.transform.GetChild(0).GetComponent<FloatingNumbers>().setText(damage + "");
+        HPslider.value -= damage;
 
         if (HP <= 0)
         {
             print("СМЭРТ");
-        }
-    }
-
-    IEnumerator sub(int value)
-    {
-        while (value > 0)
-        {
-            HP--;
-            HPslider.value--;
-            value--;
-            yield return null;
         }
     }
 }

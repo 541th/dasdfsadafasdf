@@ -31,7 +31,9 @@ public class CamFollow : MonoBehaviour
             Destroy(gameObject);
 
         updateWH();
-        setBounds(boundBox);
+
+        if (boundBox != null)
+            setBounds(boundBox);
 
         if (followTarget == null) followTarget = GameObject.Find("Player");
     }
@@ -53,9 +55,12 @@ public class CamFollow : MonoBehaviour
             transform.position = Vector3.Lerp(transform.position, targetPos, moveSpeed * Time.deltaTime);
         }
 
-        clampedX = Mathf.Clamp(transform.position.x, minBounds.x + halfWidth, maxBounds.x - halfWidth);
-        clampedY = Mathf.Clamp(transform.position.y, minBounds.y + halfHeight, maxBounds.y - halfHeight);
-        transform.position = new Vector3(clampedX, clampedY, transform.position.z);
+        if (boundBox != null)
+        {
+            clampedX = Mathf.Clamp(transform.position.x, minBounds.x + halfWidth, maxBounds.x - halfWidth);
+            clampedY = Mathf.Clamp(transform.position.y, minBounds.y + halfHeight, maxBounds.y - halfHeight);
+            transform.position = new Vector3(clampedX, clampedY, transform.position.z);
+        }
     }
 
     public void setBounds(BoxCollider2D newBounds)

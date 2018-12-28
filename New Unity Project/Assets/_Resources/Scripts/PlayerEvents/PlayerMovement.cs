@@ -154,14 +154,25 @@ public class PlayerMovement : MonoBehaviour
 
         while (_t > 0)
         {
-            Instantiate(smoke, transform.position - new Vector3(0, 1.4f), Quaternion.identity);
+            Instantiate(smoke, transform.position - new Vector3(0, 0.4f), Quaternion.identity);
             _t -= Time.deltaTime;
-            
+
             _rb.velocity = new Vector3(h * 30, v * 30, 0);
 
             yield return null;
         }
 
         isGlide = false;
+
+        _t = 0.2f;
+
+        while (_t > 0)
+        {
+            Instantiate(smoke, transform.position - new Vector3(0, 0.4f), Quaternion.identity);
+            _t -= Time.deltaTime;
+
+            yield return null;
+        }
+
     }
 }

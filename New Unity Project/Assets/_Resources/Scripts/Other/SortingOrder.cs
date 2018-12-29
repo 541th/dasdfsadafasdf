@@ -6,6 +6,7 @@ public class SortingOrder : MonoBehaviour
 {
     SpriteRenderer _sr;
     Transform _t;
+    public static int mult = 111;
 
     private void Start()
     {
@@ -15,6 +16,6 @@ public class SortingOrder : MonoBehaviour
 
     void Update()
     {
-        _sr.sortingOrder = -(int)(_t.position.y * 111);
+        _sr.sortingOrder = -(int)(_t.position.y * mult);
     }
 }

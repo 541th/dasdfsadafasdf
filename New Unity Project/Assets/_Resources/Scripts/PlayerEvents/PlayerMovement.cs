@@ -140,6 +140,8 @@ public class PlayerMovement : MonoBehaviour
     {
         if ((h != 0 || v != 0) && !isGlide)
         {
+            FindObjectOfType<UIManager>().glideFalse();
+            StartCoroutine(glideReturn());
             StartCoroutine(startGlide());
         }
     }
@@ -174,5 +176,19 @@ public class PlayerMovement : MonoBehaviour
             yield return null;
         }
 
+    }
+
+    public float glideTimer;
+    IEnumerator glideReturn()
+    {
+        float timer = glideTimer;
+
+        while (timer >= 0)
+        {
+            timer -= Time.deltaTime;
+            yield return new WaitForEndOfFrame();
+        }
+
+        FindObjectOfType<UIManager>().glideReturn();
     }
 }

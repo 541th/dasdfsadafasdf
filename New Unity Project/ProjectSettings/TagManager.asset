@@ -8,6 +8,7 @@ TagManager:
   - Enemy
   - EnemyAttack
   - EnemyHP
+  - TownObj
   layers:
   - Default
   - TransparentFX
@@ -23,8 +24,8 @@ TagManager:
   - Enemy
   - EnemyAttack
   - PlayerAttack
-  - 
-  - 
+  - TownObj_Cam
+  - TownObj_Obj
   - 
   - 
   - 
@@ -51,6 +52,9 @@ TagManager:
   - name: Player
     uniqueID: 2797179823
     locked: 0
-  - name: UI
+  - name: UpPLayer
     uniqueID: 1964674151
+    locked: 0
+  - name: UI
+    uniqueID: 3638097947
     locked: 0

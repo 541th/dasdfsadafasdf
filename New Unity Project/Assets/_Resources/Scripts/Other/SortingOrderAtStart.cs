@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class SortingOrderAtStart : MonoBehaviour
 {
-    // Start is called before the first frame update
+    [SerializeField] bool isGrass;
+
     void Start()
     {
+        if (isGrass)
+            GetComponent<Animator>().speed = Random.Range(0.4f, 1.1f);
         GetComponent<SpriteRenderer>().sortingOrder = -(int)(transform.position.y * SortingOrder.mult);
     }
 }

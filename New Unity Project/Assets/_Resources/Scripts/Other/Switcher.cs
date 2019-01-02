@@ -6,11 +6,13 @@ public class Switcher : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        collision.transform.GetChild(0).gameObject.SetActive(true);
+        if (collision.transform.childCount != 0)
+            collision.transform.GetChild(0).gameObject.SetActive(true);
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        collision.transform.GetChild(0).gameObject.SetActive(false);
+        if (collision.transform.childCount != 0)
+            collision.transform.GetChild(0).gameObject.SetActive(false);
     }
 }

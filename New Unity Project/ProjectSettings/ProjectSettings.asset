@@ -240,7 +240,7 @@ PlayerSettings:
   AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 0}
   AndroidKeystoreName: C:/Users/Moort/Desktop/Projects/Unity/KeyStore/JASTUKEYSTORE.keystore
-  AndroidKeyaliasName: jastu
+  AndroidKeyaliasName: 
   AndroidBuildApkPerCpuArchitecture: 0
   AndroidTVCompatibility: 1
   AndroidIsGame: 1

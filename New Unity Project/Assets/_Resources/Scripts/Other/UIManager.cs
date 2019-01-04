@@ -51,23 +51,32 @@ public class UIManager : MonoBehaviour
         glideButton.GetComponent<Button>().interactable = true;
     }
 
-    [SerializeField] GameObject gameMenu;
+    [SerializeField] GameObject gameMenu, infoCanvas;
 
     public void openMenu()
     {
         gameMenu.SetActive(true);
+        setAllItems(false);
+    }
+
+    public void setAllItems(bool value)
+    {
         for (int i = 0; i < items.Count; i++)
         {
-            items[i].SetActive(false);
+            items[i].SetActive(value);
         }
     }
 
     public void closeMenu()
     {
         gameMenu.SetActive(false);
-        for (int i = 0; i < items.Count; i++)
-        {
-            items[i].SetActive(true);
-        }
+        setAllItems(true);
+    }
+
+    public void openInfo()
+    {
+        gameMenu.SetActive(false);
+
+        infoCanvas.SetActive(true);
     }
 }

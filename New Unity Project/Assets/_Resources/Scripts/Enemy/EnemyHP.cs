@@ -13,6 +13,7 @@ public class EnemyHP : MonoBehaviour
     public void toDamage(int damage, bool isFlying)
     {
         HP -= damage;
+        InfoController.addExp(expForKill/10);
         GameObject fn = Instantiate(floatingNumbers, transform.position + new Vector3(0, 0.4f), Quaternion.identity);
         fn.transform.GetChild(0).GetComponent<FloatingNumbers>().setText(damage + "");
 

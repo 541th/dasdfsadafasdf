@@ -371,6 +371,7 @@ MonoBehaviour:
   floatingNumbers: {fileID: 7304696037472265733, guid: 9d8b31a025a27d349bbe185a3b4e58c2,
     type: 3}
   slider: {fileID: 2086280077}
+  expForKill: 20
 --- !u!1 &1524256836190343451
 GameObject:
   m_ObjectHideFlags: 0
@@ -564,7 +565,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 1
+  m_Radius: 1.6
 --- !u!50 &2652354520163681704
 Rigidbody2D:
   serializedVersion: 4

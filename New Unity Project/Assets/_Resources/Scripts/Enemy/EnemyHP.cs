@@ -8,6 +8,7 @@ public class EnemyHP : MonoBehaviour
     public int HP, maxHP;
     Transform player;
     [SerializeField] GameObject floatingNumbers, slider;
+    [SerializeField] float expForKill;
     
     public void toDamage(int damage, bool isFlying)
     {
@@ -28,6 +29,8 @@ public class EnemyHP : MonoBehaviour
 
         if (HP <= 0)
         {
+            if (player != null)
+                player.GetComponent<PlayerExp>().addExp(expForKill);
             Destroy(transform.parent.gameObject);
         }
     }

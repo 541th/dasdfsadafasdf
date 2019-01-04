@@ -16,12 +16,12 @@ public class UIManager : MonoBehaviour
 
     public void startAttack()
     {
-        player.GetComponent<PlayerAttack>().startAttack();
+        player.GetComponent<PlayerAttack_Warrior>().startAttack();
     }
 
     public void stopAttack()
     {
-        player.GetComponent<PlayerAttack>().stopAttack();
+        player.GetComponent<PlayerAttack_Warrior>().stopAttack();
     }
 
     public void glide()
@@ -49,5 +49,25 @@ public class UIManager : MonoBehaviour
         }
 
         glideButton.GetComponent<Button>().interactable = true;
+    }
+
+    [SerializeField] GameObject gameMenu;
+
+    public void openMenu()
+    {
+        gameMenu.SetActive(true);
+        for (int i = 0; i < items.Count; i++)
+        {
+            items[i].SetActive(false);
+        }
+    }
+
+    public void closeMenu()
+    {
+        gameMenu.SetActive(false);
+        for (int i = 0; i < items.Count; i++)
+        {
+            items[i].SetActive(true);
+        }
     }
 }

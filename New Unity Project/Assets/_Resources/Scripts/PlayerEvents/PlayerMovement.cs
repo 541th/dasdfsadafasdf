@@ -7,6 +7,7 @@ public class PlayerMovement : MonoBehaviour
 {
     float ms;
     [SerializeField] float startMS;
+    public int playerType;
     Transform _t;
 
     public bool canMove;
@@ -17,7 +18,36 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
-        ms = startMS;
+        if (playerType == 0)
+        {
+            GameObject.Find("ButtonAttackType").transform.GetChild(0).gameObject.SetActive(false);
+            GameObject.Find("ButtonAttackType").transform.GetChild(1).gameObject.SetActive(false);
+            Destroy(transform.GetChild(0).GetChild(0).gameObject);
+            Destroy(GetComponent<PlayerAttack_Warrior>());
+            Destroy(GetComponent<PlayerAttack_Archer>());
+        }
+        else
+        if (playerType == 1)
+        {
+            GameObject.Find("ButtonAttackType").transform.GetChild(1).gameObject.SetActive(false);  
+            Destroy(GetComponent<PlayerAttack_Archer>());
+        }
+        else
+        if (playerType == 2)
+        {
+            GameObject.Find("ButtonAttackType").transform.GetChild(0).gameObject.SetActive(false);
+            Destroy(transform.GetChild(0).GetChild(0).gameObject);
+            Destroy(GetComponent<PlayerAttack_Warrior>());
+        }
+        else
+        {
+            GameObject.Find("ButtonAttackType").transform.GetChild(0).gameObject.SetActive(false);
+            Destroy(transform.GetChild(0).GetChild(0).gameObject);
+            Destroy(GetComponent<PlayerAttack_Warrior>());
+        }
+
+        if (playerType == 3)
+            ms = startMS;
         _t = transform;
         //_rb = GetComponent<Rigidbody2D>();
     }

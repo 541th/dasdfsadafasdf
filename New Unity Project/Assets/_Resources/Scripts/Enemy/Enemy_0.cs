@@ -98,7 +98,7 @@ public class Enemy_0 : MonoBehaviour
             delay += Time.deltaTime;
             delta -= Time.deltaTime;
 
-            if ((Vector2.Distance(_t.position, player.transform.position) < 1))
+            if ((Vector2.Distance(_t.position, player.transform.position) < 2))
             {
                 _a.SetTrigger("Attack");
                 return;
@@ -163,7 +163,7 @@ public class Enemy_0 : MonoBehaviour
                 {
                     _t.position = Vector2.MoveTowards(_t.position, path[points], ms * Time.deltaTime);
 
-                    if (Vector2.Distance(_t.position, path[points]) < 0.01f && points != 0)
+                    if (Vector2.Distance(_t.position, path[points]) < 0.1f && points != 0)
                     {
                         points--;
 

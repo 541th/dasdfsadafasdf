@@ -14,8 +14,6 @@ public class PlayerMovement : MonoBehaviour
     bool isMoving;
     public Vector2 moveInput, lastMove;
 
-    //[SerializeField] Rigidbody2D _rb;
-
     void Start()
     {
         if (playerType == 0)

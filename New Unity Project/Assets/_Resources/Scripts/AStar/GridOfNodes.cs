@@ -77,8 +77,8 @@ public class GridOfNodes : MonoBehaviour
 
     public bool isWalkable(Vector2 point)
     {
-        return !(Physics2D.BoxCast(new Vector2(point.x, point.y + 0.1f), new Vector2(0.1f, 0.1f), 0, new Vector2(0, 0), 1, mask).collider
-                    && (!Physics2D.BoxCast(new Vector2(point.x, point.y + 0.1f), new Vector2(0.1f, 0.1f), 0, new Vector2(0, 0), 1, mask).collider.isTrigger));
+        return !(Physics2D.BoxCast(new Vector2(point.x, point.y), new Vector2(0.1f, 0.1f), 0, new Vector2(0, 0), 1, mask).collider
+                    && (!Physics2D.BoxCast(new Vector2(point.x, point.y), new Vector2(0.1f, 0.1f), 0, new Vector2(0, 0), 1, mask).collider.isTrigger));
     }
 
     public List<GridsNode> GetNeighboursOf(GridsNode node, string whoCalls)
@@ -106,7 +106,7 @@ public class GridOfNodes : MonoBehaviour
 
     public GridsNode GetNodeByPos(Vector2 pos)
     {
-        return nodes[(int)(pos.x + halfMapSizeX), (int)(pos.y + halfMapSizeY)];
+        return nodes[(int)(pos.x + halfMapSizeX + 0.55f), (int)(pos.y + halfMapSizeY + 0.8f)];
     }
 
     private void OnDrawGizmos()

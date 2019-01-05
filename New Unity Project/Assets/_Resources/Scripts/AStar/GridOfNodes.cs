@@ -9,6 +9,7 @@ public class GridOfNodes : MonoBehaviour
     public Vector2 mapSize;
     public bool drawGizmosW, drawGizmosNW;
     public bool nodeIsCreated;
+    float halfMapSizeX, halfMapSizeY;
 
     public LayerMask mask;
 
@@ -22,7 +23,8 @@ public class GridOfNodes : MonoBehaviour
     private void Start()
     {
         mainMapPos = transform.position;
-        //mainMapPos = FindObjectOfType<Tiled2Unity.TiledMap>().transform.position;
+        halfMapSizeX = mapSize.x / 2;
+        halfMapSizeY = mapSize.y / 2;
         createGrid();
     }
 
@@ -104,12 +106,7 @@ public class GridOfNodes : MonoBehaviour
 
     public GridsNode GetNodeByPos(Vector2 pos)
     {
-        //pos -= mainMapPos;
-
-        int x = (int)(pos.x) + 30;
-        int y = (int)(pos.y) + 30;
-
-        return nodes[x, y];
+        return nodes[(int)(pos.x + halfMapSizeX), (int)(pos.y + halfMapSizeY)];
     }
 
     private void OnDrawGizmos()

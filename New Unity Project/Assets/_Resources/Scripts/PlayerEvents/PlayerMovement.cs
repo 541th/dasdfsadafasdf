@@ -49,6 +49,7 @@ public class PlayerMovement : MonoBehaviour
         if (playerType == 3)
             ms = startMS;
         _t = transform;
+        GetComponent<Rigidbody2D>().sleepMode = RigidbodySleepMode2D.NeverSleep;
         //_rb = GetComponent<Rigidbody2D>();
     }
 

@@ -98,7 +98,7 @@ public class Enemy_0 : MonoBehaviour
             delay += Time.deltaTime;
             delta -= Time.deltaTime;
 
-            if ((Vector2.Distance(_t.position, player.transform.position) < 2))
+            if ((Vector2.Distance(_t.position, player.transform.position) < 1.6f))
             {
                 _a.SetTrigger("Attack");
                 return;

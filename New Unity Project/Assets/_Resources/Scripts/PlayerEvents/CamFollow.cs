@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using CnControls;
 
 public class CamFollow : MonoBehaviour
 {
@@ -31,7 +32,7 @@ public class CamFollow : MonoBehaviour
     {
         if (followTarget != null)
         {
-            targetPos = new Vector3(followTarget.transform.position.x, followTarget.transform.position.y, transform.position.z);
+            targetPos = new Vector3(followTarget.transform.position.x + CnInputManager.GetAxis("Attack_H") * 2, followTarget.transform.position.y + CnInputManager.GetAxis("Attack_V") * 2, transform.position.z);
             transform.position = Vector3.Lerp(transform.position, targetPos, moveSpeed * Time.deltaTime);
         }
     }

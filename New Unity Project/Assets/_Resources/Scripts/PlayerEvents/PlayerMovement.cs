@@ -13,9 +13,11 @@ public class PlayerMovement : MonoBehaviour
     public bool canMove;
     bool isMoving;
     public Vector2 moveInput, lastMove;
+    Animator _a;
 
     void Start()
     {
+        _a = GetComponent<Animator>();
         if (playerType == 0)
         {
             GameObject.Find("ButtonAttackType").transform.GetChild(0).gameObject.SetActive(false);
@@ -115,11 +117,11 @@ public class PlayerMovement : MonoBehaviour
                 //anim.SetBool("Walk", false);
             }
 
-            //anim.SetFloat("MoveX", moveInput.x);
-            //anim.SetFloat("MoveY", moveInput.y);
-            //anim.SetBool("Moving", playerMoving);
-            //anim.SetFloat("LastMoveX", lastMove.x);
-            //anim.SetFloat("LastMoveY", lastMove.y);
+            _a.SetFloat("mx", moveInput.x);
+            _a.SetFloat("my", moveInput.y);
+            _a.SetBool("run", isMoving);
+            _a.SetFloat("lmx", lastMove.x);
+            _a.SetFloat("lmy", lastMove.y);
         }
     }
 

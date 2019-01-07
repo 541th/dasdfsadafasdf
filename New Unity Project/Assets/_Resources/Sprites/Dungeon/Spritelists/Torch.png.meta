@@ -1,12 +1,13 @@
 fileFormatVersion: 2
-guid: 26f8f277715ccc54eb011b8a8f9ced61
+guid: fb10ba49c2e4e7e408e709feeb4f98cc
 TextureImporter:
   fileIDToRecycleName:
-    21300000: spikes_0
-    21300002: spikes_1
-    21300004: spikes_2
-    21300006: spikes_3
-    21300008: Pusher
+    21300000: Torch_0
+    21300002: Torch_1
+    21300004: Torch_2
+    21300006: Torch_3
+    21300008: Torch_4
+    21300010: Torch_5
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -39,9 +40,9 @@ TextureImporter:
     filterMode: 0
     aniso: -1
     mipBias: -100
-    wrapU: 0
-    wrapV: 0
-    wrapW: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
@@ -50,7 +51,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 48
+  spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -68,7 +69,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -79,7 +80,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -87,114 +88,134 @@ TextureImporter:
     androidETC2FallbackOverride: 0
   - serializedVersion: 2
     buildTarget: Android
-    maxTextureSize: 2048
+    maxTextureSize: 1024
     resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 0
+    textureFormat: 46
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
-    overridden: 0
+    overridden: 1
     androidETC2FallbackOverride: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: spikes_0
+      name: Torch_0
       rect:
         serializedVersion: 2
-        x: 128
-        y: 576
-        width: 64
-        height: 64
+        x: 0
+        y: 0
+        width: 16
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 89bac481547f3e64d86e17664c47414e
+      spriteID: f1ab741f5361f734b832ae419ef01474
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: spikes_1
+      name: Torch_1
       rect:
         serializedVersion: 2
-        x: 192
-        y: 576
-        width: 64
-        height: 64
+        x: 16
+        y: 0
+        width: 16
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4fe325a373d7ce54b9fb499193874b8c
+      spriteID: 8d4f7c6a9c5a5f3458bc6f29613aa3df
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: spikes_2
+      name: Torch_2
       rect:
         serializedVersion: 2
-        x: 256
-        y: 576
-        width: 64
-        height: 64
+        x: 32
+        y: 0
+        width: 16
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 88f90650cbded3a4787002b55649de31
+      spriteID: c19638bc6a558f145b022846a256c7e9
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: spikes_3
+      name: Torch_3
       rect:
         serializedVersion: 2
-        x: 320
-        y: 576
-        width: 64
-        height: 64
+        x: 48
+        y: 0
+        width: 16
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 76e7e46eaaafff14d96fb6325e6c56d7
+      spriteID: 8f4305ea62b83d44da409282ef71b3c2
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Pusher
+      name: Torch_4
       rect:
         serializedVersion: 2
-        x: 576
-        y: 95
-        width: 64
-        height: 545
+        x: 64
+        y: 0
+        width: 16
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: be7dea93759f8084fb35d3291678a436
+      spriteID: a80d4da2f76ea2e43970cc3d3a09d4cf
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Torch_5
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 0
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1716e9c1f8bd2754dabbe9b432617a76
       vertices: []
       indices: 
       edges: []
@@ -202,7 +223,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: ee1264a169508ff49ab97059b5dc6551
+    spriteID: 4f40183d3213a1944a92a2cacb717b57
     vertices: []
     indices: 
     edges: []

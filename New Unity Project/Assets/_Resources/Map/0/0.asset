@@ -405,7 +405,7 @@ MonoBehaviour:
       height: 0.1
     collData:
       vertices: []
-      type: 0
+      type: 1
     paramContainer:
       m_paramList: []
     prefabData:

@@ -39,6 +39,7 @@ public class GridOfNodes : MonoBehaviour
     int idMaxX, idMaxY;
     void createGrid()
     {
+        /*
         nodes = new GridsNode[(int)mapSize.x * 2, (int)mapSize.y * 2];
 
         float x = transform.position.x - (int)mapSize.x / 2;
@@ -49,7 +50,7 @@ public class GridOfNodes : MonoBehaviour
         {
             while (y < transform.position.y + (int)mapSize.y / 2 && idY < (int)mapSize.y * 2)
             {
-                nodes[idX, idY] = 
+                nodes[idX, idY] =
                     new GridsNode();
                 nodes[idX, idY].pos = new Vector2(x, y);
                 nodes[idX, idY].idX = idX;
@@ -71,7 +72,38 @@ public class GridOfNodes : MonoBehaviour
         }
 
         idMaxX = idX;
+        */
+        nodes = new GridsNode[(int)mapSize.x, (int)mapSize.y];
 
+        float x = transform.position.x;
+        float y = transform.position.y;
+        int idX = 0, idY = 0;
+
+        while (idX < (int)mapSize.x)
+        {
+            while (idY < (int)mapSize.y)
+            {
+                nodes[idX, idY] = new GridsNode();
+                nodes[idX, idY].pos = new Vector2(x, y);
+                nodes[idX, idY].idX = idX;
+                nodes[idX, idY].idY = idY;
+
+                nodes[idX, idY].walkable = isWalkable(new Vector2(x, y));
+
+                idY++;
+                y += 0.5f;
+            }
+
+            x += 0.5f;
+            y = transform.position.y;
+
+            idX++;
+
+            idMaxY = idY;
+            idY = 0;
+        }
+
+        idMaxX = idX;
         nodeIsCreated = true;
     }
 
@@ -106,7 +138,7 @@ public class GridOfNodes : MonoBehaviour
 
     public GridsNode GetNodeByPos(Vector2 pos)
     {
-        return nodes[(int)(pos.x + halfMapSizeX + 0.55f), (int)(pos.y + halfMapSizeY + 0.8f)];
+        return nodes[(int)(pos.x) << 1, (int)(pos.y) << 1];
     }
 
     private void OnDrawGizmos()

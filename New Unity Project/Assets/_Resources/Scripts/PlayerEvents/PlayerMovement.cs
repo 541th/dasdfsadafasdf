@@ -15,6 +15,16 @@ public class PlayerMovement : MonoBehaviour
     public Vector2 moveInput, lastMove;
     Animator _a;
 
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.blue;
+
+        //foreach (Vector2 item in path)
+        {
+            Gizmos.DrawCube(FindObjectOfType<GridOfNodes>().GetNodeByPos(transform.position).pos, new Vector3(0.5f, 0.5f, 0.5f));
+        }
+    }
+
     void Start()
     {
         _a = GetComponent<Animator>();

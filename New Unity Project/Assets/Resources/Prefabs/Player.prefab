@@ -349,11 +349,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32ee6ac2153c58a4d9163640ed65df4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startMS: 6
+  startMS: 16
   playerType: 1
   canMove: 1
   moveInput: {x: 0, y: 0}
-  lastMove: {x: 0, y: 0}
+  lastMove: {x: 0, y: -1}
   isGlide: 0
   smoke: {fileID: 2762434275456583061, guid: 57e543fffe7a4d449a270966d34087e6, type: 3}
   glideTimer: 1
@@ -400,8 +400,8 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 10
-  m_LinearDrag: 10
-  m_AngularDrag: 10
+  m_LinearDrag: 100
+  m_AngularDrag: 100
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
@@ -421,7 +421,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.029983997, y: 0.038551092}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.1}
@@ -432,7 +432,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.6, y: 0.3}
+  m_Size: {x: 0.6001606, y: 0.3802247}
   m_EdgeRadius: 0
 --- !u!95 &6201309108722076634
 Animator:

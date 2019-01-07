@@ -3508,12 +3508,12 @@ PrefabInstance:
     - target: {fileID: 2556638891002869842, guid: 39e8d9f701073804796177dce1ef6b1c,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 7.53
+      value: 11.2
       objectReference: {fileID: 0}
     - target: {fileID: 2556638891002869842, guid: 39e8d9f701073804796177dce1ef6b1c,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.79
+      value: 14.7
       objectReference: {fileID: 0}
     - target: {fileID: 2556638891002869842, guid: 39e8d9f701073804796177dce1ef6b1c,
         type: 3}
@@ -3570,25 +3570,5 @@ PrefabInstance:
       propertyPath: slider
       value: 
       objectReference: {fileID: 2843843386126789458}
-    - target: {fileID: 2556638891002869837, guid: 39e8d9f701073804796177dce1ef6b1c,
-        type: 3}
-      propertyPath: playerType
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2556638891002869837, guid: 39e8d9f701073804796177dce1ef6b1c,
-        type: 3}
-      propertyPath: lastMove.y
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2556638891002869834, guid: 39e8d9f701073804796177dce1ef6b1c,
-        type: 3}
-      propertyPath: m_Size.x
-      value: 0.9
-      objectReference: {fileID: 0}
-    - target: {fileID: 2556638891002869834, guid: 39e8d9f701073804796177dce1ef6b1c,
-        type: 3}
-      propertyPath: m_Size.y
-      value: 0.8
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 39e8d9f701073804796177dce1ef6b1c, type: 3}

@@ -9,12 +9,13 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float startMS;
     public int playerType;
     Transform _t;
+    Rigidbody2D _rb;
 
     public bool canMove;
     bool isMoving;
     public Vector2 moveInput, lastMove;
     Animator _a;
-
+    /*
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.blue;
@@ -23,7 +24,7 @@ public class PlayerMovement : MonoBehaviour
         {
             Gizmos.DrawCube(FindObjectOfType<GridOfNodes>().GetNodeByPos(transform.position).pos, new Vector3(0.5f, 0.5f, 0.5f));
         }
-    }
+    }*/
 
     void Start()
     {
@@ -60,7 +61,7 @@ public class PlayerMovement : MonoBehaviour
             ms = startMS;
         _t = transform;
         GetComponent<Rigidbody2D>().sleepMode = RigidbodySleepMode2D.NeverSleep;
-        //_rb = GetComponent<Rigidbody2D>();
+        _rb = GetComponent<Rigidbody2D>();
     }
 
     float h, v;
@@ -109,11 +110,11 @@ public class PlayerMovement : MonoBehaviour
 
             if (moveInput != Vector2.zero)
             {
-                //_rb.velocity = new Vector2(
-                //    (moveInput.x) * ms * Time.deltaTime,
-                //    (moveInput.y) * ms * Time.deltaTime);
+                _rb.velocity = new Vector2(
+                    (moveInput.x) * ms * 60 * Time.deltaTime,
+                    (moveInput.y) * ms * 60 * Time.deltaTime);
 
-                _t.position += new Vector3((moveInput.x) * ms * Time.deltaTime, (moveInput.y) * ms * Time.deltaTime, 0);
+                //_t.position += new Vector3((moveInput.x) * ms * Time.deltaTime, (moveInput.y) * ms * Time.deltaTime, 0);
                 isMoving = true;
 
                 lastMove = moveInput;
@@ -200,7 +201,7 @@ public class PlayerMovement : MonoBehaviour
             Instantiate(smoke, transform.position - new Vector3(0, 0.4f), Quaternion.identity);
             _t -= Time.deltaTime;
 
-            _rb.velocity = new Vector3(h * 30, v * 30, 0);
+            _rb.velocity = new Vector3(h * 80, v * 80, 0);
 
             yield return null;
         }

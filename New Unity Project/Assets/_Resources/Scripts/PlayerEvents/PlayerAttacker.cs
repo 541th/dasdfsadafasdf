@@ -16,7 +16,7 @@ public class PlayerAttacker : MonoBehaviour
 
             if (isArrow)
             {
-                Destroy(gameObject);
+
             }
         }
     }

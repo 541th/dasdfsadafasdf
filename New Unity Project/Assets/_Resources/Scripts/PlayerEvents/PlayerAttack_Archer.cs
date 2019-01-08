@@ -41,6 +41,7 @@ public class PlayerAttack_Archer : MonoBehaviour
         // _a.SetFloat("lastMoveY", _pm.lastMove.y);
     }
 
+    [SerializeField] CamFollow cam;
     void createArrow()
     {
         GameObject toInst;
@@ -51,7 +52,15 @@ public class PlayerAttack_Archer : MonoBehaviour
         arrow.transform.position = transform.position;
 
         arrow.GetComponent<ArrowFly>().target = new Vector2(h, v).normalized;
-        arrow.transform.eulerAngles = new Vector3(0, 0, Mathf.Atan2(v, h) * 180 / Mathf.PI + 180);
+        arrow.transform.position = transform.position + new Vector3(0, 0.5f);
+        arrow.transform.eulerAngles = new Vector3(0, 0, Mathf.Atan2(v, h) * 180 / Mathf.PI);
+
+        //SHAKING THE CAMERA
+        if (GetComponent<PlayerMovement>().playerType == 2)
+        {
+            if (cam == null) cam = GameObject.Find("Main Camera").GetComponent<CamFollow>();
+            cam.startShakeArrow();
+        }
     }
 
     public void startAttack()

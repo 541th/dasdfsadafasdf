@@ -2293,7 +2293,7 @@ PrefabInstance:
     - target: {fileID: 6886032910636366889, guid: c295b1121cf2d9243adb9625179131d6,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6886032910636366889, guid: c295b1121cf2d9243adb9625179131d6,
         type: 3}
@@ -2313,7 +2313,7 @@ PrefabInstance:
     - target: {fileID: 6886032910636366891, guid: c295b1121cf2d9243adb9625179131d6,
         type: 3}
       propertyPath: startTimer
-      value: 0.6
+      value: 0.4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c295b1121cf2d9243adb9625179131d6, type: 3}
@@ -3188,7 +3188,7 @@ PrefabInstance:
     - target: {fileID: 6886032910636366889, guid: c295b1121cf2d9243adb9625179131d6,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6886032910636366889, guid: c295b1121cf2d9243adb9625179131d6,
         type: 3}
@@ -3208,7 +3208,7 @@ PrefabInstance:
     - target: {fileID: 6886032910636366891, guid: c295b1121cf2d9243adb9625179131d6,
         type: 3}
       propertyPath: startTimer
-      value: 0.4
+      value: 0.6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c295b1121cf2d9243adb9625179131d6, type: 3}
@@ -3831,7 +3831,7 @@ PrefabInstance:
     - target: {fileID: 3780097191094782371, guid: bb4ab55bedb0b0044a389a614e7380dc,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 21.4
+      value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 3780097191094782371, guid: bb4ab55bedb0b0044a389a614e7380dc,
         type: 3}
@@ -5561,8 +5561,8 @@ Transform:
   m_Children:
   - {fileID: 1465484172}
   - {fileID: 1770083200}
-  - {fileID: 1183534718}
   - {fileID: 907357748}
+  - {fileID: 1183534718}
   m_Father: {fileID: 206662195}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6080,6 +6080,11 @@ PrefabInstance:
       propertyPath: slider
       value: 
       objectReference: {fileID: 2843843386126789458}
+    - target: {fileID: 2556638891002869837, guid: 39e8d9f701073804796177dce1ef6b1c,
+        type: 3}
+      propertyPath: playerType
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 39e8d9f701073804796177dce1ef6b1c, type: 3}
 --- !u!1001 &7497148358902425293

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6886032909956422259}
   - component: {fileID: 6886032909956422258}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Collider (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -68,7 +68,7 @@ GameObject:
   - component: {fileID: 6886032910055000908}
   - component: {fileID: 6886032910055000911}
   - component: {fileID: 6886032910055000910}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -141,7 +141,7 @@ GameObject:
   - component: {fileID: 6886032910636366889}
   - component: {fileID: 6886032910636366888}
   - component: {fileID: 6886032910636366891}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Pusher
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -224,5 +224,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99852283a9e3cb144b2068dccf64bed5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startTimer: 0
   start: 0
   end: 13.4

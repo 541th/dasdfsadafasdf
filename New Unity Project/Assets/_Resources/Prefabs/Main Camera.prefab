@@ -18065,6 +18065,18 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 22483060, guid: 943b21e331e945146beb63726ff855df, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -23
+      objectReference: {fileID: 0}
+    - target: {fileID: 22483060, guid: 943b21e331e945146beb63726ff855df, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -31
+      objectReference: {fileID: 0}
+    - target: {fileID: 22486632, guid: 943b21e331e945146beb63726ff855df, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 128
+      objectReference: {fileID: 0}
     - target: {fileID: 11421910, guid: 943b21e331e945146beb63726ff855df, type: 3}
       propertyPath: HideOnRelease
       value: 0
@@ -18084,18 +18096,6 @@ PrefabInstance:
     - target: {fileID: 11489796, guid: 943b21e331e945146beb63726ff855df, type: 3}
       propertyPath: m_Color.a
       value: 0.45490196
-      objectReference: {fileID: 0}
-    - target: {fileID: 22483060, guid: 943b21e331e945146beb63726ff855df, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -23
-      objectReference: {fileID: 0}
-    - target: {fileID: 22483060, guid: 943b21e331e945146beb63726ff855df, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -31
-      objectReference: {fileID: 0}
-    - target: {fileID: 22486632, guid: 943b21e331e945146beb63726ff855df, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 128
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 943b21e331e945146beb63726ff855df, type: 3}
@@ -18218,34 +18218,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.99996847
       objectReference: {fileID: 0}
-    - target: {fileID: 11421910, guid: 943b21e331e945146beb63726ff855df, type: 3}
-      propertyPath: HorizontalAxisName
-      value: Attack_H
-      objectReference: {fileID: 0}
-    - target: {fileID: 11421910, guid: 943b21e331e945146beb63726ff855df, type: 3}
-      propertyPath: VerticalAxisName
-      value: Attack_V
-      objectReference: {fileID: 0}
-    - target: {fileID: 11421910, guid: 943b21e331e945146beb63726ff855df, type: 3}
-      propertyPath: HideOnRelease
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 11421910, guid: 943b21e331e945146beb63726ff855df, type: 3}
-      propertyPath: MoveBase
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 11421910, guid: 943b21e331e945146beb63726ff855df, type: 3}
-      propertyPath: SnapsToFinger
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 11480696, guid: 943b21e331e945146beb63726ff855df, type: 3}
-      propertyPath: m_Color.a
-      value: 0.45490196
-      objectReference: {fileID: 0}
-    - target: {fileID: 11489796, guid: 943b21e331e945146beb63726ff855df, type: 3}
-      propertyPath: m_Color.a
-      value: 0.45490196
-      objectReference: {fileID: 0}
     - target: {fileID: 22483060, guid: 943b21e331e945146beb63726ff855df, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 0
@@ -18277,6 +18249,34 @@ PrefabInstance:
     - target: {fileID: 22486632, guid: 943b21e331e945146beb63726ff855df, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11421910, guid: 943b21e331e945146beb63726ff855df, type: 3}
+      propertyPath: HorizontalAxisName
+      value: Attack_H
+      objectReference: {fileID: 0}
+    - target: {fileID: 11421910, guid: 943b21e331e945146beb63726ff855df, type: 3}
+      propertyPath: VerticalAxisName
+      value: Attack_V
+      objectReference: {fileID: 0}
+    - target: {fileID: 11421910, guid: 943b21e331e945146beb63726ff855df, type: 3}
+      propertyPath: HideOnRelease
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11421910, guid: 943b21e331e945146beb63726ff855df, type: 3}
+      propertyPath: MoveBase
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11421910, guid: 943b21e331e945146beb63726ff855df, type: 3}
+      propertyPath: SnapsToFinger
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11480696, guid: 943b21e331e945146beb63726ff855df, type: 3}
+      propertyPath: m_Color.a
+      value: 0.45490196
+      objectReference: {fileID: 0}
+    - target: {fileID: 11489796, guid: 943b21e331e945146beb63726ff855df, type: 3}
+      propertyPath: m_Color.a
+      value: 0.45490196
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 943b21e331e945146beb63726ff855df, type: 3}

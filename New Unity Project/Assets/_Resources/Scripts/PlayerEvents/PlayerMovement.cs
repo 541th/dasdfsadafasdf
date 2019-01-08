@@ -141,15 +141,10 @@ public class PlayerMovement : MonoBehaviour
         float mult = Mathf.Sin(h) * Mathf.Cos(v);
 
         ms = startMS;
-
-        //anim.SetBool("Moving", true);
-       // anim.SetBool("Walk", false);
-
+        
         if (Mathf.Abs(Mathf.Cos(v)) > 0.90f && Mathf.Abs(Mathf.Sin(h)) < 0.30f)
         {
             ms /= 2f;
-            //anim.SetBool("Moving", false);
-            //anim.SetBool("Walk", true);
         }
 
         if (Mathf.Abs(Mathf.Cos(v)) > 0.96f && Mathf.Abs(Mathf.Sin(h)) < 0.10f)

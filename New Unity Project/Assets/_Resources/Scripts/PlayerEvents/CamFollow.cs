@@ -42,12 +42,13 @@ public class CamFollow : MonoBehaviour
                 delta = new Vector2(a_h, a_v);
             else
                 delta = Vector2.zero;
-
+            
             if (a_h != 0 || a_v != 0)
             {
                 shotDir.gameObject.SetActive(true);
                 shotDir.transform.eulerAngles = new Vector3(0, 0, Mathf.Atan2(a_v, a_h) * 180 / Mathf.PI - 90);
                 shotDir.transform.localPosition = new Vector3(a_h, a_v, 1);
+                shotDir.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, Vector2.Distance(Vector2.zero, new Vector2(Mathf.Abs(a_h), Mathf.Abs(a_v))));
             }
             else
                 shotDir.gameObject.SetActive(false);

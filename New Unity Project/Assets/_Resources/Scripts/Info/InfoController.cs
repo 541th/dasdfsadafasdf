@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class InfoController : MonoBehaviour
 {
-    [SerializeField] GameObject perksPanel;
+    [SerializeField] GameObject perksPanel, perksInfo;
     static PlayerMovement pm;
 
     public static float[] sV = new float[3];
@@ -41,5 +41,12 @@ public class InfoController : MonoBehaviour
             pm = FindObjectOfType<PlayerMovement>();
 
         sV[pm.playerType - 1] += value;
+    }
+
+    public void showPerksInfo(string desc, string adding)
+    {
+        perksInfo.SetActive(true);
+        perksInfo.transform.GetChild(0).GetChild(0).GetComponent<Text>().text = desc;
+        perksInfo.transform.GetChild(0).GetChild(1).GetComponent<Text>().text = adding;
     }
 }

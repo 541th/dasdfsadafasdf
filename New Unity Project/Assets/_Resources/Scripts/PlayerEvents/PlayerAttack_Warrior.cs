@@ -10,7 +10,7 @@ public class PlayerAttack_Warrior : MonoBehaviour
 
     private void Start()
     {
-        _a = transform.GetChild(0).GetComponent<Animator>();
+        _a = transform.GetComponent<Animator>();
         _pm = GetComponent<PlayerMovement>();
     }
     
@@ -20,8 +20,8 @@ public class PlayerAttack_Warrior : MonoBehaviour
 
         if (Input.GetKeyUp(KeyCode.Space)) stopAttack();
 
-        _a.SetFloat("lastMoveX", _pm.lastMove.x);
-        _a.SetFloat("lastMoveY", _pm.lastMove.y);
+        //_a.SetFloat("lastMoveX", _pm.lastMove.x);
+        //_a.SetFloat("lastMoveY", _pm.lastMove.y);
     }
 
     public void startAttack()
@@ -29,7 +29,7 @@ public class PlayerAttack_Warrior : MonoBehaviour
         if (!GetComponent<PlayerMovement>().isGlide)
         {
             isAttacking = true;
-            _a.SetBool("isAttacking", true);
+            _a.SetBool("attack", true);
         }
     }
 
@@ -38,7 +38,7 @@ public class PlayerAttack_Warrior : MonoBehaviour
         //if (!GetComponent<PlayerMovement>().isGlide)
         {
             isAttacking = false;
-            _a.SetBool("isAttacking", false);
+            _a.SetBool("attack", false);
         }
     }
 }

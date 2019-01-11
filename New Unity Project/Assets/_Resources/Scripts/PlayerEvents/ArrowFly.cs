@@ -5,6 +5,8 @@ using UnityEngine;
 public class ArrowFly : MonoBehaviour
 {
     public Vector2 target, ms;
+    [SerializeField]
+    bool dontStop;
     bool fly;
 
     private void Start()
@@ -21,12 +23,19 @@ public class ArrowFly : MonoBehaviour
 
     public void showDeath()
     {
+        if (dontStop) return;
         StartCoroutine(InstantDeath());
     }
 
     IEnumerator StartDeath()
     {
         yield return new WaitForSeconds(3);
+        if (dontStop)
+        {
+            Destroy(gameObject);
+            yield break;
+        }
+
         if (fly)
             StartCoroutine(InstantDeath());
     }

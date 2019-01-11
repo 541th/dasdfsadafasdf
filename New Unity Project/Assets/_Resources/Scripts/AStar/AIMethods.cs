@@ -5,6 +5,8 @@ using UnityEngine;
 public class AIMethods : MonoBehaviour {
     public bool dontShowOCI, stanned;
     string _tag = "";
+    public float ms;
+    public bool netting;
 
     private void Start()
     {

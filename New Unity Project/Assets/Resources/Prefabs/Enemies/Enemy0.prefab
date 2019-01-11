@@ -534,9 +534,9 @@ MonoBehaviour:
     m_Bits: 0
   walkTime: 2.5
   waitTime: 3
-  ms: 3
   curState: 0
   dir: {x: 0, y: 0}
+  netting: 0
 --- !u!114 &1535590812
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -551,6 +551,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dontShowOCI: 0
   stanned: 0
+  ms: 3
 --- !u!58 &3971028072766625487
 CircleCollider2D:
   m_ObjectHideFlags: 0

@@ -58,4 +58,39 @@ public class EnemyHP : MonoBehaviour
 
         parent.velocity = Vector3.zero;
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Slow"))
+        {
+            if (transform.parent != null)
+            {
+                transform.parent.GetComponent<AIMethods>().ms /= 2;
+            }
+        }
+        else if (collision.CompareTag("TrappingNet"))
+        {
+            if (transform.parent != null)
+            {
+                transform.parent.GetComponent<AIMethods>().netting = true;
+                Invoke("setNettingFalse", 5);
+            }
+        }
+    }
+
+    void setNettingFalse()
+    {
+        transform.parent.GetComponent<AIMethods>().netting = false;
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Slow"))
+        {
+            if (transform.parent != null)
+            {
+                transform.parent.GetComponent<AIMethods>().ms *= 2;
+            }
+        }
+    }
 }

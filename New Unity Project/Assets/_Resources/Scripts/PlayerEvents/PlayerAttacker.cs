@@ -16,7 +16,15 @@ public class PlayerAttacker : MonoBehaviour
 
     public void removeModifier(char _c, int _v)
     {
-        modifiers.Remove(new Modifiers(_c, _v));
+        for (int i = 0; i < modifiers.Count; i++)
+        {
+            if (modifiers[i].value == _v)
+                if (modifiers[i].sign == _c)
+                {
+                    modifiers.RemoveAt(i);
+                    break;
+                }
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

@@ -10,6 +10,8 @@ TagManager:
   - EnemyHP
   - TownObj
   - Banner
+  - TrappingNet
+  - Slow
   layers:
   - Default
   - TransparentFX

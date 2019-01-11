@@ -6,6 +6,7 @@ using CnControls;
 public class PlayerAttack_Archer : MonoBehaviour
 {
     bool isAttacking;
+    public bool isHotShot;
     int curArrow = 0;
     [SerializeField] float attackSpeed, attackTimer;
     [SerializeField] GameObject[] arrows;
@@ -36,7 +37,8 @@ public class PlayerAttack_Archer : MonoBehaviour
                 createArrow();
             }
         }
-        
+        else attackTimer = 0;
+
         // _a.SetFloat("lastMoveX", _pm.lastMove.x);
         // _a.SetFloat("lastMoveY", _pm.lastMove.y);
     }
@@ -45,8 +47,19 @@ public class PlayerAttack_Archer : MonoBehaviour
     void createArrow()
     {
         GameObject toInst;
-        if (GetComponent<PlayerMovement>().playerType == 2) toInst = arrows[curArrow];
-        else toInst = mag_arrows[curArrow];
+        if (!isHotShot)
+        {
+            if (GetComponent<PlayerMovement>().playerType == 2) toInst = arrows[curArrow];
+            else toInst = mag_arrows[curArrow];
+        }
+        else
+        {
+            toInst = Resources.Load("Prefabs/Arrows/HotShot_0") as GameObject;
+            GameObject effect = Instantiate(Resources.Load("Prefabs/Effects/HotShotEffect") as GameObject);
+            effect.transform.position = transform.position;
+            Destroy(effect, 1);
+            isHotShot = false;
+        }
 
         GameObject arrow = Instantiate(toInst);
         arrow.transform.position = transform.position;
@@ -63,21 +76,15 @@ public class PlayerAttack_Archer : MonoBehaviour
         }
     }
 
-    public void startAttack()
+    public void skill_8()
     {
-        if (!GetComponent<PlayerMovement>().isGlide)
-        {
-            //isAttacking = true;
-            //_a.SetBool("isAttacking", true);
-        }
+        StartCoroutine(skill_8Event());
     }
 
-    public void stopAttack()
+    IEnumerator skill_8Event()
     {
-        //if (!GetComponent<PlayerMovement>().isGlide)
-        {
-            //isAttacking = false;
-            //_a.SetBool("isAttacking", false);
-        }
+        attackSpeed = 0.2f;
+        yield return new WaitForSeconds(4);
+        attackSpeed = 0.4f;
     }
 }

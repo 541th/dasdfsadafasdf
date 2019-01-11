@@ -50,12 +50,11 @@ public class InfoController : MonoBehaviour
     {
         this.id = id;
         perksInfo.SetActive(true);
-        perksInfo.transform.GetChild(1).GetChild(1).gameObject.SetActive(isSkill);
 
         for (int i = 0; i < 3; i++)
             if (perksPanel.transform.GetChild(i).gameObject.activeSelf)
             {
-                perksInfo.transform.GetChild(1).GetChild(1).gameObject.SetActive(FindObjectOfType<PlayerMovement>().playerType == i + 1);
+                perksInfo.transform.GetChild(1).GetChild(1).gameObject.SetActive(FindObjectOfType<PlayerMovement>().playerType == i + 1 && isSkill);
                 break;
             }
 
@@ -95,6 +94,57 @@ public class InfoController : MonoBehaviour
         }
     }
 
+    IEnumerator throwNet()
+    {
+        float timer = 4;
+        yield return new WaitForSeconds(0.1f);
+
+        if (pm == null)
+            pm = FindObjectOfType<PlayerMovement>();
+
+        while (timer > 0)
+        {
+            timer -= Time.deltaTime;
+
+            if (Time.timeScale == 1)
+            {
+                if (Input.GetMouseButtonUp(0))
+                {
+                    GameObject net = Instantiate(Resources.Load("Prefabs/TrappingNet") as GameObject);
+                    net.transform.position = pm.transform.position;
+
+                    Vector2 to = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+                    while (Vector2.SqrMagnitude(net.transform.position - (Vector3)to) > 0.4f)
+                    {
+                        net.transform.position = Vector3.Lerp(net.transform.position, to, 4 * Time.deltaTime);
+                        yield return null;
+                    }
+
+                    Destroy(net, 5);
+
+                    yield break;
+                }
+            }
+
+            yield return null;
+        }
+    }
+
+    IEnumerator roots()
+    {
+        if (pm == null)
+            pm = FindObjectOfType<PlayerMovement>();
+
+        GameObject roots = Instantiate(Resources.Load("Prefabs/TrappingRoots") as GameObject);
+        roots.transform.position = pm.transform.position;
+
+        yield return new WaitForSeconds(6);
+
+        roots.GetComponent<Animator>().SetTrigger("End");
+        Destroy(roots, 1);
+    }
+
     public void useSkill()
     {
         switch (curSkill)
@@ -113,6 +163,21 @@ public class InfoController : MonoBehaviour
                 break;
             case 5:
                 FindObjectOfType<PlayerMovement>().skill_4();
+                break;
+            case 6:
+                FindObjectOfType<PlayerMovement>().skill_5();
+                break;
+            case 7:
+                FindObjectOfType<PlayerAttack_Archer>().isHotShot = true;
+                break;
+            case 8:
+                StartCoroutine(throwNet());
+                break;
+            case 9:
+                StartCoroutine(roots());
+                break;
+            case 10:
+                FindObjectOfType<PlayerAttack_Archer>().skill_8();
                 break;
         }
     }

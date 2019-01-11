@@ -234,12 +234,20 @@ public class PlayerMovement : MonoBehaviour
         StartCoroutine(rage());
     }
 
+    public void skill_5()
+    {
+        StartCoroutine(windRun());
+    }
+
+    [HideInInspector]
+    public bool inRage;
     IEnumerator rage()
     {
+        inRage = true;
         GameObject rage = Instantiate(Resources.Load("Prefabs/Effects/PlayerRage") as GameObject);
         Transform other = null;
 
-        transform.GetChild(0).GetChild(0).GetComponent<PlayerAttacker>().addModifier('*', 2);
+        transform.GetChild(0).GetChild(0).GetComponent<PlayerAttacker>().addModifier('*', 3);
 
         for (int i = 0; i < transform.childCount; i++)
             if (transform.GetChild(i).name == "Other")
@@ -253,7 +261,17 @@ public class PlayerMovement : MonoBehaviour
 
         yield return new WaitForSeconds(10);
 
-        transform.GetChild(0).GetChild(0).GetComponent<PlayerAttacker>().removeModifier('*', 2);
+        transform.GetChild(0).GetChild(0).GetComponent<PlayerAttacker>().removeModifier('*', 3);
+        inRage = false;
         Destroy(rage);
+    }
+
+    [HideInInspector]
+    public bool dontAttack;
+    IEnumerator windRun()
+    {
+        dontAttack = true;
+        yield return new WaitForSeconds(6);
+        dontAttack = false;
     }
 }

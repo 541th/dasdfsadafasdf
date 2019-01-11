@@ -13,8 +13,7 @@ public class Enemy_0 : MonoBehaviour
 
     public float walkTime = 2.5f;
     public float waitTime = 3f;
-
-    public float ms;
+    
     int points;
 
     float delay, delta;
@@ -77,7 +76,7 @@ public class Enemy_0 : MonoBehaviour
 
                 walkCounter -= Time.deltaTime;
 
-                _t.position = Vector2.MoveTowards(_t.position, (Vector2)_t.position + dir, ms * Time.deltaTime / 2);
+                _t.position = Vector2.MoveTowards(_t.position, (Vector2)_t.position + dir, AI.ms * Time.deltaTime / 2);
 
                 _a.SetFloat("MoveX", dir.x);
                 _a.SetFloat("MoveY", dir.y);
@@ -160,10 +159,12 @@ public class Enemy_0 : MonoBehaviour
                 */
             }
 
+            if (AI.netting) return;
+
             if (path != null)
                 if (path.Count != 0)
                 {
-                    _t.position = Vector2.MoveTowards(_t.position, path[points], ms * Time.deltaTime);
+                    _t.position = Vector2.MoveTowards(_t.position, path[points], AI.ms * Time.deltaTime);
 
                     if (Vector2.Distance(_t.position, path[points]) < 0.1f && points != 0)
                     {

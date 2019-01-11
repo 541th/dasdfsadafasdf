@@ -9,6 +9,7 @@ TagManager:
   - EnemyAttack
   - EnemyHP
   - TownObj
+  - Banner
   layers:
   - Default
   - TransparentFX

@@ -228,4 +228,32 @@ public class PlayerMovement : MonoBehaviour
 
         FindObjectOfType<UIManager>().glideReturn();
     }
+
+    public void skill_4()
+    {
+        StartCoroutine(rage());
+    }
+
+    IEnumerator rage()
+    {
+        GameObject rage = Instantiate(Resources.Load("Prefabs/Effects/PlayerRage") as GameObject);
+        Transform other = null;
+
+        transform.GetChild(0).GetChild(0).GetComponent<PlayerAttacker>().addModifier('*', 2);
+
+        for (int i = 0; i < transform.childCount; i++)
+            if (transform.GetChild(i).name == "Other")
+            {
+                other = transform.GetChild(i);
+                break;
+            }
+
+        rage.transform.SetParent(other);
+        rage.transform.localPosition = new Vector3(0, 0, 0);
+
+        yield return new WaitForSeconds(10);
+
+        transform.GetChild(0).GetChild(0).GetComponent<PlayerAttacker>().removeModifier('*', 2);
+        Destroy(rage);
+    }
 }

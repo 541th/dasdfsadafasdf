@@ -5,6 +5,7 @@ using UnityEngine;
 public class PerkContainer : MonoBehaviour
 {
     [SerializeField] string key0, key1;
+    [SerializeField] int id;
     [SerializeField] float mult, startValue;
     [SerializeField] bool showDiff, skill;
 
@@ -22,6 +23,6 @@ public class PerkContainer : MonoBehaviour
 
         if (skill) text1 = key1;
 
-        FindObjectOfType<InfoController>().showPerksInfo(key0, text1);
+        FindObjectOfType<InfoController>().showPerksInfo(key0, text1, skill, id);
     }
 }

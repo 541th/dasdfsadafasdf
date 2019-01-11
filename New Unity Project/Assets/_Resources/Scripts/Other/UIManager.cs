@@ -55,6 +55,7 @@ public class UIManager : MonoBehaviour
 
     public void openMenu()
     {
+        Time.timeScale = 0;
         gameMenu.SetActive(true);
         setAllItems(false);
     }
@@ -63,12 +64,19 @@ public class UIManager : MonoBehaviour
     {
         for (int i = 0; i < items.Count; i++)
         {
+            if (items[i].name == "Skill")
+            {
+                items[i].SetActive(value && InfoController.curSkill != 0);
+                continue;
+            }
+
             items[i].SetActive(value);
         }
     }
 
     public void closeMenu()
     {
+        Time.timeScale = 1;
         gameMenu.SetActive(false);
         setAllItems(true);
     }
@@ -77,6 +85,14 @@ public class UIManager : MonoBehaviour
     {
         gameMenu.SetActive(false);
 
-        infoCanvas.SetActive(true);
+        infoCanvas.GetComponent<InfoController>().open();
+    }
+
+    InfoController _ic;
+    public void useSkill()
+    {
+        if (_ic == null) _ic = FindObjectOfType<InfoController>();
+
+        _ic.useSkill();
     }
 }

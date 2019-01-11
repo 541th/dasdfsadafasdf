@@ -5,13 +5,14 @@ using UnityEngine.UI;
 
 public class PlayerHP : MonoBehaviour
 {
-    [SerializeField] int HP;
+    [SerializeField] int HP, maxHP;
     [SerializeField] Slider HPslider;
     [SerializeField] GameObject floatingNumbers;
 
     private void Start()
     {
         HP = (int)HPslider.value;
+        maxHP = HP;
     }
 
     public void toDamage(int damage)
@@ -35,6 +36,28 @@ public class PlayerHP : MonoBehaviour
             HPslider.value--;
             value--;
             yield return null;
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Banner"))
+        {
+            maxHP += 300;
+            HP += 300;
+            HPslider.maxValue += 300;
+            HPslider.value += 300;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Banner"))
+        {
+            maxHP -= 300;
+            HP -= 300;
+            HPslider.value -= 300;
+            HPslider.maxValue -= 300;
         }
     }
 }

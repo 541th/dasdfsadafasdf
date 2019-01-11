@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class AIMethods : MonoBehaviour {
-    public bool dontShowOCI;
+    public bool dontShowOCI, stanned;
     string _tag = "";
 
     private void Start()
     {
         _tag = tag;
+        startStan();
     }
 
     public Vector2 chooseDirectionWithException(int exclucdedDirection)
@@ -20,6 +21,33 @@ public class AIMethods : MonoBehaviour {
 
         return getVectorByDir(returnableDir);
     }
+
+    public void startStan()
+    {
+        StartCoroutine(stannedEvent());
+    }
+
+    IEnumerator stannedEvent()
+    {
+        stanned = true;
+
+        GameObject stannedEffect = Instantiate(Resources.Load("Prefabs/Effects/StannedEffect") as GameObject);
+        stannedEffect.transform.SetParent(transform);
+        stannedEffect.transform.localPosition = new Vector2(0, 0.04f);
+        stannedEffect.transform.GetChild(0).GetComponent<ParticleSystemRenderer>().sortingOrder = GetComponent<SpriteRenderer>().sortingOrder;
+
+        float timer = 2;
+
+        while (timer > 0)
+        {
+            timer -= Time.deltaTime;
+            yield return null;
+        }
+        
+        stanned = false;
+        Destroy(stannedEffect);
+    }
+
     /*
     public void setDirTo(Vector2 value)
     {

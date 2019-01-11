@@ -56,6 +56,8 @@ public class Enemy_0 : MonoBehaviour
 
     void Update()
     {
+        if (AI.stanned) return;
+
         if (curState == State.walk)
         {
             if (isWalking)
@@ -204,7 +206,7 @@ public class Enemy_0 : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.transform.CompareTag("Player") && collision.transform.GetComponent<PlayerMovement>().isGlide)
-            GetComponentInChildren<EnemyHP>().toDamage(Random.Range(4, 10), true);
+            GetComponentInChildren<EnemyHP>().toDamage(Random.Range(4, 10), true, false);
     }
 
     void startAttack()

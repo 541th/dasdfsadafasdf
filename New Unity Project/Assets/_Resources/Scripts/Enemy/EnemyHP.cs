@@ -10,7 +10,7 @@ public class EnemyHP : MonoBehaviour
     [SerializeField] GameObject floatingNumbers, slider;
     [SerializeField] float expForKill;
     
-    public void toDamage(int damage, bool isFlying)
+    public void toDamage(int damage, bool isFlying, bool stan)
     {
         HP -= damage;
         InfoController.addExp(expForKill/10);
@@ -34,6 +34,8 @@ public class EnemyHP : MonoBehaviour
                 player.GetComponent<PlayerExp>().addExp(expForKill);
             Destroy(transform.parent.gameObject);
         }
+
+        if (stan) transform.parent.GetComponent<AIMethods>().startStan();
     }
 
     IEnumerator flying(Vector2 to)

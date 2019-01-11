@@ -26,7 +26,7 @@ public class PlayerAttack_Warrior : MonoBehaviour
 
     public void startAttack()
     {
-        if (!GetComponent<PlayerMovement>().isGlide)
+        if (!GetComponent<PlayerMovement>().isGlide && GetComponent<PlayerMovement>().canMove)
         {
             isAttacking = true;
             _a.SetBool("attack", true);
@@ -40,5 +40,20 @@ public class PlayerAttack_Warrior : MonoBehaviour
             isAttacking = false;
             _a.SetBool("attack", false);
         }
+    }
+
+    public void skill_0()
+    {
+        _a.SetTrigger("skill_0");
+    }
+
+    public void skill_1()
+    {
+        _a.SetTrigger("skill_1");
+    }
+
+    public void skill_2()
+    {
+        _a.SetTrigger("skill_2");
     }
 }

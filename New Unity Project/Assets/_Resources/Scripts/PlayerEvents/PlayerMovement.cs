@@ -11,7 +11,7 @@ public class PlayerMovement : MonoBehaviour
     Transform _t;
     Rigidbody2D _rb;
 
-    public bool canMove;
+    public bool canMove, dontMove;
     bool isMoving;
     public Vector2 moveInput, lastMove;
     Animator _a;
@@ -69,7 +69,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.LeftShift)) glide();
 
-        if (isGlide) return;
+        if (isGlide || dontMove) return;
 
         h = CnInputManager.GetAxis("Horizontal");
         v = CnInputManager.GetAxis("Vertical");

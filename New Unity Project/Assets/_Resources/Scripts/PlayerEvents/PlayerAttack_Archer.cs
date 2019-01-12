@@ -6,7 +6,7 @@ using CnControls;
 public class PlayerAttack_Archer : MonoBehaviour
 {
     bool isAttacking;
-    public bool isHotShot;
+    public bool isHotShot, isLightning;
     int curArrow = 0;
     [SerializeField] float attackSpeed, attackTimer;
     [SerializeField] GameObject[] arrows;
@@ -67,6 +67,9 @@ public class PlayerAttack_Archer : MonoBehaviour
         arrow.GetComponent<ArrowFly>().target = new Vector2(h, v).normalized;
         arrow.transform.position = transform.position + new Vector3(0, 0.5f);
         arrow.transform.eulerAngles = new Vector3(0, 0, Mathf.Atan2(v, h) * 180 / Mathf.PI);
+
+        arrow.GetComponent<PlayerAttacker>().isLightning = isLightning;
+        isLightning = false;
 
         //SHAKING THE CAMERA
         if (GetComponent<PlayerMovement>().playerType == 2)

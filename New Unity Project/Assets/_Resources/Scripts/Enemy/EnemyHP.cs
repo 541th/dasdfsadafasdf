@@ -9,11 +9,21 @@ public class EnemyHP : MonoBehaviour
     Transform player;
     [SerializeField] GameObject floatingNumbers, slider;
     [SerializeField] float expForKill;
-    
+
+    public bool damage;
+    private void Update()
+    {
+        if (damage)
+        {
+            toDamageLightning(10);
+            damage = false;
+        }
+    }
+
     public void toDamage(int damage, bool isFlying, bool stan)
     {
         HP -= damage;
-        InfoController.addExp(expForKill/10);
+        InfoController.addExp(expForKill / 10);
         GameObject fn = Instantiate(floatingNumbers, transform.position + new Vector3(0, 0.4f), Quaternion.identity);
         fn.transform.GetChild(0).GetComponent<FloatingNumbers>().setText(damage + "");
 
@@ -36,6 +46,83 @@ public class EnemyHP : MonoBehaviour
         }
 
         if (stan) transform.parent.GetComponent<AIMethods>().startStan();
+    }
+
+    public void toDamageSlow(int damage, bool stan)
+    {
+        transform.parent.GetComponent<AIMethods>().ms /= 2;
+        Invoke("setMSBack", 3);
+
+        HP -= damage;
+        InfoController.addExp(expForKill / 10);
+        GameObject fn = Instantiate(floatingNumbers, transform.position + new Vector3(0, 0.4f), Quaternion.identity);
+        fn.transform.GetChild(0).GetComponent<FloatingNumbers>().setText(damage + "");
+
+        slider.SetActive(true);
+
+        slider.transform.GetChild(0).GetComponent<Slider>().value = HP;
+        slider.transform.GetChild(0).GetComponent<Slider>().fillRect.GetComponent<Image>().color = Color.Lerp(Color.red, Color.green, ((float)1 / maxHP) * HP);
+
+        if (HP <= 0)
+        {
+            if (player != null)
+                player.GetComponent<PlayerExp>().addExp(expForKill);
+            Destroy(transform.parent.gameObject);
+        }
+
+        if (stan) transform.parent.GetComponent<AIMethods>().startStan();
+    }
+
+    public void toDamageLightning(int damage)
+    {
+        HP -= damage;
+        InfoController.addExp(expForKill / 10);
+
+        GameObject _l = Instantiate(Resources.Load("Prefabs/Arrows/ChainLightningTrigger") as GameObject, transform.position, Quaternion.identity);
+        _l.GetComponent<ChainLightning>()._e.Add(gameObject);
+
+        GameObject fn = Instantiate(floatingNumbers, transform.position + new Vector3(0, 0.4f), Quaternion.identity);
+        fn.transform.GetChild(0).GetComponent<FloatingNumbers>().setText(damage + "");
+
+        slider.SetActive(true);
+
+        slider.transform.GetChild(0).GetComponent<Slider>().value = HP;
+        slider.transform.GetChild(0).GetComponent<Slider>().fillRect.GetComponent<Image>().color = Color.Lerp(Color.red, Color.green, ((float)1 / maxHP) * HP);
+
+        if (HP <= 0)
+        {
+            if (player != null)
+                player.GetComponent<PlayerExp>().addExp(expForKill);
+            Destroy(transform.parent.gameObject);
+        }
+    }
+
+    public void toDamageLightning(int damage, List<GameObject> _e)
+    {
+        HP -= damage;
+        InfoController.addExp(expForKill / 10);
+
+        GameObject _le = Instantiate(Resources.Load("Prefabs/Effects/Lightning") as GameObject, transform.position, Quaternion.identity);
+        Destroy(_le, 0.4f);
+
+        GameObject _l = Instantiate(Resources.Load("Prefabs/Arrows/ChainLightningTrigger") as GameObject, transform.position, Quaternion.identity);
+        _l.GetComponent<ChainLightning>()._e = _e;
+        _l.GetComponent<ChainLightning>()._e.Add(gameObject);
+
+        GameObject fn = Instantiate(floatingNumbers, transform.position + new Vector3(0, 0.4f), Quaternion.identity);
+        fn.transform.GetChild(0).GetComponent<FloatingNumbers>().setText(damage + "");
+
+        slider.SetActive(true);
+
+        slider.transform.GetChild(0).GetComponent<Slider>().value = HP;
+        slider.transform.GetChild(0).GetComponent<Slider>().fillRect.GetComponent<Image>().color = Color.Lerp(Color.red, Color.green, ((float)1 / maxHP) * HP);
+
+        if (HP <= 0)
+        {
+            if (player != null)
+                player.GetComponent<PlayerExp>().addExp(expForKill);
+            Destroy(transform.parent.gameObject);
+        }
     }
 
     IEnumerator flying(Vector2 to)
@@ -81,6 +168,11 @@ public class EnemyHP : MonoBehaviour
     void setNettingFalse()
     {
         transform.parent.GetComponent<AIMethods>().netting = false;
+    }
+
+    void setMSBack()
+    {
+        transform.parent.GetComponent<AIMethods>().ms *= 2;
     }
 
     private void OnTriggerExit2D(Collider2D collision)

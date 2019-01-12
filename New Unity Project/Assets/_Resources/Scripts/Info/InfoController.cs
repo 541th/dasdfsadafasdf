@@ -145,6 +145,48 @@ public class InfoController : MonoBehaviour
         Destroy(roots, 1);
     }
 
+    IEnumerator pentagram_F()
+    {
+        if (pm == null)
+            pm = FindObjectOfType<PlayerMovement>();
+
+        GameObject pentagram = Instantiate(Resources.Load("Prefabs/Effects/Pentagram_Fire") as GameObject);
+        pentagram.transform.position = pm.transform.position;
+
+        pm.dontMove = true;
+        pm.dontAttack = true;
+
+        yield return new WaitForSeconds(1f);
+
+        pm.dontMove = false;
+        pm.dontAttack = false;
+
+        yield return new WaitForSeconds(.3f);
+
+        Destroy(pentagram);
+    }
+
+    IEnumerator pentagram_I()
+    {
+        if (pm == null)
+            pm = FindObjectOfType<PlayerMovement>();
+
+        GameObject pentagram = Instantiate(Resources.Load("Prefabs/Effects/Pentagram_Ice") as GameObject);
+        pentagram.transform.position = pm.transform.position;
+
+        pm.dontMove = true;
+        pm.dontAttack = true;
+
+        yield return new WaitForSeconds(1f);
+
+        pm.dontMove = false;
+        pm.dontAttack = false;
+
+        yield return new WaitForSeconds(.3f);
+
+        Destroy(pentagram);
+    }
+
     public void useSkill()
     {
         switch (curSkill)
@@ -178,6 +220,15 @@ public class InfoController : MonoBehaviour
                 break;
             case 10:
                 FindObjectOfType<PlayerAttack_Archer>().skill_8();
+                break;
+            case 11:
+                StartCoroutine(pentagram_F());
+                break;
+            case 12:
+                StartCoroutine(pentagram_I());
+                break;
+            case 13:
+                FindObjectOfType<PlayerAttack_Archer>().isLightning = true;
                 break;
         }
     }

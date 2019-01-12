@@ -368,13 +368,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startMS: 16
-  playerType: 1
+  playerType: 3
   canMove: 1
   moveInput: {x: 0, y: 0}
   lastMove: {x: 0, y: -1}
   isGlide: 0
   smoke: {fileID: 2762434275456583061, guid: 57e543fffe7a4d449a270966d34087e6, type: 3}
   glideTimer: 1
+  inRage: 0
+  dontAttack: 0
 --- !u!114 &694973623454338381
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -399,6 +401,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc65a177edc659f42a2c2bd2bbcd3457, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isHotShot: 0
   attackSpeed: 0.4
   attackTimer: 0
   arrows:
@@ -440,7 +443,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.03, y: 0.038}
+  m_Offset: {x: 0, y: 0.038}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.1}

@@ -6,7 +6,8 @@ public class PlayerAttacker : MonoBehaviour
 {
     [SerializeField] int damage;
     [SerializeField] int randL, randH;
-    [SerializeField] bool isArrow, withStan, skill_2;
+    [SerializeField] bool isArrow, withStan, skill_2, slow;
+    public bool isLightning;
     List<Modifiers> modifiers = new List<Modifiers>();
 
     public void addModifier(char _c, int _v)
@@ -44,7 +45,13 @@ public class PlayerAttacker : MonoBehaviour
                 }
             }
 
-            collision.GetComponent<EnemyHP>().toDamage((value) * (skill_2 ? 3 : 1), true && !isArrow, withStan);
+            if (isLightning)
+                collision.GetComponent<EnemyHP>().toDamageLightning((value) * (skill_2 ? 3 : 1));
+            if (!slow)
+                collision.GetComponent<EnemyHP>().toDamage((value) * (skill_2 ? 3 : 1), true && !isArrow, withStan);
+            else
+                collision.GetComponent<EnemyHP>().toDamageSlow((value) * (skill_2 ? 3 : 1), withStan);
+
             withStan = false;
         }
     }

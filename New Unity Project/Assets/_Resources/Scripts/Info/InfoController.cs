@@ -145,6 +145,40 @@ public class InfoController : MonoBehaviour
         Destroy(roots, 1);
     }
 
+    IEnumerator hurricane()
+    {
+        float timer = 4;
+        yield return new WaitForSeconds(0.1f);
+
+        while (timer > 0)
+        {
+            timer -= Time.deltaTime;
+
+            if (Time.timeScale == 1)
+            {
+                if (Input.GetMouseButtonUp(0))
+                {
+                    GameObject hurricane = Instantiate(Resources.Load("Prefabs/Hurricane_0_Obj") as GameObject);
+                    hurricane.transform.position = new Vector3(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y, 0);
+
+                    int count = Random.Range(10, 20);
+
+                    for (int i = 0; i < count; i++)
+                    {
+                        GameObject hurricane_0 = Instantiate(Resources.Load("Prefabs/Effects/Hurricane_0_Effect") as GameObject);
+                        hurricane_0.transform.SetParent(hurricane.transform);
+                        hurricane_0.transform.position = new Vector3(hurricane.transform.position.x + Random.Range(-4f, 4f), hurricane.transform.position.y + Random.Range(-4f, 4f), -0.15f);
+                    }
+
+                    Destroy(hurricane, 10);
+                    yield break;
+                }
+            }
+
+            yield return null;
+        }
+    }
+
     IEnumerator pentagram_F()
     {
         if (pm == null)
@@ -229,6 +263,12 @@ public class InfoController : MonoBehaviour
                 break;
             case 13:
                 FindObjectOfType<PlayerAttack_Archer>().isLightning = true;
+                break;
+            case 14:
+                FindObjectOfType<PlayerHP>().createForceField();
+                break;
+            case 15:
+                StartCoroutine(hurricane());
                 break;
         }
     }

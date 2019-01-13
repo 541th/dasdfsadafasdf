@@ -4,11 +4,17 @@ using UnityEngine;
 
 public class SortingOrderAtStart : MonoBehaviour
 {
-    [SerializeField] bool isGrass, isTorch, isSpikes;
+    [SerializeField] bool isGrass, isTorch, isSpikes, isParticle;
     [SerializeField] float startTimer;
 
     void Start()
     {
+        if (isParticle)
+        {
+            GetComponent<ParticleSystemRenderer>().sortingOrder = -(int)(transform.position.y * SortingOrder.mult);
+            return;
+        }
+
         if (isSpikes)
         {
             GetComponent<Animator>().enabled = false;

@@ -15,6 +15,33 @@ public class PlayerHP : MonoBehaviour
         maxHP = HP;
     }
 
+    public void createForceField()
+    {
+        StartCoroutine(fieldEvent());
+    }
+
+    bool isField;
+    IEnumerator fieldEvent()
+    {
+        GameObject field = Instantiate(Resources.Load("Prefabs/Effects/ForceField_0") as GameObject, transform.position, Quaternion.identity);
+        field.transform.localScale = new Vector3(2, 2, 2);
+        isField = true;
+
+        Transform other = null;
+        for (int i = 0; i < transform.childCount; i++)
+            if (transform.GetChild(i).name == "Other")
+            {
+                other = transform.GetChild(i);
+                break;
+            }
+        field.transform.SetParent(other);
+
+        yield return new WaitForSeconds(6);
+
+        isField = false;
+        Destroy(field);
+    }
+
     public void toDamage(int damage)
     {
         GameObject fn = Instantiate(floatingNumbers, transform.position + new Vector3(0, 0.4f), Quaternion.identity);
@@ -27,6 +54,9 @@ public class PlayerHP : MonoBehaviour
         }
 
         if (GetComponent<PlayerMovement>().inRage) damage *= 2;
+
+        if (isField) damage /= 2;
+
         StartCoroutine(sub(damage));
 
         fn.transform.GetChild(0).GetComponent<FloatingNumbers>().setText(damage + "");

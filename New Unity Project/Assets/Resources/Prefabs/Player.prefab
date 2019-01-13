@@ -156,6 +156,8 @@ MonoBehaviour:
   isArrow: 0
   withStan: 0
   skill_2: 0
+  slow: 0
+  isLightning: 0
 --- !u!1 &1728360439
 GameObject:
   m_ObjectHideFlags: 0
@@ -320,6 +322,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 712d8dc1633ca684fa5fe8343fe62ea3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isParticle: 0
 --- !u!114 &2556638891002869839
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -349,6 +352,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5493ba39e8e04994baca3e39f88544b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  curLvl: 0
   curExp: 0
   expToLvlUp: 100
   slider: {fileID: 0}
@@ -368,8 +372,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startMS: 16
-  playerType: 3
+  playerType: 1
   canMove: 1
+  dontMove: 0
   moveInput: {x: 0, y: 0}
   lastMove: {x: 0, y: -1}
   isGlide: 0
@@ -402,6 +407,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isHotShot: 0
+  isLightning: 0
   attackSpeed: 0.4
   attackTimer: 0
   arrows:

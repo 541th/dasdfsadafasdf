@@ -4832,11 +4832,6 @@ PrefabInstance:
       propertyPath: slider
       value: 
       objectReference: {fileID: 2843843386126789458}
-    - target: {fileID: 2556638891002869837, guid: 39e8d9f701073804796177dce1ef6b1c,
-        type: 3}
-      propertyPath: playerType
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 39e8d9f701073804796177dce1ef6b1c, type: 3}
 --- !u!1001 &7497148358902425293

@@ -6,19 +6,23 @@ public class PerkContainer : MonoBehaviour
 {
     [SerializeField] string key0, key1;
     [SerializeField] int id;
-    [SerializeField] float mult, startValue;
-    [SerializeField] bool showDiff, skill;
+    [SerializeField] float mult;
+    [SerializeField] bool skill;
 
     public void openPerksInfo()
     {
-        string text1; 
-        if (showDiff)
-            text1 = key1 + ": " + startValue + " + " + mult;// тут надо умножать на уровень, ну или где-то в другом месте
-        else
-            text1 = key1 + " + " + (startValue + mult);// тут надо умножать на уровень, ну или где-то в другом месте
+        //string text1; 
+        //if (showDiff)
+        //    text1 = key1 + ": " + startValue + " + " + mult;// тут надо умножать на уровень, ну или где-то в другом месте
+        //else/
 
-        if (skill) text1 = key1;
-
-        FindObjectOfType<InfoController>().showPerksInfo(key0, text1, skill, id, transform.GetChild(0));
+        FindObjectOfType<InfoController>().showPerksInfo(
+            key0, 
+            key1 + ((skill) ? "" : " + "),
+            mult * ((!skill) ? InfoController.perks[id - 16].lvl + 1: 1) + "", 
+            skill, 
+            id, 
+            transform.GetChild(0), 
+            mult);
     }
 }

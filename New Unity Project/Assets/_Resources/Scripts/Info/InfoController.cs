@@ -7,12 +7,16 @@ public class InfoController : MonoBehaviour
 {
     [SerializeField] GameObject perksPanel, perksInfo;
     static PlayerMovement pm;
+    public static Perks[] perks = new Perks[15];
 
     public static float[] sV = new float[3];
 
     public void showPanel(int id)
     {
         setExpSV(id);
+
+        for (int i = 0; i < 15; i++)
+            perks[i] = new Perks();
 
         for (int i = 0; i < 3; i++)
             perksPanel.transform.GetChild(i).gameObject.SetActive(i == id);
@@ -46,22 +50,37 @@ public class InfoController : MonoBehaviour
     }
 
     int id;
-    public void showPerksInfo(string desc, string adding, bool isSkill, int id, Transform _t)
+    string adding_0;
+    float value;
+    public void showPerksInfo(string desc, string adding_0, string adding_1, bool isSkill, int id, Transform _t, float value)
     {
         this.id = id;
+        this.adding_0 = adding_0;
+        this.value = value;
+        this._t = _t;
         perksInfo.SetActive(true);
 
+        if (!isSkill)
+        {
+            perksInfo.transform.GetChild(0).GetChild(2).gameObject.SetActive(true);
+            perksInfo.transform.GetChild(0).GetChild(2).GetComponent<Text>().text = "lvl. " + perks[id - 16].lvl;
+            perksInfo.transform.GetChild(1).GetChild(1).gameObject.SetActive(false);
+            perksInfo.transform.GetChild(1).GetChild(2).gameObject.SetActive(false);
+            perksInfo.transform.GetChild(1).GetChild(3).gameObject.SetActive(true);
+        }
+        else
         for (int i = 0; i < 3; i++)
             if (perksPanel.transform.GetChild(i).gameObject.activeSelf)
             {
+                perksInfo.transform.GetChild(0).GetChild(2).gameObject.SetActive(false);
                 perksInfo.transform.GetChild(1).GetChild(1).gameObject.SetActive(FindObjectOfType<PlayerMovement>().playerType == i + 1 && isSkill);
                 perksInfo.transform.GetChild(1).GetChild(2).gameObject.SetActive(FindObjectOfType<PlayerMovement>().playerType == i + 1 && isSkill);
+                perksInfo.transform.GetChild(1).GetChild(3).gameObject.SetActive(false);
                 break;
             }
 
         perksInfo.transform.GetChild(0).GetChild(0).GetComponent<Text>().text = desc;
-        perksInfo.transform.GetChild(0).GetChild(1).GetComponent<Text>().text = adding;
-        this._t = _t;
+        perksInfo.transform.GetChild(0).GetChild(1).GetComponent<Text>().text = adding_0 + "" + (isSkill ? "" : adding_1);
     }
 
     Transform _t;
@@ -83,6 +102,17 @@ public class InfoController : MonoBehaviour
         curSkill_1 = id;
 
         if (curSkill_0 == curSkill_1) curSkill_0 = 0;
+    }
+
+    public void upPerk()
+    {
+        if (perks[id - 16].lvl < 5)
+        {
+            perks[id - 16].lvl++;
+            perksInfo.transform.GetChild(0).GetChild(2).GetComponent<Text>().text = "lvl. " + perks[id - 16].lvl;
+            perks[id - 16].value = value * perks[id - 16].lvl;
+            perksInfo.transform.GetChild(0).GetChild(1).GetComponent<Text>().text = adding_0 + " " + (value * (perks[id - 16].lvl + 1));
+        }
     }
 
     IEnumerator buildBanner()
@@ -302,7 +332,7 @@ public class InfoController : MonoBehaviour
                 break;
         }
     }
-    
+
     public void useSkill_1()
     {
         switch (curSkill_1)
@@ -368,5 +398,11 @@ public class InfoController : MonoBehaviour
                 FindObjectOfType<UIManager>().setSkillCD_1(30);
                 break;
         }
+    }
+
+    public class Perks
+    {
+        public int lvl;
+        public float value;
     }
 }

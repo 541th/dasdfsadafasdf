@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class PlayerExp : MonoBehaviour
 {
-    int curLvl;
+    public int curLvl;
     [SerializeField] float curExp, expToLvlUp;
     [SerializeField] Slider slider;
     public int points;
@@ -36,6 +36,7 @@ public class PlayerExp : MonoBehaviour
         GameObject newLvl = Instantiate(Resources.Load("Prefabs/NewLvl") as GameObject, GameObject.Find("Main Camera").transform.GetChild(0));
         newLvl.transform.localPosition = new Vector2(0, 120);
         newLvl.GetComponent<Text>().color = new Color(1, 1, 1, 0);
+        newLvl.GetComponent<Text>().text = "Новый уровень\n" + curLvl;
 
         float timer = 0, deltaTime = 0;
         while (timer < 1)

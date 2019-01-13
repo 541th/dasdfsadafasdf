@@ -88,6 +88,40 @@ public class UIManager : MonoBehaviour
         infoCanvas.GetComponent<InfoController>().open();
     }
 
+    public void setSkillCD(float value)
+    {
+        StartCoroutine(skillCD(value));
+    }
+
+    IEnumerator skillCD(float value)
+    {
+        GameObject skillButton = null;
+        for (int i = 0; i < items.Count; i++)
+            if (items[i].name == "Skill")
+            {
+                skillButton = items[i];
+                break;
+            }
+
+        skillButton.GetComponent<Image>().color = new Color(skillButton.GetComponent<Image>().color.r, skillButton.GetComponent<Image>().color.g, skillButton.GetComponent<Image>().color.b, skillButton.GetComponent<Image>().color.a / 2);
+        skillButton.GetComponent<Button>().interactable = false;
+
+        yield return new WaitForSeconds(value);
+
+        skillButton.GetComponent<Image>().color = new Color(skillButton.GetComponent<Image>().color.r, skillButton.GetComponent<Image>().color.g, skillButton.GetComponent<Image>().color.b, skillButton.GetComponent<Image>().color.a * 2);
+        skillButton.GetComponent<Button>().interactable = true;
+    }
+
+    public void setSkillIcon(Image _i)
+    {
+        for (int i = 0; i < items.Count; i++)
+            if (items[i].name == "Skill")
+            {
+                items[i].transform.GetChild(0).GetComponent<Image>().sprite = _i.sprite;
+                break;
+            }
+    }
+
     InfoController _ic;
     public void useSkill()
     {

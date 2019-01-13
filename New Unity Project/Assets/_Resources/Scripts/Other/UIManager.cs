@@ -64,9 +64,15 @@ public class UIManager : MonoBehaviour
     {
         for (int i = 0; i < items.Count; i++)
         {
-            if (items[i].name == "Skill")
+            if (items[i].name == "Skill_0")
             {
-                items[i].SetActive(value && InfoController.curSkill != 0);
+                items[i].SetActive(value && InfoController.curSkill_0 != 0);
+                continue;
+            }
+
+            if (items[i].name == "Skill_1")
+            {
+                items[i].SetActive(value && InfoController.curSkill_1 != 0);
                 continue;
             }
 
@@ -88,16 +94,21 @@ public class UIManager : MonoBehaviour
         infoCanvas.GetComponent<InfoController>().open();
     }
 
-    public void setSkillCD(float value)
+    public void setSkillCD_0(float value)
     {
-        StartCoroutine(skillCD(value));
+        StartCoroutine(skillCD_0(value));
     }
 
-    IEnumerator skillCD(float value)
+    public void setSkillCD_1(float value)
+    {
+        StartCoroutine(skillCD_1(value));
+    }
+
+    IEnumerator skillCD_0(float value)
     {
         GameObject skillButton = null;
         for (int i = 0; i < items.Count; i++)
-            if (items[i].name == "Skill")
+            if (items[i].name == "Skill_0")
             {
                 skillButton = items[i];
                 break;
@@ -112,10 +123,39 @@ public class UIManager : MonoBehaviour
         skillButton.GetComponent<Button>().interactable = true;
     }
 
-    public void setSkillIcon(Image _i)
+    IEnumerator skillCD_1(float value)
+    {
+        GameObject skillButton = null;
+        for (int i = 0; i < items.Count; i++)
+            if (items[i].name == "Skill_1")
+            {
+                skillButton = items[i];
+                break;
+            }
+
+        skillButton.GetComponent<Image>().color = new Color(skillButton.GetComponent<Image>().color.r, skillButton.GetComponent<Image>().color.g, skillButton.GetComponent<Image>().color.b, skillButton.GetComponent<Image>().color.a / 2);
+        skillButton.GetComponent<Button>().interactable = false;
+
+        yield return new WaitForSeconds(value);
+
+        skillButton.GetComponent<Image>().color = new Color(skillButton.GetComponent<Image>().color.r, skillButton.GetComponent<Image>().color.g, skillButton.GetComponent<Image>().color.b, skillButton.GetComponent<Image>().color.a * 2);
+        skillButton.GetComponent<Button>().interactable = true;
+    }
+
+    public void setSkillIcon_0(Image _i)
     {
         for (int i = 0; i < items.Count; i++)
-            if (items[i].name == "Skill")
+            if (items[i].name == "Skill_0")
+            {
+                items[i].transform.GetChild(0).GetComponent<Image>().sprite = _i.sprite;
+                break;
+            }
+    }
+
+    public void setSkillIcon_1(Image _i)
+    {
+        for (int i = 0; i < items.Count; i++)
+            if (items[i].name == "Skill_1")
             {
                 items[i].transform.GetChild(0).GetComponent<Image>().sprite = _i.sprite;
                 break;
@@ -123,10 +163,17 @@ public class UIManager : MonoBehaviour
     }
 
     InfoController _ic;
-    public void useSkill()
+    public void useSkill_0()
     {
         if (_ic == null) _ic = FindObjectOfType<InfoController>();
 
-        _ic.useSkill();
+        _ic.useSkill_0();
+    }
+
+    public void useSkill_1()
+    {
+        if (_ic == null) _ic = FindObjectOfType<InfoController>();
+
+        _ic.useSkill_1();
     }
 }

@@ -11,12 +11,15 @@ public class InfoController : MonoBehaviour
 
     public static float[] sV = new float[3];
 
+    private void Start()
+    {
+        for (int i = 0; i < 15; i++)
+            perks[i] = new Perks();
+    }
+
     public void showPanel(int id)
     {
         setExpSV(id);
-
-        for (int i = 0; i < 15; i++)
-            perks[i] = new Perks();
 
         for (int i = 0; i < 3; i++)
             perksPanel.transform.GetChild(i).gameObject.SetActive(i == id);
@@ -106,12 +109,18 @@ public class InfoController : MonoBehaviour
 
     public void upPerk()
     {
-        if (perks[id - 16].lvl < 5)
+        int _id = id - 16;
+        if (perks[_id].lvl < 5)
         {
-            perks[id - 16].lvl++;
-            perksInfo.transform.GetChild(0).GetChild(2).GetComponent<Text>().text = "lvl. " + perks[id - 16].lvl;
-            perks[id - 16].value = value * perks[id - 16].lvl;
-            perksInfo.transform.GetChild(0).GetChild(1).GetComponent<Text>().text = adding_0 + " " + (value * (perks[id - 16].lvl + 1));
+            perks[_id].lvl++;
+            perksInfo.transform.GetChild(0).GetChild(2).GetComponent<Text>().text = "lvl. " + perks[_id].lvl;
+            perks[_id].value = value * perks[_id].lvl;
+            perksInfo.transform.GetChild(0).GetChild(1).GetComponent<Text>().text = adding_0 + " " + (value * (perks[_id].lvl + 1));
+
+            GameObject player = GameObject.Find("Player");
+            if (_id == 0 && player.GetComponent<PlayerMovement>().playerType == 1) FindObjectOfType<PlayerHP>().updateMaxHP();
+            else if (_id == 5 && player.GetComponent<PlayerMovement>().playerType == 2) player.GetComponent<PlayerMovement>().updadeMS();
+            else if (_id == 6 && player.GetComponent<PlayerMovement>().playerType == 2) FindObjectOfType<CamFollow>().updateCamSize();
         }
     }
 
@@ -312,23 +321,23 @@ public class InfoController : MonoBehaviour
                 break;
             case 11:
                 StartCoroutine(pentagram_F());
-                FindObjectOfType<UIManager>().setSkillCD_0(17);
+                FindObjectOfType<UIManager>().setSkillCD_0(17 - perks[14].value);
                 break;
             case 12:
                 StartCoroutine(pentagram_I());
-                FindObjectOfType<UIManager>().setSkillCD_0(14);
+                FindObjectOfType<UIManager>().setSkillCD_0(14 - perks[14].value);
                 break;
             case 13:
                 FindObjectOfType<PlayerAttack_Archer>().isLightning = true;
-                FindObjectOfType<UIManager>().setSkillCD_0(13);
+                FindObjectOfType<UIManager>().setSkillCD_0(13 - perks[14].value);
                 break;
             case 14:
                 FindObjectOfType<PlayerHP>().createForceField();
-                FindObjectOfType<UIManager>().setSkillCD_0(28);
+                FindObjectOfType<UIManager>().setSkillCD_0(28 - perks[14].value);
                 break;
             case 15:
                 StartCoroutine(hurricane());
-                FindObjectOfType<UIManager>().setSkillCD_0(30);
+                FindObjectOfType<UIManager>().setSkillCD_0(30 - perks[14].value);
                 break;
         }
     }

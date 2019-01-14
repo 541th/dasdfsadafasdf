@@ -76,6 +76,14 @@ public class PlayerAttack_Archer : MonoBehaviour
         {
             if (cam == null) cam = GameObject.Find("Main Camera").GetComponent<CamFollow>();
             cam.startShakeArrow();
+
+            arrow.GetComponent<PlayerAttacker>().bleeding = Random.Range(1, 100) <= InfoController.perks[7].value;
+            arrow.GetComponent<PlayerAttacker>().expl = Random.Range(1, 100) <= InfoController.perks[8].value;
+        }
+        else if (GetComponent<PlayerMovement>().playerType == 3)
+        {
+            arrow.GetComponent<PlayerAttacker>().sub = InfoController.perks[10].lvl != 0;
+            arrow.GetComponent<PlayerAttacker>().explMag = Random.Range(1, 100) <= InfoController.perks[11].value;
         }
     }
 

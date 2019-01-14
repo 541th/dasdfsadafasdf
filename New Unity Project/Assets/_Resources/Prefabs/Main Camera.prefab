@@ -18179,7 +18179,7 @@ MonoBehaviour:
     \u0441\u043A\u043E\u043B\u044C\u0436\u0435\u043D\u0438\u044F"
   key1: "\u0421\u043A\u043E\u0440\u043E\u0441\u0442\u044C"
   id: 25
-  mult: 0.2
+  mult: 10
   skill: 0
 --- !u!1 &905349554
 GameObject:
@@ -19283,7 +19283,7 @@ MonoBehaviour:
     \u043E\u0442 \u0441\u043A\u043E\u043B\u044C\u0436\u0435\u043D\u0438\u044F"
   key1: "\u0423\u0440\u043E\u043D"
   id: 17
-  mult: 10
+  mult: 4
   skill: 0
 --- !u!1 &1201217738
 GameObject:
@@ -20818,7 +20818,7 @@ MonoBehaviour:
     \u0431\u0435\u0433\u0430"
   key1: "\u0421\u043A\u043E\u0440\u043E\u0441\u0442\u044C"
   id: 21
-  mult: 0.2
+  mult: 1
   skill: 0
 --- !u!1 &1628172561
 GameObject:
@@ -22116,7 +22116,7 @@ MonoBehaviour:
     \u043E\u0442 \u043E\u0433\u043B\u0443\u0448\u0435\u043D\u0438\u044F"
   key1: "\u041E\u0433\u043B\u0443\u0448\u0435\u043D\u0438\u0435"
   id: 20
-  mult: 0.2
+  mult: 0.4
   skill: 0
 --- !u!1 &1968908477
 GameObject:
@@ -23545,7 +23545,7 @@ MonoBehaviour:
     \u043F\u0435\u0440\u0435\u0437\u0430\u0440\u044F\u0434\u043A\u0438 \u0441\u043F\u043E\u0441\u043E\u0431\u043D\u043E\u0441\u0442\u0435\u0439"
   key1: "\u0423\u043C\u0435\u043D\u044C\u0448\u0435\u043D\u0438\u0435"
   id: 30
-  mult: 0.2
+  mult: 1
   skill: 0
 --- !u!1 &2015651065894975719
 GameObject:
@@ -23918,7 +23918,7 @@ MonoBehaviour:
   key1: "\u0423\u043C\u0435\u043D\u044C\u0448\u0435\u043D\u0438\u0435 \u0443\u0440\u043E\u043D\u0430
     \u0432 %"
   id: 26
-  mult: 5
+  mult: 4
   skill: 0
 --- !u!1 &2839409057835387749
 GameObject:

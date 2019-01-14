@@ -219,6 +219,12 @@ MonoBehaviour:
   withStan: 0
   skill_2: 0
   slow: 1
+  modifyWithMagPerk: 1
+  isLightning: 0
+  bleeding: 0
+  expl: 0
+  explMag: 0
+  sub: 0
 --- !u!1 &5199227553219910173
 GameObject:
   m_ObjectHideFlags: 0

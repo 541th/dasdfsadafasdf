@@ -13,6 +13,21 @@ public class CamFollow : MonoBehaviour
 
     public static bool cameraExists;
 
+    public void updateCamSize()
+    { 
+        GetComponent<Camera>().orthographicSize = 6 + InfoController.perks[6].value;
+    }
+
+    public void setCamAsUsuall()
+    {
+        GetComponent<Camera>().orthographicSize = 6;
+    }
+
+    private void Start()
+    {
+        updateCamSize();
+    }
+
     // Use this for initialization
     void Awake()
     {

@@ -8,17 +8,22 @@ public class ArrowFly : MonoBehaviour
     [SerializeField]
     bool dontStop;
     bool fly;
+    Rigidbody2D _rb;
 
     private void Start()
     {
         fly = true;
         StartCoroutine(StartDeath());
+        _rb = GetComponent<Rigidbody2D>();
     }
 
     private void Update()
     {
         if (fly)
-            transform.position += (Vector3)target * Time.deltaTime * 40;
+            _rb.velocity = (Vector3)target * Time.deltaTime * 1000;
+            //transform.position += (Vector3)target * Time.deltaTime * 40;
+        else
+            _rb.velocity = Vector3.zero;
     }
 
     public void showDeath()
@@ -53,8 +58,8 @@ public class ArrowFly : MonoBehaviour
     {
         if (fly)
         {
-            if (FindObjectOfType<PlayerMovement>().playerType == 3) FindObjectOfType<CamFollow>().startShakeArrow();
             StartCoroutine(InstantDeath());
+            if (FindObjectOfType<PlayerMovement>().playerType == 3) FindObjectOfType<CamFollow>().startShakeArrow();
         }
     }
 }

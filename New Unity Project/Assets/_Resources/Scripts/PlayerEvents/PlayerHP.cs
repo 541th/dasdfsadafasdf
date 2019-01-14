@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class PlayerHP : MonoBehaviour
 {
-    [SerializeField] int HP, maxHP;
+    [SerializeField] int HP, maxHP, startMax;
     [SerializeField] Slider HPslider;
     [SerializeField] GameObject floatingNumbers;
 
@@ -13,6 +13,15 @@ public class PlayerHP : MonoBehaviour
     {
         HP = (int)HPslider.value;
         maxHP = HP;
+        startMax = maxHP;
+
+        if (GetComponent<PlayerMovement>().playerType == 1)
+            updateMaxHP();
+    }
+
+    public bool lessThan10()
+    {
+        return HP / maxHP < 0.1f;
     }
 
     public void createForceField()
@@ -60,11 +69,6 @@ public class PlayerHP : MonoBehaviour
         StartCoroutine(sub(damage));
 
         fn.transform.GetChild(0).GetComponent<FloatingNumbers>().setText(damage + "");
-
-        if (HP <= 0)
-        {
-            print("СМЭРТ");
-        }
     }
 
     IEnumerator sub(int value)
@@ -76,12 +80,18 @@ public class PlayerHP : MonoBehaviour
             value--;
             yield return null;
         }
+
+        if (HP <= 0)
+        {
+            print("СМЭРТ");
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Banner"))
         {
+            startMax += 300;
             maxHP += 300;
             HP += 300;
             HPslider.maxValue += 300;
@@ -93,10 +103,19 @@ public class PlayerHP : MonoBehaviour
     {
         if (collision.CompareTag("Banner"))
         {
+            startMax -= 300;
             maxHP -= 300;
             HP -= 300;
             HPslider.value -= 300;
             HPslider.maxValue -= 300;
         }
+    }
+
+    public void updateMaxHP()
+    {
+        maxHP = startMax + (int)(InfoController.perks[0].value);
+        HP += 50;
+        HPslider.maxValue = startMax + (int)(InfoController.perks[0].value);
+        HPslider.value += 50;
     }
 }

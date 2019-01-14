@@ -158,6 +158,10 @@ MonoBehaviour:
   skill_2: 0
   slow: 0
   isLightning: 0
+  bleeding: 0
+  expl: 0
+  explMag: 0
+  sub: 0
 --- !u!1 &1728360439
 GameObject:
   m_ObjectHideFlags: 0
@@ -323,6 +327,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isParticle: 0
+  dontSubParticle: 0
 --- !u!114 &2556638891002869839
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -337,6 +342,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HP: 0
   maxHP: 0
+  startMax: 0
   HPslider: {fileID: 0}
   floatingNumbers: {fileID: 7304696037472265733, guid: 9d8b31a025a27d349bbe185a3b4e58c2,
     type: 3}
@@ -372,7 +378,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startMS: 16
-  playerType: 1
+  playerType: 3
   canMove: 1
   dontMove: 0
   moveInput: {x: 0, y: 0}

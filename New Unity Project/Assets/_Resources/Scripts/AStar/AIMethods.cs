@@ -11,7 +11,6 @@ public class AIMethods : MonoBehaviour {
     private void Start()
     {
         _tag = tag;
-        startStan();
     }
 
     public Vector2 chooseDirectionWithException(int exclucdedDirection)
@@ -38,8 +37,8 @@ public class AIMethods : MonoBehaviour {
         stannedEffect.transform.localPosition = new Vector2(0, 0.04f);
         stannedEffect.transform.GetChild(0).GetComponent<ParticleSystemRenderer>().sortingOrder = GetComponent<SpriteRenderer>().sortingOrder;
 
-        float timer = 2;
-
+        float timer = 2 + InfoController.perks[4].value;
+        print(InfoController.perks[4].value);
         while (timer > 0)
         {
             timer -= Time.deltaTime;
@@ -195,7 +194,23 @@ public class AIMethods : MonoBehaviour {
         return x*100 + y*100;
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.transform.CompareTag("Player") && collision.transform.GetComponent<PlayerMovement>().isGlide)
+            GetComponentInChildren<EnemyHP>().toDamage(Random.Range(4, 10) + (int)InfoController.perks[1].value, true, false, false, false, false, false);
+    }
+
     GameObject OCI;
+
+    public void subDamage()
+    {
+        for (int i = 0; i < transform.childCount; i++)
+            if (transform.GetChild(i).GetComponent<EnemyAttack>() != null)
+            {
+                transform.GetChild(i).GetComponent<EnemyAttack>().sub = InfoController.perks[10].value;
+                break;
+            }
+    }
 
     public void showDeath()
     {

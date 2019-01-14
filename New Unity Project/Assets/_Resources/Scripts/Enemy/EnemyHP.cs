@@ -10,6 +10,11 @@ public class EnemyHP : MonoBehaviour
     [SerializeField] GameObject floatingNumbers, slider;
     [SerializeField] float expForKill;
 
+    private void Start()
+    {
+        player = GameObject.Find("Player").transform;
+    }
+
     public bool damage;
     private void Update()
     {
@@ -20,8 +25,16 @@ public class EnemyHP : MonoBehaviour
         }
     }
 
-    public void toDamage(int damage, bool isFlying, bool stan)
+    public void toDamage(int damage, bool isFlying, bool stan, bool bleeding, bool expl, bool sub, bool explMag)
     {
+        if (bleeding) StartCoroutine(bleedingEvent());
+        if (expl) explEvent();
+        if (sub)
+        {
+            transform.parent.GetComponent<AIMethods>().subDamage();
+        }
+        if (explMag) explMagEvent();
+
         HP -= damage;
         InfoController.addExp(expForKill / 10);
         GameObject fn = Instantiate(floatingNumbers, transform.position + new Vector3(0, 0.4f), Quaternion.identity);
@@ -34,18 +47,68 @@ public class EnemyHP : MonoBehaviour
 
         if (isFlying)
         {
-            if (player == null) player = GameObject.Find("Player").transform;
             StartCoroutine(flying(player.position - transform.parent.position));
         }
 
         if (HP <= 0)
         {
-            if (player != null)
-                player.GetComponent<PlayerExp>().addExp(expForKill);
+            player.GetComponent<PlayerExp>().addExp(expForKill);
+
             Destroy(transform.parent.gameObject);
         }
 
         if (stan) transform.parent.GetComponent<AIMethods>().startStan();
+    }
+    
+    void explEvent()
+    {
+        GameObject exlpParticle = Instantiate(Resources.Load("Prefabs/Effects/ArrowExpl") as GameObject, transform.position - new Vector3(0, 0.3f), Quaternion.identity);
+        Destroy(exlpParticle, 0.33f);
+        GameObject arrowPrefab = Resources.Load("Prefabs/Arrows/Arrow_0") as GameObject;
+
+        for (int i = -1; i < 2; i++)
+        {
+            for (int j = -1; j < 2; j++)
+            {
+                if (i == 0 && j == 0) continue;
+
+                GameObject arrow = Instantiate(arrowPrefab);
+                arrow.transform.position = transform.position;
+
+                arrow.GetComponent<ArrowFly>().target = new Vector2(i, j).normalized;
+                arrow.transform.eulerAngles = new Vector3(0, 0, Mathf.Atan2(i, j) * 180 / Mathf.PI);
+            }
+        }
+    }
+
+    void explMagEvent()
+    {
+        GameObject exlpParticle = Instantiate(Resources.Load("Prefabs/Effects/MagArrowExpl") as GameObject, transform.position - new Vector3(0, 0.3f), Quaternion.identity);
+        Destroy(exlpParticle, 0.33f);
+    }
+
+    IEnumerator bleedingEvent()
+    {
+        float bleedTimer = 4, damTimer = 0;
+
+        GameObject bleed = Instantiate(Resources.Load("Prefabs/Effects/Bleeding") as GameObject, transform.position - new Vector3(0, 0.3f), Quaternion.identity);
+        bleed.transform.SetParent(transform);
+
+        while (bleedTimer >= 0)
+        {
+            damTimer += Time.deltaTime;
+            bleedTimer -= Time.deltaTime;
+
+            if (damTimer > 0.3f)
+            {
+                damTimer = 0;
+                toDamage(1, false, false, false, false, false, false);
+            }
+
+            yield return null;
+        }
+
+        Destroy(bleed);
     }
 
     public void toDamageSlow(int damage, bool stan)
@@ -99,6 +162,7 @@ public class EnemyHP : MonoBehaviour
 
     public void toDamageLightning(int damage, List<GameObject> _e)
     {
+        damage += (int)InfoController.perks[13].value;
         HP -= damage;
         InfoController.addExp(expForKill / 10);
 

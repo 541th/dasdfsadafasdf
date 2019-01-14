@@ -26,6 +26,11 @@ public class PlayerMovement : MonoBehaviour
         }
     }*/
 
+    public void updadeMS()
+    {
+        ms = startMS + InfoController.perks[5].value;
+    }
+
     void Start()
     {
         _a = GetComponent<Animator>();
@@ -36,12 +41,14 @@ public class PlayerMovement : MonoBehaviour
             Destroy(transform.GetChild(0).GetChild(0).gameObject);
             Destroy(GetComponent<PlayerAttack_Warrior>());
             Destroy(GetComponent<PlayerAttack_Archer>());
+            FindObjectOfType<CamFollow>().setCamAsUsuall();
         }
         else
         if (playerType == 1)
         {
             GameObject.Find("ButtonAttackType").transform.GetChild(1).gameObject.SetActive(false);  
             Destroy(GetComponent<PlayerAttack_Archer>());
+            FindObjectOfType<CamFollow>().setCamAsUsuall();
         }
         else
         if (playerType == 2)
@@ -55,10 +62,14 @@ public class PlayerMovement : MonoBehaviour
             GameObject.Find("ButtonAttackType").transform.GetChild(0).gameObject.SetActive(false);
             Destroy(transform.GetChild(0).GetChild(0).gameObject);
             Destroy(GetComponent<PlayerAttack_Warrior>());
+            FindObjectOfType<CamFollow>().setCamAsUsuall();
         }
 
         if (playerType == 3)
             ms = startMS;
+
+        ms += InfoController.perks[5].value;
+
         _t = transform;
         GetComponent<Rigidbody2D>().sleepMode = RigidbodySleepMode2D.NeverSleep;
         _rb = GetComponent<Rigidbody2D>();
@@ -140,7 +151,7 @@ public class PlayerMovement : MonoBehaviour
     {
         float mult = Mathf.Sin(h) * Mathf.Cos(v);
 
-        ms = startMS;
+        updadeMS();
         
         if (Mathf.Abs(Mathf.Cos(v)) > 0.90f && Mathf.Abs(Mathf.Sin(h)) < 0.30f)
         {
@@ -148,8 +159,8 @@ public class PlayerMovement : MonoBehaviour
         }
 
         if (Mathf.Abs(Mathf.Cos(v)) > 0.96f && Mathf.Abs(Mathf.Sin(h)) < 0.10f)
-            ms = startMS;
-        
+            updadeMS();
+
         if (returnSign(h) != 0
             && Mathf.Abs(v) < 0.2f
             && Mathf.Abs(h) > 0.2f)
@@ -196,7 +207,7 @@ public class PlayerMovement : MonoBehaviour
             Instantiate(smoke, transform.position - new Vector3(0, 0.4f), Quaternion.identity);
             _t -= Time.deltaTime;
 
-            _rb.velocity = new Vector3(h * 80, v * 80, 0);
+            _rb.velocity = new Vector3(h * (80 + InfoController.perks[9].value), v * (80 + InfoController.perks[9].value), 0);
 
             yield return null;
         }

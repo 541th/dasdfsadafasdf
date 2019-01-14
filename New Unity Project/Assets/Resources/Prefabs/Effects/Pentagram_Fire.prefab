@@ -377,6 +377,12 @@ MonoBehaviour:
   withStan: 0
   skill_2: 0
   slow: 0
+  modifyWithMagPerk: 1
+  isLightning: 0
+  bleeding: 0
+  expl: 0
+  explMag: 0
+  sub: 0
 --- !u!1001 &5654375346219884172
 PrefabInstance:
   m_ObjectHideFlags: 0

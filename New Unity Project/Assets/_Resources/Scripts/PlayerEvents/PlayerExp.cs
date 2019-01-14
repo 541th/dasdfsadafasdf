@@ -98,8 +98,6 @@ public class PlayerExp : MonoBehaviour
             }
         }
 
-        curExp += value;
-        slider.value += value;
         if (curExp >= expToLvlUp)
         {
             slider.value = 0;
@@ -110,5 +108,8 @@ public class PlayerExp : MonoBehaviour
             expToLvlUp += 100 * curLvl;
             slider.maxValue = expToLvlUp;
         }
+
+        curExp += value;
+        slider.value += value;
     }
 }

@@ -8,7 +8,7 @@ public class SortingOrder : MonoBehaviour
     ParticleSystemRenderer _psr;
     Transform _t;
     public static int mult = 111;
-    [SerializeField] bool isParticle;
+    [SerializeField] bool isParticle, dontSubParticle;
     float timer = 40;
 
     private void Start()
@@ -25,8 +25,12 @@ public class SortingOrder : MonoBehaviour
     {
         if (isParticle)
         {
-            timer -= Time.deltaTime * 4;
-            _psr.GetComponent<ParticleSystem>().emissionRate = timer;
+            if (!dontSubParticle)
+            {
+                timer -= Time.deltaTime * 4;
+                _psr.GetComponent<ParticleSystem>().emissionRate = timer;
+            }
+
             _psr.sortingOrder = -(int)(_t.position.y * mult);
         }
         else

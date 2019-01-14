@@ -8,7 +8,7 @@ public class PlayerExp : MonoBehaviour
     public int curLvl;
     [SerializeField] float curExp, expToLvlUp;
     [SerializeField] Slider slider;
-    public int points;
+    public static int points;
 
     private void Start()
     {
@@ -95,6 +95,7 @@ public class PlayerExp : MonoBehaviour
                 StartCoroutine(showNewLvl());
                 expToLvlUp += 100 * curLvl;
                 slider.maxValue = expToLvlUp;
+                GetComponent<PlayerHP>().lvlup();
             }
         }
 
@@ -107,6 +108,7 @@ public class PlayerExp : MonoBehaviour
             StartCoroutine(showNewLvl());
             expToLvlUp += 100 * curLvl;
             slider.maxValue = expToLvlUp;
+            GetComponent<PlayerHP>().lvlup();
         }
 
         curExp += value;

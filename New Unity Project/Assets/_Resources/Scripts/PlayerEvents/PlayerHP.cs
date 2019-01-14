@@ -113,9 +113,17 @@ public class PlayerHP : MonoBehaviour
 
     public void updateMaxHP()
     {
-        maxHP = startMax + (int)(InfoController.perks[0].value);
+        maxHP = startMax + (int)(InfoController.perks[0].value) + GetComponent<PlayerExp>().curLvl * 10;
         HP += 50;
-        HPslider.maxValue = startMax + (int)(InfoController.perks[0].value);
+        HPslider.maxValue = startMax + (int)(InfoController.perks[0].value) + GetComponent<PlayerExp>().curLvl * 10;
         HPslider.value += 50;
+    }
+
+    public void lvlup()
+    {
+        maxHP = startMax + (int)(InfoController.perks[0].value) + GetComponent<PlayerExp>().curLvl * 10;
+        HP = maxHP;
+        HPslider.maxValue = maxHP;
+        HPslider.value = HP;
     }
 }

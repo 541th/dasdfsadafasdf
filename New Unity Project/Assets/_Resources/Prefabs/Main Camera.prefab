@@ -9964,6 +9964,7 @@ MonoBehaviour:
     \u0441\u043A\u043E\u0440\u043E\u0441\u0442\u044C \u0430\u0442\u0430\u043A\u0438"
   key1: "\u0423\u043C\u0435\u043D\u0438\u0435"
   id: 10
+  lvl: 4000
   mult: 0
   skill: 1
 --- !u!1 &99639101
@@ -15018,6 +15019,7 @@ MonoBehaviour:
     \u0448\u0430\u043D\u0441 \u0432\u0437\u043E\u0440\u0432\u0430\u0442\u044C\u0441\u044F"
   key1: "\u0428\u0430\u043D\u0441"
   id: 24
+  lvl: 1850
   mult: 5
   skill: 0
 --- !u!1 &226872100
@@ -15455,6 +15457,7 @@ MonoBehaviour:
     \u043F\u0440\u043E\u0442\u0438\u0432\u043D\u0438\u043A\u043E\u0432"
   key1: "\u0423\u043C\u0435\u043D\u0438\u0435"
   id: 7
+  lvl: 2630
   mult: 0
   skill: 1
 --- !u!1 &298859200
@@ -15470,7 +15473,7 @@ GameObject:
   - component: {fileID: 298859203}
   - component: {fileID: 298859202}
   m_Layer: 5
-  m_Name: Up
+  m_Name: Up_Perks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15619,7 +15622,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -16537,6 +16540,7 @@ MonoBehaviour:
     \u0441\u0438\u043B\u044C\u043D\u0435\u0435"
   key1: "\u0423\u0440\u043E\u043D"
   id: 18
+  lvl: 1300
   mult: 5
   skill: 0
 --- !u!1 &484693788
@@ -16685,6 +16689,7 @@ MonoBehaviour:
     \u043E\u0431\u0437\u043E\u0440\u0430 \u043B\u0443\u0447\u043D\u0438\u043A\u0430"
   key1: "\u0420\u0430\u0434\u0438\u0443\u0441"
   id: 22
+  lvl: 1300
   mult: 0.2
   skill: 0
 --- !u!1 &491868075
@@ -16758,8 +16763,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -28, y: 5}
-  m_SizeDelta: {x: 31.82, y: 488.9}
+  m_AnchoredPosition: {x: -28, y: 20.88}
+  m_SizeDelta: {x: 31.82, y: 421.65}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &507785854
 MonoBehaviour:
@@ -16804,7 +16809,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 4000
   m_WholeNumbers: 0
-  m_Value: 1000
+  m_Value: 4000
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -16846,6 +16851,135 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &549864436
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 549864437}
+  - component: {fileID: 549864440}
+  - component: {fileID: 549864439}
+  - component: {fileID: 549864438}
+  m_Layer: 5
+  m_Name: Up_Skills
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 4294967295
+  m_IsActive: 0
+--- !u!224 &549864437
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 549864436}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.9999999, y: 0.9999999, z: 0.9999999}
+  m_Children:
+  - {fileID: 1598923043}
+  m_Father: {fileID: 1201217739}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 69.30009, y: -121.00004}
+  m_SizeDelta: {x: 154.1, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &549864440
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 549864436}
+  m_CullTransparentMesh: 0
+--- !u!114 &549864439
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 549864436}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.8627451}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 21300000, guid: 8aad2a0f044d2254ab7ec7da04c4fe2b, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+--- !u!114 &549864438
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 549864436}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 549864439}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 672605049955035373}
+        m_MethodName: upSkill
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!1 &553494916
 GameObject:
   m_ObjectHideFlags: 0
@@ -16880,8 +17014,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -28, y: 5}
-  m_SizeDelta: {x: 31.82, y: 488.9}
+  m_AnchoredPosition: {x: -28, y: 20.88}
+  m_SizeDelta: {x: 31.82, y: 421.65}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &553494918
 MonoBehaviour:
@@ -17956,7 +18090,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -18179,6 +18313,7 @@ MonoBehaviour:
     \u0441\u043A\u043E\u043B\u044C\u0436\u0435\u043D\u0438\u044F"
   key1: "\u0421\u043A\u043E\u0440\u043E\u0441\u0442\u044C"
   id: 25
+  lvl: 2630
   mult: 10
   skill: 0
 --- !u!1 &905349554
@@ -18402,6 +18537,7 @@ MonoBehaviour:
     \u0432\u0440\u0430\u0433\u043E\u0432 \u0432 \u0437\u0430\u043C\u0435\u0448\u0430\u0442\u0435\u043B\u044C\u0441\u0442\u0432\u043E"
   key1: "\u0423\u043C\u0435\u043D\u0438\u0435"
   id: 2
+  lvl: 2630
   mult: 0
   skill: 1
 --- !u!1 &972980571
@@ -19020,6 +19156,7 @@ MonoBehaviour:
     \u0432\u0440\u0430\u0433\u043E\u0432"
   key1: "\u0423\u043C\u0435\u043D\u0438\u0435"
   id: 9
+  lvl: 4000
   mult: 0
   skill: 1
 --- !u!1 &1139993710
@@ -19283,6 +19420,7 @@ MonoBehaviour:
     \u043E\u0442 \u0441\u043A\u043E\u043B\u044C\u0436\u0435\u043D\u0438\u044F"
   key1: "\u0423\u0440\u043E\u043D"
   id: 17
+  lvl: 1300
   mult: 4
   skill: 0
 --- !u!1 &1201217738
@@ -19316,6 +19454,7 @@ RectTransform:
   - {fileID: 1449067034}
   - {fileID: 586526122}
   - {fileID: 298859201}
+  - {fileID: 549864437}
   m_Father: {fileID: 665324669}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -19844,6 +19983,7 @@ MonoBehaviour:
   key0: "\u0423\u0432\u0435\u043B\u0438\u0447\u0435\u043D\u0438\u0435 \u0437\u0434\u043E\u0440\u043E\u0432\u044C\u044F"
   key1: "\u0417\u0434\u043E\u0440\u043E\u0432\u044C\u0435"
   id: 16
+  lvl: 600
   mult: 50
   skill: 0
 --- !u!1 &1396560085
@@ -19881,8 +20021,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -28, y: 5}
-  m_SizeDelta: {x: 31.82, y: 488.9}
+  m_AnchoredPosition: {x: -28, y: 20.88}
+  m_SizeDelta: {x: 31.82, y: 421.65}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1396560087
 MonoBehaviour:
@@ -19927,7 +20067,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 4000
   m_WholeNumbers: 0
-  m_Value: 758
+  m_Value: 4000
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -20332,6 +20472,7 @@ MonoBehaviour:
     \u0434\u0430\u0435\u0442 \u0432\u0440\u0430\u0433\u0430\u043C \u0434\u0432\u0438\u043D\u0443\u0442\u044C\u0441\u044F"
   key1: "\u0423\u043C\u0435\u043D\u0438\u0435"
   id: 8
+  lvl: 3300
   mult: 0
   skill: 1
 --- !u!1 &1517686647
@@ -20555,6 +20696,7 @@ MonoBehaviour:
     \u0443 \u043F\u0440\u043E\u0442\u0438\u0432\u043D\u0438\u043A\u0430"
   key1: "\u0428\u0430\u043D\u0441"
   id: 23
+  lvl: 1850
   mult: 5
   skill: 0
 --- !u!1 &1571178290
@@ -20672,6 +20814,85 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1598923042
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1598923043}
+  - component: {fileID: 1598923045}
+  - component: {fileID: 1598923044}
+  m_Layer: 5
+  m_Name: Text
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 4294967295
+  m_IsActive: 1
+--- !u!224 &1598923043
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1598923042}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 549864437}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &1598923045
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1598923042}
+  m_CullTransparentMesh: 0
+--- !u!114 &1598923044
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1598923042}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 20
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 2
+    m_MaxSize: 40
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: "\u043F\u0440\u043E\u043A\u0430\u0447\u0430\u0442\u044C"
 --- !u!1 &1609213736
 GameObject:
   m_ObjectHideFlags: 0
@@ -20818,6 +21039,7 @@ MonoBehaviour:
     \u0431\u0435\u0433\u0430"
   key1: "\u0421\u043A\u043E\u0440\u043E\u0441\u0442\u044C"
   id: 21
+  lvl: 600
   mult: 1
   skill: 0
 --- !u!1 &1628172561
@@ -21248,6 +21470,7 @@ MonoBehaviour:
     \u0430\u0442\u0430\u043A"
   key1: "\u0423\u043C\u0435\u043D\u0438\u0435"
   id: 6
+  lvl: 1850
   mult: 0
   skill: 1
 --- !u!1 &1731322257
@@ -21395,6 +21618,7 @@ MonoBehaviour:
   key0: "\u0423\u0432\u0435\u043B\u0438\u0447\u0435\u043D\u0438\u0435 \u0443\u0440\u043E\u043D\u0430"
   key1: "\u0423\u0440\u043E\u043D"
   id: 19
+  lvl: 1850
   mult: 6
   skill: 0
 --- !u!1 &1733111784
@@ -21608,7 +21832,7 @@ RectTransform:
   m_GameObject: {fileID: 1829128886}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.99998856, y: 0.99998856, z: 0.99998856}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 99639102}
   - {fileID: 972980572}
@@ -22116,6 +22340,7 @@ MonoBehaviour:
     \u043E\u0442 \u043E\u0433\u043B\u0443\u0448\u0435\u043D\u0438\u044F"
   key1: "\u041E\u0433\u043B\u0443\u0448\u0435\u043D\u0438\u0435"
   id: 20
+  lvl: 3300
   mult: 0.4
   skill: 0
 --- !u!1 &1968908477
@@ -22393,6 +22618,7 @@ MonoBehaviour:
     \u043D\u0435\u043C\u0443 \u0442\u043E\u0436\u0435 \u0443\u0432\u0435\u043B\u0438\u0447\u0435\u043D"
   key1: "\u0423\u043C\u0435\u043D\u0438\u0435"
   id: 5
+  lvl: 4000
   mult: 0
   skill: 1
 --- !u!1 &150016395124899623
@@ -22748,7 +22974,7 @@ GameObject:
   - component: {fileID: 4638468664520628028}
   - component: {fileID: 8821399559701176698}
   m_Layer: 5
-  m_Name: stumb2
+  m_Name: stub
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -22789,7 +23015,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 973477114395870409}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
@@ -22879,6 +23105,7 @@ MonoBehaviour:
   key0: 
   key1: 
   id: 0
+  lvl: 0
   mult: 0
   skill: 0
 --- !u!1 &981235467720032442
@@ -23175,6 +23402,7 @@ MonoBehaviour:
     \u0441\u043B\u0435\u0434\u0443\u044E\u0449\u0435\u0439 \u0430\u0442\u0430\u043A\u043E\u0439"
   key1: "\u0423\u043C\u0435\u043D\u0438\u0435"
   id: 13
+  lvl: 2630
   mult: 0
   skill: 1
 --- !u!1 &1676051604983607400
@@ -23323,6 +23551,7 @@ MonoBehaviour:
     \u0431\u043E\u043B\u044C\u0448\u0435 \u0437\u0434\u043E\u0440\u043E\u0432\u044C\u044F"
   key1: "\u041C\u043D\u043E\u0436\u0438\u0442\u0435\u043B\u044C"
   id: 28
+  lvl: 1850
   mult: 0.6
   skill: 0
 --- !u!1 &1682770616119501418
@@ -23545,6 +23774,7 @@ MonoBehaviour:
     \u043F\u0435\u0440\u0435\u0437\u0430\u0440\u044F\u0434\u043A\u0438 \u0441\u043F\u043E\u0441\u043E\u0431\u043D\u043E\u0441\u0442\u0435\u0439"
   key1: "\u0423\u043C\u0435\u043D\u044C\u0448\u0435\u043D\u0438\u0435"
   id: 30
+  lvl: 3300
   mult: 1
   skill: 0
 --- !u!1 &2015651065894975719
@@ -23695,6 +23925,7 @@ MonoBehaviour:
     \u0435\u0433\u043E \u0437\u0434\u043E\u0440\u043E\u0432\u044C\u0435"
   key1: "\u0423\u043C\u0435\u043D\u0438\u0435"
   id: 4
+  lvl: 4000
   mult: 0
   skill: 1
 --- !u!1 &2430104786606437714
@@ -23749,7 +23980,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2430104786606437714}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
@@ -23918,6 +24149,7 @@ MonoBehaviour:
   key1: "\u0423\u043C\u0435\u043D\u044C\u0448\u0435\u043D\u0438\u0435 \u0443\u0440\u043E\u043D\u0430
     \u0432 %"
   id: 26
+  lvl: 600
   mult: 4
   skill: 0
 --- !u!1 &2839409057835387749
@@ -24140,6 +24372,7 @@ MonoBehaviour:
     \u0448\u0430\u043D\u0441 \u0432\u0437\u043E\u0440\u0432\u0430\u0442\u044C\u0441\u044F"
   key1: "\u0428\u0430\u043D\u0441"
   id: 27
+  lvl: 1300
   mult: 5
   skill: 0
 --- !u!1 &3780097190865144414
@@ -25084,7 +25317,7 @@ GameObject:
   - component: {fileID: 2036496993359839010}
   - component: {fileID: 2803133335624370202}
   m_Layer: 5
-  m_Name: stumb1
+  m_Name: stub
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -25125,7 +25358,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3864812066849009958}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
@@ -25287,7 +25520,7 @@ GameObject:
   - component: {fileID: 6559780238361332620}
   - component: {fileID: 3312220718484393258}
   m_Layer: 5
-  m_Name: stumb2
+  m_Name: stub
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -25328,7 +25561,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4070039770328430839}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
@@ -25551,6 +25784,7 @@ MonoBehaviour:
     \u0443\u0440\u043E\u043D\u043E\u043C"
   key1: "\u0423\u043C\u0435\u043D\u0438\u0435"
   id: 3
+  lvl: 3300
   mult: 0
   skill: 1
 --- !u!1 &4727520916085367853
@@ -25640,7 +25874,7 @@ GameObject:
   - component: {fileID: 9194185634102108331}
   - component: {fileID: 2732374908760214050}
   m_Layer: 5
-  m_Name: stumb0
+  m_Name: stub
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -25681,7 +25915,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4808685344034449895}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
@@ -25810,7 +26044,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4859622329046674218}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
@@ -26030,6 +26264,7 @@ MonoBehaviour:
   key0: "\u0423\u0440\u043E\u043D \u043E\u0442 \u0432\u0441\u0435\u0445 \u0443\u043C\u0435\u043D\u0438\u0439"
   key1: "\u0423\u0440\u043E\u043D"
   id: 29
+  lvl: 1850
   mult: 4
   skill: 0
 --- !u!1 &5172631466794132712
@@ -26084,7 +26319,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5172631466794132712}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
@@ -26318,7 +26553,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5770659957273533473}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
@@ -26685,6 +26920,7 @@ MonoBehaviour:
     \u0449\u0438\u0442"
   key1: "\u0423\u043C\u0435\u043D\u0438\u0435"
   id: 14
+  lvl: 4000
   mult: 0
   skill: 1
 --- !u!1 &6144276562967331597
@@ -26778,7 +27014,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6250152250924424571}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
@@ -26950,6 +27186,7 @@ MonoBehaviour:
     \u0432\u0440\u0430\u0433\u043E\u0432"
   key1: "\u0423\u043C\u0435\u043D\u0438\u0435"
   id: 12
+  lvl: 2630
   mult: 0
   skill: 1
 --- !u!1 &6889962851143058616
@@ -26966,7 +27203,7 @@ GameObject:
   - component: {fileID: 1805424017405993386}
   - component: {fileID: 1102806551027567666}
   m_Layer: 5
-  m_Name: stump0
+  m_Name: stub
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27007,7 +27244,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6889962851143058616}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
@@ -27098,6 +27335,7 @@ MonoBehaviour:
     \u0431\u0435\u0433\u0430"
   key1: "\u0421\u043A\u043E\u0440\u043E\u0441\u0442\u044C"
   id: 0
+  lvl: 0
   mult: 0.2
   skill: 0
 --- !u!1 &6919279301791362409
@@ -27248,6 +27486,7 @@ MonoBehaviour:
     \u043E\u0433\u043D\u0435\u043C \u0432\u043E\u043A\u0440\u0443\u0433 \u0441\u0435\u0431\u044F"
   key1: "\u0423\u043C\u0435\u043D\u0438\u0435"
   id: 11
+  lvl: 2630
   mult: 0
   skill: 1
 --- !u!1 &7371182419517151792
@@ -27397,6 +27636,7 @@ MonoBehaviour:
     \u0443\u0434\u0430\u0440\u043E\u0432"
   key1: "\u0423\u043C\u0435\u043D\u0438\u0435"
   id: 1
+  lvl: 2630
   mult: 0
   skill: 1
 --- !u!1 &7602361647175308395
@@ -27413,7 +27653,7 @@ GameObject:
   - component: {fileID: 7751674691729812613}
   - component: {fileID: 6390151632014545167}
   m_Layer: 5
-  m_Name: stumb1
+  m_Name: stub
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27454,7 +27694,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7602361647175308395}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
@@ -27545,6 +27785,7 @@ MonoBehaviour:
     \u043E\u0431\u0437\u043E\u0440\u0430 \u043B\u0443\u0447\u043D\u0438\u043A\u0430"
   key1: "\u0420\u0430\u0434\u0438\u0443\u0441"
   id: 0
+  lvl: 0
   mult: 0
   skill: 0
 --- !u!1 &7602386654494016099
@@ -27857,7 +28098,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8152212546655300001}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
@@ -27931,7 +28172,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8585912443961214789}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
@@ -28115,7 +28356,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8800069260782536088}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
@@ -28287,6 +28528,7 @@ MonoBehaviour:
     \u043A \u043F\u043E\u043B\u0443\u0447\u0430\u0435\u043C\u043E\u043C\u0443 \u0443\u0440\u043E\u043D\u0443"
   key1: "\u0423\u043C\u0435\u043D\u0438\u0435"
   id: 15
+  lvl: 4000
   mult: 0
   skill: 1
 --- !u!1001 &3780097192443459255
@@ -28450,15 +28692,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 943b21e331e945146beb63726ff855df, type: 3}
---- !u!1 &3780097192443314405 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 144978, guid: 943b21e331e945146beb63726ff855df,
-    type: 3}
-  m_PrefabInstance: {fileID: 3780097192443459255}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &3780097192465638537 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 22450750, guid: 943b21e331e945146beb63726ff855df,
+    type: 3}
+  m_PrefabInstance: {fileID: 3780097192443459255}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &3780097192443314405 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 144978, guid: 943b21e331e945146beb63726ff855df,
     type: 3}
   m_PrefabInstance: {fileID: 3780097192443459255}
   m_PrefabAsset: {fileID: 0}

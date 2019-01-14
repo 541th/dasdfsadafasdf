@@ -5,7 +5,7 @@ using UnityEngine;
 public class PerkContainer : MonoBehaviour
 {
     [SerializeField] string key0, key1;
-    [SerializeField] int id;
+    [SerializeField] int id, lvl;
     [SerializeField] float mult;
     [SerializeField] bool skill;
 
@@ -23,6 +23,12 @@ public class PerkContainer : MonoBehaviour
             skill, 
             id, 
             transform.GetChild(0), 
-            mult);
+            mult,
+            lvl);
+    }
+
+    public int getLvl()
+    {
+        return lvl;
     }
 }

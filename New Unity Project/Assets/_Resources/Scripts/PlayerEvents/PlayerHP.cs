@@ -19,6 +19,16 @@ public class PlayerHP : MonoBehaviour
             updateMaxHP();
     }
 
+    public int getCurHP()
+    {
+        return HP;
+    }
+
+    public int getMaxHP()
+    {
+        return maxHP;
+    }
+
     public bool lessThan10()
     {
         return HP / maxHP < 0.1f;

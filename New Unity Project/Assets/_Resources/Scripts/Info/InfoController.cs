@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class InfoController : MonoBehaviour
 {
-    [SerializeField] GameObject perksPanel, perksInfo;
+    [SerializeField] GameObject perksPanel, perksInfo, infoPanel;
     static PlayerMovement pm;
     public static Perks[] perks = new Perks[15];
     public static bool[] skills = new bool[15];
@@ -23,6 +23,11 @@ public class InfoController : MonoBehaviour
 
     public void showPanel(int id)
     {
+        GameObject player = GameObject.Find("Player");
+        infoPanel.transform.GetChild(0).GetComponent<Text>().text = "HP: " + player.GetComponent<PlayerHP>().getCurHP() + "/" + player.GetComponent<PlayerHP>().getMaxHP();
+        infoPanel.transform.GetChild(1).GetComponent<Text>().text = "LVL: " + player.GetComponent<PlayerExp>().curLvl;
+        infoPanel.transform.GetChild(2).GetComponent<Text>().text = "Points: " + PlayerExp.points;
+
         setExpSV(id);
         setExpSV(id);
         perksInfo.SetActive(false);

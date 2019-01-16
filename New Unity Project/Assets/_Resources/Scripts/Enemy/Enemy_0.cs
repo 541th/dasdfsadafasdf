@@ -98,8 +98,11 @@ public class Enemy_0 : MonoBehaviour
         {
             delay += Time.deltaTime;
             delta -= Time.deltaTime;
+            float _d = Vector2.SqrMagnitude(_t.position - player.transform.position);
 
-            if ((Vector2.Distance(_t.position, player.transform.position) < 1.6f))
+            GetComponent<BoxCollider2D>().enabled = _d < 20;
+
+            if (_d < 1.6f)
             {
                 _a.SetTrigger("Attack");
                 return;
@@ -129,7 +132,7 @@ public class Enemy_0 : MonoBehaviour
                 delta = 2;
             }
 
-            if (Vector2.SqrMagnitude(transform.position - player.transform.position) < 20)
+            if (_d < 20)
             {
                 playerRandomPoint = player.transform.position;
             }
@@ -142,7 +145,7 @@ public class Enemy_0 : MonoBehaviour
             }
 
         //if (delay >= Random.Range(0, 0.3f))//Random.Range(0.8f, 1.2f))
-        {
+            //{
 
                 /*
                 if (Vector2.SqrMagnitude(_t.position - player.transform.position) < 30)
@@ -157,7 +160,7 @@ public class Enemy_0 : MonoBehaviour
                 points = path.Count - 1;
                 delay = 0;
                 */
-            }
+            //}
 
             if (AI.netting) return;
 

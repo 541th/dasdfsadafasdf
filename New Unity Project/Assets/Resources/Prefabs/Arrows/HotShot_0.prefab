@@ -144,7 +144,12 @@ MonoBehaviour:
   withStan: 0
   skill_2: 0
   slow: 0
+  modifyWithMagPerk: 0
   isLightning: 0
+  bleeding: 0
+  expl: 0
+  explMag: 0
+  sub: 0
 --- !u!50 &7718680356948961751
 Rigidbody2D:
   serializedVersion: 4
@@ -163,7 +168,7 @@ Rigidbody2D:
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
-  m_SleepingMode: 1
+  m_SleepingMode: 0
   m_CollisionDetection: 0
   m_Constraints: 4
 --- !u!1001 &622491429

@@ -56,7 +56,7 @@ public class PlayerAttacker : MonoBehaviour
                 collision.GetComponent<EnemyHP>().toDamageLightning((value) * (skill_2 ? 3 : 1));
             else
             if (!slow)
-                collision.GetComponent<EnemyHP>().toDamage((value) * (skill_2 ? 3 : 1), true && !isArrow, withStan, bleeding, expl, sub, explMag);
+                collision.GetComponent<EnemyHP>().toDamage((value) * (skill_2 ? 3 : 1), Random.Range(0, 3) == 0 && !isArrow, withStan, bleeding, expl, sub, explMag);
             else
                 collision.GetComponent<EnemyHP>().toDamageSlow((value) * (skill_2 ? 3 : 1), withStan);
 
@@ -64,6 +64,8 @@ public class PlayerAttacker : MonoBehaviour
             sub = false;
             explMag = false;
             Invoke("returnWithStan", 0.2f);
+
+            if (isArrow && GetComponent<ArrowFly>() != null) GetComponent<ArrowFly>().stop();
         }
     }
 

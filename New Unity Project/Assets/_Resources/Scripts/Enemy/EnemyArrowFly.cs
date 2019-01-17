@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ArrowFly : MonoBehaviour
+public class EnemyArrowFly : MonoBehaviour
 {
     public Vector2 target, ms;
     [SerializeField]
@@ -21,7 +21,7 @@ public class ArrowFly : MonoBehaviour
     {
         if (fly)
             _rb.velocity = (Vector3)target * Time.deltaTime * 1000;
-            //transform.position += (Vector3)target * Time.deltaTime * 40;
+        //transform.position += (Vector3)target * Time.deltaTime * 40;
         else
             _rb.velocity = Vector3.zero;
     }
@@ -66,7 +66,7 @@ public class ArrowFly : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (fly)
         {

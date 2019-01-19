@@ -8,7 +8,7 @@ public class EnemyHP : MonoBehaviour
     public int HP, maxHP;
     Transform player;
     [SerializeField] GameObject floatingNumbers, slider;
-    [SerializeField] float expForKill;
+    public float expForKill;
 
     private void Start()
     {
@@ -25,6 +25,30 @@ public class EnemyHP : MonoBehaviour
         }
     }
 
+    [SerializeField] bool divide, createSwill, isGhost;
+
+    public void toHealth(int value)
+    {
+        if (HP < maxHP) HP += value;
+        else HP = maxHP;
+
+        GameObject fn = Instantiate(floatingNumbers, transform.position + new Vector3(0, 0.4f), Quaternion.identity);
+        fn.transform.GetChild(0).GetComponent<FloatingNumbers>().setText(value + "");
+
+        if (HP != maxHP)
+        {
+            slider.SetActive(true);
+
+            slider.transform.GetChild(0).GetComponent<Slider>().maxValue = maxHP;
+            slider.transform.GetChild(0).GetComponent<Slider>().value = HP;
+            slider.transform.GetChild(0).GetComponent<Slider>().fillRect.GetComponent<Image>().color = Color.Lerp(Color.red, Color.green, ((float)1 / maxHP) * HP);
+        }
+        else
+        {
+            slider.SetActive(false);
+        }
+    }
+
     public void toDamage(int damage, bool isFlying, bool stan, bool bleeding, bool expl, bool sub, bool explMag)
     {
         if (bleeding) StartCoroutine(bleedingEvent());
@@ -35,13 +59,31 @@ public class EnemyHP : MonoBehaviour
         }
         if (explMag) explMagEvent();
 
-        HP -= damage;
+        string res;
+
+        if (!isGhost)
+        {
+            HP -= damage;
+            res = damage + "";
+        }
+        else
+        {
+            if (Random.Range(0, 2) == 0)
+            {
+                HP -= damage;
+                res = damage + "";
+            }
+            else
+            res = "промах";
+        }
+
         InfoController.addExp(expForKill / 10);
         GameObject fn = Instantiate(floatingNumbers, transform.position + new Vector3(0, 0.4f), Quaternion.identity);
-        fn.transform.GetChild(0).GetComponent<FloatingNumbers>().setText(damage + "");
+        fn.transform.GetChild(0).GetComponent<FloatingNumbers>().setText(res);
 
         slider.SetActive(true);
 
+        slider.transform.GetChild(0).GetComponent<Slider>().maxValue = maxHP;
         slider.transform.GetChild(0).GetComponent<Slider>().value = HP;
         slider.transform.GetChild(0).GetComponent<Slider>().fillRect.GetComponent<Image>().color = Color.Lerp(Color.red, Color.green, ((float)1 / maxHP) * HP);
 
@@ -52,6 +94,8 @@ public class EnemyHP : MonoBehaviour
 
         if (HP <= 0)
         {
+            if (divide) GetComponent<Divide>().divide();
+
             player.GetComponent<PlayerExp>().addExp(expForKill);
 
             Destroy(transform.parent.gameObject);
@@ -116,13 +160,31 @@ public class EnemyHP : MonoBehaviour
         transform.parent.GetComponent<AIMethods>().ms /= 2;
         Invoke("setMSBack", 3);
 
-        HP -= damage;
+        string res;
+
+        if (!isGhost)
+        {
+            HP -= damage;
+            res = damage + "";
+        }
+        else
+        {
+            if (Random.Range(0, 2) == 0)
+            {
+                HP -= damage;
+                res = damage + "";
+            }
+            else
+                res = "промах";
+        }
+
         InfoController.addExp(expForKill / 10);
         GameObject fn = Instantiate(floatingNumbers, transform.position + new Vector3(0, 0.4f), Quaternion.identity);
-        fn.transform.GetChild(0).GetComponent<FloatingNumbers>().setText(damage + "");
+        fn.transform.GetChild(0).GetComponent<FloatingNumbers>().setText(res);
 
         slider.SetActive(true);
 
+        slider.transform.GetChild(0).GetComponent<Slider>().maxValue = maxHP;
         slider.transform.GetChild(0).GetComponent<Slider>().value = HP;
         slider.transform.GetChild(0).GetComponent<Slider>().fillRect.GetComponent<Image>().color = Color.Lerp(Color.red, Color.green, ((float)1 / maxHP) * HP);
 
@@ -138,17 +200,34 @@ public class EnemyHP : MonoBehaviour
 
     public void toDamageLightning(int damage)
     {
-        HP -= damage;
+        string res;
+
+        if (!isGhost)
+        {
+            HP -= damage;
+            res = damage + "";
+        }
+        else
+        {
+            if (Random.Range(0, 2) == 0)
+            {
+                HP -= damage;
+                res = damage + "";
+            }
+            else
+                res = "промах";
+        }
         InfoController.addExp(expForKill / 10);
 
         GameObject _l = Instantiate(Resources.Load("Prefabs/Arrows/ChainLightningTrigger") as GameObject, transform.position, Quaternion.identity);
         _l.GetComponent<ChainLightning>()._e.Add(gameObject);
 
         GameObject fn = Instantiate(floatingNumbers, transform.position + new Vector3(0, 0.4f), Quaternion.identity);
-        fn.transform.GetChild(0).GetComponent<FloatingNumbers>().setText(damage + "");
+        fn.transform.GetChild(0).GetComponent<FloatingNumbers>().setText(res);
 
         slider.SetActive(true);
 
+        slider.transform.GetChild(0).GetComponent<Slider>().maxValue = maxHP;
         slider.transform.GetChild(0).GetComponent<Slider>().value = HP;
         slider.transform.GetChild(0).GetComponent<Slider>().fillRect.GetComponent<Image>().color = Color.Lerp(Color.red, Color.green, ((float)1 / maxHP) * HP);
 
@@ -163,7 +242,23 @@ public class EnemyHP : MonoBehaviour
     public void toDamageLightning(int damage, List<GameObject> _e)
     {
         damage += (int)InfoController.perks[13].value;
-        HP -= damage;
+        string res;
+
+        if (!isGhost)
+        {
+            HP -= damage;
+            res = damage + "";
+        }
+        else
+        {
+            if (Random.Range(0, 2) == 0)
+            {
+                HP -= damage;
+                res = damage + "";
+            }
+            else
+                res = "промах";
+        }
         InfoController.addExp(expForKill / 10);
 
         GameObject _le = Instantiate(Resources.Load("Prefabs/Effects/Lightning") as GameObject, transform.position, Quaternion.identity);
@@ -174,10 +269,11 @@ public class EnemyHP : MonoBehaviour
         _l.GetComponent<ChainLightning>()._e.Add(gameObject);
 
         GameObject fn = Instantiate(floatingNumbers, transform.position + new Vector3(0, 0.4f), Quaternion.identity);
-        fn.transform.GetChild(0).GetComponent<FloatingNumbers>().setText(damage + "");
+        fn.transform.GetChild(0).GetComponent<FloatingNumbers>().setText(res);
 
         slider.SetActive(true);
 
+        slider.transform.GetChild(0).GetComponent<Slider>().maxValue = maxHP;
         slider.transform.GetChild(0).GetComponent<Slider>().value = HP;
         slider.transform.GetChild(0).GetComponent<Slider>().fillRect.GetComponent<Image>().color = Color.Lerp(Color.red, Color.green, ((float)1 / maxHP) * HP);
 
@@ -248,5 +344,11 @@ public class EnemyHP : MonoBehaviour
                 transform.parent.GetComponent<AIMethods>().ms *= 2;
             }
         }
+    }
+
+    private void OnDestroy()
+    {
+        if (createSwill)
+            GetComponent<Swill>().show(player.transform.position);
     }
 }

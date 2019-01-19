@@ -5,8 +5,7 @@ using UnityEngine;
 public class ArrowFly : MonoBehaviour
 {
     public Vector2 target, ms;
-    [SerializeField]
-    bool dontStop;
+    [SerializeField] bool dontStop, hasParticle;
     bool fly;
     Rigidbody2D _rb;
 
@@ -20,7 +19,10 @@ public class ArrowFly : MonoBehaviour
     private void Update()
     {
         if (fly)
+        {
+            if (hasParticle) transform.GetChild(0).eulerAngles = Vector3.zero;
             _rb.velocity = (Vector3)target * Time.deltaTime * 1000;
+        }
             //transform.position += (Vector3)target * Time.deltaTime * 40;
         else
             _rb.velocity = Vector3.zero;

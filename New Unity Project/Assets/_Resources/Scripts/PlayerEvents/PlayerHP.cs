@@ -136,4 +136,9 @@ public class PlayerHP : MonoBehaviour
         HPslider.maxValue = maxHP;
         HPslider.value = HP;
     }
+
+    public void slowDown(float value)
+    {
+        GetComponent<PlayerMovement>().subMS(value);   
+    }
 }

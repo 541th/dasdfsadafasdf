@@ -51,7 +51,7 @@ ParticleSystem:
   playOnAwake: 1
   useUnscaledTime: 0
   autoRandomSeed: 1
-  useRigidbodyForVelocity: 1
+  useRigidbodyForVelocity: 0
   startDelay:
     serializedVersion: 2
     minMaxState: 0
@@ -600,7 +600,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     randomizeRotationDirection: 0
-    maxNumParticles: 1000
+    maxNumParticles: 40
     size3D: 0
     rotation3D: 0
     gravityModifier:
@@ -5123,6 +5123,7 @@ GameObject:
   - component: {fileID: 5565725834124225361}
   - component: {fileID: 4627662386209937295}
   - component: {fileID: 6381787891875784934}
+  - component: {fileID: 917120969}
   m_Layer: 11
   m_Name: HP
   m_TagString: EnemyHP
@@ -5190,6 +5191,25 @@ MonoBehaviour:
   slider: {fileID: 74461073472155890}
   expForKill: 40
   damage: 0
+  divide: 1
+--- !u!114 &917120969
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2278934157452173714}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7dcff861cc313c43b57215293e53342, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  expl: {fileID: 679967883475278388, guid: f4d1fa1a2f815a94994909d15f500762, type: 3}
+  part: {fileID: 407763943970157478}
+  min_count: 2
+  max_count: 3
+  minSize: 1.5
+  div: 1.3
 --- !u!1 &2860356672461832116
 GameObject:
   m_ObjectHideFlags: 0

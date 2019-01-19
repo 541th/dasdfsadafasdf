@@ -157,6 +157,7 @@ MonoBehaviour:
   withStan: 0
   skill_2: 0
   slow: 0
+  modifyWithMagPerk: 0
   isLightning: 0
   bleeding: 0
   expl: 0
@@ -362,7 +363,6 @@ MonoBehaviour:
   curExp: 0
   expToLvlUp: 100
   slider: {fileID: 0}
-  points: 0
   toadd: 0
   toaddvalue: 0
 --- !u!114 &2556638891002869837
@@ -466,7 +466,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.6, y: 0.6}
+  m_Size: {x: 0.75, y: 0.5}
   m_EdgeRadius: 0
 --- !u!95 &6201309108722076634
 Animator:

@@ -354,6 +354,8 @@ public class InfoController : MonoBehaviour
 
     public void useSkill_0()
     {
+        if (FindObjectOfType<PlayerMovement>().dontMove) return;
+
         switch (curSkill_0)
         {
             case 1:
@@ -421,6 +423,8 @@ public class InfoController : MonoBehaviour
 
     public void useSkill_1()
     {
+        if (FindObjectOfType<PlayerMovement>().dontMove) return;
+
         switch (curSkill_1)
         {
             case 1:

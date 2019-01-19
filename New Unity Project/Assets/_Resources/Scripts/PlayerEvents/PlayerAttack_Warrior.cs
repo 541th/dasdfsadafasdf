@@ -26,7 +26,7 @@ public class PlayerAttack_Warrior : MonoBehaviour
 
     public void startAttack()
     {
-        if (!GetComponent<PlayerMovement>().isGlide && GetComponent<PlayerMovement>().canMove)
+        if (!GetComponent<PlayerMovement>().isGlide && GetComponent<PlayerMovement>().dontMove)
         {
             isAttacking = true;
             _a.SetBool("attack", true);

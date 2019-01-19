@@ -18,11 +18,16 @@ public class PlayerAttack_Archer : MonoBehaviour
     {
         _a = transform.GetChild(0).GetComponent<Animator>();
         _pm = GetComponent<PlayerMovement>();
+        canAttack = true;
     }
-    
+
+    public bool canAttack;
+
     float h, v;
     private void Update()
     {
+        if (!canAttack) return;
+
         h = CnInputManager.GetAxis("Attack_H");
         v = CnInputManager.GetAxis("Attack_V");
 

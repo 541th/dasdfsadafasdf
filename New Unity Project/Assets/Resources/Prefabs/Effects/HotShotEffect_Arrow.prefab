@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1862679444715294423}
   - component: {fileID: 6644382143504204462}
   m_Layer: 0
-  m_Name: Hurricane_0_Effect
+  m_Name: HotShotEffect_Arrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -602,7 +602,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     randomizeRotationDirection: 0
-    maxNumParticles: 1000
+    maxNumParticles: 40
     size3D: 0
     rotation3D: 0
     gravityModifier:
@@ -4725,3 +4725,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isParticle: 1
+  dontSubParticle: 0

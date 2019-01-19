@@ -12,6 +12,7 @@ TagManager:
   - Banner
   - TrappingNet
   - Slow
+  - Collisions
   layers:
   - Default
   - TransparentFX

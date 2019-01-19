@@ -35,9 +35,12 @@ public class Slime_Glider : MonoBehaviour
 
     void Start()
     {
+        if (player == null) player = GameObject.Find("Player");
+
         _t = transform;
         AI = GetComponent<AIMethods>();
         _a = GetComponent<Animator>();
+
         if (gon == null)
             gon = FindObjectOfType<GridOfNodes>();
     }
@@ -193,6 +196,7 @@ public class Slime_Glider : MonoBehaviour
             else
             {
                 waitTime -= Time.deltaTime;
+
                 target = player.transform.position;
             }
         }

@@ -7,7 +7,7 @@ public class EnemyAttack : MonoBehaviour
     public int damage;
     public int randL, randH;
     public float sub;
-    [SerializeField] bool arrow;
+    [SerializeField] bool arrow, slowDown;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -19,6 +19,8 @@ public class EnemyAttack : MonoBehaviour
             if (_d <= 0) _d = 1;
 
             collision.GetComponent<PlayerHP>().toDamage(_d);
+
+            if (slowDown) collision.GetComponent<PlayerHP>().slowDown(4);
 
             if (arrow && GetComponent<EnemyArrowFly>() != null) GetComponent<EnemyArrowFly>().stop();
         }

@@ -15,16 +15,21 @@ public class PlayerMovement : MonoBehaviour
     bool isMoving;
     public Vector2 moveInput, lastMove;
     Animator _a;
-    /*
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.blue;
 
-        //foreach (Vector2 item in path)
-        {
-            Gizmos.DrawCube(FindObjectOfType<GridOfNodes>().GetNodeByPos(transform.position).pos, new Vector3(0.5f, 0.5f, 0.5f));
-        }
-    }*/
+    bool isSubMS;
+    public void subMS(float value)
+    {
+        StartCoroutine(subMSEvent(value));
+    }
+
+    IEnumerator subMSEvent(float value)
+    {
+        isSubMS = true;
+
+        yield return new WaitForSeconds(value);
+
+        isSubMS = false;
+    }
 
     public void updadeMS()
     {
@@ -85,28 +90,7 @@ public class PlayerMovement : MonoBehaviour
         h = CnInputManager.GetAxis("Horizontal");
         v = CnInputManager.GetAxis("Vertical");
 
-        if (!canMove)
         {
-            //anim.SetBool("AttackPose", false);
-            //anim.SetBool("Moving", false);
-
-            //attacking = false;
-            //_rb.velocity = Vector2.zero;
-
-            //if ((Input.GetKeyUp(KeyCode.M) || CnInputManager.GetButtonUp("Menu")) && !GameObject.Find("Game menu canvas").transform.GetChild(0).gameObject.activeSelf)
-            //{
-                // clОse menu
-            //}
-            
-            return;
-        }
-        else
-        {
-
-            //if ((Input.GetKeyUp(KeyCode.M) || CnInputManager.GetButtonUp("Menu")) && !GameObject.Find("Game menu canvas").transform.GetChild(0).gameObject.activeSelf)
-            //{
-                //оpen menu
-            //}
 
             isMoving = false;
 
@@ -115,28 +99,19 @@ public class PlayerMovement : MonoBehaviour
             
             moveInput = calcDir();
 
-            //if (Input.GetKeyDown(KeyCode.Space)) attackButtonDown();
-
-            //if (Input.GetKeyUp(KeyCode.Space)) attackButtonUp();
-
             if (moveInput != Vector2.zero)
             {
                 _rb.velocity = new Vector2(
                     (moveInput.x) * ms * 60 * Time.deltaTime,
                     (moveInput.y) * ms * 60 * Time.deltaTime);
 
-                //_t.position += new Vector3((moveInput.x) * ms * Time.deltaTime, (moveInput.y) * ms * Time.deltaTime, 0);
+                if (isSubMS) _rb.velocity /= 3;
+
                 isMoving = true;
 
                 lastMove = moveInput;
 
                 if (lastMove.x != 0 && lastMove.y != 0) lastMove.x = 0;
-            }
-            else
-            {
-                //_rb.velocity = Vector2.zero;
-                //anim.SetBool("Moving", false);
-                //anim.SetBool("Walk", false);
             }
 
             _a.SetFloat("mx", moveInput.x);
@@ -186,7 +161,7 @@ public class PlayerMovement : MonoBehaviour
     public bool isGlide;
     public void glide()
     {
-        if ((h != 0 || v != 0) && !isGlide)
+        if ((h != 0 || v != 0) && !isGlide && !dontMove)
         {
             FindObjectOfType<UIManager>().glideFalse();
             StartCoroutine(glideReturn());
@@ -202,12 +177,14 @@ public class PlayerMovement : MonoBehaviour
         float _t = 0.07f;
         Rigidbody2D _rb = GetComponent<Rigidbody2D>();
 
+        Vector2 target = new Vector2(h, v).normalized;
+
         while (_t > 0)
         {
             Instantiate(smoke, transform.position - new Vector3(0, 0.4f), Quaternion.identity);
             _t -= Time.deltaTime;
 
-            _rb.velocity = new Vector3(h * (80 + InfoController.perks[9].value), v * (80 + InfoController.perks[9].value), 0);
+            _rb.velocity = new Vector3(target.x * (80 + InfoController.perks[9].value), target.y * (80 + InfoController.perks[9].value), 0);
 
             yield return null;
         }

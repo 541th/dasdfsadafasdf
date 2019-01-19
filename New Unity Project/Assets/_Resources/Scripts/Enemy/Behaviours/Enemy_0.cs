@@ -144,24 +144,6 @@ public class Enemy_0 : MonoBehaviour
                 delay = 0;
             }
 
-        //if (delay >= Random.Range(0, 0.3f))//Random.Range(0.8f, 1.2f))
-            //{
-
-                /*
-                if (Vector2.SqrMagnitude(_t.position - player.transform.position) < 30)
-                {
-                }
-                else
-                {
-                    path = AI.setDestination(_t.position, player.transform.position + new Vector3(Random.Range(-2.1f, 2), Random.Range(-2.1f, 2), 0));
-                }
-
-                path = AI.setDestination(_t.position, playerRandomPoint);
-                points = path.Count - 1;
-                delay = 0;
-                */
-            //}
-
             if (AI.netting) return;
 
             if (path != null)
@@ -175,21 +157,22 @@ public class Enemy_0 : MonoBehaviour
 
                         if (points <= 0) return;
 
-                        //Vector2 dirToPlayer = path[points] - (Vector2)transform.position;
-                        //float angle = Mathf.Atan2(dirToPlayer.y, dirToPlayer.x) * 180 / Mathf.PI - 90;
+                        Vector2 dirToPlayer = path[points - 1] - (Vector2)_t.position;
+                        float angle = Mathf.Atan2(dirToPlayer.y, dirToPlayer.x) * 180 / Mathf.PI - 90;
 
-                        //if (angle <= 41 && angle > -57) AI.setDirTo(ref dir, new Vector2(0, 1));
-                        //else
-                        //if (angle <= -57 && angle > -126) AI.setDirTo(ref dir, new Vector2(1, 0));
-                        //else
-                        //if (angle <= -126 && angle > -230) AI.setDirTo(ref dir, new Vector2(0, -1));
-                        //else
-                        //if (angle <= -230 || angle > 41) AI.setDirTo(ref dir, new Vector2(-1, 0));
+                        if (angle <= 41 && angle > -57) AI.setDirTo(ref dir, new Vector2(0, 1));
+                        else
+                        if (angle <= -57 && angle > -126) AI.setDirTo(ref dir, new Vector2(1, 0));
+                        else
+                        if (angle <= -126 && angle > -230) AI.setDirTo(ref dir, new Vector2(0, -1));
+                        else
+                        if (angle <= -230 || angle > 41) AI.setDirTo(ref dir, new Vector2(-1, 0));
 
                         _a.SetFloat("MoveX", dir.x);
                         _a.SetFloat("MoveY", dir.y);
                         _a.SetFloat("LastMoveX", dir.x);
                         _a.SetFloat("LastMoveY", dir.y);
+                        _a.SetBool("Walk", true);
                     }
                 }
         }

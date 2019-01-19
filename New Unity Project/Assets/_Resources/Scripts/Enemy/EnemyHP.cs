@@ -94,7 +94,11 @@ public class EnemyHP : MonoBehaviour
 
         if (HP <= 0)
         {
-            if (divide) GetComponent<Divide>().divide();
+            if (divide)
+                if (GetComponent<Divide>() != null)
+                    GetComponent<Divide>().divide();
+                else
+                    GetComponent<DivideParts>().divide();
 
             player.GetComponent<PlayerExp>().addExp(expForKill);
 
@@ -190,6 +194,12 @@ public class EnemyHP : MonoBehaviour
 
         if (HP <= 0)
         {
+            if (divide)
+                if (GetComponent<Divide>() != null)
+                    GetComponent<Divide>().divide();
+                else
+                    GetComponent<DivideParts>().divide();
+
             if (player != null)
                 player.GetComponent<PlayerExp>().addExp(expForKill);
             Destroy(transform.parent.gameObject);
@@ -233,6 +243,12 @@ public class EnemyHP : MonoBehaviour
 
         if (HP <= 0)
         {
+            if (divide)
+                if (GetComponent<Divide>() != null)
+                    GetComponent<Divide>().divide();
+                else
+                    GetComponent<DivideParts>().divide();
+
             if (player != null)
                 player.GetComponent<PlayerExp>().addExp(expForKill);
             Destroy(transform.parent.gameObject);
@@ -279,6 +295,12 @@ public class EnemyHP : MonoBehaviour
 
         if (HP <= 0)
         {
+            if (divide)
+                if (GetComponent<Divide>() != null)
+                    GetComponent<Divide>().divide();
+                else
+                    GetComponent<DivideParts>().divide();
+
             if (player != null)
                 player.GetComponent<PlayerExp>().addExp(expForKill);
             Destroy(transform.parent.gameObject);

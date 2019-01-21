@@ -124,30 +124,17 @@ public class PlayerMovement : MonoBehaviour
 
     Vector2 calcDir()
     {
-        float mult = Mathf.Sin(h) * Mathf.Cos(v);
-
         updadeMS();
-        
-        if (Mathf.Abs(Mathf.Cos(v)) > 0.90f && Mathf.Abs(Mathf.Sin(h)) < 0.30f)
-        {
-            ms /= 2f;
-        }
 
-        if (Mathf.Abs(Mathf.Cos(v)) > 0.96f && Mathf.Abs(Mathf.Sin(h)) < 0.10f)
-            updadeMS();
+        Vector2 _n = new Vector2(h, v).normalized;
 
-        if (returnSign(h) != 0
-            && Mathf.Abs(v) < 0.2f
-            && Mathf.Abs(h) > 0.2f)
-            return new Vector2(returnSign(h) * 1, 0);
+        if (Mathf.Abs(h) < Mathf.Abs(_n.x) / 4 && Mathf.Abs(v) < Mathf.Abs(_n.y) / 4) ms /= 2f;
 
-        if (mult > -0.25f && mult < 0.25f) return new Vector2(0, 1 * returnSign(v));
+        Vector2 res = new Vector2(Mathf.RoundToInt(_n.x), Mathf.RoundToInt(_n.y));
 
-        if (mult > 0.25f && mult < 0.67f) return new Vector2(1, 1 * returnSign(v));
+        if (res.x != 0 && res.y != 0) res /= 1.5f;
 
-        if (mult > -0.67f && mult < -0.25f) return new Vector2(-1, 1 * returnSign(v));
-        
-        return new Vector2(returnSign(h) * 1, 0);
+        return res;
     }
 
     public float returnSign(float value)

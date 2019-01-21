@@ -16,7 +16,7 @@ public class AM_Part : MonoBehaviour
     IEnumerator mv()
     {
         float timer = Random.Range(.4f, .6f);
-        float startRot = Random.Range(0, 10);
+        float startRot = Random.Range(-10, 10);
         float rotSpeed = Random.Range(10, 100);
         target = target.normalized + new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f));
 

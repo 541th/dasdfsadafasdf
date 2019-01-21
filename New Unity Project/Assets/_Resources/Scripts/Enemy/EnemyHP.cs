@@ -92,18 +92,7 @@ public class EnemyHP : MonoBehaviour
             StartCoroutine(flying(player.position - transform.parent.position));
         }
 
-        if (HP <= 0)
-        {
-            if (divide)
-                if (GetComponent<Divide>() != null)
-                    GetComponent<Divide>().divide();
-                else
-                    GetComponent<DivideParts>().divide();
-
-            player.GetComponent<PlayerExp>().addExp(expForKill);
-
-            Destroy(transform.parent.gameObject);
-        }
+        checkDeath();
 
         if (stan) transform.parent.GetComponent<AIMethods>().startStan();
     }
@@ -192,18 +181,7 @@ public class EnemyHP : MonoBehaviour
         slider.transform.GetChild(0).GetComponent<Slider>().value = HP;
         slider.transform.GetChild(0).GetComponent<Slider>().fillRect.GetComponent<Image>().color = Color.Lerp(Color.red, Color.green, ((float)1 / maxHP) * HP);
 
-        if (HP <= 0)
-        {
-            if (divide)
-                if (GetComponent<Divide>() != null)
-                    GetComponent<Divide>().divide();
-                else
-                    GetComponent<DivideParts>().divide();
-
-            if (player != null)
-                player.GetComponent<PlayerExp>().addExp(expForKill);
-            Destroy(transform.parent.gameObject);
-        }
+        checkDeath();
 
         if (stan) transform.parent.GetComponent<AIMethods>().startStan();
     }
@@ -241,18 +219,7 @@ public class EnemyHP : MonoBehaviour
         slider.transform.GetChild(0).GetComponent<Slider>().value = HP;
         slider.transform.GetChild(0).GetComponent<Slider>().fillRect.GetComponent<Image>().color = Color.Lerp(Color.red, Color.green, ((float)1 / maxHP) * HP);
 
-        if (HP <= 0)
-        {
-            if (divide)
-                if (GetComponent<Divide>() != null)
-                    GetComponent<Divide>().divide();
-                else
-                    GetComponent<DivideParts>().divide();
-
-            if (player != null)
-                player.GetComponent<PlayerExp>().addExp(expForKill);
-            Destroy(transform.parent.gameObject);
-        }
+        checkDeath();
     }
 
     public void toDamageLightning(int damage, List<GameObject> _e)
@@ -293,6 +260,11 @@ public class EnemyHP : MonoBehaviour
         slider.transform.GetChild(0).GetComponent<Slider>().value = HP;
         slider.transform.GetChild(0).GetComponent<Slider>().fillRect.GetComponent<Image>().color = Color.Lerp(Color.red, Color.green, ((float)1 / maxHP) * HP);
 
+        checkDeath();
+    }
+
+    void checkDeath()
+    {
         if (HP <= 0)
         {
             if (divide)
@@ -303,8 +275,13 @@ public class EnemyHP : MonoBehaviour
 
             if (player != null)
                 player.GetComponent<PlayerExp>().addExp(expForKill);
-            Destroy(transform.parent.gameObject);
+            showDeath();
         }
+    }
+
+    void showDeath()
+    {
+        GetComponentInParent<AIMethods>().showDeath();
     }
 
     IEnumerator flying(Vector2 to)

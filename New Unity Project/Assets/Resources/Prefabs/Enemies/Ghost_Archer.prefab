@@ -192,6 +192,7 @@ MonoBehaviour:
   randH: 4
   sub: 0
   arrow: 0
+  slowDown: 0
 --- !u!1 &652041875
 GameObject:
   m_ObjectHideFlags: 0
@@ -375,6 +376,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dontShowOCI: 0
   stanned: 0
+  hasDeathAnimation: 1
   ms: 3
   netting: 0
 --- !u!58 &652041877

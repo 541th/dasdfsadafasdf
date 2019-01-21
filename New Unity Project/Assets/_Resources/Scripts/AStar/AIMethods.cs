@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class AIMethods : MonoBehaviour {
-    public bool dontShowOCI, stanned;
+    public bool dontShowOCI, stanned, hasDeathAnimation;
     string _tag = "";
     public float ms;
     public bool netting;
@@ -214,7 +214,13 @@ public class AIMethods : MonoBehaviour {
 
     public void showDeath()
     {
+        stanned = true;
+
+        if (hasDeathAnimation)
+        {
+            GetComponent<Animator>().SetBool("Death", true);
+            Destroy(gameObject, GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).length);
+        }
         //GetComponent<SpriteRenderer>().color = (GetComponent<NPCMovement>() == null) ? new Color(1, 1, 1, 1) : GetComponent<NPCMovement>().skinColor;
-        //GetComponent<Animator>().SetBool("Death", true);
     }
 }

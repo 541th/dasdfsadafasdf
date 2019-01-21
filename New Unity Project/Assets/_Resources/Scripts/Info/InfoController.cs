@@ -168,6 +168,7 @@ public class InfoController : MonoBehaviour
             skills[id - 1] = true;
 
             PlayerExp.points--;
+            infoPanel.transform.GetChild(2).GetComponent<Text>().text = "Points: " + PlayerExp.points;
         }
     }
 
@@ -188,6 +189,7 @@ public class InfoController : MonoBehaviour
         }
 
         PlayerExp.points--;
+        infoPanel.transform.GetChild(2).GetComponent<Text>().text = "Points: " + PlayerExp.points;
 
         if (PlayerExp.points == 0)
         {

@@ -152,16 +152,16 @@ public class Rover_0 : MonoBehaviour
 
                         if (points <= 0) return;
 
-                        //Vector2 dirToPlayer = path[points] - (Vector2)transform.position;
-                        //float angle = Mathf.Atan2(dirToPlayer.y, dirToPlayer.x) * 180 / Mathf.PI - 90;
+                        Vector2 dirToPlayer = path[points] - (Vector2)transform.position;
+                        float angle = Mathf.Atan2(dirToPlayer.y, dirToPlayer.x) * 180 / Mathf.PI - 90;
 
-                        //if (angle <= 41 && angle > -57) AI.setDirTo(ref dir, new Vector2(0, 1));
-                        //else
-                        //if (angle <= -57 && angle > -126) AI.setDirTo(ref dir, new Vector2(1, 0));
-                        //else
-                        //if (angle <= -126 && angle > -230) AI.setDirTo(ref dir, new Vector2(0, -1));
-                        //else
-                        //if (angle <= -230 || angle > 41) AI.setDirTo(ref dir, new Vector2(-1, 0));
+                        if (angle <= 41 && angle > -57) AI.setDirTo(ref dir, new Vector2(0, 1));
+                        else
+                        if (angle <= -57 && angle > -126) AI.setDirTo(ref dir, new Vector2(1, 0));
+                        else
+                        if (angle <= -126 && angle > -230) AI.setDirTo(ref dir, new Vector2(0, -1));
+                        else
+                        if (angle <= -230 || angle > 41) AI.setDirTo(ref dir, new Vector2(-1, 0));
 
                         _a.SetFloat("MoveX", dir.x);
                         _a.SetFloat("MoveY", dir.y);
@@ -181,43 +181,62 @@ public class Rover_0 : MonoBehaviour
     {
         isRoving = true;
 
+        _a.SetTrigger("StartAttack");
+
         yield return new WaitForSeconds(2);
 
-        float rovingTimer = 4;
+        Vector2 dirToPlayer = player.transform.position - transform.position;
+        float angle = Mathf.Atan2(dirToPlayer.y, dirToPlayer.x) * 180 / Mathf.PI - 90;
+
+        if (angle <= 41 && angle > -57) AI.setDirTo(ref dir, new Vector2(0, 1));
+        else
+        if (angle <= -57 && angle > -126) AI.setDirTo(ref dir, new Vector2(1, 0));
+        else
+        if (angle <= -126 && angle > -230) AI.setDirTo(ref dir, new Vector2(0, -1));
+        else
+        if (angle <= -230 || angle > 41) AI.setDirTo(ref dir, new Vector2(-1, 0));
+
+        _a.SetBool("Attack", true);
+        _a.SetFloat("MoveX", dir.x);
+        _a.SetFloat("MoveY", dir.y);
+        _a.SetFloat("LastMoveX", dir.x);
+        _a.SetFloat("LastMoveY", dir.y);
+
+        float rovingTimer = 2;
         Vector2 target = -(_t.position - player.transform.position).normalized * 20;
 
         GetComponent<BoxCollider2D>().enabled = true;
+        transform.GetChild(0).gameObject.SetActive(true);
 
         while (rovingTimer > 0)
         {
-            if (!isRoving) yield break;
+            if (!isRoving) break;
 
             rovingTimer -= Time.deltaTime;
 
-            _a.SetBool("Attack", true);
             GetComponent<Rigidbody2D>().velocity = target;
 
             yield return null;
         }
 
+        stopRoving();
+    }
+
+    void stopRoving()
+    {
+        isRoving = false;
+        GetComponent<BoxCollider2D>().enabled = false;
+        transform.GetChild(0).gameObject.SetActive(false);
         _a.SetBool("Attack", false);
         GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         curState = State.attack;
-
-        GetComponent<BoxCollider2D>().enabled = false;
-
-        isRoving = false;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.transform.CompareTag("Collisions") || collision.transform.CompareTag("Player"))
         {
-            isRoving = false;
-            GetComponent<BoxCollider2D>().enabled = false;
-            _a.SetBool("Attack", false);
-            GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-            curState = State.attack;
+            stopRoving();
         }
     }
 
@@ -230,6 +249,14 @@ public class Rover_0 : MonoBehaviour
             player = collision.transform.gameObject;
 
             Invoke("startAttack", Random.Range(0.4f, 1));
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            stopRoving();
         }
     }
 

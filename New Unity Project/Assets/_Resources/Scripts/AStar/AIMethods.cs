@@ -161,7 +161,7 @@ public class AIMethods : MonoBehaviour {
             }
 
             iters++;
-            if (iters >= 600) break;
+            if (iters >= 100) break;
         }
 
         print("Path not found");
@@ -221,6 +221,8 @@ public class AIMethods : MonoBehaviour {
             GetComponent<Animator>().SetBool("Death", true);
             Destroy(gameObject, GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).length);
         }
+        else
+            Destroy(gameObject, 0);
         //GetComponent<SpriteRenderer>().color = (GetComponent<NPCMovement>() == null) ? new Color(1, 1, 1, 1) : GetComponent<NPCMovement>().skinColor;
     }
 }

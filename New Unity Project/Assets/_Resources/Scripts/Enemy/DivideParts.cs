@@ -6,6 +6,7 @@ public class DivideParts : MonoBehaviour
 {
     [SerializeField] GameObject[] parts;
     [SerializeField] GameObject expl;
+    [SerializeField] bool isRandom;
 
     public void divide()
     {
@@ -17,6 +18,8 @@ public class DivideParts : MonoBehaviour
         
         for (int i = 0; i < parts.Length; i++)
         {
+            if (isRandom && Random.Range(0, 2) == 0) continue;
+
             GameObject enemy = Instantiate(parts[i], transform.position, Quaternion.identity);
         }
     }

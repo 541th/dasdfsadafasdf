@@ -121,6 +121,7 @@ GameObject:
   - component: {fileID: 4245973109639750275}
   - component: {fileID: 3533956349624431202}
   - component: {fileID: 6411512163534541297}
+  - component: {fileID: 1798209933262660323}
   m_Layer: 11
   m_Name: HP
   m_TagString: EnemyHP
@@ -156,7 +157,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.03}
+  m_Offset: {x: 0, y: 0.15}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -167,7 +168,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.55, y: 0.38}
+  m_Size: {x: 0.64, y: 0.71}
   m_EdgeRadius: 0
 --- !u!114 &6411512163534541297
 MonoBehaviour:
@@ -181,13 +182,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a27e3c8b64114db459f9726822a676b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HP: 60
-  maxHP: 60
+  HP: 50
+  maxHP: 50
   floatingNumbers: {fileID: 7304696037472265733, guid: 9d8b31a025a27d349bbe185a3b4e58c2,
     type: 3}
   slider: {fileID: 4387964311434498326}
-  expForKill: 40
+  expForKill: 50
   damage: 0
+  divide: 1
+  createSwill: 0
+  isGhost: 0
+--- !u!114 &1798209933262660323
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1798209933262660322}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a13c62f9446c6cd45a2cfb0a9fac2c4c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parts:
+  - {fileID: 5889862150808194118, guid: b753dc3ccedcef345b5d5a448378cba6, type: 3}
+  - {fileID: 5889862150808194118, guid: 80ba6b83acc422a4c97d6868e5e73f1a, type: 3}
+  - {fileID: 5889862150808194118, guid: 79570becde1b64445af9a3dd98991b72, type: 3}
+  - {fileID: 5889862150808194118, guid: d18b38fca47bd4f439810a3f9153a5b6, type: 3}
+  - {fileID: 5889862150808194118, guid: 0fc623c83f250e446a861dbf3f0870eb, type: 3}
+  - {fileID: 5889862150808194118, guid: 62d5aff438858fb499bb929fba587bcb, type: 3}
+  - {fileID: 5889862150808194118, guid: a5e416cc48ed3604a850ba60b572ec7a, type: 3}
+  expl: {fileID: 3197244309895875938, guid: c4f7f60ad29bf554da05b0bb164a501f, type: 3}
+  isRandom: 1
 --- !u!1 &2390465260756974348
 GameObject:
   m_ObjectHideFlags: 0
@@ -265,8 +291,8 @@ SpriteRenderer:
   m_SortingLayerID: -1497787473
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: f3770b7c131c3774382cb06c4e453355, type: 3}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Sprite: {fileID: 21300334, guid: 740f367d1839ab0429fe60d514b34426, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -303,18 +329,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.0047044754}
+  m_Offset: {x: -0.03739357, y: -0.009318352}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.1}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 1.3333334, y: 1.3333334}
     newSize: {x: 0.16, y: 0.16}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.51475906, y: 0.37619972}
+  m_Size: {x: 0.43997192, y: 0.23597336}
   m_EdgeRadius: 0
 --- !u!95 &5432562375448481668
 Animator:
@@ -326,7 +352,7 @@ Animator:
   m_GameObject: {fileID: 2390465260756974348}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 960712bc5d1ae1843928eaf140a20457, type: 2}
+  m_Controller: {fileID: 9100000, guid: f8fd26b07869a884785a625e130d1b78, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -349,6 +375,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dontShowOCI: 0
   stanned: 0
+  hasDeathAnimation: 0
   ms: 3
   netting: 0
 --- !u!58 &9190607225963890313
@@ -667,3 +694,4 @@ MonoBehaviour:
   randH: 4
   sub: 0
   arrow: 0
+  slowDown: 0

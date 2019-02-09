@@ -275,6 +275,7 @@ public class EnemyHP : MonoBehaviour
 
             if (player != null)
                 player.GetComponent<PlayerExp>().addExp(expForKill);
+
             showDeath();
         }
     }

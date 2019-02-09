@@ -247,6 +247,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dontShowOCI: 0
   stanned: 0
+  hasDeathAnimation: 0
   ms: 2
   netting: 0
 --- !u!58 &295197226076353763
@@ -637,7 +638,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.07}
+  m_Offset: {x: 0, y: 0.36147362}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -648,7 +649,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.55, y: 0.4}
+  m_Size: {x: 0.55, y: 0.98294723}
   m_EdgeRadius: 0
 --- !u!114 &2286603870242620532
 MonoBehaviour:
@@ -662,12 +663,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a27e3c8b64114db459f9726822a676b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HP: 490
-  maxHP: 490
+  HP: 240
+  maxHP: 240
   floatingNumbers: {fileID: 7304696037472265733, guid: 9d8b31a025a27d349bbe185a3b4e58c2,
     type: 3}
   slider: {fileID: 4651564118420100789}
-  expForKill: 460
+  expForKill: 300
   damage: 0
   divide: 1
   createSwill: 0

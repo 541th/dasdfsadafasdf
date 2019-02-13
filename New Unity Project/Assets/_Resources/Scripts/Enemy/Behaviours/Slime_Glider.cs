@@ -155,16 +155,16 @@ public class Slime_Glider : MonoBehaviour
 
                         if (points <= 0) return;
 
-                        //Vector2 dirToPlayer = path[points] - (Vector2)transform.position;
-                        //float angle = Mathf.Atan2(dirToPlayer.y, dirToPlayer.x) * 180 / Mathf.PI - 90;
+                        Vector2 dirToPlayer = path[points] - (Vector2)transform.position;
+                        float angle = Mathf.Atan2(dirToPlayer.y, dirToPlayer.x) * 180 / Mathf.PI - 90;
 
-                        //if (angle <= 41 && angle > -57) AI.setDirTo(ref dir, new Vector2(0, 1));
-                        //else
-                        //if (angle <= -57 && angle > -126) AI.setDirTo(ref dir, new Vector2(1, 0));
-                        //else
-                        //if (angle <= -126 && angle > -230) AI.setDirTo(ref dir, new Vector2(0, -1));
-                        //else
-                        //if (angle <= -230 || angle > 41) AI.setDirTo(ref dir, new Vector2(-1, 0));
+                        if (angle <= 41 && angle > -57) AI.setDirTo(ref dir, new Vector2(0, 1));
+                        else
+                        if (angle <= -57 && angle > -126) AI.setDirTo(ref dir, new Vector2(1, 0));
+                        else
+                        if (angle <= -126 && angle > -230) AI.setDirTo(ref dir, new Vector2(0, -1));
+                        else
+                        if (angle <= -230 || angle > 41) AI.setDirTo(ref dir, new Vector2(-1, 0));
 
                         _a.SetFloat("MoveX", dir.x);
                         _a.SetFloat("MoveY", dir.y);
@@ -181,6 +181,22 @@ public class Slime_Glider : MonoBehaviour
 
                 if (attackTimer > 0 && Vector2.SqrMagnitude(_t.position - (Vector3)target) > 0.1f)
                 {
+                    Vector2 dirToPlayer = player.transform.position - transform.position;
+                    float angle = Mathf.Atan2(dirToPlayer.y, dirToPlayer.x) * 180 / Mathf.PI - 90;
+
+                    if (angle <= 41 && angle > -57) AI.setDirTo(ref dir, new Vector2(0, 1));
+                    else
+                    if (angle <= -57 && angle > -126) AI.setDirTo(ref dir, new Vector2(1, 0));
+                    else
+                    if (angle <= -126 && angle > -230) AI.setDirTo(ref dir, new Vector2(0, -1));
+                    else
+                    if (angle <= -230 || angle > 41) AI.setDirTo(ref dir, new Vector2(-1, 0));
+
+                    _a.SetFloat("MoveX", dir.x);
+                    _a.SetFloat("MoveY", dir.y);
+                    _a.SetFloat("LastMoveX", dir.x);
+                    _a.SetFloat("LastMoveY", dir.y);
+
                     _a.SetBool("Attack", true);
                     GetComponent<Rigidbody2D>().velocity = -(_t.position - (Vector3)target).normalized * 20;
                 }

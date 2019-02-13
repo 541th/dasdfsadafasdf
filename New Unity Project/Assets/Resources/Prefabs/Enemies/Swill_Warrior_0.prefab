@@ -56,7 +56,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 7, y: 7}
+  m_Size: {x: 9, y: 9}
   m_EdgeRadius: 0
 --- !u!114 &8191155841286617678
 MonoBehaviour:
@@ -75,6 +75,7 @@ MonoBehaviour:
   randH: 4
   sub: 0
   arrow: 0
+  slowDown: 0
 --- !u!1 &3280327609264945778
 GameObject:
   m_ObjectHideFlags: 0
@@ -304,7 +305,7 @@ Transform:
   m_GameObject: {fileID: 7346063709874448706}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 45.89, y: 29.9, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 4869003285424236442}
   - {fileID: 1302063347667079409}
@@ -348,8 +349,8 @@ SpriteRenderer:
   m_SortingLayerID: -1497787473
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: f3770b7c131c3774382cb06c4e453355, type: 3}
-  m_Color: {r: 0.2924242, g: 0.3679245, b: 0.06768423, a: 1}
+  m_Sprite: {fileID: 21300562, guid: 740f367d1839ab0429fe60d514b34426, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -386,18 +387,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.03338051}
+  m_Offset: {x: 0, y: -0.00412941}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.1}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 1.3333334, y: 1.3333334}
     newSize: {x: 0.16, y: 0.16}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.51475906, y: 0.30002975}
+  m_Size: {x: 0.36, y: 0.12}
   m_EdgeRadius: 0
 --- !u!95 &2980822453331290601
 Animator:
@@ -409,7 +410,7 @@ Animator:
   m_GameObject: {fileID: 7346063709874448706}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 960712bc5d1ae1843928eaf140a20457, type: 2}
+  m_Controller: {fileID: 9100000, guid: f6cc5afb3d342b846afd827256d2391b, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -432,6 +433,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dontShowOCI: 0
   stanned: 0
+  hasDeathAnimation: 0
   ms: 3
   netting: 0
 --- !u!58 &1843117981583322739
@@ -502,6 +504,7 @@ GameObject:
   - component: {fileID: 241152161106959062}
   - component: {fileID: 9172048421787986289}
   - component: {fileID: 7653656024629159333}
+  - component: {fileID: 336205900}
   m_Layer: 11
   m_Name: HP
   m_TagString: EnemyHP
@@ -537,7 +540,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.03}
+  m_Offset: {x: -0.01170063, y: 0.23910868}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -548,7 +551,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.55, y: 0.38}
+  m_Size: {x: 0.9595127, y: 0.9182174}
   m_EdgeRadius: 0
 --- !u!114 &9172048421787986289
 MonoBehaviour:
@@ -562,15 +565,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a27e3c8b64114db459f9726822a676b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HP: 40
-  maxHP: 40
+  HP: 80
+  maxHP: 80
   floatingNumbers: {fileID: 7304696037472265733, guid: 9d8b31a025a27d349bbe185a3b4e58c2,
     type: 3}
   slider: {fileID: 7867804871071950338}
-  expForKill: 30
+  expForKill: 100
   damage: 0
-  divide: 0
+  divide: 1
   createSwill: 1
+  isGhost: 0
 --- !u!114 &7653656024629159333
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -588,6 +592,21 @@ MonoBehaviour:
   explPrefab: {fileID: 679967883475278388, guid: f4d1fa1a2f815a94994909d15f500762,
     type: 3}
   amount: 6
+--- !u!114 &336205900
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7653656024629159332}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a13c62f9446c6cd45a2cfb0a9fac2c4c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parts: []
+  expl: {fileID: 679967883475278388, guid: f4d1fa1a2f815a94994909d15f500762, type: 3}
+  isRandom: 0
 --- !u!1 &7867804871071950338
 GameObject:
   m_ObjectHideFlags: 0

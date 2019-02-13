@@ -31,10 +31,7 @@ public class EnemyHP : MonoBehaviour
     {
         if (HP < maxHP) HP += value;
         else HP = maxHP;
-
-        GameObject fn = Instantiate(floatingNumbers, transform.position + new Vector3(0, 0.4f), Quaternion.identity);
-        fn.transform.GetChild(0).GetComponent<FloatingNumbers>().setText(value + "");
-
+        
         if (HP != maxHP)
         {
             slider.SetActive(true);

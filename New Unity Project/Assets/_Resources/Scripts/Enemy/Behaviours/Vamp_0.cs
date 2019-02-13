@@ -144,6 +144,7 @@ public class Vamp_0 : MonoBehaviour
             if (path != null)
                 if (path.Count != 0)
                 {
+                    _a.SetBool("Walk", true);
                     _t.position = Vector2.MoveTowards(_t.position, path[points], AI.ms * Time.deltaTime);
 
                     if (Vector2.Distance(_t.position, path[points]) < 0.1f && points != 0)
@@ -152,21 +153,7 @@ public class Vamp_0 : MonoBehaviour
 
                         if (points <= 0) return;
 
-                        //Vector2 dirToPlayer = path[points] - (Vector2)transform.position;
-                        //float angle = Mathf.Atan2(dirToPlayer.y, dirToPlayer.x) * 180 / Mathf.PI - 90;
-
-                        //if (angle <= 41 && angle > -57) AI.setDirTo(ref dir, new Vector2(0, 1));
-                        //else
-                        //if (angle <= -57 && angle > -126) AI.setDirTo(ref dir, new Vector2(1, 0));
-                        //else
-                        //if (angle <= -126 && angle > -230) AI.setDirTo(ref dir, new Vector2(0, -1));
-                        //else
-                        //if (angle <= -230 || angle > 41) AI.setDirTo(ref dir, new Vector2(-1, 0));
-
-                        _a.SetFloat("MoveX", dir.x);
-                        _a.SetFloat("MoveY", dir.y);
-                        _a.SetFloat("LastMoveX", dir.x);
-                        _a.SetFloat("LastMoveY", dir.y);
+                        setDirToPoint(path[points]);    
                     }
                 }
         }
@@ -176,16 +163,42 @@ public class Vamp_0 : MonoBehaviour
         }
     }
 
+    void setDirToPoint(Vector3 point)
+    {
+        Vector2 dirToPlayer = point - transform.position;
+        float angle = Mathf.Atan2(dirToPlayer.y, dirToPlayer.x) * 180 / Mathf.PI - 90;
+
+        if (angle <= 41 && angle > -57) AI.setDirTo(ref dir, new Vector2(0, 1));
+        else
+        if (angle <= -57 && angle > -126) AI.setDirTo(ref dir, new Vector2(1, 0));
+        else
+        if (angle <= -126 && angle > -230) AI.setDirTo(ref dir, new Vector2(0, -1));
+        else
+        if (angle <= -230 || angle > 41) AI.setDirTo(ref dir, new Vector2(-1, 0));
+
+        _a.SetFloat("MoveX", dir.x);
+        _a.SetFloat("MoveY", dir.y);
+        _a.SetFloat("LastMoveX", dir.x);
+        _a.SetFloat("LastMoveY", dir.y);
+    }
+
     [SerializeField] GameObject vampEffect;
     bool isVamp;
     IEnumerator tongueEvent()
     {
         isVamp = true;
+
+        setDirToPoint(player.transform.position);
         yield return new WaitForSeconds(1);
+        setDirToPoint(player.transform.position);
+
+        _a.SetTrigger("StartAttack");
+        _a.SetBool("Attack", true);
+        yield return new WaitForSeconds(0.75f);
 
         GameObject _go = Instantiate(vampEffect);
         _go.transform.SetParent(_t);
-        _go.transform.localPosition = new Vector3(0, 0.6f, 0);
+        _go.transform.localPosition = new Vector3(0, 1.2f, 0);
         Vector2 target;
 
         PlayerHP _php = player.GetComponent<PlayerHP>();
@@ -193,6 +206,8 @@ public class Vamp_0 : MonoBehaviour
 
         while (Vector3.SqrMagnitude(_t.position - player.transform.position) < 30)
         {
+            setDirToPoint(player.transform.position);
+
             target = -(_t.position - player.transform.position);
             _go.transform.localEulerAngles = new Vector3(-Mathf.Atan2(target.y, target.x) * 180 / Mathf.PI, 90, 0);
 
@@ -202,6 +217,9 @@ public class Vamp_0 : MonoBehaviour
 
             yield return new WaitForSeconds(0.4f);
         }
+
+        _a.SetBool("Attack", false);
+        isVamp = false;
 
         Destroy(_go);
         curState = State.attack;

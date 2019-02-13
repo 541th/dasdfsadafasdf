@@ -78,6 +78,8 @@ public class UIManager : MonoBehaviour
 
             items[i].SetActive(value);
         }
+
+        setGameButtons(value);
     }
 
     public void closeMenu()
@@ -92,6 +94,25 @@ public class UIManager : MonoBehaviour
         gameMenu.SetActive(false);
 
         infoCanvas.GetComponent<InfoController>().open();
+    }
+
+    List<GameObject> gameButtons = new List<GameObject>();
+    public void addItemToGameButtons(GameObject item)
+    {
+        gameButtons.Add(item);
+    }
+
+    public void removeItemFromGameButtons(GameObject item)
+    {
+        for (int i = 0; i < gameButtons.Count; i++)
+            if (gameButtons[i].name == item.name)
+                gameButtons.RemoveAt(i);
+    }
+
+    public void setGameButtons(bool value)
+    {
+        for (int i = 0; i < gameButtons.Count; i++)
+            gameButtons[i].SetActive(value);
     }
 
     public void setSkillCD_0(float value)

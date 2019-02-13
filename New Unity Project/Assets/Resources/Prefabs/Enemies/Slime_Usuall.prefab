@@ -341,7 +341,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.03}
+  m_Offset: {x: 0, y: 0.28}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -352,7 +352,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.15, y: 0.08}
+  m_Size: {x: 1.04, y: 1.02}
   m_EdgeRadius: 0
 --- !u!114 &140897202566246565
 MonoBehaviour:
@@ -372,6 +372,10 @@ MonoBehaviour:
     type: 3}
   slider: {fileID: 2086280077}
   expForKill: 20
+  damage: 0
+  divide: 0
+  createSwill: 0
+  isGhost: 0
 --- !u!1 &1524256836190343451
 GameObject:
   m_ObjectHideFlags: 0
@@ -390,7 +394,7 @@ GameObject:
   - component: {fileID: 3971028072766625487}
   - component: {fileID: 2652354520163681704}
   m_Layer: 11
-  m_Name: Enemy0
+  m_Name: Slime_Usuall
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -405,7 +409,7 @@ Transform:
   m_GameObject: {fileID: 1524256836190343451}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.25999996, y: 0.03999996, z: 0}
-  m_LocalScale: {x: 10, y: 10, z: 1}
+  m_LocalScale: {x: 1.6, y: 1.6, z: 1.6}
   m_Children:
   - {fileID: 7722928489379660943}
   - {fileID: 8302907645193113945}
@@ -449,8 +453,8 @@ SpriteRenderer:
   m_SortingLayerID: -1497787473
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Sprite: {fileID: 21300460, guid: 740f367d1839ab0429fe60d514b34426, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -472,6 +476,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 712d8dc1633ca684fa5fe8343fe62ea3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isParticle: 0
+  dontSubParticle: 0
 --- !u!61 &200593982
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -485,18 +491,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.03}
+  m_Offset: {x: 0, y: 0.09}
   m_SpriteTilingProperty:
-    border: {x: 0.049999997, y: 0.049999997, z: 0.049999997, w: 0.049999997}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.16, y: 0.16}
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.1}
+    oldSize: {x: 1.3333334, y: 1.3333334}
     newSize: {x: 0.16, y: 0.16}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.16, y: 0.06}
+  m_Size: {x: 0.57, y: 0.33}
   m_EdgeRadius: 0
 --- !u!95 &1535590810
 Animator:
@@ -508,7 +514,7 @@ Animator:
   m_GameObject: {fileID: 1524256836190343451}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 960712bc5d1ae1843928eaf140a20457, type: 2}
+  m_Controller: {fileID: 9100000, guid: 11ae6f84117aa214c8dbdc1b48414489, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -536,7 +542,6 @@ MonoBehaviour:
   waitTime: 3
   curState: 0
   dir: {x: 0, y: 0}
-  netting: 0
 --- !u!114 &1535590812
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -551,7 +556,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dontShowOCI: 0
   stanned: 0
+  hasDeathAnimation: 1
   ms: 3
+  netting: 0
 --- !u!58 &3971028072766625487
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -567,7 +574,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 1.6
+  m_Radius: 5.6
 --- !u!50 &2652354520163681704
 Rigidbody2D:
   serializedVersion: 4
@@ -616,7 +623,7 @@ Transform:
   m_GameObject: {fileID: 6484375266594994718}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.006, y: -0.003, z: 0}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children: []
   m_Father: {fileID: 1524256836190343450}
   m_RootOrder: 0
@@ -662,3 +669,6 @@ MonoBehaviour:
   damage: 10
   randL: -4
   randH: 4
+  sub: 0
+  arrow: 0
+  slowDown: 0

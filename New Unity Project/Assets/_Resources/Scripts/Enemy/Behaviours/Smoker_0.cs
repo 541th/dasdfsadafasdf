@@ -145,6 +145,8 @@ public class Smoker_0 : MonoBehaviour
             if (path != null)
                 if (path.Count != 0)
                 {
+                    _a.SetBool("Walk", true);
+
                     _t.position = Vector2.MoveTowards(_t.position, path[points], AI.ms * Time.deltaTime);
 
                     if (Vector2.Distance(_t.position, path[points]) < 0.1f && points != 0)
@@ -153,16 +155,16 @@ public class Smoker_0 : MonoBehaviour
 
                         if (points <= 0) return;
 
-                        //Vector2 dirToPlayer = path[points] - (Vector2)transform.position;
-                        //float angle = Mathf.Atan2(dirToPlayer.y, dirToPlayer.x) * 180 / Mathf.PI - 90;
+                        Vector2 dirToPlayer = path[points] - (Vector2)transform.position;
+                        float angle = Mathf.Atan2(dirToPlayer.y, dirToPlayer.x) * 180 / Mathf.PI - 90;
 
-                        //if (angle <= 41 && angle > -57) AI.setDirTo(ref dir, new Vector2(0, 1));
-                        //else
-                        //if (angle <= -57 && angle > -126) AI.setDirTo(ref dir, new Vector2(1, 0));
-                        //else
-                        //if (angle <= -126 && angle > -230) AI.setDirTo(ref dir, new Vector2(0, -1));
-                        //else
-                        //if (angle <= -230 || angle > 41) AI.setDirTo(ref dir, new Vector2(-1, 0));
+                        if (angle <= 41 && angle > -57) AI.setDirTo(ref dir, new Vector2(0, 1));
+                        else
+                        if (angle <= -57 && angle > -126) AI.setDirTo(ref dir, new Vector2(1, 0));
+                        else
+                        if (angle <= -126 && angle > -230) AI.setDirTo(ref dir, new Vector2(0, -1));
+                        else
+                        if (angle <= -230 || angle > 41) AI.setDirTo(ref dir, new Vector2(-1, 0));
 
                         _a.SetFloat("MoveX", dir.x);
                         _a.SetFloat("MoveY", dir.y);
@@ -177,43 +179,86 @@ public class Smoker_0 : MonoBehaviour
         }
     }
 
+    public void stopTongue()
+    {
+        _a.SetBool("Attack", false);
+        tongued = false;
+        isTongue = false;
+        curState = State.attack;
+    }
+
     bool isTongue;
     public bool tongued;
     [SerializeField] GameObject tonguePrefab;
     IEnumerator tongueEvent()
     {
         isTongue = true;
+
+        Vector2 dirToPlayer = player.transform.position - transform.position;
+
+        _a.SetBool("Attack", true);
+        _a.SetBool("Walk", false);
+
         yield return new WaitForSeconds(tongueTimer);
 
-        GameObject _go = Instantiate(tonguePrefab, _t.position, Quaternion.identity);
-        _go.transform.SetParent(_t);
-        float rovingTimer = 0.4f;
-        Vector2 target = -(_t.position - player.transform.position);
+        float angle = Mathf.Atan2(dirToPlayer.y, dirToPlayer.x) * 180 / Mathf.PI - 90;
 
+        if (angle <= 41 && angle > -57) AI.setDirTo(ref dir, new Vector2(0, 1));
+        else
+        if (angle <= -57 && angle > -126) AI.setDirTo(ref dir, new Vector2(1, 0));
+        else
+        if (angle <= -126 && angle > -230) AI.setDirTo(ref dir, new Vector2(0, -1));
+        else
+        if (angle <= -230 || angle > 41) AI.setDirTo(ref dir, new Vector2(-1, 0));
+
+        _a.SetFloat("MoveX", dir.x);
+        _a.SetFloat("MoveY", dir.y);
+        _a.SetFloat("LastMoveX", dir.x);
+        _a.SetFloat("LastMoveY", dir.y);
+
+        float height = 1.4f;
+        float rovingTimer = 0.4f;
+
+        GameObject _go = Instantiate(tonguePrefab, _t.position + new Vector3(0, height), Quaternion.identity);
+        _go.transform.SetParent(_t);
+        Vector2 target = -(_t.position - player.transform.position + new Vector3(0, height)).normalized;
         _go.transform.eulerAngles = new Vector3(0, 0, Mathf.Atan2(target.y, target.x) * 180 / Mathf.PI + 90);
+
+        LineRenderer _lr = _go.GetComponent<LineRenderer>();
 
         while (rovingTimer > 0)
         {
-            if (tongued) yield break;
+            if (tongued)
+            {
+                yield break;
+            }
+
             rovingTimer -= Time.deltaTime;
 
-            _go.transform.localScale += new Vector3(0, Time.deltaTime * 10, 0);
-            _go.transform.position += (Vector3)target.normalized * Time.deltaTime * 10;
-            _go.transform.GetChild(0).position += (Vector3)target.normalized * Time.deltaTime * 6;
+            _go.transform.position = _t.position + (Vector3)target + new Vector3(0, height);
+
+            _lr.SetPosition(0, _t.position + new Vector3(0, height));
+            _lr.SetPosition(1, _t.position + (Vector3)target + new Vector3(0, height));
+            target += target * Time.deltaTime * 5;
 
             yield return null;
         }
 
-        while (_go.transform.localScale.y > 0)
+        while (Vector3.SqrMagnitude(_t.position - (_t.position + (Vector3)target + new Vector3(0, height))) > 3f)
         {
-            if (tongued) yield break;
+            if (tongued)
+            {
+                yield break;
+            }
 
-            _go.transform.localScale -= new Vector3(0, Time.deltaTime * 10, 0);
-            _go.transform.position -= (Vector3)target.normalized * Time.deltaTime * 10;
-            _go.transform.GetChild(0).position -= (Vector3)target.normalized * Time.deltaTime * 6;
+            _lr.SetPosition(0, _t.position + new Vector3(0, height));
+            _lr.SetPosition(1, _t.position + (Vector3)target + new Vector3(0, height));
+            target -= target * Time.deltaTime * 5;
 
             yield return null;
         }
+
+        _a.SetBool("Attack", false);
 
         Destroy(_go);
 

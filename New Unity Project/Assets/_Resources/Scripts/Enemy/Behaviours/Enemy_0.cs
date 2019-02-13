@@ -94,17 +94,18 @@ public class Enemy_0 : MonoBehaviour
                 if (waitCounter <= 0) startWalking();
             }
         }
-        else if (curState == State.attack)
+        else if (curState == State.attack && !isAttacking)
         {
+
             delay += Time.deltaTime;
             delta -= Time.deltaTime;
             float _d = Vector2.SqrMagnitude(_t.position - player.transform.position);
 
             GetComponent<BoxCollider2D>().enabled = _d < 20;
 
-            if (_d < 1.6f)
+            if (_d < 1.6f && !isAttacking)
             {
-                _a.SetTrigger("Attack");
+                StartCoroutine(attacking());
                 return;
             }
 
@@ -176,6 +177,15 @@ public class Enemy_0 : MonoBehaviour
                     }
                 }
         }
+    }
+
+    bool isAttacking;
+    IEnumerator attacking()
+    {
+        isAttacking = true;
+        _a.SetTrigger("Attack");
+        yield return new WaitForSeconds(_a.GetCurrentAnimatorStateInfo(0).length);
+        isAttacking = false;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

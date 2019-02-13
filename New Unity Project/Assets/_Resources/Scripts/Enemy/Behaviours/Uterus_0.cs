@@ -147,6 +147,7 @@ public class Uterus_0 : MonoBehaviour
             if (path != null)
                 if (path.Count != 0)
                 {
+                    _a.SetBool("Walk", true);
                     _t.position = Vector2.MoveTowards(_t.position, path[points], AI.ms * Time.deltaTime);
 
                     if (Vector2.Distance(_t.position, path[points]) < 0.1f && points != 0)
@@ -155,16 +156,16 @@ public class Uterus_0 : MonoBehaviour
 
                         if (points <= 0) return;
 
-                        //Vector2 dirToPlayer = path[points] - (Vector2)transform.position;
-                        //float angle = Mathf.Atan2(dirToPlayer.y, dirToPlayer.x) * 180 / Mathf.PI - 90;
+                        Vector2 dirToPlayer = path[points] - (Vector2)transform.position;
+                        float angle = Mathf.Atan2(dirToPlayer.y, dirToPlayer.x) * 180 / Mathf.PI - 90;
 
-                        //if (angle <= 41 && angle > -57) AI.setDirTo(ref dir, new Vector2(0, 1));
-                        //else
-                        //if (angle <= -57 && angle > -126) AI.setDirTo(ref dir, new Vector2(1, 0));
-                        //else
-                        //if (angle <= -126 && angle > -230) AI.setDirTo(ref dir, new Vector2(0, -1));
-                        //else
-                        //if (angle <= -230 || angle > 41) AI.setDirTo(ref dir, new Vector2(-1, 0));
+                        if (angle <= 41 && angle > -57) AI.setDirTo(ref dir, new Vector2(0, 1));
+                        else
+                        if (angle <= -57 && angle > -126) AI.setDirTo(ref dir, new Vector2(1, 0));
+                        else
+                        if (angle <= -126 && angle > -230) AI.setDirTo(ref dir, new Vector2(0, -1));
+                        else
+                        if (angle <= -230 || angle > 41) AI.setDirTo(ref dir, new Vector2(-1, 0));
 
                         _a.SetFloat("MoveX", dir.x);
                         _a.SetFloat("MoveY", dir.y);
@@ -184,6 +185,8 @@ public class Uterus_0 : MonoBehaviour
     {
         dividing = true;
         yield return new WaitForSeconds(divideTimer);
+
+        _a.SetBool("Attack", true);
 
         int rand = Random.Range(min_count, max_count);
 

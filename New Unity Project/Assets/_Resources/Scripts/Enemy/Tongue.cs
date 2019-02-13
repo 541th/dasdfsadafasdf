@@ -13,6 +13,10 @@ public class Tongue : MonoBehaviour
             transform.parent.GetComponent<Smoker_0>().tongued = true;
             StartCoroutine(pull());
         }
+        else if (collision.CompareTag("Collisions"))
+        {
+            transform.parent.GetComponent<Smoker_0>().stopTongue();
+        }
     }
 
     [SerializeField] GameObject buttonPrefab;
@@ -22,34 +26,40 @@ public class Tongue : MonoBehaviour
 
         if (player.GetComponent<PlayerMovement>().dontMove) yield break;
 
-        Transform _t = transform, child = _t.GetChild(0);
+        Transform _t = transform;
 
-        float blinkTimer = 0;
+        float blinkTimer = 0, height = 1.4f;
 
         GameObject button = Instantiate(buttonPrefab);
-        button.transform.SetParent(transform.parent);
-    
-        Vector2 target = -(transform.parent.position - (player.position + new Vector3(0, 1, 0)));
+        button.transform.SetParent(_t.parent);
+        FindObjectOfType<UIManager>().addItemToGameButtons(button);
+
+        Vector2 target = -(_t.parent.position - player.position);
 
         player.GetComponent<PlayerMovement>().dontMove = true;
 
         if (player.GetComponent<PlayerAttack_Archer>() != null)
             player.GetComponent<PlayerAttack_Archer>().canAttack = false;
 
-        //player.GetComponent<PlayerMovement>(). = true;
-        float time;
-        while (_t.localScale.y > .4f)
+        while (Vector3.SqrMagnitude(_t.parent.position - (_t.parent.position + (Vector3)target)) > 3f)
         {
-            time = Time.deltaTime;
-            blinkTimer += time;
+            blinkTimer += Time.deltaTime;
 
-            _t.localScale -= new Vector3(0, time, 0);
-            _t.position -= (Vector3)target.normalized * time;
+            target -= target * Time.deltaTime * .1f;
 
-            player.position = child.position;
-            button.transform.position = child.position + new Vector3(0, 1);
+            _t.position = _t.parent.position + (Vector3)target + new Vector3(0, height);
 
-            if (blinkTimer > .4f) blinkTimer = 0;
+            GetComponent<LineRenderer>().SetPosition(0, _t.parent.position + new Vector3(0, height));
+            GetComponent<LineRenderer>().SetPosition(1, _t.parent.position + (Vector3)target);
+
+            player.position = GetComponent<LineRenderer>().GetPosition(1);
+            button.transform.position = player.position + new Vector3(0, height);
+
+            if (blinkTimer > .4f)
+            {
+                player.GetComponent<PlayerHP>().toDamage(Random.Range(1, 10));
+                blinkTimer = 0;
+            }
             else
                 if (blinkTimer > .2) button.transform.GetChild(0).GetComponent<Image>().color = new Color(1, 1, 1, 0.25f);
             else
@@ -58,9 +68,15 @@ public class Tongue : MonoBehaviour
             yield return null;
         }
 
-        while (_t.localScale.y > .4f)
+        while (true)
         {
-            if (blinkTimer > .4f) blinkTimer = 0;
+            blinkTimer += Time.deltaTime;
+
+            if (blinkTimer > .4f)
+            {
+                player.GetComponent<PlayerHP>().toDamage(Random.Range(1, 10));
+                blinkTimer = 0;
+            }
             else
                 if (blinkTimer > .2) button.transform.GetChild(0).GetComponent<Image>().color = new Color(1, 1, 1, 0.25f);
             else
@@ -72,6 +88,11 @@ public class Tongue : MonoBehaviour
 
     public void destr(GameObject button)
     {
+        if (transform.parent.GetComponent<Smoker_0>() != null)
+            transform.parent.GetComponent<Smoker_0>().stopTongue();
+
+        FindObjectOfType<UIManager>().removeItemFromGameButtons(button);
+
         Destroy(gameObject);
         Destroy(button);
     }
@@ -79,9 +100,11 @@ public class Tongue : MonoBehaviour
     private void OnDestroy()
     {
         if (player != null)
+        {
             player.GetComponent<PlayerMovement>().dontMove = false;
 
-        if (player.GetComponent<PlayerAttack_Archer>() != null)
-            player.GetComponent<PlayerAttack_Archer>().canAttack = true;
+            if (player.GetComponent<PlayerAttack_Archer>() != null)
+                player.GetComponent<PlayerAttack_Archer>().canAttack = true;
+        }
     }
 }

@@ -105,13 +105,13 @@ public class Archer : MonoBehaviour
                 shooted = false;
                 //if (Vector2.Distance(transform.position, ((targets.Count == 0) ? player.transform.position : targets[0].transform.position)) > 2)
                 {
-                    playerRandomPoint = new Vector2(player.transform.position.x + Random.Range(-6f, 6f), 
+                    playerRandomPoint = new Vector2(player.transform.position.x + Random.Range(-6f, 6f),
                         player.transform.position.y + Random.Range(-6f, 6f));
 
                     if (gon.GetNodeByPos(playerRandomPoint) != null)
                         while (!gon.GetNodeByPos(playerRandomPoint).walkable)
                         {
-                            playerRandomPoint = new Vector2(player.transform.position.x + Random.Range(-6f, 6f), 
+                            playerRandomPoint = new Vector2(player.transform.position.x + Random.Range(-6f, 6f),
                                 player.transform.position.y + Random.Range(-6f, 6f));
                         }
                     else
@@ -137,6 +137,7 @@ public class Archer : MonoBehaviour
             if (path != null)
                 if (path.Count != 0)
                 {
+                    _a.SetBool("Walk", true);
                     _t.position = Vector2.MoveTowards(_t.position, path[points], AI.ms * Time.deltaTime);
 
                     if (points == 0 && !shooted)
@@ -181,9 +182,10 @@ public class Archer : MonoBehaviour
                         _a.SetFloat("MoveY", dir.y);
                         _a.SetFloat("LastMoveX", dir.x);
                         _a.SetFloat("LastMoveY", dir.y);
-                        _a.SetBool("Walk", true);
                     }
                 }
+                else
+                    _a.SetBool("Walk", false);
         }
     }
 

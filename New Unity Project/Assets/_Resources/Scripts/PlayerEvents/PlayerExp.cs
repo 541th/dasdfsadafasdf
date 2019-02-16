@@ -7,6 +7,7 @@ public class PlayerExp : MonoBehaviour
 {
     public int curLvl;
     [SerializeField] float curExp, expToLvlUp;
+    int expDelta = 1;
     [SerializeField] Slider slider;
     public static int points;
 
@@ -15,20 +16,39 @@ public class PlayerExp : MonoBehaviour
         curExp = (int)slider.value;
     }
 
+    public void doubleExp()
+    {
+        StartCoroutine(doubleExpEvent());
+    }
+
+    IEnumerator doubleExpEvent()
+    {
+        float timer = 10;
+        expDelta = 2;
+
+        while (timer > 0)
+        {
+            timer -= Time.deltaTime;
+            yield return null;
+        }
+
+        expDelta = 1;
+    }
+
     [SerializeField] bool toadd;
     [SerializeField] float toaddvalue;
     private void Update()
     {
         if (toadd)
         {
-            addExp(toaddvalue);
+            addExp(toaddvalue * expDelta);
             toadd = false;
         }
     }
 
     public void addExp(float value)
     {
-        StartCoroutine(addEvent(value));
+        StartCoroutine(addEvent(value * expDelta));
     }
 
     IEnumerator showNewLvl()

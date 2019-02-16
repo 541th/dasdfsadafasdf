@@ -8,25 +8,6 @@ public class PlayerAttacker : MonoBehaviour
     [SerializeField] int randL, randH;
     [SerializeField] bool isArrow, withStan, skill_2, slow, modifyWithMagPerk;
     public bool isLightning, bleeding, expl, explMag, sub;
-    List<Modifiers> modifiers = new List<Modifiers>();
-
-    public void addModifier(char _c, int _v)
-    {
-        modifiers.Add(new Modifiers(_c, _v));
-    }
-
-    public void removeModifier(char _c, int _v)
-    {
-        for (int i = 0; i < modifiers.Count; i++)
-        {
-            if (modifiers[i].value == _v)
-                if (modifiers[i].sign == _c)
-                {
-                    modifiers.RemoveAt(i);
-                    break;
-                }
-        }
-    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -34,16 +15,7 @@ public class PlayerAttacker : MonoBehaviour
         {
             int value = damage + Random.Range(randL, randH);
 
-            for (int i = 0; i < modifiers.Count; i++)
-            {
-                switch (modifiers[i].sign)
-                {
-                    case '+': value += modifiers[i].value; break;
-                    case '-': value -= modifiers[i].value; break;
-                    case '/': value /= modifiers[i].value; break;
-                    case '*': value *= modifiers[i].value; break;
-                }
-            }
+            value = (int)AttackModifiers.getModifiedValue(value);
 
             value += (int)InfoController.perks[3].value;
             if (modifyWithMagPerk) value += (int)InfoController.perks[13].value;
@@ -73,17 +45,5 @@ public class PlayerAttacker : MonoBehaviour
     {
         withStan = false;
         bleeding = false;
-    }
-
-    class Modifiers
-    {
-        public char sign;
-        public int value;
-
-        public Modifiers(char _c, int _v)
-        {
-            sign = _c;
-            value = _v;
-        }
     }
 }

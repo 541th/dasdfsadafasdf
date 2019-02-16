@@ -239,6 +239,7 @@ GameObject:
   - component: {fileID: 2556638891002869837}
   - component: {fileID: 694973623454338381}
   - component: {fileID: 2556638891002869836}
+  - component: {fileID: 4357667360394521661}
   - component: {fileID: 2556638891002869835}
   - component: {fileID: 2556638891002869834}
   - component: {fileID: 6201309108722076634}
@@ -378,7 +379,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startMS: 16
-  playerType: 3
+  playerType: 2
   canMove: 1
   dontMove: 0
   moveInput: {x: 0, y: 0}
@@ -420,7 +421,20 @@ MonoBehaviour:
   - {fileID: 1714211546219208695, guid: 8b28d342b7161484fa4183fa536346e6, type: 3}
   mag_arrows:
   - {fileID: 2645979995704354882, guid: 2ef070b4aa42fe640aa0ebb799d0fa3d, type: 3}
+  canAttack: 0
   cam: {fileID: 0}
+--- !u!114 &4357667360394521661
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2556638891002869833}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d1bb33839c441b428de882783813123, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!50 &2556638891002869835
 Rigidbody2D:
   serializedVersion: 4

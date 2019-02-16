@@ -81,6 +81,15 @@ public class PlayerHP : MonoBehaviour
         fn.transform.GetChild(0).GetComponent<FloatingNumbers>().setText(damage + "");
     }
 
+    public void toHeal(int value)   
+    {
+        if (HP < maxHP)
+        {
+            HP += value;
+            HPslider.value += value;
+        }
+    }
+
     IEnumerator sub(int value)
     {
         while (value > 0)

@@ -222,7 +222,7 @@ public class PlayerMovement : MonoBehaviour
         GameObject rage = Instantiate(Resources.Load("Prefabs/Effects/PlayerRage") as GameObject);
         Transform other = null;
 
-        transform.GetChild(0).GetChild(0).GetComponent<PlayerAttacker>().addModifier('*', 3);
+        AttackModifiers.addModifier('*', 3);
 
         for (int i = 0; i < transform.childCount; i++)
             if (transform.GetChild(i).name == "Other")
@@ -236,7 +236,7 @@ public class PlayerMovement : MonoBehaviour
 
         yield return new WaitForSeconds(10);
 
-        transform.GetChild(0).GetChild(0).GetComponent<PlayerAttacker>().removeModifier('*', 3);
+        AttackModifiers.removeModifier('*', 3);
         inRage = false;
         Destroy(rage);
     }

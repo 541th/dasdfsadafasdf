@@ -6,12 +6,13 @@ public class SortingOrderAtStart : MonoBehaviour
 {
     [SerializeField] bool isGrass, isTorch, isSpikes, isParticle;
     [SerializeField] float startTimer;
+    [SerializeField] int delta;
 
     void Start()
     {
         if (isParticle)
         {
-            GetComponent<ParticleSystemRenderer>().sortingOrder = -(int)(transform.position.y * SortingOrder.mult);
+            GetComponent<ParticleSystemRenderer>().sortingOrder = -(int)(transform.position.y * SortingOrder.mult) - delta;
             return;
         }
 
@@ -30,7 +31,7 @@ public class SortingOrderAtStart : MonoBehaviour
 
         if (isGrass)
             GetComponent<Animator>().speed = Random.Range(0.4f, 1.1f);
-        GetComponent<SpriteRenderer>().sortingOrder = -(int)(transform.position.y * SortingOrder.mult);
+        GetComponent<SpriteRenderer>().sortingOrder = -(int)(transform.position.y * SortingOrder.mult) - delta;
     }
 
     IEnumerator showSpikes()

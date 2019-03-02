@@ -7,6 +7,7 @@ public class UIManager : MonoBehaviour
 {
     public List<GameObject> items;
     [SerializeField] GameObject glideButton;
+    public GameObject blackScreen;
     GameObject player;
 
     private void Start()
@@ -16,16 +17,19 @@ public class UIManager : MonoBehaviour
 
     public void startAttack()
     {
+        if (player == null) player = GameObject.Find("Player");
         player.GetComponent<PlayerAttack_Warrior>().startAttack();
     }
 
     public void stopAttack()
     {
+        if (player == null) player = GameObject.Find("Player");
         player.GetComponent<PlayerAttack_Warrior>().stopAttack();
     }
 
     public void glide()
     {
+        if (player == null) player = GameObject.Find("Player");
         player.GetComponent<PlayerMovement>().glide();
     }
 
@@ -196,5 +200,13 @@ public class UIManager : MonoBehaviour
         if (_ic == null) _ic = FindObjectOfType<InfoController>();
 
         _ic.useSkill_1();
+    }
+
+    [SerializeField] GameObject bossHPBar;
+    public void showBossHPBar(float value, float maxValue)
+    {
+        bossHPBar.GetComponent<Slider>().maxValue = maxValue;
+        bossHPBar.GetComponent<Slider>().value = value;
+        bossHPBar.SetActive(true);
     }
 }

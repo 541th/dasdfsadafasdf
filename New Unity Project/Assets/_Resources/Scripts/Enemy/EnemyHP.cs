@@ -10,6 +10,8 @@ public class EnemyHP : MonoBehaviour
     [SerializeField] GameObject floatingNumbers, slider;
     public float expForKill;
 
+    [SerializeField] Material defaultMaterial, blinkMaterial;
+
     private void Start()
     {
         player = GameObject.Find("Player").transform;
@@ -260,10 +262,45 @@ public class EnemyHP : MonoBehaviour
         checkDeath();
     }
 
+    IEnumerator hitBlink()
+    {
+        transform.parent.GetComponent<SpriteRenderer>().material = blinkMaterial;
+        yield return new WaitForSeconds(0.04f);
+        transform.parent.GetComponent<SpriteRenderer>().material = defaultMaterial;
+    }
+
+    void stopSleeping()
+    {
+        transform.parent.GetComponent<CapsuleCollider2D>().enabled = true;
+        transform.parent.GetComponent<AIMethods>().stanned = false;
+    }
+
+    [SerializeField] bool isBoss, isBossSleeping;
     void checkDeath()
     {
+        if (isBossSleeping)
+        {
+            isBossSleeping = false;
+            transform.parent.GetComponent<Animator>().SetTrigger("StopSleeping");
+            Invoke("stopSleeping", 1);
+        }
+
+        if (isBoss)
+        {
+            Camera.main.GetComponent<CamFollow>().lightOnMap();
+
+            FindObjectOfType<UIManager>().showBossHPBar(HP, maxHP);
+        }
+
+        StartCoroutine(hitBlink());
+
         if (HP <= 0)
         {
+            if (isBoss)
+            {
+                GameObject.Find("PortalEndObject").transform.GetChild(0).gameObject.SetActive(true);
+            }
+
             if (divide)
                 if (GetComponent<Divide>() != null)
                     GetComponent<Divide>().divide();
@@ -271,7 +308,7 @@ public class EnemyHP : MonoBehaviour
                     GetComponent<DivideParts>().divide();
 
             if (player != null)
-                player.GetComponent<PlayerExp>().addExp(expForKill);
+                FindObjectOfType<PlayerExp>().addExp(expForKill);
 
             showDeath();
         }
@@ -279,7 +316,10 @@ public class EnemyHP : MonoBehaviour
 
     void showDeath()
     {
-        GetComponentInParent<AIMethods>().showDeath();
+        if (isBoss)
+            transform.parent.GetComponent<Animator>().SetTrigger("Death");
+        else
+            GetComponentInParent<AIMethods>().showDeath();
     }
 
     IEnumerator flying(Vector2 to)

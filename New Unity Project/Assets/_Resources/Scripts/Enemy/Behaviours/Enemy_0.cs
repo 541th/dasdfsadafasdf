@@ -96,7 +96,6 @@ public class Enemy_0 : MonoBehaviour
         }
         else if (curState == State.attack && !isAttacking)
         {
-
             delay += Time.deltaTime;
             delta -= Time.deltaTime;
             float _d = Vector2.SqrMagnitude(_t.position - player.transform.position);

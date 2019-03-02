@@ -18,9 +18,9 @@ public class EnemyAttack : MonoBehaviour
 
             if (_d <= 0) _d = 1;
 
-            collision.GetComponent<PlayerHP>().toDamage(_d);
+            FindObjectOfType<PlayerHP>().toDamage(_d);
 
-            if (slowDown) collision.GetComponent<PlayerHP>().slowDown(4);
+            if (slowDown) FindObjectOfType<PlayerHP>().slowDown(4);
 
             if (arrow && GetComponent<EnemyArrowFly>() != null) GetComponent<EnemyArrowFly>().stop();
         }

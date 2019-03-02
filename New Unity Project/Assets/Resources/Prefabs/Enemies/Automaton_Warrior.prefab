@@ -669,6 +669,8 @@ MonoBehaviour:
     type: 3}
   slider: {fileID: 4651564118420100789}
   expForKill: 300
+  defaultMaterial: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  blinkMaterial: {fileID: 2100000, guid: 9827d63a786847849b1d51a5ad5ab300, type: 2}
   damage: 0
   divide: 1
   createSwill: 0
@@ -693,3 +695,4 @@ MonoBehaviour:
   - {fileID: 2184230352558510275, guid: 19fe06ec9a5e90a4d8a57c859d035b0c, type: 3}
   - {fileID: 8107878581478358143, guid: 807346107f3ed584899ec54c56f58a64, type: 3}
   expl: {fileID: 1343671061, guid: 3fc5033d732da2749a674253800e3b26, type: 3}
+  isRandom: 0

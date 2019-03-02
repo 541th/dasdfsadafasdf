@@ -234,8 +234,6 @@ GameObject:
   - component: {fileID: 2556638891002869842}
   - component: {fileID: 2556638891002869841}
   - component: {fileID: 2556638891002869840}
-  - component: {fileID: 2556638891002869839}
-  - component: {fileID: 2556638891002869838}
   - component: {fileID: 2556638891002869837}
   - component: {fileID: 694973623454338381}
   - component: {fileID: 2556638891002869836}
@@ -304,7 +302,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1497787473
   m_SortingLayer: 2
-  m_SortingOrder: 0
+  m_SortingOrder: 11111
   m_Sprite: {fileID: 21300000, guid: f3770b7c131c3774382cb06c4e453355, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -330,42 +328,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isParticle: 0
   dontSubParticle: 0
---- !u!114 &2556638891002869839
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2556638891002869833}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 89a873b0bdd4bf74b8d38b2659fac360, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  HP: 0
-  maxHP: 0
-  startMax: 0
-  HPslider: {fileID: 0}
-  floatingNumbers: {fileID: 7304696037472265733, guid: 9d8b31a025a27d349bbe185a3b4e58c2,
-    type: 3}
---- !u!114 &2556638891002869838
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2556638891002869833}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5493ba39e8e04994baca3e39f88544b9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  curLvl: 0
-  curExp: 0
-  expToLvlUp: 100
-  slider: {fileID: 0}
-  toadd: 0
-  toaddvalue: 0
+  dontChangeSortingOrger: 0
 --- !u!114 &2556638891002869837
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -379,11 +342,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startMS: 16
-  playerType: 2
+  playerType: 0
   canMove: 1
   dontMove: 0
+  startInBattleScene: 0
   moveInput: {x: 0, y: 0}
-  lastMove: {x: 0, y: -1}
+  lastMove: {x: 0, y: 1}
   isGlide: 0
   smoke: {fileID: 2762434275456583061, guid: 57e543fffe7a4d449a270966d34087e6, type: 3}
   glideTimer: 1

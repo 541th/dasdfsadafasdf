@@ -23,13 +23,44 @@ public class CamFollow : MonoBehaviour
         GetComponent<Camera>().orthographicSize = 6;
     }
 
+    public void lightOnMap()
+    {
+        StartCoroutine(lightOnMapEvent());
+    }
+
+    IEnumerator lightOnMapEvent()
+    {
+        if (PlayerPrefs.GetInt("LevelType") == 1)
+            GetComponent<Camera>().backgroundColor = new Color(.9f, .2f, 0);
+        else
+            GetComponent<Camera>().backgroundColor = new Color(.3f, .1f, .6f);
+
+        yield return new WaitForSeconds(0.1f);
+
+        GetComponent<Camera>().backgroundColor = new Color(0, 0, 0);
+    }
+
     private void Start()
     {
         updateCamSize();
+
+        if (followTarget == null) followTarget = GameObject.Find("Player");
+        shotDir = followTarget.transform.GetChild(followTarget.transform.childCount - 1);
     }
 
-    // Use this for initialization
-    void Awake()
+    private void OnLevelWasLoaded(int level)
+    {
+        loadPlayer();
+
+        if (followTarget == null) followTarget = GameObject.Find("Player");
+        shotDir = followTarget.transform.GetChild(followTarget.transform.childCount - 1);
+    }
+
+    void loaded()
+    {
+    }
+
+    private void Awake()
     {
         if (!cameraExists)
         {
@@ -38,11 +69,51 @@ public class CamFollow : MonoBehaviour
         }
         else
             Destroy(gameObject);
-        
-        if (followTarget == null) followTarget = GameObject.Find("Player");
-        shotDir = followTarget.transform.GetChild(followTarget.transform.childCount - 1);
     }
-    
+
+    void loadPlayer()
+    {
+        FindObjectOfType<UIManager>().setAllItems(true);
+
+        if (GameObject.Find("Player") == null)
+        {
+            GameObject player = Instantiate(Resources.Load("Prefabs/Player") as GameObject, GameObject.Find("StartPoint").transform.position, Quaternion.identity);
+            player.name = "Player";
+            player.GetComponent<PlayerMovement>().playerType = PlayerPrefs.GetInt("PlayerType");
+            setStartPlayerValues();
+        }
+        else
+        {
+            GameObject.Find("Player").transform.position = GameObject.Find("StartPoint").transform.position;
+            GameObject.Find("Player").GetComponent<PlayerMovement>().playerType = PlayerPrefs.GetInt("PlayerType");
+            //Invoke("setStartPlayerValues", .1f);
+        }
+
+        StartCoroutine(loadingEvent());
+    }
+
+    void setStartPlayerValues()
+    {
+        GameObject.Find("Player").GetComponent<PlayerMovement>().setStartValues();
+    }
+
+    IEnumerator loadingEvent()
+    {
+        yield return new WaitForSeconds(1.5f);
+
+        GameObject blackScreen = FindObjectOfType<UIManager>().blackScreen;
+        UnityEngine.UI.Image blackScreenImage = blackScreen.GetComponent<UnityEngine.UI.Image>();
+
+        while (blackScreenImage.color.a >= 0)
+        {
+            blackScreenImage.color -= new Color(0, 0, 0, Time.deltaTime);
+            yield return null;
+        }
+
+        blackScreen.SetActive(false);
+    }
+
+
     float clampedX, clampedY, a_h, a_v;
     Vector2 delta;
     bool arrowShotShaking;
@@ -51,13 +122,16 @@ public class CamFollow : MonoBehaviour
     {
         if (followTarget != null)
         {
+            if (shotDir == null)
+                shotDir = followTarget.transform.GetChild(followTarget.transform.childCount - 1);
+
             a_h = CnInputManager.GetAxis("Attack_H") * 2;
             a_v = CnInputManager.GetAxis("Attack_V") * 2;
             if (!arrowShotShaking)
                 delta = new Vector2(a_h, a_v);
             else
                 delta = Vector2.zero;
-            
+
             if (a_h != 0 || a_v != 0)
             {
                 shotDir.gameObject.SetActive(true);
@@ -71,6 +145,8 @@ public class CamFollow : MonoBehaviour
             targetPos = new Vector3(followTarget.transform.position.x + delta.x, followTarget.transform.position.y + delta.y, transform.position.z);
             transform.position = Vector3.Lerp(transform.position, targetPos, moveSpeed * Time.deltaTime);
         }
+        else
+            followTarget = GameObject.Find("Player");
     }
 
     public void startShakeArrow()

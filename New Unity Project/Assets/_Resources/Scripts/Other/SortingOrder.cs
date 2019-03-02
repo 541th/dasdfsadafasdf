@@ -11,6 +11,8 @@ public class SortingOrder : MonoBehaviour
     [SerializeField] bool isParticle, dontSubParticle;
     float timer = 40;
 
+    public bool dontChangeSortingOrger;
+
     private void Start()
     {
         if (!isParticle)
@@ -23,17 +25,20 @@ public class SortingOrder : MonoBehaviour
 
     void Update()
     {
-        if (isParticle)
+        if (!dontChangeSortingOrger)
         {
-            if (!dontSubParticle)
+            if (isParticle)
             {
-                timer -= Time.deltaTime * 4;
-                _psr.GetComponent<ParticleSystem>().emissionRate = timer;
-            }
+                if (!dontSubParticle)
+                {
+                    timer -= Time.deltaTime * 4;
+                    _psr.GetComponent<ParticleSystem>().emissionRate = timer;
+                }
 
-            _psr.sortingOrder = -(int)(_t.position.y * mult);
+                _psr.sortingOrder = -(int)(_t.position.y * mult);
+            }
+            else
+                _sr.sortingOrder = -(int)(_t.position.y * mult);
         }
-        else
-            _sr.sortingOrder = -(int)(_t.position.y * mult);
     }
 }

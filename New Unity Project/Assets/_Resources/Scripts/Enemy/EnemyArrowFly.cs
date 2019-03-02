@@ -51,8 +51,8 @@ public class EnemyArrowFly : MonoBehaviour
     {
         fly = false;
         GetComponent<BoxCollider2D>().enabled = false;
-        GetComponent<Animator>().SetTrigger("Death");
-        yield return new WaitForSeconds(0.4f);
+        if (GetComponent<Animator>() != null) GetComponent<Animator>().SetTrigger("Death");
+        yield return new WaitForSeconds(GetComponent<Animator>() != null ? 0.4f : 0);
         Destroy(gameObject);
     }
 

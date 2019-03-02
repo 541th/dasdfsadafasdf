@@ -11,7 +11,7 @@ public class PlayerMovement : MonoBehaviour
     Transform _t;
     Rigidbody2D _rb;
 
-    public bool canMove, dontMove;
+    public bool canMove, dontMove, startInBattleScene;
     bool isMoving;
     public Vector2 moveInput, lastMove;
     Animator _a;
@@ -36,9 +36,8 @@ public class PlayerMovement : MonoBehaviour
         ms = startMS + InfoController.perks[5].value;
     }
 
-    void Start()
+    public void setStartValues()
     {
-        _a = GetComponent<Animator>();
         if (playerType == 0)
         {
             GameObject.Find("ButtonAttackType").transform.GetChild(0).gameObject.SetActive(false);
@@ -51,19 +50,22 @@ public class PlayerMovement : MonoBehaviour
         else
         if (playerType == 1)
         {
-            GameObject.Find("ButtonAttackType").transform.GetChild(1).gameObject.SetActive(false);  
+            GameObject.Find("ButtonAttackType").transform.GetChild(0).gameObject.SetActive(true);
+            GameObject.Find("ButtonAttackType").transform.GetChild(1).gameObject.SetActive(false);
             Destroy(GetComponent<PlayerAttack_Archer>());
             FindObjectOfType<CamFollow>().setCamAsUsuall();
         }
         else
         if (playerType == 2)
         {
+            GameObject.Find("ButtonAttackType").transform.GetChild(1).gameObject.SetActive(true);
             GameObject.Find("ButtonAttackType").transform.GetChild(0).gameObject.SetActive(false);
             Destroy(transform.GetChild(0).GetChild(0).gameObject);
             Destroy(GetComponent<PlayerAttack_Warrior>());
         }
         else
         {
+            GameObject.Find("ButtonAttackType").transform.GetChild(1).gameObject.SetActive(true);
             GameObject.Find("ButtonAttackType").transform.GetChild(0).gameObject.SetActive(false);
             Destroy(transform.GetChild(0).GetChild(0).gameObject);
             Destroy(GetComponent<PlayerAttack_Warrior>());
@@ -74,10 +76,18 @@ public class PlayerMovement : MonoBehaviour
             ms = startMS;
 
         ms += InfoController.perks[5].value;
+    }
+
+    void Start()
+    {
+        _a = GetComponent<Animator>();
 
         _t = transform;
         GetComponent<Rigidbody2D>().sleepMode = RigidbodySleepMode2D.NeverSleep;
         _rb = GetComponent<Rigidbody2D>();
+
+        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "City" || startInBattleScene)
+            Invoke("setStartValues", .1f);
     }
 
     float h, v;
@@ -248,5 +258,21 @@ public class PlayerMovement : MonoBehaviour
         dontAttack = true;
         yield return new WaitForSeconds(6);
         dontAttack = false;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Banner"))
+        {
+            FindObjectOfType<PlayerHP>().startBanner();
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Banner"))
+        {
+            FindObjectOfType<PlayerHP>().stopBanner();
+        }
     }
 }

@@ -107,7 +107,7 @@ public class AIMethods : MonoBehaviour {
     HashSet<GridsNode> closedSet;
     public List<Vector2> setDestination(Vector2 from, Vector2 to)
     {
-        to -= new Vector2(0, 0.2f);
+        to += new Vector2(0, 0.4f);
             
         if (gon == null)
             gon = FindObjectOfType<GridOfNodes>();

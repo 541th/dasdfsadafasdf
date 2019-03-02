@@ -24,8 +24,8 @@ public class InfoController : MonoBehaviour
     public void showPanel(int id)
     {
         GameObject player = GameObject.Find("Player");
-        infoPanel.transform.GetChild(0).GetComponent<Text>().text = "HP: " + player.GetComponent<PlayerHP>().getCurHP() + "/" + player.GetComponent<PlayerHP>().getMaxHP();
-        infoPanel.transform.GetChild(1).GetComponent<Text>().text = "LVL: " + player.GetComponent<PlayerExp>().curLvl;
+        infoPanel.transform.GetChild(0).GetComponent<Text>().text = "HP: " + FindObjectOfType<PlayerHP>().getCurHP() + "/" + FindObjectOfType<PlayerHP>().getMaxHP();
+        infoPanel.transform.GetChild(1).GetComponent<Text>().text = "LVL: " + FindObjectOfType<PlayerExp>().curLvl;
         infoPanel.transform.GetChild(2).GetComponent<Text>().text = "Points: " + PlayerExp.points;
 
         setExpSV(id);

@@ -7,6 +7,7 @@ public class Entry : MonoBehaviour
 {
     [SerializeField] GameObject BG, chars, slider, curLvl;
     int curChar = 1;
+    public int levelType;
 
     public void showPanel()
     {
@@ -59,6 +60,39 @@ public class Entry : MonoBehaviour
 
         curChar = value;
         changing = false;
+    }
+
+    public void enterToTower()
+    {
+        StartCoroutine(loadingEvent());
+    }
+
+    IEnumerator loadingEvent()
+    {
+        GameObject blackScreen = FindObjectOfType<UIManager>().blackScreen;
+        Image blackScreenImage = blackScreen.GetComponent<Image>();
+
+        blackScreen.SetActive(true);
+
+        while (blackScreenImage.color.a <= 1)
+        {
+            blackScreenImage.color += new Color(0, 0, 0, Time.deltaTime);
+            yield return null;
+        }
+
+        int levelToLoad = (int)slider.GetComponent<Slider>().value;
+
+        if (levelToLoad == 5)
+        {
+            levelType = 1;
+        }
+        else
+            levelType = 0;
+
+        PlayerPrefs.SetInt("LevelType", levelType);
+        PlayerPrefs.SetInt("PlayerType", curChar);
+
+        UnityEngine.SceneManagement.SceneManager.LoadScene(levelToLoad + "");
     }
 
     IEnumerator showing()

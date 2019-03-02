@@ -9,13 +9,15 @@ public class PlayerHP : MonoBehaviour
     [SerializeField] Slider HPslider;
     [SerializeField] GameObject floatingNumbers;
 
+    [SerializeField] Material defaultMaterial, blinkMaterial;
+
     private void Start()
     {
         HP = (int)HPslider.value;
         maxHP = HP;
         startMax = maxHP;
 
-        if (GetComponent<PlayerMovement>().playerType == 1)
+        if (FindObjectOfType<PlayerMovement>().playerType == 1)
             updateMaxHP();
     }
 
@@ -64,7 +66,7 @@ public class PlayerHP : MonoBehaviour
     public void toDamage(int damage)
     {
         GameObject fn = Instantiate(floatingNumbers, transform.position + new Vector3(0, 0.4f), Quaternion.identity);
-        if (GetComponent<PlayerMovement>().dontAttack)
+        if (FindObjectOfType<PlayerMovement>().dontAttack)
         {
             //GameObject fn = Instantiate(floatingNumbers, transform.position + new Vector3(0, 0.4f), Quaternion.identity);
             fn.transform.GetChild(0).GetComponent<FloatingNumbers>().setText("промах");
@@ -72,14 +74,17 @@ public class PlayerHP : MonoBehaviour
             return;
         }
 
-        if (GetComponent<PlayerMovement>().inRage) damage *= 2;
+        if (FindObjectOfType<PlayerMovement>().inRage) damage *= 2;
 
         if (isField) damage /= 2;
 
+        GameObject.Find("Player").GetComponent<SpriteRenderer>().material = blinkMaterial;
         StartCoroutine(sub(damage));
 
         fn.transform.GetChild(0).GetComponent<FloatingNumbers>().setText(damage + "");
     }
+
+     
 
     public void toHeal(int value)   
     {
@@ -92,6 +97,10 @@ public class PlayerHP : MonoBehaviour
 
     IEnumerator sub(int value)
     {
+        yield return new WaitForSeconds(0.04f);
+
+        GameObject.Find("Player").GetComponent<SpriteRenderer>().material = defaultMaterial;
+
         while (value > 0)
         {
             HP--;
@@ -106,41 +115,35 @@ public class PlayerHP : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    public void startBanner()
     {
-        if (collision.CompareTag("Banner"))
-        {
-            startMax += 300;
-            maxHP += 300;
-            HP += 300;
-            HPslider.maxValue += 300;
-            HPslider.value += 300;
-        }
+        startMax += 300;
+        maxHP += 300;
+        HP += 300;
+        HPslider.maxValue += 300;
+        HPslider.value += 300;
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
+    public void stopBanner()
     {
-        if (collision.CompareTag("Banner"))
-        {
-            startMax -= 300;
-            maxHP -= 300;
-            HP -= 300;
-            HPslider.value -= 300;
-            HPslider.maxValue -= 300;
-        }
+        startMax -= 300;
+        maxHP -= 300;
+        HP -= 300;
+        HPslider.value -= 300;
+        HPslider.maxValue -= 300;
     }
 
     public void updateMaxHP()
     {
-        maxHP = startMax + (int)(InfoController.perks[0].value) + GetComponent<PlayerExp>().curLvl * 10;
+        maxHP = startMax + (int)(InfoController.perks[0].value) + FindObjectOfType<PlayerExp>().curLvl * 10;
         HP += 50;
-        HPslider.maxValue = startMax + (int)(InfoController.perks[0].value) + GetComponent<PlayerExp>().curLvl * 10;
+        HPslider.maxValue = startMax + (int)(InfoController.perks[0].value) + FindObjectOfType<PlayerExp>().curLvl * 10;
         HPslider.value += 50;
     }
 
     public void lvlup()
     {
-        maxHP = startMax + (int)(InfoController.perks[0].value) + GetComponent<PlayerExp>().curLvl * 10;
+        maxHP = startMax + (int)(InfoController.perks[0].value) + FindObjectOfType<PlayerExp>().curLvl * 10;
         HP = maxHP;
         HPslider.maxValue = maxHP;
         HPslider.value = HP;
@@ -148,6 +151,6 @@ public class PlayerHP : MonoBehaviour
 
     public void slowDown(float value)
     {
-        GetComponent<PlayerMovement>().subMS(value);   
+        FindObjectOfType<PlayerMovement>().subMS(value);   
     }
 }

@@ -4885,7 +4885,7 @@ SpriteRenderer:
   m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300440, guid: 740f367d1839ab0429fe60d514b34426, type: 3}
-  m_Color: {r: 0, g: 1, b: 0.027679443, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -5191,6 +5191,8 @@ MonoBehaviour:
     type: 3}
   slider: {fileID: 74461073472155890}
   expForKill: 40
+  defaultMaterial: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  blinkMaterial: {fileID: 2100000, guid: 9827d63a786847849b1d51a5ad5ab300, type: 2}
   damage: 0
   divide: 1
   createSwill: 0

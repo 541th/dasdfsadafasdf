@@ -3,7 +3,11 @@ guid: 89a873b0bdd4bf74b8d38b2659fac360
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - HPslider: {instanceID: 0}
+  - floatingNumbers: {instanceID: 0}
+  - defaultMaterial: {fileID: 2100000, guid: 9827d63a786847849b1d51a5ad5ab300, type: 2}
+  - blinkMaterial: {fileID: 2100000, guid: 9827d63a786847849b1d51a5ad5ab300, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

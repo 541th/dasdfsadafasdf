@@ -7,7 +7,7 @@ public class EnemyAttack : MonoBehaviour
     public int damage;
     public int randL, randH;
     public float sub;
-    [SerializeField] bool arrow, slowDown;
+    [SerializeField] bool arrow, slowDown, isBoss;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -21,6 +21,8 @@ public class EnemyAttack : MonoBehaviour
             FindObjectOfType<PlayerHP>().toDamage(_d);
 
             if (slowDown) FindObjectOfType<PlayerHP>().slowDown(4);
+
+            if (isBoss) FindObjectOfType<CamFollow>().punchShake();
 
             if (arrow && GetComponent<EnemyArrowFly>() != null) GetComponent<EnemyArrowFly>().stop();
         }

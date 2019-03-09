@@ -342,10 +342,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startMS: 16
-  playerType: 0
+  playerType: 3
   canMove: 1
   dontMove: 0
-  startInBattleScene: 0
+  startInBattleScene: 1
   moveInput: {x: 0, y: 0}
   lastMove: {x: 0, y: 1}
   isGlide: 0

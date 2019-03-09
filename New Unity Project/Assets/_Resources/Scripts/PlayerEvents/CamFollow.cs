@@ -32,7 +32,13 @@ public class CamFollow : MonoBehaviour
     {
         if (PlayerPrefs.GetInt("LevelType") == 1)
             GetComponent<Camera>().backgroundColor = new Color(.9f, .2f, 0);
-        else
+        else if (PlayerPrefs.GetInt("LevelType") == 2)
+            GetComponent<Camera>().backgroundColor = new Color(.3f, .1f, .6f);
+        else if (PlayerPrefs.GetInt("LevelType") == 3)
+            GetComponent<Camera>().backgroundColor = new Color(.3f, .1f, .6f);
+        else if (PlayerPrefs.GetInt("LevelType") == 4)
+            GetComponent<Camera>().backgroundColor = new Color(.3f, .6f, .1f);
+        else if (PlayerPrefs.GetInt("LevelType") == 5)
             GetComponent<Camera>().backgroundColor = new Color(.3f, .1f, .6f);
 
         yield return new WaitForSeconds(0.1f);
@@ -152,6 +158,11 @@ public class CamFollow : MonoBehaviour
     public void startShakeArrow()
     {
         StartCoroutine(arrowShotShake());
+    }
+
+    public void punchShake()
+    {
+        transform.position += new Vector3(Random.Range(-.6f, .6f), Random.Range(-.6f, .6f));
     }
 
     IEnumerator arrowShotShake()

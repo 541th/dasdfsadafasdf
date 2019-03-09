@@ -73,6 +73,10 @@ MonoBehaviour:
   damage: 20
   randL: 0
   randH: 0
+  sub: 0
+  arrow: 0
+  slowDown: 0
+  isBoss: 0
 --- !u!1 &7497148358651840198
 GameObject:
   m_ObjectHideFlags: 0
@@ -144,12 +148,12 @@ SpriteRenderer:
   m_SortingLayerID: 140795941
   m_SortingLayer: 1
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 26f8f277715ccc54eb011b8a8f9ced61, type: 3}
+  m_Sprite: {fileID: 21300012, guid: 26f8f277715ccc54eb011b8a8f9ced61, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 2, y: 2}
+  m_Size: {x: 1.3333334, y: 1.3333334}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -189,4 +193,6 @@ MonoBehaviour:
   isGrass: 0
   isTorch: 0
   isSpikes: 1
+  isParticle: 0
   startTimer: 0
+  delta: 0

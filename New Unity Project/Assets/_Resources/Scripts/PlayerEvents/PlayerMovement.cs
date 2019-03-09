@@ -60,14 +60,16 @@ public class PlayerMovement : MonoBehaviour
         {
             GameObject.Find("ButtonAttackType").transform.GetChild(1).gameObject.SetActive(true);
             GameObject.Find("ButtonAttackType").transform.GetChild(0).gameObject.SetActive(false);
-            Destroy(transform.GetChild(0).GetChild(0).gameObject);
+            if (transform.GetChild(0) != null && transform.GetChild(0).childCount != 0)
+                Destroy(transform.GetChild(0).GetChild(0).gameObject);
             Destroy(GetComponent<PlayerAttack_Warrior>());
         }
         else
         {
             GameObject.Find("ButtonAttackType").transform.GetChild(1).gameObject.SetActive(true);
             GameObject.Find("ButtonAttackType").transform.GetChild(0).gameObject.SetActive(false);
-            Destroy(transform.GetChild(0).GetChild(0).gameObject);
+            if (transform.GetChild(0) != null && transform.GetChild(0).childCount != 0)
+                Destroy(transform.GetChild(0).GetChild(0).gameObject);
             Destroy(GetComponent<PlayerAttack_Warrior>());
             FindObjectOfType<CamFollow>().setCamAsUsuall();
         }

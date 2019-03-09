@@ -38,7 +38,6 @@ public class AIMethods : MonoBehaviour {
         stannedEffect.transform.GetChild(0).GetComponent<ParticleSystemRenderer>().sortingOrder = GetComponent<SpriteRenderer>().sortingOrder;
 
         float timer = 2 + InfoController.perks[4].value;
-        print(InfoController.perks[4].value);
         while (timer > 0)
         {
             timer -= Time.deltaTime;

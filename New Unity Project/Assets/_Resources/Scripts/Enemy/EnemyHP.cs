@@ -317,7 +317,9 @@ public class EnemyHP : MonoBehaviour
     void showDeath()
     {
         if (isBoss)
+        {
             transform.parent.GetComponent<Animator>().SetTrigger("Death");
+        }
         else
             GetComponentInParent<AIMethods>().showDeath();
     }

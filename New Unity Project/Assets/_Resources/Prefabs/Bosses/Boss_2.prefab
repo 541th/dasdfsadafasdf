@@ -46,7 +46,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.06555557, y: 0.9464662}
+  m_Offset: {x: 0.0044412613, y: 0.46976924}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -57,7 +57,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 3.7058678, y: 2.3529325}
+  m_Size: {x: 1.5301723, y: 1.3995385}
   m_EdgeRadius: 0
 --- !u!114 &8307101095067252469
 MonoBehaviour:
@@ -76,7 +76,7 @@ MonoBehaviour:
   floatingNumbers: {fileID: 7304696037472265733, guid: 9d8b31a025a27d349bbe185a3b4e58c2,
     type: 3}
   slider: {fileID: 1748641744286750877}
-  expForKill: 300
+  expForKill: 400
   defaultMaterial: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   blinkMaterial: {fileID: 2100000, guid: 9827d63a786847849b1d51a5ad5ab300, type: 2}
   damage: 0
@@ -254,8 +254,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d02be4c28f868b43aeece2e00ae4be2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 20
-  randL: -10
+  damage: 10
+  randL: -6
   randH: 5
   sub: 0
   arrow: 0
@@ -445,8 +445,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5007423761538403802}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.19, z: 0}
-  m_LocalScale: {x: 18, y: 6, z: 1}
+  m_LocalPosition: {x: 0.12, y: -0.19, z: 0}
+  m_LocalScale: {x: 10.08, y: 4.5, z: 1}
   m_Children: []
   m_Father: {fileID: 7218178007940134776}
   m_RootOrder: 2
@@ -487,7 +487,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 140795941
   m_SortingLayer: 1
-  m_SortingOrder: 4
+  m_SortingOrder: 32767
   m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 0.63529414}
   m_FlipX: 0
@@ -515,7 +515,7 @@ GameObject:
   - component: {fileID: 2370174244492223546}
   - component: {fileID: 5876068689438239140}
   - component: {fileID: 1821060816785039052}
-  - component: {fileID: 1492373201675664766}
+  - component: {fileID: 5483407260973339216}
   m_Layer: 11
   m_Name: Boss_2
   m_TagString: Enemy
@@ -613,7 +613,7 @@ Animator:
   m_GameObject: {fileID: 5483407260973339215}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: b40aa4203c32dc84ab4665700f1b9702, type: 2}
+  m_Controller: {fileID: 9100000, guid: d2984c0896cc626459725f7f8cb6c70b, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -636,7 +636,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dontShowOCI: 0
   stanned: 1
-  hasDeathAnimation: 1
+  hasDeathAnimation: 0
   ms: 3
   netting: 0
 --- !u!58 &2370174244492223546
@@ -692,7 +692,7 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0.63}
   m_Size: {x: 2.5, y: 1.48}
   m_Direction: 1
---- !u!114 &1492373201675664766
+--- !u!114 &5483407260973339216
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -701,17 +701,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 5483407260973339215}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e644aab5a8aea3549997c5bbc7a01686, type: 3}
+  m_Script: {fileID: 11500000, guid: aa3ead2e73fffea408482e6296dba3d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mask:
-    serializedVersion: 2
-    m_Bits: 0
-  dir: {x: 0, y: 0}
-  spetialActionTime: 3
-  object_0: {fileID: 7420070598597332105, guid: a988cf81bb3f0ec45be8bf2ef1514350,
-    type: 3}
-  particle_0: {fileID: 8781426025408753417, guid: 64cfbf9636475164b8967ff0a0813d2b,
+  dir: {x: 0, y: -1}
+  spetialActionTime: 8
+  resurrectPrefab: {fileID: 5116996387128083537, guid: 4e4de73304723fa4181faec80e34131e,
     type: 3}
 --- !u!1 &6048054800557817495
 GameObject:

@@ -675,6 +675,7 @@ MonoBehaviour:
   sub: 0
   arrow: 0
   slowDown: 0
+  isBoss: 1
 --- !u!1 &8212429499376241673
 GameObject:
   m_ObjectHideFlags: 0

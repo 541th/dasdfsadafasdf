@@ -83,10 +83,16 @@ public class Entry : MonoBehaviour
         int levelToLoad = (int)slider.GetComponent<Slider>().value;
 
         if (levelToLoad == 5)
-        {
             levelType = 1;
-        }
-        else
+        else if (levelToLoad == 10)
+            levelType = 2;
+        else if (levelToLoad == 15)
+            levelType = 3;
+        else if (levelToLoad == 20)
+            levelType = 4;
+        else if (levelToLoad == 25)
+            levelType = 5;
+        else 
             levelType = 0;
 
         PlayerPrefs.SetInt("LevelType", levelType);

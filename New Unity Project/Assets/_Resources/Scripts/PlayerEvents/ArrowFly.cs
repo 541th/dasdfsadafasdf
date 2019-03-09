@@ -16,6 +16,11 @@ public class ArrowFly : MonoBehaviour
         _rb = GetComponent<Rigidbody2D>();
     }
 
+    public bool isMagArrow()
+    {
+        return hasParticle;
+    }
+
     private void Update()
     {
         if (fly)

@@ -5,6 +5,7 @@ using UnityEngine;
 public class SwillController : MonoBehaviour
 {
     public Vector2 target;
+    [SerializeField] bool dontDestroy;
 
     private void Start()
     {
@@ -14,21 +15,30 @@ public class SwillController : MonoBehaviour
     IEnumerator mv()
     {
         float timer = Random.Range(0.1f, 0.2f);
-        target = target.normalized + new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f));
+
+        if (!dontDestroy)
+            target = target.normalized + new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f));
 
         while (timer > 0)
         {
             timer -= Time.deltaTime;
-            transform.position -= (Vector3)target * Time.deltaTime * 14;
+
+            if (!dontDestroy)
+                transform.position -= (Vector3)target * Time.deltaTime * 14;
+
             yield return null;
         }
 
-        Destroy(gameObject, 10);
+        if (!dontDestroy)
+            Destroy(gameObject, 10);
     }
 
+    PlayerHP _php;
     bool stopDamage;
-    IEnumerator damage(PlayerHP _php)
+    IEnumerator damage()
     {
+        if (_php == null) _php = FindObjectOfType<PlayerHP>();
+
         while (!stopDamage)
         {
             _php.toDamage(1);
@@ -42,7 +52,7 @@ public class SwillController : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            StartCoroutine(damage(collision.GetComponent<PlayerHP>()));
+            StartCoroutine(damage());
         }
     }
 

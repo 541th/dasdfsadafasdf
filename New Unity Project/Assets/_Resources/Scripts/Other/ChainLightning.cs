@@ -30,7 +30,10 @@ public class ChainLightning : MonoBehaviour
             {
                 if (_e.Count < 7)
                 {
-                    collision.GetComponent<EnemyHP>().toDamageLightning(10, _e);
+                    if (collision.GetComponent<EnemyHP>() != null)
+                        collision.GetComponent<EnemyHP>().toDamageLightning(10, _e);
+                    else
+                        collision.GetComponent<PartsHP>().toDamageLightning(10, _e);
                     _e.Add(collision.gameObject);
                 }
                 Destroy(gameObject);

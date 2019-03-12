@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: d5dd5a1f7c45c154f8bf17f250f7e3b2
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - floatingNumbers: {instanceID: 0}
+  - slider: {instanceID: 0}
+  - defaultMaterial: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - blinkMaterial: {fileID: 2100000, guid: 9827d63a786847849b1d51a5ad5ab300, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

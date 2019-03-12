@@ -25,12 +25,27 @@ public class PlayerAttacker : MonoBehaviour
             if (value < 0) value = 1;
 
             if (isLightning)
-                collision.GetComponent<EnemyHP>().toDamageLightning((value) * (skill_2 ? 3 : 1));
+            {
+                if (collision.GetComponent<EnemyHP>() != null)
+                    collision.GetComponent<EnemyHP>().toDamageLightning((value) * (skill_2 ? 3 : 1));
+                else
+                    collision.GetComponent<PartsHP>().toDamageLightning((value) * (skill_2 ? 3 : 1));
+            }
             else
             if (!slow)
-                collision.GetComponent<EnemyHP>().toDamage((value) * (skill_2 ? 3 : 1), Random.Range(0, 3) == 0 && !isArrow, withStan, bleeding, expl, sub, explMag);
+            {
+                if (collision.GetComponent<EnemyHP>() != null)  
+                    collision.GetComponent<EnemyHP>().toDamage((value) * (skill_2 ? 3 : 1), Random.Range(0, 3) == 0 && !isArrow, withStan, bleeding, expl, sub, explMag);
+                else
+                    collision.GetComponent<PartsHP>().toDamage((value) * (skill_2 ? 3 : 1), Random.Range(0, 3) == 0 && !isArrow, withStan, bleeding, expl, sub, explMag);
+            }
             else
-                collision.GetComponent<EnemyHP>().toDamageSlow((value) * (skill_2 ? 3 : 1), withStan);
+            {
+                if (collision.GetComponent<EnemyHP>() != null)
+                    collision.GetComponent<EnemyHP>().toDamageSlow((value) * (skill_2 ? 3 : 1), withStan);
+                else
+                    collision.GetComponent<PartsHP>().toDamageSlow((value) * (skill_2 ? 3 : 1), withStan);
+            }
 
             expl = false;
             sub = false;

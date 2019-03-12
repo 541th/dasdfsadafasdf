@@ -17,16 +17,6 @@ public class EnemyHP : MonoBehaviour
         player = GameObject.Find("Player").transform;
     }
 
-    public bool damage;
-    private void Update()
-    {
-        if (damage)
-        {
-            toDamageLightning(10);
-            damage = false;
-        }
-    }
-
     [SerializeField] bool divide, createSwill, isGhost;
 
     public void toHealth(int value)
@@ -275,7 +265,7 @@ public class EnemyHP : MonoBehaviour
         transform.parent.GetComponent<AIMethods>().stanned = false;
     }
 
-    [SerializeField] bool isBoss, isBossSleeping;
+    [SerializeField] bool isBoss, isBossSleeping, isFinalCutscene;
     void checkDeath()
     {
         if (isBossSleeping)
@@ -287,6 +277,8 @@ public class EnemyHP : MonoBehaviour
 
         if (isBoss)
         {
+            FindObjectOfType<CamFollow>().startCameraRotating();
+
             Camera.main.GetComponent<CamFollow>().lightOnMap();
 
             FindObjectOfType<UIManager>().showBossHPBar(HP, maxHP);
@@ -296,8 +288,16 @@ public class EnemyHP : MonoBehaviour
 
         if (HP <= 0)
         {
+            if (isFinalCutscene)
+            {
+                StartCoroutine(FindObjectOfType<Boss_5_DeathCutscene>().finalCutscene());
+
+                return;
+            }
+
             if (isBoss)
             {
+                FindObjectOfType<CamFollow>().stopCameraRotating();
                 GameObject.Find("PortalEndObject").transform.GetChild(0).gameObject.SetActive(true);
             }
 

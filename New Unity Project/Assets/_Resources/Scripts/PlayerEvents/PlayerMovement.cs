@@ -40,8 +40,8 @@ public class PlayerMovement : MonoBehaviour
     {
         if (playerType == 0)
         {
-            GameObject.Find("ButtonAttackType").transform.GetChild(0).gameObject.SetActive(false);
-            GameObject.Find("ButtonAttackType").transform.GetChild(1).gameObject.SetActive(false);
+            FindObjectOfType<UIManager>().items[1].transform.GetChild(0).gameObject.SetActive(false);
+            FindObjectOfType<UIManager>().items[1].transform.GetChild(1).gameObject.SetActive(false);
             Destroy(transform.GetChild(0).GetChild(0).gameObject);
             Destroy(GetComponent<PlayerAttack_Warrior>());
             Destroy(GetComponent<PlayerAttack_Archer>());
@@ -50,24 +50,24 @@ public class PlayerMovement : MonoBehaviour
         else
         if (playerType == 1)
         {
-            GameObject.Find("ButtonAttackType").transform.GetChild(0).gameObject.SetActive(true);
-            GameObject.Find("ButtonAttackType").transform.GetChild(1).gameObject.SetActive(false);
+            FindObjectOfType<UIManager>().items[1].transform.GetChild(0).gameObject.SetActive(true);
+            FindObjectOfType<UIManager>().items[1].transform.GetChild(1).gameObject.SetActive(false);
             Destroy(GetComponent<PlayerAttack_Archer>());
             FindObjectOfType<CamFollow>().setCamAsUsuall();
         }
         else
         if (playerType == 2)
         {
-            GameObject.Find("ButtonAttackType").transform.GetChild(1).gameObject.SetActive(true);
-            GameObject.Find("ButtonAttackType").transform.GetChild(0).gameObject.SetActive(false);
+            FindObjectOfType<UIManager>().items[1].transform.GetChild(0).gameObject.SetActive(false);
+            FindObjectOfType<UIManager>().items[1].transform.GetChild(1).gameObject.SetActive(true);
             if (transform.GetChild(0) != null && transform.GetChild(0).childCount != 0)
                 Destroy(transform.GetChild(0).GetChild(0).gameObject);
             Destroy(GetComponent<PlayerAttack_Warrior>());
         }
         else
         {
-            GameObject.Find("ButtonAttackType").transform.GetChild(1).gameObject.SetActive(true);
-            GameObject.Find("ButtonAttackType").transform.GetChild(0).gameObject.SetActive(false);
+            FindObjectOfType<UIManager>().items[1].transform.GetChild(0).gameObject.SetActive(false);
+            FindObjectOfType<UIManager>().items[1].transform.GetChild(1).gameObject.SetActive(true);
             if (transform.GetChild(0) != null && transform.GetChild(0).childCount != 0)
                 Destroy(transform.GetChild(0).GetChild(0).gameObject);
             Destroy(GetComponent<PlayerAttack_Warrior>());
@@ -77,6 +77,7 @@ public class PlayerMovement : MonoBehaviour
         if (playerType == 3)
             ms = startMS;
 
+        FindObjectOfType<UIManager>().setAllItems(true);
         ms += InfoController.perks[5].value;
     }
 

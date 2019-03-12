@@ -28,6 +28,53 @@ public class CamFollow : MonoBehaviour
         StartCoroutine(lightOnMapEvent());
     }
 
+    public void startCameraRotating()
+    {
+        if (!started) StartCoroutine("CamRotating");
+    }
+
+    public void stopCameraRotating()
+    {
+        started = false;
+        StopCoroutine("CamRotating");
+
+        if (!returning) StartCoroutine(returnCamPos());
+    }
+
+    bool started;
+    IEnumerator CamRotating()
+    {
+        started = true;
+        float timer = 0;
+        while (true)
+        {
+            timer += Time.deltaTime;
+
+            transform.eulerAngles += new Vector3(0, 0, Mathf.Sin(timer) * Time.deltaTime / 2);
+            GetComponent<Camera>().orthographicSize += Mathf.Cos(timer + 40) * Time.deltaTime / 2;
+
+            yield return null;
+        }
+    }
+
+    bool returning;
+    IEnumerator returnCamPos()
+    {
+        returning = true;
+        float camSizeUsuall = InfoController.perks[6].value + 6;
+
+        int sizeSign = GetComponent<Camera>().orthographicSize - camSizeUsuall > 0 ? 1 : -1;
+
+        while ((GetComponent<Camera>().orthographicSize - camSizeUsuall) * sizeSign > 0)
+        {
+            GetComponent<Camera>().orthographicSize -= Time.deltaTime * sizeSign;
+            yield return null;
+        }
+
+        transform.eulerAngles = Vector3.zero;
+        returning = false;
+    }
+
     IEnumerator lightOnMapEvent()
     {
         if (PlayerPrefs.GetInt("LevelType") == 1)
@@ -39,7 +86,7 @@ public class CamFollow : MonoBehaviour
         else if (PlayerPrefs.GetInt("LevelType") == 4)
             GetComponent<Camera>().backgroundColor = new Color(.3f, .6f, .1f);
         else if (PlayerPrefs.GetInt("LevelType") == 5)
-            GetComponent<Camera>().backgroundColor = new Color(.3f, .1f, .6f);
+            GetComponent<Camera>().backgroundColor = new Color(.8f, .1f, .6f);
 
         yield return new WaitForSeconds(0.1f);
 
@@ -86,7 +133,7 @@ public class CamFollow : MonoBehaviour
             GameObject player = Instantiate(Resources.Load("Prefabs/Player") as GameObject, GameObject.Find("StartPoint").transform.position, Quaternion.identity);
             player.name = "Player";
             player.GetComponent<PlayerMovement>().playerType = PlayerPrefs.GetInt("PlayerType");
-            setStartPlayerValues();
+            Invoke("setStartPlayerValues", .1f);
         }
         else
         {

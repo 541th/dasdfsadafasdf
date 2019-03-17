@@ -201,7 +201,7 @@ public class Vamp_0 : MonoBehaviour
         _go.transform.localPosition = new Vector3(0, 1.2f, 0);
         Vector2 target;
 
-        PlayerHP _php = player.GetComponent<PlayerHP>();
+        PlayerHP _php = FindObjectOfType<PlayerHP>();
         EnemyHP _ehp = _t.GetComponentInChildren<EnemyHP>();
 
         while (Vector3.SqrMagnitude(_t.position - player.transform.position) < 30)

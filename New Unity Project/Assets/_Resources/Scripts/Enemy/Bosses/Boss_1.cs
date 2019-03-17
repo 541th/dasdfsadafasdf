@@ -95,7 +95,7 @@ public class Boss_1 : MonoBehaviour
 
             shadow.transform.position = new Vector3(_t.position.x, shadowStartY);
             float flyValue = Mathf.Sin(flyTimer + 90.2f) / 8;
-            transform.position = transform.position + new Vector3(0, flyValue);
+            transform.position = transform.position + new Vector3(0, flyValue * 40) * Time.deltaTime;
             
             if (flyValue > 0)
                 shadow.transform.localScale -= new Vector3(Time.deltaTime * 10, Time.deltaTime * 3);

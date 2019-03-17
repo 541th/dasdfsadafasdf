@@ -154,6 +154,8 @@ public class CamFollow : MonoBehaviour
     {
         yield return new WaitForSeconds(1.5f);
 
+        GetComponent<Camera>().orthographicSize = 6 + InfoController.perks[6].value;
+
         GameObject blackScreen = FindObjectOfType<UIManager>().blackScreen;
         UnityEngine.UI.Image blackScreenImage = blackScreen.GetComponent<UnityEngine.UI.Image>();
 

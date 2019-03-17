@@ -314,8 +314,15 @@ public class EnemyHP : MonoBehaviour
         }
     }
 
+    [SerializeField] bool justDestr;
     void showDeath()
     {
+        if (justDestr)
+        {
+            Destroy(transform.parent.gameObject);
+            return;
+        }
+
         if (isBoss)
         {
             transform.parent.GetComponent<Animator>().SetTrigger("Death");

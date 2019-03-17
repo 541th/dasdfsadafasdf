@@ -137,10 +137,12 @@ public class Entry : MonoBehaviour
 
             Image char10 = slider.transform.GetChild(0).GetComponent<Image>();
             Image char11 = slider.transform.GetChild(1).GetChild(0).GetComponent<Image>();
+            Image char12 = slider.transform.GetChild(2).GetComponent<Image>();
 
             while (char10.color.a < _a1)
             {
                 char10.color += new Color(0, 0, 0, Time.deltaTime * 4);
+                char12.color += new Color(0, 0, 0, Time.deltaTime * 4);
 
                 if (char11.color.a < _a2)
                     char11.color += new Color(0, 0, 0, Time.deltaTime * 4);
@@ -149,6 +151,7 @@ public class Entry : MonoBehaviour
             }
 
             char10.color = new Color(char10.color.r, char10.color.g, char10.color.b, _a1);
+            char12.color = new Color(char10.color.r, char10.color.g, char10.color.b, _a1);
             char11.color = new Color(1, 1, 1, _a2);
 
             while (tower.transform.GetChild(3).GetComponent<Text>().color.a < 1)

@@ -80,6 +80,12 @@ public class UIManager : MonoBehaviour
                 continue;
             }
 
+            if (items[i].name == "Bars")
+            {
+                items[i].SetActive(value && PlayerPrefs.GetInt("PlayerType") != 0);
+                continue;
+            }
+
             items[i].SetActive(value);
         }
 

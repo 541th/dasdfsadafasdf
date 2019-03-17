@@ -57,7 +57,7 @@ public class Tongue : MonoBehaviour
 
             if (blinkTimer > .4f)
             {
-                player.GetComponent<PlayerHP>().toDamage(Random.Range(1, 10));
+                FindObjectOfType<PlayerHP>().toDamage(Random.Range(1, 10));
                 blinkTimer = 0;
             }
             else
@@ -74,7 +74,7 @@ public class Tongue : MonoBehaviour
 
             if (blinkTimer > .4f)
             {
-                player.GetComponent<PlayerHP>().toDamage(Random.Range(1, 10));
+                FindObjectOfType<PlayerHP>().toDamage(Random.Range(1, 10));
                 blinkTimer = 0;
             }
             else

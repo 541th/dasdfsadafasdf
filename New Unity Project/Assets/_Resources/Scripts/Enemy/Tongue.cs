@@ -41,6 +41,8 @@ public class Tongue : MonoBehaviour
         if (player.GetComponent<PlayerAttack_Archer>() != null)
             player.GetComponent<PlayerAttack_Archer>().canAttack = false;
 
+        PlayerExp _pe = FindObjectOfType<PlayerExp>();
+
         while (Vector3.SqrMagnitude(_t.parent.position - (_t.parent.position + (Vector3)target)) > 3f)
         {
             blinkTimer += Time.deltaTime;
@@ -57,7 +59,7 @@ public class Tongue : MonoBehaviour
 
             if (blinkTimer > .4f)
             {
-                FindObjectOfType<PlayerHP>().toDamage(Random.Range(1, 10));
+                FindObjectOfType<PlayerHP>().toDamage(Random.Range(1, 10) + _pe.getKoefByLvl());
                 blinkTimer = 0;
             }
             else
@@ -74,7 +76,7 @@ public class Tongue : MonoBehaviour
 
             if (blinkTimer > .4f)
             {
-                FindObjectOfType<PlayerHP>().toDamage(Random.Range(1, 10));
+                FindObjectOfType<PlayerHP>().toDamage(Random.Range(1, 10) + _pe.getKoefByLvl());
                 blinkTimer = 0;
             }
             else

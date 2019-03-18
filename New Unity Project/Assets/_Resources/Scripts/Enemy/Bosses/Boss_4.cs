@@ -116,14 +116,16 @@ public class Boss_4 : MonoBehaviour
     }
 
     PlayerHP _php;
+    PlayerExp _pe;
     bool stopDamage;
     IEnumerator damage()
     {
         if (_php == null) _php = FindObjectOfType<PlayerHP>();
+        if (_pe == null) _pe = FindObjectOfType<PlayerExp>();
 
         while (!stopDamage && _a.GetBool("Event_2"))
         {
-            _php.toDamage(1);
+            _php.toDamage(1 + _pe.getKoefByLvl());
             yield return new WaitForSeconds(0.3f);
         }
 

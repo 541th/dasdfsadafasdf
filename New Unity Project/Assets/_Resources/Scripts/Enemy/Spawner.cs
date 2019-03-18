@@ -15,13 +15,15 @@ public class Spawner : MonoBehaviour
         {
             for (int i = 0; i < -randAmount[indx]; i++)
             {
-                Instantiate(enemies[indx], transform.position + new Vector3(Random.Range(-2f, 2f), Random.Range(-2f, 2f)), Quaternion.identity);
+                transform.parent.GetComponent<EnemyManager>().addCount();
+                Instantiate(enemies[indx], transform.position, Quaternion.identity);
             }
         }
         else
             for (int i = 0; i < 3 + Random.Range(0, randAmount[indx]); i++)
             {
-                Instantiate(enemies[indx], transform.position + new Vector3(Random.Range(-2f, 2f), Random.Range(-2f, 2f)), Quaternion.identity);
+                transform.parent.GetComponent<EnemyManager>().addCount();
+                Instantiate(enemies[indx], transform.position, Quaternion.identity);
             }
     }
 }

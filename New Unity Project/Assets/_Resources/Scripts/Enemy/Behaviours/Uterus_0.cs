@@ -192,6 +192,7 @@ public class Uterus_0 : MonoBehaviour
 
         for (int i = 0; i < rand; i++)
         {
+            FindObjectOfType<EnemyManager>().addCount();
             GameObject enemy = Instantiate(child, _t.position + new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f)), Quaternion.identity);
             yield return new WaitForSeconds(0.1f);
         }

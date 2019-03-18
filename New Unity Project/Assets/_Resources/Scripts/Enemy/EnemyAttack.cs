@@ -9,6 +9,11 @@ public class EnemyAttack : MonoBehaviour
     public float sub;
     [SerializeField] bool arrow, slowDown, isBoss;
 
+    private void Start()
+    {
+        damage = damage + FindObjectOfType<PlayerExp>().curLvl;
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))

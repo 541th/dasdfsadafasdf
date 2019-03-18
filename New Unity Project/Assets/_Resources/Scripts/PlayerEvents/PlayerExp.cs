@@ -21,6 +21,11 @@ public class PlayerExp : MonoBehaviour
         StartCoroutine(doubleExpEvent());
     }
 
+    public int getKoefByLvl()
+    {
+        return 4 / curLvl;
+    }
+
     IEnumerator doubleExpEvent()
     {
         float timer = 10;

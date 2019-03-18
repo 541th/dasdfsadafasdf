@@ -73,14 +73,14 @@ public class EndLevel : MonoBehaviour
 
         blackScreen.SetActive(true);
 
-        while (blackScreenImage.color.a <= 1)
+        while (BG.GetComponent<Image>().color.a <= 1)
         {
-            blackScreenImage.color += new Color(0, 0, 0, Time.deltaTime);
+            BG.GetComponent<Image>().color += new Color(0, 0, 0, Time.deltaTime);
             yield return null;
         }
 
         {
-            string levelToLoad = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
+            string levelToLoad = (int.Parse(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name) + 1) + "";
             int levelType = 0;
 
             if (levelToLoad == "5")
@@ -88,7 +88,25 @@ public class EndLevel : MonoBehaviour
                 levelType = 1;
             }
             else
-                levelType = 0;
+            if (levelToLoad == "10")
+            {
+                levelType = 2;
+            }
+            else
+            if (levelToLoad == "15")
+            {
+                levelType = 3;
+            }
+            else
+            if (levelToLoad == "20")
+            {
+                levelType = 4;
+            }
+            else
+            if (levelToLoad == "25")
+            {
+                levelType = 5;
+            }
 
             PlayerPrefs.SetInt("LevelType", levelType);
 

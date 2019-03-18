@@ -32,7 +32,6 @@ public class InfoController : MonoBehaviour
         setExpSV(id);
         perksInfo.SetActive(false);
         float slider = perksPanel.transform.GetChild(id).GetChild(1).GetChild(0).GetComponent<Slider>().value;
-
         for (int i = 0; i < 3; i++)
             perksPanel.transform.GetChild(i).gameObject.SetActive(i == id);
 
@@ -99,14 +98,14 @@ public class InfoController : MonoBehaviour
             perksInfo.transform.GetChild(0).GetChild(2).GetComponent<Text>().text = "lvl. " + perks[id - 16].lvl;
             perksInfo.transform.GetChild(1).GetChild(1).gameObject.SetActive(false);
             perksInfo.transform.GetChild(1).GetChild(2).gameObject.SetActive(false);
-            perksInfo.transform.GetChild(1).GetChild(3).gameObject.SetActive(PlayerExp.points > 0 && lvl < perksPanel.transform.GetChild(getCurPanelId()).GetChild(1).GetChild(0).GetComponent<Slider>().value);
+            perksInfo.transform.GetChild(1).GetChild(3).gameObject.SetActive(PlayerExp.points > 0 && lvl <= perksPanel.transform.GetChild(getCurPanelId()).GetChild(1).GetChild(0).GetComponent<Slider>().value);
             perksInfo.transform.GetChild(1).GetChild(4).gameObject.SetActive(false);
         }
         else
         {
             perksInfo.transform.GetChild(0).GetChild(2).gameObject.SetActive(false);
 
-            if (skills[id - 1] && lvl < perksPanel.transform.GetChild(getCurPanelId()).GetChild(1).GetChild(0).GetComponent<Slider>().value)
+            if (skills[id - 1] && lvl <= perksPanel.transform.GetChild(getCurPanelId()).GetChild(1).GetChild(0).GetComponent<Slider>().value)
             {
                 perksInfo.transform.GetChild(1).GetChild(1).gameObject.SetActive(FindObjectOfType<PlayerMovement>().playerType == getCurPanelId() + 1 && isSkill);
                 perksInfo.transform.GetChild(1).GetChild(2).gameObject.SetActive(FindObjectOfType<PlayerMovement>().playerType == getCurPanelId() + 1 && isSkill);
@@ -116,7 +115,7 @@ public class InfoController : MonoBehaviour
             {
                 perksInfo.transform.GetChild(1).GetChild(1).gameObject.SetActive(false);
                 perksInfo.transform.GetChild(1).GetChild(2).gameObject.SetActive(false);
-                perksInfo.transform.GetChild(1).GetChild(4).gameObject.SetActive(FindObjectOfType<PlayerMovement>().playerType == getCurPanelId() + 1 && isSkill && lvl < perksPanel.transform.GetChild(getCurPanelId()).GetChild(1).GetChild(0).GetComponent<Slider>().value);
+                perksInfo.transform.GetChild(1).GetChild(4).gameObject.SetActive(FindObjectOfType<PlayerMovement>().playerType == getCurPanelId() + 1 && isSkill && lvl <= perksPanel.transform.GetChild(getCurPanelId()).GetChild(1).GetChild(0).GetComponent<Slider>().value);
             }
 
             if (PlayerExp.points == 0)

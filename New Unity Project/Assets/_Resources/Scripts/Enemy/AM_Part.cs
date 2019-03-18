@@ -20,6 +20,8 @@ public class AM_Part : MonoBehaviour
         float rotSpeed = Random.Range(10, 100);
         target = target.normalized + new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f));
 
+        GetComponent<Rigidbody2D>().AddForce(-target * 400, ForceMode2D.Impulse);
+
         while (timer > 0)
         {
             float deltaTime = Time.deltaTime;
@@ -36,7 +38,6 @@ public class AM_Part : MonoBehaviour
 
             timer -= deltaTime;
             target /= (1 + deltaTime);
-            transform.position -= (Vector3)target * deltaTime * 10;
             yield return null;
         }
 

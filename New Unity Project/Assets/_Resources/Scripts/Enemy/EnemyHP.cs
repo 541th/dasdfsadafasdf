@@ -15,6 +15,9 @@ public class EnemyHP : MonoBehaviour
     private void Start()
     {
         player = GameObject.Find("Player").transform;
+
+        maxHP = maxHP + (maxHP / 40) * FindObjectOfType<PlayerExp>().curLvl;
+        HP = maxHP;
     }
 
     [SerializeField] bool divide, createSwill, isGhost;
@@ -266,6 +269,7 @@ public class EnemyHP : MonoBehaviour
     }
 
     [SerializeField] bool isBoss, isBossSleeping, isFinalCutscene;
+    public bool subbed;
     void checkDeath()
     {
         if (isBossSleeping)
@@ -299,6 +303,14 @@ public class EnemyHP : MonoBehaviour
             {
                 FindObjectOfType<CamFollow>().stopCameraRotating();
                 GameObject.Find("PortalEndObject").transform.GetChild(0).gameObject.SetActive(true);
+            }
+            else
+            {
+                if (!subbed)
+                {
+                    subbed = true;
+                    FindObjectOfType<EnemyManager>().subCount();
+                }
             }
 
             if (divide)

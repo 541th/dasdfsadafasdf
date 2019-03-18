@@ -113,3 +113,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isGrass: 0
+  isTorch: 1
+  isSpikes: 0
+  isParticle: 0
+  startTimer: 0
+  delta: 0

@@ -273,6 +273,7 @@ public class Boss_5 : MonoBehaviour
     }
 
     PlayerHP _php;
+    PlayerExp _pe;
     IEnumerator action_2()
     {
         float damTimer = 0;
@@ -281,6 +282,8 @@ public class Boss_5 : MonoBehaviour
 
         if (_php == null)
             _php = FindObjectOfType<PlayerHP>();
+        if (_pe == null)
+            _pe = FindObjectOfType<PlayerExp>();
 
         List<GameObject> lasers = new List<GameObject>();
 
@@ -309,7 +312,7 @@ public class Boss_5 : MonoBehaviour
                     if (rh && rh.transform.CompareTag("Player") && damTimer > .1f)
                     {
                         damTimer = 0;
-                        _php.toDamage(4);
+                        _php.toDamage(4 + _pe.getKoefByLvl());
                     }
 
                     LineRenderer lr = part.GetComponent<LineRenderer>();

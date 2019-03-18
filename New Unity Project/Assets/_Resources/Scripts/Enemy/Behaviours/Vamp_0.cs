@@ -203,7 +203,7 @@ public class Vamp_0 : MonoBehaviour
 
         PlayerHP _php = FindObjectOfType<PlayerHP>();
         EnemyHP _ehp = _t.GetComponentInChildren<EnemyHP>();
-
+        PlayerExp _pe = FindObjectOfType<PlayerExp>();
         while (Vector3.SqrMagnitude(_t.position - player.transform.position) < 30)
         {
             setDirToPoint(player.transform.position);
@@ -211,7 +211,7 @@ public class Vamp_0 : MonoBehaviour
             target = -(_t.position - player.transform.position);
             _go.transform.localEulerAngles = new Vector3(-Mathf.Atan2(target.y, target.x) * 180 / Mathf.PI, 90, 0);
 
-            int value = Random.Range(1, 4);
+            int value = Random.Range(1, 4) + _pe.getKoefByLvl();
             _php.toDamage(value);
             _ehp.toHealth(value);
 

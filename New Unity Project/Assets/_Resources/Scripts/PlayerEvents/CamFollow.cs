@@ -61,7 +61,7 @@ public class CamFollow : MonoBehaviour
     IEnumerator returnCamPos()
     {
         returning = true;
-        float camSizeUsuall = InfoController.perks[6].value + 6;
+        float camSizeUsuall = 6 + (FindObjectOfType<PlayerMovement>().playerType == 2 ? InfoController.perks[6].value : 0);
 
         int sizeSign = GetComponent<Camera>().orthographicSize - camSizeUsuall > 0 ? 1 : -1;
 
@@ -154,7 +154,7 @@ public class CamFollow : MonoBehaviour
     {
         yield return new WaitForSeconds(1.5f);
 
-        GetComponent<Camera>().orthographicSize = 6 + InfoController.perks[6].value;
+        GetComponent<Camera>().orthographicSize = 6 + (FindObjectOfType<PlayerMovement>().playerType == 2 ? InfoController.perks[6].value : 0);
 
         GameObject blackScreen = FindObjectOfType<UIManager>().blackScreen;
         UnityEngine.UI.Image blackScreenImage = blackScreen.GetComponent<UnityEngine.UI.Image>();

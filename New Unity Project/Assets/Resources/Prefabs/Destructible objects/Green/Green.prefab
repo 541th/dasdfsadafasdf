@@ -415,7 +415,7 @@ GameObject:
   - component: {fileID: 1331673125462931141}
   - component: {fileID: 1331673125462931146}
   m_Layer: 0
-  m_Name: Red_0
+  m_Name: Green
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -473,7 +473,7 @@ SpriteRenderer:
   m_SortingLayerID: -1497787473
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300046, guid: e1d337673520ac546bd5fd4e24c16cf2, type: 3}
+  m_Sprite: {fileID: 21300052, guid: e1d337673520ac546bd5fd4e24c16cf2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -518,8 +518,8 @@ BoxCollider2D:
   m_Offset: {x: 0.00084877014, y: -0.07643354}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5082628, y: 0.38432345}
-    oldSize: {x: 0.875, y: 0.75}
+    pivot: {x: 0.5, y: 0.4474196}
+    oldSize: {x: 0.9375, y: 0.6875}
     newSize: {x: 0.625, y: 0.8125}
     adaptiveTilingThreshold: 0.5
     drawMode: 0

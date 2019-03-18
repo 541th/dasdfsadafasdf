@@ -237,6 +237,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isParticle: 0
   dontSubParticle: 0
+  dontChangeSortingOrger: 0
 --- !u!61 &2757483241285857381
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -350,7 +351,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1024
   walkTime: 2.5
   waitTime: 3
   curState: 0
@@ -435,10 +436,14 @@ MonoBehaviour:
   expForKill: 40
   defaultMaterial: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   blinkMaterial: {fileID: 2100000, guid: 9827d63a786847849b1d51a5ad5ab300, type: 2}
-  damage: 0
   divide: 1
   createSwill: 0
   isGhost: 0
+  isBoss: 0
+  isBossSleeping: 0
+  isFinalCutscene: 0
+  subbed: 0
+  justDestr: 0
 --- !u!114 &1893941505
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -530,6 +535,7 @@ MonoBehaviour:
   sub: 0
   arrow: 0
   slowDown: 1
+  isBoss: 0
 --- !u!1 &7624829801311335908
 GameObject:
   m_ObjectHideFlags: 0

@@ -198,7 +198,9 @@ public class Slime_Glider : MonoBehaviour
                     _a.SetFloat("LastMoveY", dir.y);
 
                     _a.SetBool("Attack", true);
-                    GetComponent<Rigidbody2D>().velocity = -(_t.position - (Vector3)target).normalized * 20;
+
+                    if (target != Vector2.zero)
+                        GetComponent<Rigidbody2D>().velocity = -(_t.position - (Vector3)target).normalized * 20;
                 }
                 else
                 {

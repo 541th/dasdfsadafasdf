@@ -85,6 +85,7 @@ GameObject:
   - component: {fileID: 703515790743118333}
   - component: {fileID: 3492747395013287457}
   - component: {fileID: 846310103269669581}
+  - component: {fileID: 2080937044}
   m_Layer: 11
   m_Name: HP
   m_TagString: EnemyHP
@@ -153,10 +154,36 @@ MonoBehaviour:
   expForKill: 60
   defaultMaterial: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   blinkMaterial: {fileID: 2100000, guid: 9827d63a786847849b1d51a5ad5ab300, type: 2}
-  damage: 0
-  divide: 0
+  divide: 1
   createSwill: 0
   isGhost: 0
+  isBoss: 0
+  isBossSleeping: 0
+  isFinalCutscene: 0
+  subbed: 0
+  justDestr: 0
+--- !u!114 &2080937044
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5707134667719078652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a13c62f9446c6cd45a2cfb0a9fac2c4c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parts:
+  - {fileID: 5889862150808194118, guid: b753dc3ccedcef345b5d5a448378cba6, type: 3}
+  - {fileID: 5889862150808194118, guid: 80ba6b83acc422a4c97d6868e5e73f1a, type: 3}
+  - {fileID: 5889862150808194118, guid: 79570becde1b64445af9a3dd98991b72, type: 3}
+  - {fileID: 5889862150808194118, guid: d18b38fca47bd4f439810a3f9153a5b6, type: 3}
+  - {fileID: 5889862150808194118, guid: 0fc623c83f250e446a861dbf3f0870eb, type: 3}
+  - {fileID: 5889862150808194118, guid: 62d5aff438858fb499bb929fba587bcb, type: 3}
+  - {fileID: 5889862150808194118, guid: a5e416cc48ed3604a850ba60b572ec7a, type: 3}
+  expl: {fileID: 3197244309895875938, guid: c4f7f60ad29bf554da05b0bb164a501f, type: 3}
+  isRandom: 1
 --- !u!1 &6347950651725738029
 GameObject:
   m_ObjectHideFlags: 0
@@ -258,6 +285,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isParticle: 0
   dontSubParticle: 0
+  dontChangeSortingOrger: 0
 --- !u!114 &8792721087082421375
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -272,7 +300,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1024
   walkTime: 2.5
   waitTime: 3
   shootSpeed: 4

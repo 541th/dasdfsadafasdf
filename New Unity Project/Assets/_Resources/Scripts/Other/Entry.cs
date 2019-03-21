@@ -21,6 +21,11 @@ public class Entry : MonoBehaviour
         StartCoroutine(changeChar(value));
     }
 
+    public void closeMenu()
+    {
+        if (!changing) StartCoroutine(hiding());
+    }
+
     bool changing;
     IEnumerator changeChar(int value)
     {
@@ -167,13 +172,17 @@ public class Entry : MonoBehaviour
             {
                 tower.transform.GetChild(4).GetChild(0).GetComponent<Image>().color += new Color(0, 0, 0, Time.deltaTime * 4);
                 tower.transform.GetChild(4).GetComponent<Image>().color += new Color(0, 0, 0, Time.deltaTime * 2);
+                tower.transform.GetChild(5).GetChild(0).GetComponent<Image>().color += new Color(0, 0, 0, Time.deltaTime * 4);
+                tower.transform.GetChild(5).GetComponent<Image>().color += new Color(0, 0, 0, Time.deltaTime * 2);
 
                 yield return null;
             }
 
             tower.transform.GetChild(4).GetComponent<Image>().color = new Color(1, 1, 1, 0.5f);
             tower.transform.GetChild(4).GetChild(0).GetComponent<Image>().color = new Color(0, 0, 0, 1);
-        }
+            tower.transform.GetChild(5).GetComponent<Image>().color = new Color(1, 1, 1, 0.5f);
+            tower.transform.GetChild(5).GetChild(0).GetComponent<Image>().color = new Color(0, 0, 0, 1);
+        }   
 
         {
             float _a0 = 141f / 256f, _a1 = 30f / 256f, _a2 = 128f / 256f;
@@ -222,6 +231,128 @@ public class Entry : MonoBehaviour
             char2.transform.GetChild(0).GetComponent<Image>().color = new Color(1, 1, 1, _a2);
         }
 
+        changing = false;
+    }
+
+    IEnumerator hiding()
+    {
+        changing = true;
+
+        {
+            GameObject tower = slider.transform.parent.gameObject;
+
+            Image char00 = tower.transform.GetChild(0).GetComponent<Image>();
+            Image char01 = tower.transform.GetChild(1).GetComponent<Image>();
+
+            while (char00.color.a > 0)
+            {
+                char00.color -= new Color(0, 0, 0, Time.deltaTime * 4);
+                char01.color -= new Color(0, 0, 0, Time.deltaTime * 4);
+
+                yield return null;
+            }
+
+            char00.color = new Color(1, 1, 1, 0);
+            char01.color = new Color(1, 1, 1, 0);
+
+            Image char10 = slider.transform.GetChild(0).GetComponent<Image>();
+            Image char11 = slider.transform.GetChild(1).GetChild(0).GetComponent<Image>();
+            Image char12 = slider.transform.GetChild(2).GetComponent<Image>();
+
+            while (char10.color.a > 0)
+            {
+                char10.color -= new Color(0, 0, 0, Time.deltaTime * 4);
+                char12.color -= new Color(0, 0, 0, Time.deltaTime * 4);
+
+                if (char11.color.a > 0)
+                    char11.color -= new Color(0, 0, 0, Time.deltaTime * 4);
+
+                yield return null;
+            }
+
+            char10.color = new Color(char10.color.r, char10.color.g, char10.color.b, 0);
+            char12.color = new Color(char10.color.r, char10.color.g, char10.color.b, 0);
+            char11.color = new Color(1, 1, 1, 0);
+
+            while (tower.transform.GetChild(3).GetComponent<Text>().color.a > 0)
+            {
+                tower.transform.GetChild(3).GetComponent<Text>().color -= new Color(0, 0, 0, Time.deltaTime * 4);
+
+                yield return null;
+            }
+
+            tower.transform.GetChild(3).GetComponent<Text>().color = new Color(1, 1, 1, 0);
+
+            while (tower.transform.GetChild(4).GetChild(0).GetComponent<Image>().color.a > 0)
+            {
+                tower.transform.GetChild(4).GetChild(0).GetComponent<Image>().color -= new Color(0, 0, 0, Time.deltaTime * 4);
+                tower.transform.GetChild(4).GetComponent<Image>().color -= new Color(0, 0, 0, Time.deltaTime * 2);
+                tower.transform.GetChild(5).GetChild(0).GetComponent<Image>().color -= new Color(0, 0, 0, Time.deltaTime * 4);
+                tower.transform.GetChild(5).GetComponent<Image>().color -= new Color(0, 0, 0, Time.deltaTime * 2);
+
+                yield return null;
+            }
+
+            tower.transform.GetChild(4).GetComponent<Image>().color = new Color(1, 1, 1, 0);
+            tower.transform.GetChild(4).GetChild(0).GetComponent<Image>().color = new Color(0, 0, 0, 0);
+            tower.transform.GetChild(5).GetComponent<Image>().color = new Color(1, 1, 1, 0);
+            tower.transform.GetChild(5).GetChild(0).GetComponent<Image>().color = new Color(0, 0, 0, 0);
+        }
+
+        {
+            Image char0 = chars.transform.GetChild(0).GetComponent<Image>();
+            Image char1 = chars.transform.GetChild(1).GetComponent<Image>();
+            Image char2 = chars.transform.GetChild(2).GetComponent<Image>();
+
+            while (char0.color.a > 0)
+            {
+                char0.color -= new Color(0, 0, 0, Time.deltaTime * 4);
+
+                if (char0.transform.GetChild(0).GetComponent<Image>().color.a > 0)
+                    char0.transform.GetChild(0).GetComponent<Image>().color -= new Color(0, 0, 0, Time.deltaTime * 4);
+
+                yield return null;
+            }
+
+            char0.color = new Color(char0.color.r, char0.color.g, char0.color.b, 0);
+            char0.transform.GetChild(0).GetComponent<Image>().color = new Color(1, 1, 1, 0);
+
+            while (char1.color.a > 0)
+            {
+                char1.color -= new Color(0, 0, 0, Time.deltaTime);
+
+                if (char1.transform.GetChild(0).GetComponent<Image>().color.a > 0)
+                    char1.transform.GetChild(0).GetComponent<Image>().color -= new Color(0, 0, 0, Time.deltaTime);
+
+                yield return null;
+            }
+
+            char1.color = new Color(char1.color.r, char1.color.g, char1.color.b, 0);
+            char1.transform.GetChild(0).GetComponent<Image>().color = new Color(1, 1, 1, 0);
+
+            while (char2.color.a > 0)
+            {
+                char2.color -= new Color(0, 0, 0, Time.deltaTime);
+
+                if (char2.transform.GetChild(0).GetComponent<Image>().color.a > 0)
+                    char2.transform.GetChild(0).GetComponent<Image>().color -= new Color(0, 0, 0, Time.deltaTime);
+
+                yield return null;
+            }
+
+            char2.color = new Color(char2.color.r, char2.color.g, char2.color.b, 0);
+            char2.transform.GetChild(0).GetComponent<Image>().color = new Color(1, 1, 1, 0);
+        }
+
+        while (BG.GetComponent<Image>().color.a > 0)
+        {
+            BG.GetComponent<Image>().color -= new Color(0, 0, 0, Time.deltaTime);
+            yield return null;
+        }
+
+        FindObjectOfType<UIManager>().setAllItems(true);
+        transform.GetChild(0).gameObject.SetActive(true);
+        transform.GetChild(1).gameObject.SetActive(false);
         changing = false;
     }
 

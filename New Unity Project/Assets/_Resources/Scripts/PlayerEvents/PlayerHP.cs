@@ -10,9 +10,11 @@ public class PlayerHP : MonoBehaviour
     [SerializeField] GameObject floatingNumbers;
 
     [SerializeField] Material defaultMaterial, blinkMaterial;
+    InventoryManager _im;
 
     private void Start()
     {
+        _im = FindObjectOfType<InventoryManager>();
         HP = (int)HPslider.value;
         maxHP = HP;
         startMax = maxHP;
@@ -63,6 +65,7 @@ public class PlayerHP : MonoBehaviour
         Destroy(field);
     }
 
+    PlayerMovement _pm;
     public void toDamage(int damage)
     {
         GameObject fn = Instantiate(floatingNumbers, transform.position + new Vector3(0, 0.4f), Quaternion.identity);
@@ -77,6 +80,17 @@ public class PlayerHP : MonoBehaviour
         if (FindObjectOfType<PlayerMovement>().inRage) damage *= 2;
 
         if (isField) damage /= 2;
+
+        if (_pm == null) _pm = FindObjectOfType<PlayerMovement>();
+
+        int def = 0;
+        for (int i = 0; i < 4; i++)
+        {
+            if (_im.takedItems[_pm.playerType - 1, i] != null)
+                def += _im.takedItems[_pm.playerType - 1, i].value;
+        }
+
+        damage -= def / 3;
 
         GameObject.Find("Player").GetComponent<SpriteRenderer>().material = blinkMaterial;
         StartCoroutine(sub(damage));

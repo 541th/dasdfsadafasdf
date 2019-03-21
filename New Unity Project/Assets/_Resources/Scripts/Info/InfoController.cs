@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class InfoController : MonoBehaviour
 {
-    [SerializeField] GameObject perksPanel, perksInfo, infoPanel;
+    [SerializeField] GameObject perksPanel, perksInfo, infoPanel, items;
     static PlayerMovement pm;
     public static Perks[] perks = new Perks[15];
     public static bool[] skills = new bool[15];
@@ -23,6 +23,11 @@ public class InfoController : MonoBehaviour
 
     public void showPanel(int id)
     {
+        for (int i = 0; i < 3; i++)
+            items.transform.GetChild(i).gameObject.SetActive(false);
+
+        items.transform.GetChild(id).gameObject.SetActive(true);
+
         GameObject player = GameObject.Find("Player");
         infoPanel.transform.GetChild(0).GetComponent<Text>().text = "HP: " + FindObjectOfType<PlayerHP>().getCurHP() + "/" + FindObjectOfType<PlayerHP>().getMaxHP();
         infoPanel.transform.GetChild(1).GetComponent<Text>().text = "LVL: " + FindObjectOfType<PlayerExp>().curLvl;
@@ -53,7 +58,19 @@ public class InfoController : MonoBehaviour
                 }
             }
         }
+
+        InventoryManager _im = FindObjectOfType<InventoryManager>();
+
+        for (int i = 0; i < 3; i++)
+        {
+            for (int j = 0; j < 4; j++)
+            {
+                items.transform.GetChild(i).GetChild(j).GetChild(0).GetComponent<Image>().sprite = _im.takedItems[i, j] != null ? _im.takedItems[i, j].sprite : empty;
+            }
+        }
     }
+
+    [SerializeField] Sprite empty;
 
     public void setExpSV(int id)
     {

@@ -66,6 +66,16 @@ public class UIManager : MonoBehaviour
 
     public void setAllItems(bool value)
     {
+        ThrowedItem[] _ti = FindObjectsOfType<ThrowedItem>();
+
+        foreach(ThrowedItem item in _ti)
+        {
+            item.transform.GetChild(0).gameObject.SetActive(false);
+        }
+
+        if (FindObjectOfType<Entry>() != null)
+            FindObjectOfType<Entry>().transform.GetChild(0).gameObject.SetActive(value);
+
         for (int i = 0; i < items.Count; i++)
         {
             if (items[i].name == "Skill_0")

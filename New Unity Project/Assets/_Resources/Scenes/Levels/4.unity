@@ -4019,7 +4019,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d24151f68dce094d9a801af03519258, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyCount: 0
 --- !u!4 &1234244272
 Transform:
   m_ObjectHideFlags: 0
@@ -17198,6 +17197,29 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1548296146, guid: 7dce58e9572f4fb40ae64175c366d419, type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: 3f2950e580ab4124897c6525a8af2f69,
+        type: 3}
+    - target: {fileID: 7733743035621985651, guid: 7dce58e9572f4fb40ae64175c366d419,
+        type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: 3f2950e580ab4124897c6525a8af2f69,
+        type: 3}
+    - target: {fileID: 4366519315561546910, guid: 7dce58e9572f4fb40ae64175c366d419,
+        type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: 3f2950e580ab4124897c6525a8af2f69,
+        type: 3}
+    - target: {fileID: 1165045976906625975, guid: 7dce58e9572f4fb40ae64175c366d419,
+        type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: 3f2950e580ab4124897c6525a8af2f69,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7dce58e9572f4fb40ae64175c366d419, type: 3}
 --- !u!4 &1613494299 stripped

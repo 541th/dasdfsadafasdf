@@ -25,7 +25,7 @@ public class Divide : MonoBehaviour
         {
             FindObjectOfType<EnemyManager>().addCount();
             GameObject enemy = Instantiate(part, transform.position + new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f)), Quaternion.identity);
-            enemy.transform.GetChild(0).GetComponent<EnemyAttack>().damage /= 2;
+            enemy.transform.GetChild(0).GetComponent<EnemyAttack>().damage /= 4;
             enemy.transform.GetChild(1).GetComponent<EnemyHP>().subbed = false;
             enemy.transform.GetChild(1).GetComponent<EnemyHP>().expForKill /= 2;
             enemy.transform.GetChild(1).GetComponent<EnemyHP>().HP = GetComponent<EnemyHP>().maxHP / 2;

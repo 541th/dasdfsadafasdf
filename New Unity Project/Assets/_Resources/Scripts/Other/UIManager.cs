@@ -6,13 +6,14 @@ using UnityEngine.UI;
 public class UIManager : MonoBehaviour
 {
     public List<GameObject> items;
-    [SerializeField] GameObject glideButton;
+    [SerializeField] GameObject glideButton, potions;
     public GameObject blackScreen;
     GameObject player;
 
     private void Start()
     {
         player = GameObject.Find("Player");
+        updatePotionButtonValue();
     }
 
     public void startAttack()
@@ -31,6 +32,64 @@ public class UIManager : MonoBehaviour
     {
         if (player == null) player = GameObject.Find("Player");
         player.GetComponent<PlayerMovement>().glide();
+    }
+
+    [SerializeField] Sprite full, empty;
+    [SerializeField] Text potionText;
+    public int potionsAmount;
+    void updatePotionButtonValue()
+    {
+        potionText.text = potionsAmount + "";
+
+        potions.transform.GetChild(0).GetComponent<Image>().sprite = (potionsAmount > 0) ? full : empty;
+    }
+
+    public void potion()
+    {
+        if (potionsAmount > 0 && GameObject.Find("Player").GetComponent<PlayerMovement>().playerType != 0)
+        {
+            potionsAmount--;
+            updatePotionButtonValue();
+            FindObjectOfType<PlayerHP>().toHeal(10 + (10 * (int)(InfoController.perks[12].value)));
+        }
+    }
+
+    [SerializeField] Text monetsText;
+    public int monetsAmount;
+
+    void updateMonets()
+    {
+        monetsText.text = "Монеты: " + monetsAmount;
+    }
+
+    public void addMonets(int value)
+    {
+        monetsAmount += value;
+
+        updateMonets();
+    }
+
+    public bool subMonets(int value)
+    {
+        if (monetsAmount - value >= 0)
+        {
+            monetsAmount -= value;
+
+            updateMonets();
+
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public void addPotion(int value)
+    {
+        potionsAmount += value;
+
+        updatePotionButtonValue();
     }
 
     public void glideFalse()

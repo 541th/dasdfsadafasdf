@@ -20,7 +20,10 @@ public class ThrowedItem : MonoBehaviour
         transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<Image>().sprite = ItemDatabase.getItemById(id).sprite;
 
         int v1 = ItemDatabase.getItemById(id).value;
-        int v2 = FindObjectOfType<InventoryManager>().takedItems[ItemDatabase.getCharacterType(id), ItemDatabase.getItemType(id)].value;
+
+        ItemDatabase.Item taked = FindObjectOfType<InventoryManager>().takedItems[ItemDatabase.getCharacterType(id), ItemDatabase.getItemType(id)];
+
+        int v2 = (taked != null) ? taked.value : 0;
 
         transform.GetChild(0).GetChild(1).GetChild(0).GetComponent<Text>().text = 
             ((v1 - v2) > 0 ? "+" : "-") + (Mathf.Abs(v1 - v2));

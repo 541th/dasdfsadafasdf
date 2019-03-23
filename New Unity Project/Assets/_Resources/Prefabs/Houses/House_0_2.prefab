@@ -93,6 +93,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isGrass: 0
+  isTorch: 0
+  isSpikes: 0
+  isParticle: 0
+  startTimer: 0
+  delta: 0
 --- !u!1 &4294105855218041221
 GameObject:
   m_ObjectHideFlags: 0
@@ -264,6 +269,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isGrass: 0
+  isTorch: 0
+  isSpikes: 0
+  isParticle: 0
+  startTimer: 0
+  delta: 0
 --- !u!61 &1898351948366925576
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -329,7 +339,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -1.4766617, y: -9.368867}
+  m_Offset: {x: -1.7922268, y: -9.368867}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5055609, y: 0.7171284}
@@ -340,7 +350,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 3.097702, y: 1.0528469}
+  m_Size: {x: 2.4665718, y: 1.0528469}
   m_EdgeRadius: 0
 --- !u!61 &6439618838804474898
 BoxCollider2D:
@@ -355,7 +365,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 2.4475908, y: -9.363005}
+  m_Offset: {x: 2.6340609, y: -9.363005}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5055609, y: 0.7171284}
@@ -366,7 +376,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.0380878, y: 1.1278343}
+  m_Size: {x: 0.6651478, y: 1.1278343}
   m_EdgeRadius: 0
 --- !u!61 &4625029119294697793
 BoxCollider2D:
@@ -487,3 +497,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isGrass: 0
+  isTorch: 0
+  isSpikes: 0
+  isParticle: 0
+  startTimer: 0
+  delta: 0

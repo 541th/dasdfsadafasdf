@@ -9,6 +9,7 @@ public class InventoryManager : MonoBehaviour
 
     private void Start()
     {
+
     }
 
     public void takeItem(int id)

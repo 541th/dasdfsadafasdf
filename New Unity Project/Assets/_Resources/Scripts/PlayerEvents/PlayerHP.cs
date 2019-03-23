@@ -23,6 +23,17 @@ public class PlayerHP : MonoBehaviour
             updateMaxHP();
     }
 
+    public bool dd;
+    private void Update()
+    {
+        if (dd)
+        {
+            toDamage(10);
+
+            dd = false;
+        }
+    }
+
     public int getCurHP()
     {
         return HP;
@@ -84,10 +95,13 @@ public class PlayerHP : MonoBehaviour
         if (_pm == null) _pm = FindObjectOfType<PlayerMovement>();
 
         int def = 0;
-        for (int i = 0; i < 4; i++)
+        if (_pm.playerType != 0)
         {
-            if (_im.takedItems[_pm.playerType - 1, i] != null)
-                def += _im.takedItems[_pm.playerType - 1, i].value;
+            for (int i = 0; i < 4; i++)
+            {
+                if (_im.takedItems[_pm.playerType - 1, i] != null)
+                    def += _im.takedItems[_pm.playerType - 1, i].value;
+            }
         }
 
         damage -= def / 3;
@@ -97,8 +111,6 @@ public class PlayerHP : MonoBehaviour
 
         fn.transform.GetChild(0).GetComponent<FloatingNumbers>().setText(damage + "");
     }
-
-     
 
     public void toHeal(int value)   
     {

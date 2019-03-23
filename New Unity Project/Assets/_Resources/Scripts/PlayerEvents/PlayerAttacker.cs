@@ -22,7 +22,8 @@ public class PlayerAttacker : MonoBehaviour
 
             if (FindObjectOfType<PlayerHP>().lessThan10()) value += (int)InfoController.perks[2].value;
 
-            value += FindObjectOfType<InventoryManager>().takedItems[FindObjectOfType<PlayerMovement>().playerType - 1, 4].value / 2;
+            if (FindObjectOfType<PlayerMovement>().playerType != 0 && FindObjectOfType<InventoryManager>().takedItems[FindObjectOfType<PlayerMovement>().playerType - 1, 3] != null) 
+                value += FindObjectOfType<InventoryManager>().takedItems[FindObjectOfType<PlayerMovement>().playerType - 1, 3].value / 2;
 
             if (value < 0) value = 1;
 

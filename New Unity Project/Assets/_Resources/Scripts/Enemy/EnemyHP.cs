@@ -10,6 +10,10 @@ public class EnemyHP : MonoBehaviour
     [SerializeField] GameObject floatingNumbers, slider;
     public float expForKill;
 
+    [SerializeField] GameObject monetsPrefab;
+    [SerializeField] bool isMonets;
+    [SerializeField] int maxAmountMonets;
+
     [SerializeField] Material defaultMaterial, blinkMaterial;
 
     private void Start()
@@ -329,6 +333,14 @@ public class EnemyHP : MonoBehaviour
     [SerializeField] bool justDestr;
     void showDeath()
     {
+        if (isMonets)
+        {
+            GameObject monets = Instantiate(monetsPrefab, transform.position + new Vector3(0, 1), Quaternion.identity);
+            monets.GetComponent<MonetsEffect>().monets = true;
+            monets.GetComponent<MonetsEffect>().enemy = true;
+            monets.GetComponent<MonetsEffect>().amount = maxAmountMonets;
+        }
+
         if (justDestr)
         {
             Destroy(transform.parent.gameObject);
@@ -341,6 +353,8 @@ public class EnemyHP : MonoBehaviour
         }
         else
             GetComponentInParent<AIMethods>().showDeath();
+
+        Destroy(gameObject);
     }
 
     IEnumerator flying(Vector2 to)

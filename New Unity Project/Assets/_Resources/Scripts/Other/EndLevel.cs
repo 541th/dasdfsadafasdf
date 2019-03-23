@@ -117,7 +117,6 @@ public class EndLevel : MonoBehaviour
     public void nextLevel()
     {
         StartCoroutine(loadNextSceneEvent());
-
     }
 
     public void toCity()

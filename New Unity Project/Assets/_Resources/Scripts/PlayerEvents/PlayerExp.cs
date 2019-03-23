@@ -66,7 +66,7 @@ public class PlayerExp : MonoBehaviour
         float timer = 0, deltaTime = 0;
         while (timer < 1)
         {
-            deltaTime = Time.deltaTime;
+            deltaTime = Time.unscaledDeltaTime;
             timer += deltaTime;
             newLvl.transform.localPosition += new Vector3(0, deltaTime * 10);
              
@@ -78,7 +78,7 @@ public class PlayerExp : MonoBehaviour
         timer = 0;
         while (timer < 3)
         {
-            deltaTime = Time.deltaTime;
+            deltaTime = Time.unscaledDeltaTime;
             timer += deltaTime;
             newLvl.transform.localPosition += new Vector3(0, deltaTime * 10);
 
@@ -88,7 +88,7 @@ public class PlayerExp : MonoBehaviour
         timer = 0;
         while (timer < 1)
         {
-            deltaTime = Time.deltaTime;
+            deltaTime = Time.unscaledDeltaTime;
             timer += deltaTime;
             newLvl.transform.localPosition += new Vector3(0, deltaTime * 10);
             

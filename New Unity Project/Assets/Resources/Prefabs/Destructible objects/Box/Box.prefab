@@ -273,6 +273,10 @@ MonoBehaviour:
     type: 3}
   slider: {fileID: 1331673123793447864}
   expForKill: 0
+  monetsPrefab: {fileID: 5607912052436826177, guid: 9302e88ff8a30d04a96c0d98bc0cb0b4,
+    type: 3}
+  isMonets: 1
+  maxAmountMonets: 20
   defaultMaterial: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   blinkMaterial: {fileID: 2100000, guid: 9827d63a786847849b1d51a5ad5ab300, type: 2}
   divide: 1
@@ -281,6 +285,7 @@ MonoBehaviour:
   isBoss: 0
   isBossSleeping: 0
   isFinalCutscene: 0
+  subbed: 0
   justDestr: 1
 --- !u!114 &1331673124616119620
 MonoBehaviour:

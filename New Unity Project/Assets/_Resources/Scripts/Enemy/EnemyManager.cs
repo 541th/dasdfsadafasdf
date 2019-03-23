@@ -17,6 +17,7 @@ public class EnemyManager : MonoBehaviour
 
         if (enemyCount <= 0)
         {
+            PlayerPrefs.SetInt("level_" + (int.Parse(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name) + 1), 1);
             GameObject.Find("PortalEndObject").transform.GetChild(0).gameObject.SetActive(true);
         }
     }

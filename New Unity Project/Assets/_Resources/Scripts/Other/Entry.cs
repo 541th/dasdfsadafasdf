@@ -9,6 +9,20 @@ public class Entry : MonoBehaviour
     int curChar = 1;
     public int levelType;
 
+    private void Start()
+    {
+        PlayerPrefs.SetInt("level_1", 1);
+
+        for (int i = 25; i > 0; i--)
+            if (PlayerPrefs.GetInt("level_" + i) == 1)
+            {
+                slider.GetComponent<Slider>().value = i;
+                onValueChanged();
+                break;
+            }
+
+    }
+
     public void showPanel()
     {
         StartCoroutine(showing());
@@ -70,6 +84,7 @@ public class Entry : MonoBehaviour
     public void enterToTower()
     {
         StartCoroutine(loadingEvent());
+        transform.GetChild(1).GetComponent<Canvas>().worldCamera = Camera.main;
     }
 
     IEnumerator loadingEvent()
@@ -356,8 +371,10 @@ public class Entry : MonoBehaviour
         changing = false;
     }
 
+    [SerializeField] GameObject entryButton;
     public void onValueChanged()
     {
+        entryButton.SetActive(PlayerPrefs.GetInt("level_" + slider.GetComponent<Slider>().value) == 1);
         curLvl.GetComponent<Text>().text = slider.GetComponent<Slider>().value.ToString();
     }
 

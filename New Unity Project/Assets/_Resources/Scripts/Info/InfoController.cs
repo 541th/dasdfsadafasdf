@@ -79,7 +79,7 @@ public class InfoController : MonoBehaviour
 
     public void open()
     {
-        showPanel(getCurPanelId());
+        showPanel(Mathf.Clamp(FindObjectOfType<PlayerMovement>().playerType - 1, 0, 4));
         transform.GetChild(0).gameObject.SetActive(true);
     }
 
@@ -115,7 +115,7 @@ public class InfoController : MonoBehaviour
             perksInfo.transform.GetChild(0).GetChild(2).GetComponent<Text>().text = "lvl. " + perks[id - 16].lvl;
             perksInfo.transform.GetChild(1).GetChild(1).gameObject.SetActive(false);
             perksInfo.transform.GetChild(1).GetChild(2).gameObject.SetActive(false);
-            perksInfo.transform.GetChild(1).GetChild(3).gameObject.SetActive(PlayerExp.points > 0 && lvl <= perksPanel.transform.GetChild(getCurPanelId()).GetChild(1).GetChild(0).GetComponent<Slider>().value);
+            perksInfo.transform.GetChild(1).GetChild(3).gameObject.SetActive(FindObjectOfType<PlayerMovement>().playerType == getCurPanelId() + 1 && PlayerExp.points > 0 && lvl <= perksPanel.transform.GetChild(getCurPanelId()).GetChild(1).GetChild(0).GetComponent<Slider>().value);
             perksInfo.transform.GetChild(1).GetChild(4).gameObject.SetActive(false);
         }
         else
@@ -191,18 +191,6 @@ public class InfoController : MonoBehaviour
     public void upPerk()
     {
         int _id = id - 16;
-        if (perks[_id].lvl < 5 && PlayerExp.points > 0)
-        {
-            perks[_id].lvl++;
-            perksInfo.transform.GetChild(0).GetChild(2).GetComponent<Text>().text = "lvl. " + perks[_id].lvl;
-            perks[_id].value = value * perks[_id].lvl;
-            perksInfo.transform.GetChild(0).GetChild(1).GetComponent<Text>().text = adding_0 + " " + (value * (perks[_id].lvl + 1));
-
-            GameObject player = GameObject.Find("Player");
-            if (_id == 0 && player.GetComponent<PlayerMovement>().playerType == 1) FindObjectOfType<PlayerHP>().updateMaxHP();
-            else if (_id == 5 && player.GetComponent<PlayerMovement>().playerType == 2) player.GetComponent<PlayerMovement>().updadeMS();
-            else if (_id == 6 && player.GetComponent<PlayerMovement>().playerType == 2) FindObjectOfType<CamFollow>().updateCamSize();
-        }
 
         PlayerExp.points--;
         infoPanel.transform.GetChild(2).GetComponent<Text>().text = "Points: " + PlayerExp.points;
@@ -212,9 +200,23 @@ public class InfoController : MonoBehaviour
             perksInfo.transform.GetChild(1).GetChild(3).gameObject.SetActive(false);
         }
 
+        if (perks[_id].lvl < 5 && PlayerExp.points > 0)
+        {
+            perks[_id].lvl++;
+            perks[_id].value = value * perks[_id].lvl;
+            perksInfo.transform.GetChild(0).GetChild(2).GetComponent<Text>().text = "lvl. " + perks[_id].lvl;
+            perksInfo.transform.GetChild(0).GetChild(1).GetComponent<Text>().text = adding_0 + " " + (value * (perks[_id].lvl + 1));
+
+
+            GameObject player = GameObject.Find("Player");
+            if (_id == 0 && player.GetComponent<PlayerMovement>().playerType == 1) FindObjectOfType<PlayerHP>().updateMaxHP();
+            else if (_id == 5 && player.GetComponent<PlayerMovement>().playerType == 2) player.GetComponent<PlayerMovement>().updadeMS();
+            else if (_id == 6 && player.GetComponent<PlayerMovement>().playerType == 2) FindObjectOfType<CamFollow>().updateCamSize();
+        }
+
         if (perks[_id].lvl == 5)
         {
-            perksInfo.transform.GetChild(0).GetChild(1).GetComponent<Text>().text = adding_0 + " " + (value * (perks[_id].lvl));
+            perksInfo.transform.GetChild(0).GetChild(1).GetComponent<Text>().text = adding_0 + " " + (value * (perks[_id].lvl + 1));
             perksInfo.transform.GetChild(1).GetChild(3).gameObject.SetActive(false);
         }
     }

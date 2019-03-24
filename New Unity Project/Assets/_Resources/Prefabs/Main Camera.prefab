@@ -28071,7 +28071,7 @@ MonoBehaviour:
   potionText: {fileID: 1200449872}
   potionsAmount: 0
   monetsText: {fileID: 1285628334}
-  monetsAmount: 0
+  monetsAmount: 401
   gameMenu: {fileID: 775321819}
   infoCanvas: {fileID: 672605049955035372}
   bossHPBar: {fileID: 6033117882463246871}

@@ -9,7 +9,6 @@ public class InventoryManager : MonoBehaviour
 
     private void Start()
     {
-
     }
 
     public void takeItem(int id)
@@ -23,7 +22,6 @@ public class InventoryManager : MonoBehaviour
         {
             GameObject _t = Instantiate(throwed, GameObject.Find("Player").transform.position, Quaternion.identity);
             _t.transform.GetChild(1).GetComponent<ThrowedItem>().id = takedItems[ItemDatabase.getCharacterType(id), ItemDatabase.getItemType(id)].id;
-            //create
         }
 
         takeItem(id);

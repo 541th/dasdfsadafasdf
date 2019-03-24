@@ -127,7 +127,14 @@ public class UIManager : MonoBehaviour
     {
         ThrowedItem[] _ti = FindObjectsOfType<ThrowedItem>();
 
-        foreach(ThrowedItem item in _ti)
+        foreach (ThrowedItem item in _ti)
+        {
+            item.transform.GetChild(0).gameObject.SetActive(false);
+        }
+
+        Trading_0[] t = FindObjectsOfType<Trading_0>();
+
+        foreach (Trading_0 item in t)
         {
             item.transform.GetChild(0).gameObject.SetActive(false);
         }

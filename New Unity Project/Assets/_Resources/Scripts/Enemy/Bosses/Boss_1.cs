@@ -85,6 +85,8 @@ public class Boss_1 : MonoBehaviour
         GameObject shadow = transform.GetChild(2).gameObject;
         float shadowStartY = shadow.transform.position.y;
 
+        StartCoroutine(GetComponent<EnemyHP>().hitBlink());
+
         yield return new WaitForSeconds(0.6f);
 
         GetComponent<SortingOrder>().dontChangeSortingOrger = true;

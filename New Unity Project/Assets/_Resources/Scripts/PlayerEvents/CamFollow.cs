@@ -95,6 +95,7 @@ public class CamFollow : MonoBehaviour
 
     private void Start()
     {
+        Application.targetFrameRate = 60;
         updateCamSize();
 
         if (followTarget == null) followTarget = GameObject.Find("Player");
@@ -103,15 +104,113 @@ public class CamFollow : MonoBehaviour
 
     private void OnLevelWasLoaded(int level)
     {
+        if (PlayerPrefs.GetInt("CutScene") == 1)
+        {
+            StartCoroutine(cutscene());
+            return;
+        }
+
         loadPlayer();
 
         if (followTarget == null) followTarget = GameObject.Find("Player");
         shotDir = followTarget.transform.GetChild(followTarget.transform.childCount - 1);
     }
 
-    void loaded()
+    IEnumerator cutscene()
     {
+        GameObject.Find("Player").transform.position = GameObject.Find("StartGame").transform.position;
+        transform.position = new Vector3(GameObject.Find("Player").transform.position.x, GameObject.Find("Player").transform.position.y, transform.position.z);
+
+        GameObject blackScreen = FindObjectOfType<UIManager>().blackScreen;
+        UnityEngine.UI.Image blackScreenImage = blackScreen.GetComponent<UnityEngine.UI.Image>();
+        blackScreen.SetActive(true);
+
+        FindObjectOfType<UIManager>().setAllItems(false);
+
+        blackScreenImage.color = new Color(0, 0, 0, 1);
+
+        while (blackScreenImage.color.a >= 0)
+        {
+            blackScreenImage.color -= new Color(0, 0, 0, Time.deltaTime / 2);
+            yield return null;
+        }
+
+        blackScreen.SetActive(false);
+
+        dialogueBox.SetActive(true);
+
+        yield return new WaitForSeconds(1);
+
+        followTarget = GameObject.Find("Human (4)");
+
+        string[] textNodes = new string[6];
+
+        textNodes[0] = "Привет. Очередной искатель приключений?";
+        textNodes[1] = "Ну-ну.";
+        textNodes[2] = "Много горячих голов положила эта проклятая Башня.";
+        textNodes[3] = "Но если хочешь попытать счастья - добро пожаловать.";
+        textNodes[4] = "Рядом с Башней ошиваются куча торговцев. Можешь поискать что-нибудь у них.";
+        textNodes[5] = "Удачи.";
+
+        while (curNode < textNodes.Length)
+        {
+            yield return new WaitForSeconds(0.6f);
+
+            dialogueBox.transform.GetChild(0).GetComponent<UnityEngine.UI.Text>().text = "";
+
+            while (dialogueBox.transform.localPosition.y < -130)
+            {
+                dialogueBox.transform.localPosition += new Vector3(0, Time.deltaTime * 600, 0);
+
+                yield return null;
+            }
+
+            int counter = 0;
+
+            while (counter < textNodes[curNode].Length)
+            {
+                dialogueBox.transform.GetChild(0).GetComponent<UnityEngine.UI.Text>().text += textNodes[curNode][counter];
+                counter++;
+
+                yield return new WaitForSeconds(0.06f);
+            }
+
+            dialogueBox.transform.GetChild(1).gameObject.SetActive(true);
+
+            while (!pressed)
+            {
+                yield return null;
+            }
+
+            pressed = false;
+
+            while (dialogueBox.transform.localPosition.y > -400)
+            {
+                dialogueBox.transform.localPosition -= new Vector3(0, Time.deltaTime * 600, 0);
+
+                yield return null;
+            }
+
+            yield return null;
+        }
+
+        followTarget = GameObject.Find("Player");
+        FindObjectOfType<UIManager>().setAllItems(true);
+
+        dialogueBox.SetActive(false);
     }
+
+    bool pressed;
+    int curNode = 0;
+
+    public void nextNode()
+    {
+        curNode++;
+        pressed = true;
+        dialogueBox.transform.GetChild(1).gameObject.SetActive(false);
+    }
+
+    [SerializeField] GameObject dialogueBox;
 
     private void Awake()
     {
@@ -139,7 +238,6 @@ public class CamFollow : MonoBehaviour
         {
             GameObject.Find("Player").transform.position = GameObject.Find("StartPoint").transform.position;
             GameObject.Find("Player").GetComponent<PlayerMovement>().playerType = PlayerPrefs.GetInt("PlayerType");
-            //Invoke("setStartPlayerValues", .1f);
         }
 
         StartCoroutine(loadingEvent());
@@ -152,12 +250,18 @@ public class CamFollow : MonoBehaviour
 
     IEnumerator loadingEvent()
     {
-        yield return new WaitForSeconds(1.5f);
+        if (PlayerPrefs.GetInt("Continue") == 0)
+            yield return new WaitForSeconds(1.5f);
+
+        PlayerPrefs.SetInt("Continue", 0);
 
         GetComponent<Camera>().orthographicSize = 6 + (FindObjectOfType<PlayerMovement>().playerType == 2 ? InfoController.perks[6].value : 0);
 
         GameObject blackScreen = FindObjectOfType<UIManager>().blackScreen;
         UnityEngine.UI.Image blackScreenImage = blackScreen.GetComponent<UnityEngine.UI.Image>();
+        blackScreen.SetActive(true);
+
+        blackScreenImage.color = new Color(0, 0, 0, 1);
 
         while (blackScreenImage.color.a >= 0)
         {
@@ -167,7 +271,6 @@ public class CamFollow : MonoBehaviour
 
         blackScreen.SetActive(false);
     }
-
 
     float clampedX, clampedY, a_h, a_v;
     Vector2 delta;

@@ -12,8 +12,25 @@ public class PlayerHP : MonoBehaviour
     [SerializeField] Material defaultMaterial, blinkMaterial;
     InventoryManager _im;
 
+    private void OnDestroy()
+    {
+        PlayerPrefs.SetInt("HP", startMax);
+    }
+
+    public void setAllFull()
+    {
+        created = false;
+        HPslider.value = 100000;
+        HP = (int)HPslider.value;
+        maxHP = HP;
+        startMax = maxHP;
+    }
+
     private void Start()
     {
+        HPslider.maxValue = PlayerPrefs.GetInt("HP") == 0 ? 200 : PlayerPrefs.GetInt("HP");
+        HPslider.value = HPslider.maxValue;
+
         _im = FindObjectOfType<InventoryManager>();
         HP = (int)HPslider.value;
         maxHP = HP;
@@ -21,17 +38,6 @@ public class PlayerHP : MonoBehaviour
 
         if (FindObjectOfType<PlayerMovement>().playerType == 1)
             updateMaxHP();
-    }
-
-    public bool dd;
-    private void Update()
-    {
-        if (dd)
-        {
-            toDamage(10);
-
-            dd = false;
-        }
     }
 
     public int getCurHP()
@@ -107,7 +113,7 @@ public class PlayerHP : MonoBehaviour
         damage -= def / 3;
 
         GameObject.Find("Player").GetComponent<SpriteRenderer>().material = blinkMaterial;
-        StartCoroutine(sub(damage));
+        //StartCoroutine(sub(damage));
 
         fn.transform.GetChild(0).GetComponent<FloatingNumbers>().setText(damage + "");
     }
@@ -135,11 +141,16 @@ public class PlayerHP : MonoBehaviour
             yield return null;
         }
 
-        if (HP <= 0)
+        if (HP <= 0 && !created)
         {
-            print("СМЭРТ");
+            created = true;
+            FindObjectOfType<UIManager>().setAllItems(false);
+            GameObject deathEffect = Instantiate(deathEffectPrefab);
         }
     }
+
+    bool created;
+    [SerializeField] GameObject deathEffectPrefab;
 
     public void startBanner()
     {

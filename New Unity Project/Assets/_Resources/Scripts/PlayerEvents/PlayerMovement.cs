@@ -77,7 +77,11 @@ public class PlayerMovement : MonoBehaviour
         if (playerType == 3)
             ms = startMS;
 
-        FindObjectOfType<UIManager>().setAllItems(true);
+        if (PlayerPrefs.GetInt("CutScene") != 1)
+            FindObjectOfType<UIManager>().setAllItems(true);
+
+        PlayerPrefs.SetInt("CutScene", 0);
+
         ms += InfoController.perks[5].value;
     }
 

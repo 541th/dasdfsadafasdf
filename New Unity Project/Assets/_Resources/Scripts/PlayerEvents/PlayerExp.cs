@@ -5,14 +5,29 @@ using UnityEngine.UI;
 
 public class PlayerExp : MonoBehaviour
 {
-    public int curLvl;
+    public int curLvl = 1;
     [SerializeField] float curExp, expToLvlUp;
     int expDelta = 1;
     [SerializeField] Slider slider;
     public static int points;
 
+    private void OnDestroy()
+    {
+        PlayerPrefs.SetFloat("EXP", curExp);
+        PlayerPrefs.SetFloat("EXPToLvlUp", expToLvlUp);
+        PlayerPrefs.SetInt("Points", points);
+        PlayerPrefs.SetInt("CurLvl", curLvl);
+    }
+
     private void Start()
     {
+        slider.value = PlayerPrefs.GetFloat("EXP");
+
+        if (PlayerPrefs.GetFloat("EXPToLvlUp") != 0) expToLvlUp = PlayerPrefs.GetFloat("EXPToLvlUp");
+        if (PlayerPrefs.GetInt("CurLvl") != 0) curLvl = PlayerPrefs.GetInt("CurLvl");
+
+        points = PlayerPrefs.GetInt("Points");
+
         curExp = (int)slider.value;
     }
 

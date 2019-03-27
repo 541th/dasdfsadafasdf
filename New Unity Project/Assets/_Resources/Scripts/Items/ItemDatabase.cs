@@ -19,6 +19,8 @@ public class ItemDatabase : MonoBehaviour
 
     public static Item getItemById(int id)
     {
+        if (id < 0) return null;
+
         int res = ((id / 100) * 20) + (((id / 10) % 10) * 5) + (id % 10);
 
         return DB[res];

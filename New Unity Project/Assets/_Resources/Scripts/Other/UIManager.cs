@@ -10,9 +10,21 @@ public class UIManager : MonoBehaviour
     public GameObject blackScreen;
     GameObject player;
 
+    private void OnDestroy()
+    {
+        PlayerPrefs.SetInt("Monets", monetsAmount);
+        PlayerPrefs.SetInt("Potions", potionsAmount);
+    }
+
     private void Start()
     {
         player = GameObject.Find("Player");
+        updatePotionButtonValue();
+
+        monetsAmount = PlayerPrefs.GetInt("Monets");
+        potionsAmount = PlayerPrefs.GetInt("Potions");
+
+        updateMonets();
         updatePotionButtonValue();
     }
 
@@ -50,7 +62,7 @@ public class UIManager : MonoBehaviour
         {
             potionsAmount--;
             updatePotionButtonValue();
-            FindObjectOfType<PlayerHP>().toHeal(10 + (10 * (int)(InfoController.perks[12].value)));
+            FindObjectOfType<PlayerHP>().toHeal(30 + (10 * (int)(InfoController.perks[12].value)));
         }
     }
 
@@ -146,13 +158,13 @@ public class UIManager : MonoBehaviour
         {
             if (items[i].name == "Skill_0")
             {
-                items[i].SetActive(value && InfoController.curSkill_0 != 0);
+                items[i].SetActive(value && InfoController.curSkill_0 != 0 && player.GetComponent<PlayerMovement>().playerType != 0);
                 continue;
             }
 
             if (items[i].name == "Skill_1")
             {
-                items[i].SetActive(value && InfoController.curSkill_1 != 0);
+                items[i].SetActive(value && InfoController.curSkill_1 != 0 && player.GetComponent<PlayerMovement>().playerType != 0);
                 continue;
             }
 
@@ -290,5 +302,14 @@ public class UIManager : MonoBehaviour
         bossHPBar.GetComponent<Slider>().maxValue = maxValue;
         bossHPBar.GetComponent<Slider>().value = value;
         bossHPBar.SetActive(true);
+    }
+
+    public void goToMenu()
+    {
+        CamFollow.cameraExists = false;
+        Time.timeScale = 1;
+        Destroy(transform.parent.gameObject);
+
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Menu");
     }
 }

@@ -259,7 +259,7 @@ public class EnemyHP : MonoBehaviour
         checkDeath();
     }
 
-    IEnumerator hitBlink()
+    public IEnumerator hitBlink()
     {
         transform.parent.GetComponent<SpriteRenderer>().material = blinkMaterial;
         yield return new WaitForSeconds(0.04f);
@@ -349,6 +349,7 @@ public class EnemyHP : MonoBehaviour
 
         if (isBoss)
         {
+            PlayerPrefs.SetInt("level_" + (int.Parse(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name) + 1), 1);
             transform.parent.GetComponent<Animator>().SetTrigger("Death");
         }
         else
@@ -420,7 +421,14 @@ public class EnemyHP : MonoBehaviour
 
     private void OnDestroy()
     {
+        transform.parent.GetComponent<SpriteRenderer>().material = defaultMaterial;
+
         if (createSwill)
             GetComponent<Swill>().show(player.transform.position);
+    }
+
+    private void OnDisable()
+    {
+        transform.parent.GetComponent<SpriteRenderer>().material = defaultMaterial;
     }
 }

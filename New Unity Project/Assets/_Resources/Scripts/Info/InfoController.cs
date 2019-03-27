@@ -12,12 +12,72 @@ public class InfoController : MonoBehaviour
 
     public static float[] sV = new float[3];
 
+    private void OnDestroy()
+    {
+        for (int i = 0; i < 15; i++)
+        {
+            PlayerPrefs.SetInt("Skill_" + i, skills[i] ? 1 : 0);
+            PlayerPrefs.SetInt("PerkLvl_" + i, perks[i].lvl);
+            PlayerPrefs.SetFloat("PerkValue_" + i, perks[i].value);
+        }
+
+        for (int i = 0; i < 3; i++)
+            PlayerPrefs.SetFloat("SV_" + i, sV[i]);
+
+        PlayerPrefs.SetInt("CurSkillId_0", curSkill_0);
+        PlayerPrefs.SetInt("CurSkillId_1", curSkill_1);
+    }
+
     private void Start()
     {
         for (int i = 0; i < 15; i++)
         {
-            skills[i] = new bool();
-            perks[i] = new Perks();
+            skills[i] = PlayerPrefs.GetInt("Skill_" + i) == 1;
+            perks[i] = new Perks(PlayerPrefs.GetInt("PerkLvl_" + i), PlayerPrefs.GetFloat("PerkValue_" + i));
+        }
+
+        for (int i = 0; i < 3; i++)
+            sV[i] = PlayerPrefs.GetFloat("SV_" + i);
+
+        curSkill_0 = PlayerPrefs.GetInt("CurSkillId_0");
+        curSkill_1 = PlayerPrefs.GetInt("CurSkillId_1");
+
+        //PerkContainer[] perk = FindObjectsOfType<PerkContainer>();
+
+        if (curSkill_0 != 0)
+        {
+            Transform t = null;
+
+            for (int i = 0; i < 3; i++)
+                for (int j = 0; j < perksPanel.transform.GetChild(i).GetChild(2).GetChild(0).childCount; j++)
+                {
+                    if (perksPanel.transform.GetChild(i).GetChild(2).GetChild(0).GetChild(j).GetComponent<PerkContainer>() != null &&
+                        perksPanel.transform.GetChild(i).GetChild(2).GetChild(0).GetChild(j).GetComponent<PerkContainer>().id == curSkill_0)
+                    {
+                        t = perksPanel.transform.GetChild(i).GetChild(2).GetChild(0).GetChild(j).GetChild(0);
+                        break;
+                    }
+                }
+
+            FindObjectOfType<UIManager>().setSkillIcon_0(t.GetComponent<Image>());
+        }
+
+        if (curSkill_1 != 0)
+        {
+            Transform t = null;
+
+            for (int i = 0; i < 3; i++)
+                for (int j = 0; j < perksPanel.transform.GetChild(i).GetChild(2).GetChild(0).childCount; j++)
+                {
+                    if (perksPanel.transform.GetChild(i).GetChild(2).GetChild(0).GetChild(j).GetComponent<PerkContainer>() != null &&
+                        perksPanel.transform.GetChild(i).GetChild(2).GetChild(0).GetChild(j).GetComponent<PerkContainer>().id == curSkill_1)
+                    {
+                        t = perksPanel.transform.GetChild(i).GetChild(2).GetChild(0).GetChild(j).GetChild(0);
+                        break;
+                    }
+                }
+
+            FindObjectOfType<UIManager>().setSkillIcon_1(t.GetComponent<Image>());
         }
     }
 
@@ -109,13 +169,16 @@ public class InfoController : MonoBehaviour
         this._t = _t;
         perksInfo.SetActive(true);
 
+        perksPanel.transform.GetChild(getCurPanelId()).GetChild(1).GetChild(0).GetComponent<Slider>().value = 100000;
+
         if (!isSkill)
         {
             perksInfo.transform.GetChild(0).GetChild(2).gameObject.SetActive(true);
             perksInfo.transform.GetChild(0).GetChild(2).GetComponent<Text>().text = "lvl. " + perks[id - 16].lvl;
             perksInfo.transform.GetChild(1).GetChild(1).gameObject.SetActive(false);
             perksInfo.transform.GetChild(1).GetChild(2).gameObject.SetActive(false);
-            perksInfo.transform.GetChild(1).GetChild(3).gameObject.SetActive(FindObjectOfType<PlayerMovement>().playerType == getCurPanelId() + 1 && PlayerExp.points > 0 && lvl <= perksPanel.transform.GetChild(getCurPanelId()).GetChild(1).GetChild(0).GetComponent<Slider>().value);
+            perksInfo.transform.GetChild(1).GetChild(3).gameObject.SetActive((FindObjectOfType<PlayerMovement>().playerType == getCurPanelId() + 1 
+                || FindObjectOfType<PlayerMovement>().playerType == 0) && PlayerExp.points > 0 && lvl <= perksPanel.transform.GetChild(getCurPanelId()).GetChild(1).GetChild(0).GetComponent<Slider>().value);
             perksInfo.transform.GetChild(1).GetChild(4).gameObject.SetActive(false);
         }
         else
@@ -124,15 +187,18 @@ public class InfoController : MonoBehaviour
 
             if (skills[id - 1] && lvl <= perksPanel.transform.GetChild(getCurPanelId()).GetChild(1).GetChild(0).GetComponent<Slider>().value)
             {
-                perksInfo.transform.GetChild(1).GetChild(1).gameObject.SetActive(FindObjectOfType<PlayerMovement>().playerType == getCurPanelId() + 1 && isSkill);
-                perksInfo.transform.GetChild(1).GetChild(2).gameObject.SetActive(FindObjectOfType<PlayerMovement>().playerType == getCurPanelId() + 1 && isSkill);
+                perksInfo.transform.GetChild(1).GetChild(1).gameObject.SetActive((FindObjectOfType<PlayerMovement>().playerType == getCurPanelId() + 1
+                || FindObjectOfType<PlayerMovement>().playerType == 0) && isSkill);
+                perksInfo.transform.GetChild(1).GetChild(2).gameObject.SetActive((FindObjectOfType<PlayerMovement>().playerType == getCurPanelId() + 1
+                || FindObjectOfType<PlayerMovement>().playerType == 0) && isSkill);
                 perksInfo.transform.GetChild(1).GetChild(4).gameObject.SetActive(false);
             }
             else
             {
                 perksInfo.transform.GetChild(1).GetChild(1).gameObject.SetActive(false);
                 perksInfo.transform.GetChild(1).GetChild(2).gameObject.SetActive(false);
-                perksInfo.transform.GetChild(1).GetChild(4).gameObject.SetActive(FindObjectOfType<PlayerMovement>().playerType == getCurPanelId() + 1 && isSkill && lvl <= perksPanel.transform.GetChild(getCurPanelId()).GetChild(1).GetChild(0).GetComponent<Slider>().value);
+                perksInfo.transform.GetChild(1).GetChild(4).gameObject.SetActive((FindObjectOfType<PlayerMovement>().playerType == getCurPanelId() + 1
+                || FindObjectOfType<PlayerMovement>().playerType == 0) && isSkill && lvl <= perksPanel.transform.GetChild(getCurPanelId()).GetChild(1).GetChild(0).GetComponent<Slider>().value);
             }
 
             if (PlayerExp.points == 0)
@@ -514,5 +580,11 @@ public class InfoController : MonoBehaviour
     {
         public int lvl;
         public float value;
+
+        public Perks(int lvl, float value)
+        {
+            this.lvl = lvl;
+            this.value = value;
+        }
     }
 }

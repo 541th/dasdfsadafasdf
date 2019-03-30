@@ -14,7 +14,7 @@ public class PlayerMovement : MonoBehaviour
     public bool canMove, dontMove, startInBattleScene;
     bool isMoving;
     public Vector2 moveInput, lastMove;
-    Animator _a;
+    Animator _aUp, _aDown;
 
     bool isSubMS;
     public void subMS(float value)
@@ -87,7 +87,8 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
-        _a = GetComponent<Animator>();
+        _aUp = transform.GetChild(0).GetComponent<Animator>();
+        _aDown = transform.GetChild(1).GetComponent<Animator>();
 
         _t = transform;
         GetComponent<Rigidbody2D>().sleepMode = RigidbodySleepMode2D.NeverSleep;
@@ -131,11 +132,17 @@ public class PlayerMovement : MonoBehaviour
                 if (lastMove.x != 0 && lastMove.y != 0) lastMove.x = 0;
             }
 
-            _a.SetFloat("mx", moveInput.x);
-            _a.SetFloat("my", moveInput.y);
-            _a.SetBool("run", isMoving);
-            _a.SetFloat("lmx", lastMove.x);
-            _a.SetFloat("lmy", lastMove.y);
+            _aDown.SetFloat("mx", moveInput.x);
+            _aDown.SetFloat("my", moveInput.y);
+            _aDown.SetBool("run", isMoving);
+            _aDown.SetFloat("lmx", lastMove.x);
+            _aDown.SetFloat("lmy", lastMove.y);
+
+            _aUp.SetFloat("mx", moveInput.x);
+            _aUp.SetFloat("my", moveInput.y);
+            _aUp.SetBool("run", isMoving);
+            _aUp.SetFloat("lmx", lastMove.x);
+            _aUp.SetFloat("lmy", lastMove.y);
         }
     }
 
@@ -263,7 +270,45 @@ public class PlayerMovement : MonoBehaviour
     IEnumerator windRun()
     {
         dontAttack = true;
-        yield return new WaitForSeconds(6);
+
+        float timer = 6, spawnTimer = .2f;
+
+        while (timer > 0)
+        {
+            timer -= Time.deltaTime;
+            spawnTimer -= Time.deltaTime;
+
+            if (spawnTimer <= 0)
+            {
+                spawnTimer = .2f;
+
+                GameObject _0 = new GameObject();
+                _0.transform.localScale = transform.localScale;
+                _0.AddComponent<SpriteRenderer>();
+                _0.AddComponent<AdjM>();
+                _0.transform.position = transform.position;
+                //_0.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0.4f);
+                _0.GetComponent<SpriteRenderer>().sprite = transform.GetChild(0).GetComponent<SpriteRenderer>().sprite;
+                _0.GetComponent<SpriteRenderer>().sortingLayerName = transform.GetChild(0).GetComponent<SpriteRenderer>().sortingLayerName;
+                _0.GetComponent<SpriteRenderer>().sortingOrder = transform.GetChild(0).GetComponent<SpriteRenderer>().sortingOrder;
+
+                GameObject _1 = new GameObject();
+                _1.transform.localScale = transform.localScale;
+                _1.AddComponent<SpriteRenderer>();
+                _1.AddComponent<AdjM>();
+                _1.transform.position = transform.position;
+                //_1.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0.4f);
+                _1.GetComponent<SpriteRenderer>().sprite = transform.GetChild(1).GetComponent<SpriteRenderer>().sprite;
+                _1.GetComponent<SpriteRenderer>().sortingLayerName = transform.GetChild(1).GetComponent<SpriteRenderer>().sortingLayerName;
+                _1.GetComponent<SpriteRenderer>().sortingOrder = transform.GetChild(1).GetComponent<SpriteRenderer>().sortingOrder;
+
+                Destroy(_0, 1f);
+                Destroy(_1, 1f);
+            }
+
+            yield return null;
+        }
+
         dontAttack = false;
     }
 

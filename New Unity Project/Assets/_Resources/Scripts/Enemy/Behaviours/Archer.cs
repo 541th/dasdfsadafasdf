@@ -98,11 +98,82 @@ public class Archer : MonoBehaviour
 
             float _d = Vector2.SqrMagnitude(_t.position - player.transform.position);
 
-            GetComponent<BoxCollider2D>().enabled = _d < 6;
+            if (_d < 28)
+            {
+                Vector2 dirToPlayer = player.transform.position - _t.position;
+                float angle = Mathf.Atan2(dirToPlayer.y, dirToPlayer.x) * 180 / Mathf.PI - 90;
+
+                if (angle <= 41 && angle > -57) AI.setDirTo(ref dir, new Vector2(0, 1));
+                else
+                if (angle <= -57 && angle > -126) AI.setDirTo(ref dir, new Vector2(1, 0));
+                else
+                if (angle <= -126 && angle > -230) AI.setDirTo(ref dir, new Vector2(0, -1));
+                else
+                if (angle <= -230 || angle > 41) AI.setDirTo(ref dir, new Vector2(-1, 0));
+
+                if (shootTimer < 0)
+                {
+                    if (!shooted)
+                    { 
+                        _a.SetTrigger("Attack");
+
+                        shooted = true;
+                        shootTimer = shootSpeed;
+                        StartCoroutine(shot(_a.GetCurrentAnimatorStateInfo(0).length / 3));
+                        return;
+                    }
+                }
+            }
+            else
+            {
+                if (delay >= .1f)
+                {
+                    path = AI.setDestination(transform.position, player.transform.position);
+                    points = path.Count - 1;
+                    delay = 0;
+                }
+
+                if (AI.netting) return;
+
+                if (path != null)
+                    if (path.Count != 0)
+                    {
+                        _a.SetBool("Walk", true);
+                        _t.position = Vector2.MoveTowards(_t.position, path[points], AI.ms * Time.deltaTime);
+                        
+                        if (Vector2.Distance(_t.position, path[points]) < 0.1f && points != 0)
+                        {
+                            points--;
+
+                            if (points <= 0) return;
+
+                            Vector2 dirToPlayer = path[points - 1] - (Vector2)_t.position;
+                            float angle = Mathf.Atan2(dirToPlayer.y, dirToPlayer.x) * 180 / Mathf.PI - 90;
+
+                            if (angle <= 41 && angle > -57) AI.setDirTo(ref dir, new Vector2(0, 1));
+                            else
+                            if (angle <= -57 && angle > -126) AI.setDirTo(ref dir, new Vector2(1, 0));
+                            else
+                            if (angle <= -126 && angle > -230) AI.setDirTo(ref dir, new Vector2(0, -1));
+                            else
+                            if (angle <= -230 || angle > 41) AI.setDirTo(ref dir, new Vector2(-1, 0));
+
+                            _a.SetFloat("MoveX", dir.x);
+                            _a.SetFloat("MoveY", dir.y);
+                            _a.SetFloat("LastMoveX", dir.x);
+                            _a.SetFloat("LastMoveY", dir.y);
+                        }
+                    }
+                    else
+                        _a.SetBool("Walk", false);
+            }
+
+            /*
+             player.transform.position
+             GetComponent<BoxCollider2D>().enabled = _d < 6;
 
             if (delta <= 0)
             {
-                shooted = false;
                 //if (Vector2.Distance(transform.position, ((targets.Count == 0) ? player.transform.position : targets[0].transform.position)) > 2)
                 {
                     playerRandomPoint = new Vector2(player.transform.position.x + Random.Range(-6f, 6f),
@@ -186,6 +257,7 @@ public class Archer : MonoBehaviour
                 }
                 else
                     _a.SetBool("Walk", false);
+             */
         }
     }
 
@@ -202,6 +274,8 @@ public class Archer : MonoBehaviour
         _arrow.GetComponent<EnemyArrowFly>().target = (player.transform.position - transform.position).normalized;
         _arrow.transform.eulerAngles = new Vector3(0, 0, Mathf.Atan2((player.transform.position - transform.position).normalized.y, 
             (player.transform.position - transform.position).normalized.x) * 180 / Mathf.PI);
+
+        shooted = false;
 
         _a.SetBool("Walk", false);
         //_a.SetTrigger("Attack");

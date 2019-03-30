@@ -23,6 +23,9 @@ public class Boss_5_DeathCutscene : MonoBehaviour
             toWhite[i].GetComponent<SpriteRenderer>().material = white;
         }
 
+        GameObject.Find("Player").transform.GetChild(0).GetComponent<SpriteRenderer>().material = white;
+        GameObject.Find("Player").transform.GetChild(1).GetComponent<SpriteRenderer>().material = white;
+
         for (int i = 0; i < toDestr.Length; i++)
         {
             Destroy(toDestr[i]);

@@ -112,8 +112,9 @@ public class PlayerHP : MonoBehaviour
 
         damage -= def / 3;
 
-        GameObject.Find("Player").GetComponent<SpriteRenderer>().material = blinkMaterial;
-        //StartCoroutine(sub(damage));
+        GameObject.Find("Player").transform.GetChild(0).GetComponent<SpriteRenderer>().material = blinkMaterial;
+        GameObject.Find("Player").transform.GetChild(1).GetComponent<SpriteRenderer>().material = blinkMaterial;
+        StartCoroutine(sub(damage));
 
         fn.transform.GetChild(0).GetComponent<FloatingNumbers>().setText(damage + "");
     }
@@ -131,7 +132,10 @@ public class PlayerHP : MonoBehaviour
     {
         yield return new WaitForSeconds(0.04f);
 
-        GameObject.Find("Player").GetComponent<SpriteRenderer>().material = defaultMaterial;
+        GameObject.Find("Player").transform.GetChild(0).GetComponent<SpriteRenderer>().material = defaultMaterial;
+        GameObject.Find("Player").transform.GetChild(1).GetComponent<SpriteRenderer>().material = defaultMaterial;
+
+        yield return null;
 
         while (value > 0)
         {

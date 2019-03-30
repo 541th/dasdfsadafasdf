@@ -5,12 +5,13 @@ using UnityEngine;
 public class PlayerAttack_Warrior : MonoBehaviour
 {
     bool isAttacking;
-    Animator _a;
+    Animator _aUp, _aDown;
     PlayerMovement _pm;
 
     private void Start()
     {
-        _a = transform.GetComponent<Animator>();
+        _aUp = transform.GetChild(0).GetComponent<Animator>();
+        _aDown = transform.GetChild(1).GetComponent<Animator>();
         _pm = GetComponent<PlayerMovement>();
     }
     
@@ -19,17 +20,14 @@ public class PlayerAttack_Warrior : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space)) startAttack();
 
         if (Input.GetKeyUp(KeyCode.Space)) stopAttack();
-
-        //_a.SetFloat("lastMoveX", _pm.lastMove.x);
-        //_a.SetFloat("lastMoveY", _pm.lastMove.y);
     }
 
     public void startAttack()
     {
-        if (!GetComponent<PlayerMovement>().isGlide && GetComponent<PlayerMovement>().dontMove)
+        if (!GetComponent<PlayerMovement>().isGlide && !GetComponent<PlayerMovement>().dontMove)
         {
             isAttacking = true;
-            _a.SetBool("attack", true);
+            _aUp.SetBool("attack", true);
         }
     }
 
@@ -38,22 +36,25 @@ public class PlayerAttack_Warrior : MonoBehaviour
         //if (!GetComponent<PlayerMovement>().isGlide)
         {
             isAttacking = false;
-            _a.SetBool("attack", false);
+            _aUp.SetBool("attack", false);
         }
     }
 
     public void skill_0()
     {
-        _a.SetTrigger("skill_0");
+        _aUp.SetTrigger("skill_0");
+        _aDown.SetTrigger("skill_0");
     }
 
     public void skill_1()
     {
-        _a.SetTrigger("skill_1");
+        _aUp.SetTrigger("skill_1");
+        _aDown.SetTrigger("skill_1");
     }
 
     public void skill_2()
     {
-        _a.SetTrigger("skill_2");
+        _aUp.SetTrigger("skill_1");
+        _aDown.SetTrigger("skill_2");
     }
 }

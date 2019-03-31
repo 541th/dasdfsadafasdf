@@ -46,36 +46,45 @@ public class Entry : MonoBehaviour
         changing = true;
         float _a0 = 141f / 256f, _a1 = 30f / 256f;
 
-        Image char0 = chars.transform.GetChild(value - 1).GetComponent<Image>();
-        Image char1 = chars.transform.GetChild(curChar - 1).GetComponent<Image>();
+        Image char00 = chars.transform.GetChild(value - 1).GetChild(0).GetChild(0).GetComponent<Image>();
+        Image char01 = chars.transform.GetChild(value - 1).GetChild(0).GetChild(1).GetComponent<Image>();
+        Image char10 = chars.transform.GetChild(curChar - 1).GetChild(0).GetChild(0).GetComponent<Image>();
+        Image char11 = chars.transform.GetChild(curChar - 1).GetChild(0).GetChild(1).GetComponent<Image>();
 
-        while (char1.color.a > _a1)
+        while (char10.transform.parent.parent.GetComponent<Image>().color.a > _a1)
         {
-            char0.color += new Color(0, 0, 0, Time.deltaTime);
+            char00.transform.parent.parent.GetComponent<Image>().color += new Color(0, 0, 0, Time.deltaTime);
+            char10.transform.parent.parent.GetComponent<Image>().color -= new Color(0, 0, 0, Time.deltaTime);
 
-            char1.color -= new Color(0, 0, 0, Time.deltaTime);
-
-            if (char0.transform.GetChild(0).localScale.x < 1)
+            if (char00.transform.parent.localScale.x < 1)
             {
-                char0.transform.GetChild(0).localScale += new Vector3(Time.deltaTime, Time.deltaTime, 0);
-                char1.transform.GetChild(0).localScale -= new Vector3(Time.deltaTime, Time.deltaTime, 0);
+                char00.transform.parent.localScale += new Vector3(Time.deltaTime, Time.deltaTime, 0);
+                char10.transform.parent.localScale -= new Vector3(Time.deltaTime, Time.deltaTime, 0);
             }
 
-            if (char1.transform.GetChild(0).GetComponent<Image>().color.a > 128f / 256f)
+            if (char10.color.a > 128f / 256f)
             {
-                char0.transform.GetChild(0).GetComponent<Image>().color += new Color(0, 0, 0, Time.deltaTime);
-                char1.transform.GetChild(0).GetComponent<Image>().color -= new Color(0, 0, 0, Time.deltaTime);
+                char00.color += new Color(0, 0, 0, Time.deltaTime);
+                char01.color += new Color(0, 0, 0, Time.deltaTime);
+                char10.color -= new Color(0, 0, 0, Time.deltaTime);
+                char11.color -= new Color(0, 0, 0, Time.deltaTime);
             }
 
             yield return null;
         }
 
-        char0.color = new Color(char0.color.r, char0.color.g, char0.color.b, _a0);
-        char1.color = new Color(char1.color.r, char1.color.g, char1.color.b, _a1);
-        char0.transform.GetChild(0).localScale = new Vector3(1, 1, 0);
-        char1.transform.GetChild(0).localScale = new Vector3(0.7f, 0.7f, 0);
-        char0.transform.GetChild(0).GetComponent<Image>().color = new Color(1, 1, 1, 1);
-        char1.transform.GetChild(0).GetComponent<Image>().color = new Color(1, 1, 1, 128f / 256f);
+        char00.transform.parent.parent.GetComponent<Image>().color = new Color(char00.transform.parent.parent.GetComponent<Image>().color.r, char00.transform.parent.parent.GetComponent<Image>().color.g, char00.transform.parent.parent.GetComponent<Image>().color.b, _a0);
+        char10.transform.parent.parent.GetComponent<Image>().color = new Color(char10.transform.parent.parent.GetComponent<Image>().color.r, char10.transform.parent.parent.GetComponent<Image>().color.g, char10.transform.parent.parent.GetComponent<Image>().color.b, _a1);
+
+        char00.transform.parent.localScale = new Vector3(1, 1, 0);
+        //char10.transform.localScale = new Vector3(0.7f, 0.7f, 0);
+        char01.transform.parent.localScale = new Vector3(1, 1, 0);
+        //char11.transform.localScale = new Vector3(0.7f, 0.7f, 0);
+
+        char00.color = new Color(1, 1, 1, 1);
+        char01.color = new Color(1, 1, 1, 1);
+        char10.color = new Color(1, 1, 1, 128f / 256f);
+        char11.color = new Color(1, 1, 1, 128f / 256f);
 
         curChar = value;
         changing = false;
@@ -210,40 +219,52 @@ public class Entry : MonoBehaviour
             {
                 char0.color += new Color(0, 0, 0, Time.deltaTime * 4);
 
-                if (char0.transform.GetChild(0).GetComponent<Image>().color.a < 1)
-                    char0.transform.GetChild(0).GetComponent<Image>().color += new Color(0, 0, 0, Time.deltaTime * 4);
+                if (char0.transform.GetChild(0).GetChild(0).GetComponent<Image>().color.a < 1)
+                {
+                    char0.transform.GetChild(0).GetChild(0).GetComponent<Image>().color += new Color(0, 0, 0, Time.deltaTime * 4);
+                    char0.transform.GetChild(0).GetChild(1).GetComponent<Image>().color += new Color(0, 0, 0, Time.deltaTime * 4);
+                }
 
                 yield return null;
             }
 
             char0.color = new Color(char0.color.r, char0.color.g, char0.color.b, _a0);
-            char0.transform.GetChild(0).GetComponent<Image>().color = new Color(1, 1, 1, 1);
+            char0.transform.GetChild(0).GetChild(0).GetComponent<Image>().color = new Color(1, 1, 1, 1);
+            char0.transform.GetChild(0).GetChild(1).GetComponent<Image>().color = new Color(1, 1, 1, 1);
 
             while (char1.color.a < _a1)
             {
                 char1.color += new Color(0, 0, 0, Time.deltaTime);
 
-                if (char1.transform.GetChild(0).GetComponent<Image>().color.a < _a2)
-                    char1.transform.GetChild(0).GetComponent<Image>().color += new Color(0, 0, 0, Time.deltaTime);
+                if (char1.transform.GetChild(0).GetChild(0).GetComponent<Image>().color.a < _a2)
+                {
+                    char1.transform.GetChild(0).GetChild(0).GetComponent<Image>().color += new Color(0, 0, 0, Time.deltaTime);
+                    char1.transform.GetChild(0).GetChild(1).GetComponent<Image>().color += new Color(0, 0, 0, Time.deltaTime);
+                }
 
                 yield return null;
             }
 
             char1.color = new Color(char1.color.r, char1.color.g, char1.color.b, _a1);
-            char1.transform.GetChild(0).GetComponent<Image>().color = new Color(1, 1, 1, _a2);
+            char1.transform.GetChild(0).GetChild(0).GetComponent<Image>().color = new Color(1, 1, 1, _a2);
+            char1.transform.GetChild(0).GetChild(1).GetComponent<Image>().color = new Color(1, 1, 1, _a2);
 
             while (char2.color.a < _a1)
             {
                 char2.color += new Color(0, 0, 0, Time.deltaTime);
 
-                if (char2.transform.GetChild(0).GetComponent<Image>().color.a < _a2)
-                    char2.transform.GetChild(0).GetComponent<Image>().color += new Color(0, 0, 0, Time.deltaTime);
+                if (char2.transform.GetChild(0).GetChild(0).GetComponent<Image>().color.a < _a2)
+                {
+                    char2.transform.GetChild(0).GetChild(0).GetComponent<Image>().color += new Color(0, 0, 0, Time.deltaTime);
+                    char2.transform.GetChild(0).GetChild(1).GetComponent<Image>().color += new Color(0, 0, 0, Time.deltaTime);
+                }
 
                 yield return null;
             }
 
             char2.color = new Color(char2.color.r, char2.color.g, char2.color.b, _a1);
-            char2.transform.GetChild(0).GetComponent<Image>().color = new Color(1, 1, 1, _a2);
+            char2.transform.GetChild(0).GetChild(0).GetComponent<Image>().color = new Color(1, 1, 1, _a2);
+            char2.transform.GetChild(0).GetChild(1).GetComponent<Image>().color = new Color(1, 1, 1, _a2);
         }
 
         changing = false;
@@ -323,40 +344,52 @@ public class Entry : MonoBehaviour
             {
                 char0.color -= new Color(0, 0, 0, Time.deltaTime * 4);
 
-                if (char0.transform.GetChild(0).GetComponent<Image>().color.a > 0)
-                    char0.transform.GetChild(0).GetComponent<Image>().color -= new Color(0, 0, 0, Time.deltaTime * 4);
+                if (char0.transform.GetChild(0).GetChild(0).GetComponent<Image>().color.a > 0)
+                {
+                    char0.transform.GetChild(0).GetChild(0).GetComponent<Image>().color -= new Color(0, 0, 0, Time.deltaTime * 4);
+                    char0.transform.GetChild(0).GetChild(1).GetComponent<Image>().color -= new Color(0, 0, 0, Time.deltaTime * 4);
+                }
 
                 yield return null;
             }
 
             char0.color = new Color(char0.color.r, char0.color.g, char0.color.b, 0);
-            char0.transform.GetChild(0).GetComponent<Image>().color = new Color(1, 1, 1, 0);
+            char0.transform.GetChild(0).GetChild(0).GetComponent<Image>().color = new Color(1, 1, 1, 0);
+            char0.transform.GetChild(0).GetChild(1).GetComponent<Image>().color = new Color(1, 1, 1, 0);
 
             while (char1.color.a > 0)
             {
                 char1.color -= new Color(0, 0, 0, Time.deltaTime);
 
-                if (char1.transform.GetChild(0).GetComponent<Image>().color.a > 0)
-                    char1.transform.GetChild(0).GetComponent<Image>().color -= new Color(0, 0, 0, Time.deltaTime);
+                if (char1.transform.GetChild(0).GetChild(0).GetComponent<Image>().color.a > 0)
+                {
+                    char1.transform.GetChild(0).GetChild(0).GetComponent<Image>().color -= new Color(0, 0, 0, Time.deltaTime);
+                    char1.transform.GetChild(0).GetChild(1).GetComponent<Image>().color -= new Color(0, 0, 0, Time.deltaTime);
+                }
 
                 yield return null;
             }
 
             char1.color = new Color(char1.color.r, char1.color.g, char1.color.b, 0);
-            char1.transform.GetChild(0).GetComponent<Image>().color = new Color(1, 1, 1, 0);
+            char1.transform.GetChild(0).GetChild(0).GetComponent<Image>().color = new Color(1, 1, 1, 0);
+            char1.transform.GetChild(0).GetChild(1).GetComponent<Image>().color = new Color(1, 1, 1, 0);
 
             while (char2.color.a > 0)
             {
                 char2.color -= new Color(0, 0, 0, Time.deltaTime);
 
-                if (char2.transform.GetChild(0).GetComponent<Image>().color.a > 0)
-                    char2.transform.GetChild(0).GetComponent<Image>().color -= new Color(0, 0, 0, Time.deltaTime);
+                if (char2.transform.GetChild(0).GetChild(0).GetComponent<Image>().color.a > 0)
+                {
+                    char2.transform.GetChild(0).GetChild(0).GetComponent<Image>().color -= new Color(0, 0, 0, Time.deltaTime);
+                    char2.transform.GetChild(0).GetChild(1).GetComponent<Image>().color -= new Color(0, 0, 0, Time.deltaTime);
+                }
 
                 yield return null;
             }
 
             char2.color = new Color(char2.color.r, char2.color.g, char2.color.b, 0);
-            char2.transform.GetChild(0).GetComponent<Image>().color = new Color(1, 1, 1, 0);
+            char2.transform.GetChild(0).GetChild(0).GetComponent<Image>().color = new Color(1, 1, 1, 0);
+            char2.transform.GetChild(0).GetChild(1).GetComponent<Image>().color = new Color(1, 1, 1, 0);
         }
 
         while (BG.GetComponent<Image>().color.a > 0)

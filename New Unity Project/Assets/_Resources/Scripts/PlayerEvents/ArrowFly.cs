@@ -69,7 +69,7 @@ public class ArrowFly : MonoBehaviour
 
             fly = false;
             StartCoroutine(InstantDeath());
-            if (FindObjectOfType<PlayerMovement>().playerType == 3) FindObjectOfType<CamFollow>().startShakeArrow();
+            if (FindObjectOfType<PlayerMovement>() != null && FindObjectOfType<PlayerMovement>().playerType == 3) FindObjectOfType<CamFollow>().startShakeArrow();
         }
     }
 
@@ -81,7 +81,7 @@ public class ArrowFly : MonoBehaviour
 
             fly = false;
             StartCoroutine(InstantDeath());
-            if (FindObjectOfType<PlayerMovement>().playerType == 3) FindObjectOfType<CamFollow>().startShakeArrow();
+            if (FindObjectOfType<PlayerMovement>() != null && FindObjectOfType<PlayerMovement>().playerType == 3) FindObjectOfType<CamFollow>().startShakeArrow();
         }
     }
 }

@@ -38,6 +38,9 @@ public class PlayerMovement : MonoBehaviour
 
     public void setStartValues()
     {
+        transform.GetChild(0).GetComponent<Animator>().runtimeAnimatorController = Resources.Load("Player animators/" + playerType + "_Torso") as RuntimeAnimatorController;
+        transform.GetChild(1).GetComponent<Animator>().runtimeAnimatorController = Resources.Load("Player animators/" + playerType + "_Legs") as RuntimeAnimatorController;
+
         if (playerType == 0)
         {
             FindObjectOfType<UIManager>().items[1].transform.GetChild(0).gameObject.SetActive(false);
@@ -83,6 +86,9 @@ public class PlayerMovement : MonoBehaviour
         PlayerPrefs.SetInt("CutScene", 0);
 
         ms += InfoController.perks[5].value;
+
+        _aUp = transform.GetChild(0).GetComponent<Animator>();
+        _aDown = transform.GetChild(1).GetComponent<Animator>();
     }
 
     void Start()
@@ -109,7 +115,6 @@ public class PlayerMovement : MonoBehaviour
         v = CnInputManager.GetAxis("Vertical");
 
         {
-
             isMoving = false;
 
             if (h == 0 && v == 0)
@@ -138,11 +143,15 @@ public class PlayerMovement : MonoBehaviour
             _aDown.SetFloat("lmx", lastMove.x);
             _aDown.SetFloat("lmy", lastMove.y);
 
-            _aUp.SetFloat("mx", moveInput.x);
-            _aUp.SetFloat("my", moveInput.y);
+            if (playerType <= 1)
+            {
+                _aUp.SetFloat("mx", moveInput.x);
+                _aUp.SetFloat("my", moveInput.y);
+                _aUp.SetFloat("lmx", lastMove.x);
+                _aUp.SetFloat("lmy", lastMove.y);
+            }
+
             _aUp.SetBool("run", isMoving);
-            _aUp.SetFloat("lmx", lastMove.x);
-            _aUp.SetFloat("lmy", lastMove.y);
         }
     }
 

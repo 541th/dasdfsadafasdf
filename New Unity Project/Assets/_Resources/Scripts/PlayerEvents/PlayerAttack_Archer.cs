@@ -41,11 +41,34 @@ public class PlayerAttack_Archer : MonoBehaviour
 
                 createArrow();
             }
-        }
-        else attackTimer = 0;
 
-        // _a.SetFloat("lastMoveX", _pm.lastMove.x);
-        // _a.SetFloat("lastMoveY", _pm.lastMove.y);
+            _a.SetBool("attack", true);
+
+            _a.SetFloat("mx", calcDir().x);
+             _a.SetFloat("my", calcDir().y);
+             _a.SetFloat("lmx", calcDir().x);
+             _a.SetFloat("lmy", calcDir().y);
+        }
+        else
+        {
+            _a.SetBool("attack", false);
+
+            _a.SetFloat("mx", _pm.moveInput.x);
+            _a.SetFloat("my", _pm.moveInput.y);
+            _a.SetFloat("lmx", _pm.lastMove.x);
+            _a.SetFloat("lmy", _pm.lastMove.y);
+
+            attackTimer = 0;
+        }
+    }
+
+    Vector2 calcDir()
+    {
+        Vector2 _n = new Vector2(h, v).normalized;
+
+        Vector2 res = new Vector2(Mathf.RoundToInt(_n.x), Mathf.RoundToInt(_n.y));
+
+        return res;
     }
 
     [SerializeField] CamFollow cam;

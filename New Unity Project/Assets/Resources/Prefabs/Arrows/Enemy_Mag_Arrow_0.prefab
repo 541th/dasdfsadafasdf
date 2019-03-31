@@ -4744,6 +4744,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isParticle: 1
   dontSubParticle: 1
+  dontChangeSortingOrger: 0
 --- !u!1 &1657580681
 GameObject:
   m_ObjectHideFlags: 0
@@ -4907,12 +4908,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d02be4c28f868b43aeece2e00ae4be2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 10
+  damage: 16
   randL: -2
   randH: 6
   sub: 0
   arrow: 1
   slowDown: 0
+  isBoss: 0
 --- !u!114 &4327248435770866865
 MonoBehaviour:
   m_ObjectHideFlags: 0

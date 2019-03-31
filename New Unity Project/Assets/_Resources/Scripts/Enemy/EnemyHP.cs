@@ -261,9 +261,23 @@ public class EnemyHP : MonoBehaviour
 
     public IEnumerator hitBlink()
     {
-        transform.parent.GetComponent<SpriteRenderer>().material = blinkMaterial;
+        if (transform.parent.GetComponent<SpriteRenderer>() != null)
+            transform.parent.GetComponent<SpriteRenderer>().material = blinkMaterial;
+        else
+        {
+            transform.parent.GetChild(0).GetComponent<SpriteRenderer>().material = blinkMaterial;
+            transform.parent.GetChild(1).GetComponent<SpriteRenderer>().material = blinkMaterial;
+        }
+        
         yield return new WaitForSeconds(0.04f);
-        transform.parent.GetComponent<SpriteRenderer>().material = defaultMaterial;
+
+        if (transform.parent.GetComponent<SpriteRenderer>() != null)
+            transform.parent.GetComponent<SpriteRenderer>().material = defaultMaterial;
+        else
+        {
+            transform.parent.GetChild(0).GetComponent<SpriteRenderer>().material = defaultMaterial;
+            transform.parent.GetChild(1).GetComponent<SpriteRenderer>().material = defaultMaterial;
+        }
     }
 
     void stopSleeping()
@@ -279,7 +293,8 @@ public class EnemyHP : MonoBehaviour
         if (isBossSleeping)
         {
             isBossSleeping = false;
-            transform.parent.GetComponent<Animator>().SetTrigger("StopSleeping");
+            if (transform.parent.GetComponent<Animator>() != null)
+                transform.parent.GetComponent<Animator>().SetTrigger("StopSleeping");
             Invoke("stopSleeping", 1);
         }
 
@@ -350,7 +365,11 @@ public class EnemyHP : MonoBehaviour
         if (isBoss)
         {
             PlayerPrefs.SetInt("level_" + (int.Parse(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name) + 1), 1);
-            transform.parent.GetComponent<Animator>().SetTrigger("Death");
+
+            if (transform.parent.GetComponent<Animator>() != null)
+                transform.parent.GetComponent<Animator>().SetTrigger("Death");
+            else
+                Destroy(transform.parent.gameObject);
         }
         else
             GetComponentInParent<AIMethods>().showDeath();
@@ -421,7 +440,13 @@ public class EnemyHP : MonoBehaviour
 
     private void OnDestroy()
     {
-        transform.parent.GetComponent<SpriteRenderer>().material = defaultMaterial;
+        if (transform.parent.GetComponent<SpriteRenderer>() != null)
+            transform.parent.GetComponent<SpriteRenderer>().material = defaultMaterial;
+        else
+        {
+            transform.parent.GetChild(0).GetComponent<SpriteRenderer>().material = defaultMaterial;
+            transform.parent.GetChild(1).GetComponent<SpriteRenderer>().material = defaultMaterial;
+        }
 
         if (createSwill)
             GetComponent<Swill>().show(player.transform.position);
@@ -429,6 +454,12 @@ public class EnemyHP : MonoBehaviour
 
     private void OnDisable()
     {
-        transform.parent.GetComponent<SpriteRenderer>().material = defaultMaterial;
+        if (transform.parent.GetComponent<SpriteRenderer>() != null)
+            transform.parent.GetComponent<SpriteRenderer>().material = defaultMaterial;
+        else
+        {
+            transform.parent.GetChild(0).GetComponent<SpriteRenderer>().material = defaultMaterial;
+            transform.parent.GetChild(1).GetComponent<SpriteRenderer>().material = defaultMaterial;
+        }
     }
 }

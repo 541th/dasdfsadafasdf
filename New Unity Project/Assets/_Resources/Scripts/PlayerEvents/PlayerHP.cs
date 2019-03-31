@@ -135,8 +135,6 @@ public class PlayerHP : MonoBehaviour
         GameObject.Find("Player").transform.GetChild(0).GetComponent<SpriteRenderer>().material = defaultMaterial;
         GameObject.Find("Player").transform.GetChild(1).GetComponent<SpriteRenderer>().material = defaultMaterial;
 
-        yield return null;
-
         while (value > 0)
         {
             HP--;

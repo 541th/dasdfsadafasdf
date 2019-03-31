@@ -9,6 +9,7 @@ public class MenuController : MonoBehaviour
 
     void Start()
     {
+        PlayerPrefs.SetInt("level_15", 1);
         continueButton.SetActive(PlayerPrefs.GetInt("Started") == 1);
         buttons.SetActive(false);
         pressOnScreen.SetActive(true);

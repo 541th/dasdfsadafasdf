@@ -63,10 +63,14 @@ public class AIMethods : MonoBehaviour {
     {
         dir = value;
         Animator anim = GetComponent<Animator>();
-        anim.SetFloat("MoveX", dir.x);
-        anim.SetFloat("MoveY", dir.y);
-        anim.SetFloat("LastMoveX", dir.x);
-        anim.SetFloat("LastMoveY", dir.y);
+
+        if (anim != null)
+        {
+            anim.SetFloat("MoveX", dir.x);
+            anim.SetFloat("MoveY", dir.y);
+            anim.SetFloat("LastMoveX", dir.x);
+            anim.SetFloat("LastMoveY", dir.y);
+        }
     }
 
     public Vector2 chooseDir()

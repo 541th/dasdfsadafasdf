@@ -250,13 +250,6 @@ public class CamFollow : MonoBehaviour
 
     IEnumerator loadingEvent()
     {
-        if (PlayerPrefs.GetInt("Continue") == 0)
-            yield return new WaitForSeconds(0.6f);
-
-        PlayerPrefs.SetInt("Continue", 0);
-
-        GetComponent<Camera>().orthographicSize = 6 + (FindObjectOfType<PlayerMovement>().playerType == 2 ? InfoController.perks[6].value : 0);
-
         GameObject blackScreen = FindObjectOfType<UIManager>().blackScreen;
         UnityEngine.UI.Image blackScreenImage = blackScreen.GetComponent<UnityEngine.UI.Image>();
         UnityEngine.UI.Text blackScreenText = blackScreen.transform.GetChild(0).GetComponent<UnityEngine.UI.Text>();
@@ -264,6 +257,13 @@ public class CamFollow : MonoBehaviour
 
         blackScreenImage.color = new Color(0, 0, 0, 1);
         blackScreenText.color = new Color(1, 1, 1, 0);
+
+        if (PlayerPrefs.GetInt("Continue") == 0)
+            yield return new WaitForSeconds(0.6f);
+
+        PlayerPrefs.SetInt("Continue", 0);
+
+        GetComponent<Camera>().orthographicSize = 6 + (FindObjectOfType<PlayerMovement>().playerType == 2 ? InfoController.perks[6].value : 0);
 
         if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name != "City" && UnityEngine.SceneManagement.SceneManager.GetActiveScene().name != "Menu")
         {

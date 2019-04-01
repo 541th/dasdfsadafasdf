@@ -21,11 +21,14 @@ public class PlayerExp : MonoBehaviour
 
     private void Start()
     {
-        slider.value = PlayerPrefs.GetFloat("EXP");
-
-        if (PlayerPrefs.GetFloat("EXPToLvlUp") != 0) expToLvlUp = PlayerPrefs.GetFloat("EXPToLvlUp");
+        if (PlayerPrefs.GetFloat("EXPToLvlUp") != 0)
+        {
+            expToLvlUp = PlayerPrefs.GetFloat("EXPToLvlUp");
+            slider.maxValue = PlayerPrefs.GetFloat("EXPToLvlUp");
+        }
         if (PlayerPrefs.GetInt("CurLvl") != 0) curLvl = PlayerPrefs.GetInt("CurLvl");
 
+        slider.value = PlayerPrefs.GetFloat("EXP");
         points = PlayerPrefs.GetInt("Points");
 
         curExp = (int)slider.value;

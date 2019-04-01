@@ -135,8 +135,10 @@ public class UIManager : MonoBehaviour
         setAllItems(false);
     }
 
+    bool tValue;
     public void setAllItems(bool value)
     {
+        tValue = value;
         ThrowedItem[] _ti = FindObjectsOfType<ThrowedItem>();
 
         foreach (ThrowedItem item in _ti)
@@ -158,26 +160,26 @@ public class UIManager : MonoBehaviour
         {
             if (items[i].name == "Skill_0")
             {
-                items[i].SetActive(value && InfoController.curSkill_0 != 0 && player.GetComponent<PlayerMovement>().playerType != 0);
+                items[i].SetActive(tValue && InfoController.curSkill_0 != 0 && PlayerPrefs.GetInt("PlayerType") != 0 && PlayerPrefs.GetInt("PlayerType") == InfoController.curSkill_0id);
                 continue;
             }
 
             if (items[i].name == "Skill_1")
             {
-                items[i].SetActive(value && InfoController.curSkill_1 != 0 && player.GetComponent<PlayerMovement>().playerType != 0);
+                items[i].SetActive(tValue && InfoController.curSkill_1 != 0 && PlayerPrefs.GetInt("PlayerType") != 0 && PlayerPrefs.GetInt("PlayerType") == InfoController.curSkill_1id);
                 continue;
             }
 
             if (items[i].name == "Bars")
             {
-                items[i].SetActive(value && PlayerPrefs.GetInt("PlayerType") != 0);
+                items[i].SetActive(tValue && PlayerPrefs.GetInt("PlayerType") != 0);
                 continue;
             }
 
-            items[i].SetActive(value);
+            items[i].SetActive(tValue);
         }
 
-        setGameButtons(value);
+        setGameButtons(tValue);
     }
 
     public void closeMenu()

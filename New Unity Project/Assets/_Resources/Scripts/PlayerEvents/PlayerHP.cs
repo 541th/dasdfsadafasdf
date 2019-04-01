@@ -145,6 +145,7 @@ public class PlayerHP : MonoBehaviour
 
         if (HP <= 0 && !created)
         {
+            FindObjectOfType<CamFollow>().stopCameraRotating();
             created = true;
             FindObjectOfType<UIManager>().setAllItems(false);
             GameObject deathEffect = Instantiate(deathEffectPrefab);

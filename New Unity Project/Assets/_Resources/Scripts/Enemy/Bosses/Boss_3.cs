@@ -24,7 +24,7 @@ public class Boss_3 : MonoBehaviour
 
     void Start()
     {
-        bossType = Random.Range(1, 1);
+        bossType = Random.Range(0, 3);
 
         transform.GetChild(0).GetComponent<Animator>().runtimeAnimatorController = Resources.Load("Player animators/" + (bossType + 1) + "_Torso") as RuntimeAnimatorController;
         transform.GetChild(1).GetComponent<Animator>().runtimeAnimatorController = Resources.Load("Player animators/" + (bossType + 1) + "_Legs") as RuntimeAnimatorController;
@@ -179,7 +179,10 @@ public class Boss_3 : MonoBehaviour
     [SerializeField] GameObject magArrow, archerArrow;
     IEnumerator shoot()
     {
+        _aUp.SetBool("attack", true);
         shootTimer = 0;
+
+        yield return new WaitForSeconds(_aUp.GetCurrentAnimatorStateInfo(0).length / 2);
 
         Vector2 dirToPlayer = player.transform.position - _t.position;
         float angle = Mathf.Atan2(dirToPlayer.y, dirToPlayer.x) * 180 / Mathf.PI - 90;
@@ -194,6 +197,11 @@ public class Boss_3 : MonoBehaviour
 
         if (player == null) player = GameObject.Find("Player");
 
+        _aDown.SetFloat("mx", dir.x);
+        _aDown.SetFloat("my", dir.y);
+        _aUp.SetFloat("mx", dir.x);
+        _aUp.SetFloat("my", dir.y);
+
         GameObject _arrow = Instantiate(bossType == 1 ? archerArrow : magArrow);
         _arrow.transform.position = transform.position + new Vector3(0, 1, 0);
 
@@ -201,6 +209,6 @@ public class Boss_3 : MonoBehaviour
         _arrow.transform.eulerAngles = new Vector3(0, 0, Mathf.Atan2((player.transform.position - transform.position).normalized.y,
             (player.transform.position - transform.position).normalized.x) * 180 / Mathf.PI);
 
-        yield return null;
+        _aUp.SetBool("attack", false);
     }
 }

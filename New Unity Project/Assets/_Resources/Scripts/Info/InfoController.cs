@@ -169,8 +169,6 @@ public class InfoController : MonoBehaviour
         this._t = _t;
         perksInfo.SetActive(true);
 
-        perksPanel.transform.GetChild(getCurPanelId()).GetChild(1).GetChild(0).GetComponent<Slider>().value = 100000;
-
         if (!isSkill)
         {
             perksInfo.transform.GetChild(0).GetChild(2).gameObject.SetActive(true);
@@ -220,13 +218,14 @@ public class InfoController : MonoBehaviour
     }
 
     Transform _t;
-    public static int curSkill_0 = 0, curSkill_1 = 0;
+    public static int curSkill_0 = 0, curSkill_1 = 0, curSkill_0id, curSkill_1id;
 
     public void chooseSkill_0()
     {
         FindObjectOfType<UIManager>().setSkillIcon_0(_t.GetComponent<Image>());
         perksInfo.SetActive(false);
         curSkill_0 = id;
+        PlayerPrefs.SetInt("CurSkill_0id", PlayerPrefs.GetInt("PlayerType"));
 
         if (curSkill_0 == curSkill_1) curSkill_1 = 0;
     }
@@ -236,6 +235,7 @@ public class InfoController : MonoBehaviour
         FindObjectOfType<UIManager>().setSkillIcon_1(_t.GetComponent<Image>());
         perksInfo.SetActive(false);
         curSkill_1 = id;
+        PlayerPrefs.SetInt("CurSkill_1id", PlayerPrefs.GetInt("PlayerType"));
 
         if (curSkill_0 == curSkill_1) curSkill_0 = 0;
     }

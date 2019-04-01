@@ -382,7 +382,9 @@ public class EnemyHP : MonoBehaviour
         float timer = 0.1f;
         float x = -to.x * Time.deltaTime * 1000, y = -to.y * Time.deltaTime * 1000;
         Rigidbody2D parent = transform.parent.GetComponent<Rigidbody2D>();
-        
+
+        if (parent == null) yield break;
+
         while (timer > 0)
         {
             timer -= Time.deltaTime;

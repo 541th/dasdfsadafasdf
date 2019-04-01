@@ -285,7 +285,7 @@ MonoBehaviour:
   isBoss: 0
   isBossSleeping: 0
   isFinalCutscene: 0
-  subbed: 0
+  subbed: 1
   justDestr: 1
 --- !u!114 &1331673124616119620
 MonoBehaviour:

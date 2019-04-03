@@ -8,6 +8,7 @@ public class SortingOrder : MonoBehaviour
     ParticleSystemRenderer _psr;
     Transform _t;
     public static int mult = 111;
+    [SerializeField] float delta;
     [SerializeField] bool isParticle, dontSubParticle;
     float timer = 40;
 
@@ -38,7 +39,7 @@ public class SortingOrder : MonoBehaviour
                 _psr.sortingOrder = -(int)(_t.position.y * mult);
             }
             else
-                _sr.sortingOrder = -(int)(_t.position.y * mult);
+                _sr.sortingOrder = -(int)(_t.position.y * mult + delta);
         }
     }
 }

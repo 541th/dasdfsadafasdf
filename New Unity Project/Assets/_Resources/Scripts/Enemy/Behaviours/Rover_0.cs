@@ -100,7 +100,7 @@ public class Rover_0 : MonoBehaviour
             delta -= Time.deltaTime;
             float _d = Vector2.SqrMagnitude(_t.position - player.transform.position);
 
-            GetComponent<BoxCollider2D>().enabled = _d < 6;
+            GetComponent<BoxCollider2D>().enabled = _d < 3;
 
             if (delta <= 0)
             {

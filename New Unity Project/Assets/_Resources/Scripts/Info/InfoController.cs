@@ -12,7 +12,17 @@ public class InfoController : MonoBehaviour
 
     public static float[] sV = new float[3];
 
+    private void OnLevelWasLoaded(int level)
+    {
+        saveData();
+    }
+
     private void OnDestroy()
+    {
+        saveData();
+    }
+
+    void saveData()
     {
         for (int i = 0; i < 15; i++)
         {
@@ -427,15 +437,26 @@ public class InfoController : MonoBehaviour
 
         pm.dontMove = true;
         pm.dontAttack = true;
+        pm.transform.GetChild(1).gameObject.SetActive(false);
+        pm.transform.GetChild(0).GetComponent<Animator>().SetTrigger("PentagramIce");
 
         yield return new WaitForSeconds(1f);
 
         pm.dontMove = false;
         pm.dontAttack = false;
+        pm.transform.GetChild(1).gameObject.SetActive(true);
 
         yield return new WaitForSeconds(.3f);
 
         Destroy(pentagram);
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            StartCoroutine(pentagram_I());
+        }
     }
 
     public void useSkill_0()

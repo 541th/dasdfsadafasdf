@@ -12,6 +12,11 @@ public class PlayerHP : MonoBehaviour
     [SerializeField] Material defaultMaterial, blinkMaterial;
     InventoryManager _im;
 
+    private void OnLevelWasLoaded(int level)
+    {
+        PlayerPrefs.SetInt("HP", startMax);
+    }
+
     private void OnDestroy()
     {
         PlayerPrefs.SetInt("HP", startMax);

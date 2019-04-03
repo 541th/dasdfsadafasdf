@@ -10,7 +10,17 @@ public class UIManager : MonoBehaviour
     public GameObject blackScreen;
     GameObject player;
 
+    private void OnLevelWasLoaded(int level)
+    {
+        saveData();
+    }
+
     private void OnDestroy()
+    {
+        saveData();
+    }
+
+    void saveData()
     {
         PlayerPrefs.SetInt("Monets", monetsAmount);
         PlayerPrefs.SetInt("Potions", potionsAmount);
@@ -151,6 +161,14 @@ public class UIManager : MonoBehaviour
         foreach (Trading_0 item in t)
         {
             item.transform.GetChild(0).gameObject.SetActive(false);
+        }
+
+        EndLevel[] el = FindObjectsOfType<EndLevel>();
+
+        foreach (EndLevel item in el)
+        {
+            if (item.transform.childCount > 2)
+                item.transform.GetChild(2).GetChild(0).gameObject.SetActive(false);
         }
 
         if (FindObjectOfType<Entry>() != null)

@@ -7,7 +7,17 @@ public class InventoryManager : MonoBehaviour
     [SerializeField] GameObject items, throwed;
     public ItemDatabase.Item[,] takedItems = new ItemDatabase.Item[3, 4];
 
+    private void OnLevelWasLoaded(int level)
+    {
+        saveData();
+    }
+
     private void OnDestroy()
+    {
+        saveData();
+    }
+
+    void saveData()
     {
         for (int i = 0; i < 3; i++)
             for (int j = 0; j < 4; j++)

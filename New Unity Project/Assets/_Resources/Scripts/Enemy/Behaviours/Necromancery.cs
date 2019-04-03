@@ -92,7 +92,7 @@ public class Necromancery : MonoBehaviour
 
             float _d = Vector2.SqrMagnitude(_t.position - player.transform.position);
 
-            GetComponent<BoxCollider2D>().enabled = _d < 6;
+            GetComponent<BoxCollider2D>().enabled = _d < 3;
 
             if (delta <= 0)
             {

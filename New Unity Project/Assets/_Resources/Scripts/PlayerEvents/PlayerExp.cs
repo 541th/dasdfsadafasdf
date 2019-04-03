@@ -11,7 +11,17 @@ public class PlayerExp : MonoBehaviour
     [SerializeField] Slider slider;
     public static int points;
 
+    private void OnLevelWasLoaded(int level)
+    {
+        saveData();
+    }
+
     private void OnDestroy()
+    {
+        saveData();
+    }
+
+    void saveData()
     {
         PlayerPrefs.SetFloat("EXP", curExp);
         PlayerPrefs.SetFloat("EXPToLvlUp", expToLvlUp);

@@ -96,6 +96,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 712d8dc1633ca684fa5fe8343fe62ea3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  delta: 0
   isParticle: 0
   dontSubParticle: 0
   dontChangeSortingOrger: 0
@@ -334,6 +335,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 712d8dc1633ca684fa5fe8343fe62ea3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  delta: 0
   isParticle: 0
   dontSubParticle: 0
   dontChangeSortingOrger: 0
@@ -572,6 +574,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 712d8dc1633ca684fa5fe8343fe62ea3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  delta: 0
   isParticle: 0
   dontSubParticle: 0
   dontChangeSortingOrger: 0
@@ -810,6 +813,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 712d8dc1633ca684fa5fe8343fe62ea3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  delta: 0
   isParticle: 0
   dontSubParticle: 0
   dontChangeSortingOrger: 0
@@ -1048,6 +1052,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 712d8dc1633ca684fa5fe8343fe62ea3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  delta: 0
   isParticle: 0
   dontSubParticle: 0
   dontChangeSortingOrger: 0
@@ -1286,6 +1291,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 712d8dc1633ca684fa5fe8343fe62ea3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  delta: 0
   isParticle: 0
   dontSubParticle: 0
   dontChangeSortingOrger: 0
@@ -1524,6 +1530,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 712d8dc1633ca684fa5fe8343fe62ea3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  delta: 0
   isParticle: 0
   dontSubParticle: 0
   dontChangeSortingOrger: 0
@@ -2011,14 +2018,20 @@ MonoBehaviour:
     type: 3}
   slider: {fileID: 8755974392437675207}
   expForKill: 700
+  monetsPrefab: {fileID: 0}
+  isMonets: 0
+  maxAmountMonets: 0
   defaultMaterial: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   blinkMaterial: {fileID: 2100000, guid: 9827d63a786847849b1d51a5ad5ab300, type: 2}
   divide: 0
   createSwill: 0
   isGhost: 0
+  dontFly: 1
   isBoss: 1
   isBossSleeping: 1
   isFinalCutscene: 1
+  subbed: 0
+  justDestr: 0
 --- !u!1 &3628200010078134063
 GameObject:
   m_ObjectHideFlags: 0
@@ -2397,6 +2410,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 712d8dc1633ca684fa5fe8343fe62ea3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  delta: 0
   isParticle: 0
   dontSubParticle: 0
   dontChangeSortingOrger: 0

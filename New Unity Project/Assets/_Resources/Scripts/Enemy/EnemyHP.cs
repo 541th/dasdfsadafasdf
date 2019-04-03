@@ -45,6 +45,8 @@ public class EnemyHP : MonoBehaviour
         }
     }
 
+    [SerializeField] bool dontFly;
+
     public void toDamage(int damage, bool isFlying, bool stan, bool bleeding, bool expl, bool sub, bool explMag)
     {
         if (bleeding) StartCoroutine(bleedingEvent());
@@ -83,7 +85,7 @@ public class EnemyHP : MonoBehaviour
         slider.transform.GetChild(0).GetComponent<Slider>().value = HP;
         slider.transform.GetChild(0).GetComponent<Slider>().fillRect.GetComponent<Image>().color = Color.Lerp(Color.red, Color.green, ((float)1 / maxHP) * HP);
 
-        if (isFlying)
+        if (isFlying && !dontFly)
         {
             StartCoroutine(flying(player.position - transform.parent.position));
         }

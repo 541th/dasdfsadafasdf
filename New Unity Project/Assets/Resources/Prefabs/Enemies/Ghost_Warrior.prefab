@@ -100,6 +100,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 712d8dc1633ca684fa5fe8343fe62ea3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  delta: 0
   isParticle: 0
   dontSubParticle: 0
   dontChangeSortingOrger: 0
@@ -679,6 +680,7 @@ MonoBehaviour:
   divide: 0
   createSwill: 0
   isGhost: 1
+  dontFly: 1
   isBoss: 0
   isBossSleeping: 0
   isFinalCutscene: 0

@@ -261,12 +261,20 @@ public class CamFollow : MonoBehaviour
         if (PlayerPrefs.GetInt("Continue") == 0)
             yield return new WaitForSeconds(0.6f);
 
+        yield return new WaitForSeconds(0.1f);
         PlayerPrefs.SetInt("Continue", 0);
 
         GetComponent<Camera>().orthographicSize = 6 + (FindObjectOfType<PlayerMovement>().playerType == 2 ? InfoController.perks[6].value : 0);
 
         if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name != "City" && UnityEngine.SceneManagement.SceneManager.GetActiveScene().name != "Menu")
         {
+            if (blackScreen == null)
+            {
+                blackScreen = FindObjectOfType<UIManager>().blackScreen;
+                blackScreenImage = blackScreen.GetComponent<UnityEngine.UI.Image>();
+                blackScreenText = blackScreen.transform.GetChild(0).GetComponent<UnityEngine.UI.Text>();
+            }
+
             blackScreenText.text = "Уровень " + UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
 
             while (blackScreenText.color.a < 1)

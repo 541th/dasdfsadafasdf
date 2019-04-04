@@ -53,7 +53,8 @@ public class EnemyHP : MonoBehaviour
         if (expl) explEvent();
         if (sub)
         {
-            transform.parent.GetComponent<AIMethods>().subDamage();
+            if (transform.parent.GetComponent<AIMethods>() != null)
+                transform.parent.GetComponent<AIMethods>().subDamage();
         }
         if (explMag) explMagEvent();
 
@@ -92,7 +93,7 @@ public class EnemyHP : MonoBehaviour
 
         checkDeath();
 
-        if (stan) transform.parent.GetComponent<AIMethods>().startStan();
+        if (stan && transform.parent.GetComponent<AIMethods>() != null) transform.parent.GetComponent<AIMethods>().startStan();
     }
     
     void explEvent()
@@ -284,8 +285,11 @@ public class EnemyHP : MonoBehaviour
 
     void stopSleeping()
     {
-        transform.parent.GetComponent<CapsuleCollider2D>().enabled = true;
-        transform.parent.GetComponent<AIMethods>().stanned = false;
+        if (transform.parent.GetComponent<AIMethods>() != null)
+        {
+            transform.parent.GetComponent<CapsuleCollider2D>().enabled = true;
+            transform.parent.GetComponent<AIMethods>().stanned = false;
+        }
     }
 
     [SerializeField] bool isBoss, isBossSleeping, isFinalCutscene;
@@ -423,7 +427,8 @@ public class EnemyHP : MonoBehaviour
 
     void setNettingFalse()
     {
-        transform.parent.GetComponent<AIMethods>().netting = false;
+        if (transform.parent.GetComponent<AIMethods>() != null)
+            transform.parent.GetComponent<AIMethods>().netting = false;
     }
 
     void setMSBack()
@@ -435,7 +440,7 @@ public class EnemyHP : MonoBehaviour
     {
         if (collision.CompareTag("Slow"))
         {
-            if (transform.parent != null)
+            if (transform.parent != null && transform.parent.GetComponent<AIMethods>() != null)
             {
                 transform.parent.GetComponent<AIMethods>().ms *= 2;
             }

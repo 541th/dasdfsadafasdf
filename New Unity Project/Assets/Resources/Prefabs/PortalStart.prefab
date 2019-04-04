@@ -574,6 +574,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BG: {fileID: 1763481818}
   buttons: {fileID: 393801170}
+  allObjects: {fileID: 393801170}
 --- !u!61 &1088142286
 BoxCollider2D:
   m_ObjectHideFlags: 0

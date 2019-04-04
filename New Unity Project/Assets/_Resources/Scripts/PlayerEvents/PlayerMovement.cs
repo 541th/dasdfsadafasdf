@@ -115,15 +115,29 @@ public class PlayerMovement : MonoBehaviour
         v = CnInputManager.GetAxis("Vertical");
 
         {
-            isMoving = false;
-
             if (h == 0 && v == 0)
                 moveInput = Vector2.zero;
             
             moveInput = calcDir();
 
+            _aDown.SetBool("run", isMoving);
+            _aUp.SetBool("run", isMoving);
+
             if (moveInput != Vector2.zero)
             {
+                _aDown.SetFloat("lmx", lastMove.x);
+                _aDown.SetFloat("lmy", lastMove.y);
+                _aDown.SetFloat("mx", moveInput.x);
+                _aDown.SetFloat("my", moveInput.y);
+
+                if (playerType <= 1)
+                {
+                    _aUp.SetFloat("mx", moveInput.x);
+                    _aUp.SetFloat("my", moveInput.y);
+                    _aUp.SetFloat("lmx", lastMove.x);
+                    _aUp.SetFloat("lmy", lastMove.y);
+                }
+
                 _rb.velocity = new Vector2(
                     (moveInput.x) * ms * 60 * Time.deltaTime,
                     (moveInput.y) * ms * 60 * Time.deltaTime);
@@ -136,22 +150,8 @@ public class PlayerMovement : MonoBehaviour
 
                 if (lastMove.x != 0 && lastMove.y != 0) lastMove.x = 0;
             }
-
-            _aDown.SetFloat("mx", moveInput.x);
-            _aDown.SetFloat("my", moveInput.y);
-            _aDown.SetBool("run", isMoving);
-            _aDown.SetFloat("lmx", lastMove.x);
-            _aDown.SetFloat("lmy", lastMove.y);
-
-            if (playerType <= 1)
-            {
-                _aUp.SetFloat("mx", moveInput.x);
-                _aUp.SetFloat("my", moveInput.y);
-                _aUp.SetFloat("lmx", lastMove.x);
-                _aUp.SetFloat("lmy", lastMove.y);
-            }
-
-            _aUp.SetBool("run", isMoving);
+            else
+               isMoving = false;
         }
     }
 

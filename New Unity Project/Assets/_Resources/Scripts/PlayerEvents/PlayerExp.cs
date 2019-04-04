@@ -13,7 +13,8 @@ public class PlayerExp : MonoBehaviour
 
     private void OnLevelWasLoaded(int level)
     {
-        saveData();
+        if (PlayerPrefs.GetInt("Continue") == 0)
+            saveData();
     }
 
     private void OnDestroy()

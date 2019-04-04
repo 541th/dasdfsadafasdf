@@ -92,6 +92,8 @@ public class Archer : MonoBehaviour
         else
         if (curState == State.attack)
         {
+            _a.SetBool("Walk", false);
+
             delay += Time.deltaTime;
             delta -= Time.deltaTime;
             shootTimer -= Time.deltaTime;

@@ -14,7 +14,8 @@ public class InfoController : MonoBehaviour
 
     private void OnLevelWasLoaded(int level)
     {
-        saveData();
+        if (PlayerPrefs.GetInt("Continue") == 0)
+            saveData();
     }
 
     private void OnDestroy()
@@ -24,18 +25,21 @@ public class InfoController : MonoBehaviour
 
     void saveData()
     {
-        for (int i = 0; i < 15; i++)
+        if (perks != null)
         {
-            PlayerPrefs.SetInt("Skill_" + i, skills[i] ? 1 : 0);
-            PlayerPrefs.SetInt("PerkLvl_" + i, perks[i].lvl);
-            PlayerPrefs.SetFloat("PerkValue_" + i, perks[i].value);
+            for (int i = 0; i < 15; i++)
+            {
+                PlayerPrefs.SetInt("Skill_" + i, skills[i] ? 1 : 0);
+                PlayerPrefs.SetInt("PerkLvl_" + i, perks[i].lvl);
+                PlayerPrefs.SetFloat("PerkValue_" + i, perks[i].value);
+            }
+
+            for (int i = 0; i < 3; i++)
+                PlayerPrefs.SetFloat("SV_" + i, sV[i]);
+
+            PlayerPrefs.SetInt("CurSkillId_0", curSkill_0);
+            PlayerPrefs.SetInt("CurSkillId_1", curSkill_1);
         }
-
-        for (int i = 0; i < 3; i++)
-            PlayerPrefs.SetFloat("SV_" + i, sV[i]);
-
-        PlayerPrefs.SetInt("CurSkillId_0", curSkill_0);
-        PlayerPrefs.SetInt("CurSkillId_1", curSkill_1);
     }
 
     private void Start()

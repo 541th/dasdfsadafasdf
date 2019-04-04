@@ -110,7 +110,7 @@ public class AIMethods : MonoBehaviour {
     HashSet<GridsNode> closedSet;
     public List<Vector2> setDestination(Vector2 from, Vector2 to)
     {
-        to += new Vector2(0, 0.4f);
+        to += new Vector2(0, 0.3f);
             
         if (gon == null)
             gon = FindObjectOfType<GridOfNodes>();
@@ -227,5 +227,11 @@ public class AIMethods : MonoBehaviour {
         else
             Destroy(gameObject, 0);
         //GetComponent<SpriteRenderer>().color = (GetComponent<NPCMovement>() == null) ? new Color(1, 1, 1, 1) : GetComponent<NPCMovement>().skinColor;
+    }
+
+    public void destroyCollider()
+    {
+        if (GetComponent<BoxCollider2D>() != null)
+            Destroy(GetComponent<BoxCollider2D>());
     }
 }

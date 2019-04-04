@@ -12,7 +12,10 @@ public class UIManager : MonoBehaviour
 
     private void OnLevelWasLoaded(int level)
     {
-        saveData();
+        if (PlayerPrefs.GetInt("Continue") == 0)
+        {
+            saveData();
+        }
     }
 
     private void OnDestroy()
@@ -163,12 +166,15 @@ public class UIManager : MonoBehaviour
             item.transform.GetChild(0).gameObject.SetActive(false);
         }
 
-        EndLevel[] el = FindObjectsOfType<EndLevel>();
-
-        foreach (EndLevel item in el)
+        if (!value)
         {
-            if (item.transform.childCount > 2)
-                item.transform.GetChild(2).GetChild(0).gameObject.SetActive(false);
+            EndLevel[] el = FindObjectsOfType<EndLevel>();
+
+            foreach (EndLevel item in el)
+            {
+                if (item.transform.childCount > 2)
+                    item.allObjects.gameObject.SetActive(false);
+            }
         }
 
         if (FindObjectOfType<Entry>() != null)

@@ -14,7 +14,8 @@ public class PlayerHP : MonoBehaviour
 
     private void OnLevelWasLoaded(int level)
     {
-        PlayerPrefs.SetInt("HP", startMax);
+        if (PlayerPrefs.GetInt("Continue") == 0)
+            PlayerPrefs.SetInt("HP", startMax);
     }
 
     private void OnDestroy()

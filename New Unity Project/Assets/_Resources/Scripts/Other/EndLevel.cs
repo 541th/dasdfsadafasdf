@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class EndLevel : MonoBehaviour
 {
     [SerializeField] GameObject BG, buttons;
+    public GameObject allObjects;
 
     public void showPanel()
     {

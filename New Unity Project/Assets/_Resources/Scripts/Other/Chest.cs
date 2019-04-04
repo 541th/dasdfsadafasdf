@@ -7,7 +7,7 @@ public class Chest : MonoBehaviour
     [SerializeField] GameObject monetsPrefab;
     [SerializeField] GameObject equipPrefab;
 
-    private void OnDestroy()
+    public void destrEvent()
     {
         int chanse = Random.Range(0, 12);
 

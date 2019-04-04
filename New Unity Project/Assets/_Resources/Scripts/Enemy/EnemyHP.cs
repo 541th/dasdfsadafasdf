@@ -11,7 +11,7 @@ public class EnemyHP : MonoBehaviour
     public float expForKill;
 
     [SerializeField] GameObject monetsPrefab;
-    [SerializeField] bool isMonets;
+    [SerializeField] bool isMonets, chest;
     [SerializeField] int maxAmountMonets;
 
     [SerializeField] Material defaultMaterial, blinkMaterial;
@@ -331,7 +331,7 @@ public class EnemyHP : MonoBehaviour
             }
             else
             {
-                if (!subbed)
+                if (!subbed && FindObjectOfType<EnemyManager>() != null)
                 {
                     subbed = true;
                     FindObjectOfType<EnemyManager>().subCount();
@@ -360,6 +360,11 @@ public class EnemyHP : MonoBehaviour
             monets.GetComponent<MonetsEffect>().monets = true;
             monets.GetComponent<MonetsEffect>().enemy = true;
             monets.GetComponent<MonetsEffect>().amount = maxAmountMonets;
+        }
+
+        if (chest)
+        {
+            transform.parent.GetComponent<Chest>().destrEvent();
         }
 
         if (justDestr)

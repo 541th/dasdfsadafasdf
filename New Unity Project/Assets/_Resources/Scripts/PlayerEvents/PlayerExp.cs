@@ -147,7 +147,7 @@ public class PlayerExp : MonoBehaviour
                 curLvl++;
                 points += 2;
                 StartCoroutine(showNewLvl());
-                expToLvlUp += 100 * curLvl;
+                expToLvlUp += 60 * curLvl;
                 slider.maxValue = expToLvlUp;
                 GetComponent<PlayerHP>().lvlup();
             }
@@ -160,7 +160,7 @@ public class PlayerExp : MonoBehaviour
             curLvl++;
             points += 2;
             StartCoroutine(showNewLvl());
-            expToLvlUp += 100 * curLvl;
+            expToLvlUp += 60 * curLvl;
             slider.maxValue = expToLvlUp;
             GetComponent<PlayerHP>().lvlup();
         }

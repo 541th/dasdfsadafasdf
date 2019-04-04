@@ -19255,6 +19255,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PortalEnd
       objectReference: {fileID: 0}
+    - target: {fileID: 1074238561, guid: 7dce58e9572f4fb40ae64175c366d419, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1074238562, guid: 7dce58e9572f4fb40ae64175c366d419, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.51
@@ -24743,7 +24747,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &913451734
 Transform:
   m_ObjectHideFlags: 0
@@ -38503,6 +38507,10 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1564684682, guid: bb4ab55bedb0b0044a389a614e7380dc, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8616025444085719083, guid: bb4ab55bedb0b0044a389a614e7380dc,
         type: 3}
@@ -63901,6 +63909,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2556638891002869837, guid: 39e8d9f701073804796177dce1ef6b1c,
+        type: 3}
+      propertyPath: playerType
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 39e8d9f701073804796177dce1ef6b1c, type: 3}

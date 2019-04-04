@@ -189,8 +189,11 @@ public class InfoController : MonoBehaviour
             perksInfo.transform.GetChild(0).GetChild(2).GetComponent<Text>().text = "lvl. " + perks[id - 16].lvl;
             perksInfo.transform.GetChild(1).GetChild(1).gameObject.SetActive(false);
             perksInfo.transform.GetChild(1).GetChild(2).gameObject.SetActive(false);
-            perksInfo.transform.GetChild(1).GetChild(3).gameObject.SetActive((FindObjectOfType<PlayerMovement>().playerType == getCurPanelId() + 1 
-                || FindObjectOfType<PlayerMovement>().playerType == 0) && PlayerExp.points > 0 && lvl <= perksPanel.transform.GetChild(getCurPanelId()).GetChild(1).GetChild(0).GetComponent<Slider>().value);
+            perksInfo.transform.GetChild(1).GetChild(3).gameObject.SetActive(
+                (FindObjectOfType<PlayerMovement>().playerType == getCurPanelId() + 1 || FindObjectOfType<PlayerMovement>().playerType == 0) && 
+                PlayerExp.points > 0 && 
+                lvl <= perksPanel.transform.GetChild(getCurPanelId()).GetChild(1).GetChild(0).GetComponent<Slider>().value &&
+                perks[id - 16].lvl < 5);
             perksInfo.transform.GetChild(1).GetChild(4).gameObject.SetActive(false);
         }
         else

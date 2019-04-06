@@ -32,6 +32,7 @@ public class Boss_2_TilesGrid : MonoBehaviour
         {
             float X1 = Mathf.Clamp(((float)startX - 1 - i), 0, 23), X2 = Mathf.Clamp(((float)startX + 1 + i), 0, 23);
             float Y1 = Mathf.Clamp(((float)startY - 1 - i), 0, 19), Y2 = Mathf.Clamp(((float)startY + 1 + i), 0, 19);
+
             a2 = (int)(((X2 - X1) / 2) * ((X2 - X1) / 2));
             b2 = (int)(((Y2 - Y1) / 2) * ((Y2 - Y1) / 2));
             x0 = (int)((X2 + X1) / 2);
@@ -65,6 +66,22 @@ public class Boss_2_TilesGrid : MonoBehaviour
 
         int x2 = (int)Mathf.Abs((endPos.x - .5f) / 1.3f);
         int y2 = (int)Mathf.Abs((endPos.y - 30f) / 1.3f);
+
+        int temp;
+
+        if (x1 > x2)
+        {
+            temp = x2;
+            x2 = x1;
+            x1 = temp;
+        }
+
+        if (y1 > y2)
+        {
+            temp = y2;
+            y2 = y1;
+            y1 = temp;
+        }
 
         StartCoroutine(lineEvent(x1, y1, x2, y2));
     }
@@ -109,11 +126,14 @@ public class Boss_2_TilesGrid : MonoBehaviour
             x += xSign;
             e += 2 * dy;
             i++;
+
+            if (i > 40) break;
         } while (i <= dx);
 
         Transform t = transform;
 
         yield return new WaitForSeconds(2f);
+
         for (i = 0; i < t.childCount; i++)
             t.GetChild(i).gameObject.SetActive(false);
     }

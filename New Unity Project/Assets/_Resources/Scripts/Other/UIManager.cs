@@ -180,23 +180,27 @@ public class UIManager : MonoBehaviour
         if (FindObjectOfType<Entry>() != null)
             FindObjectOfType<Entry>().transform.GetChild(0).gameObject.SetActive(value);
 
+        int playerType = PlayerPrefs.GetInt("PlayerType");
+        if (FindObjectOfType<PlayerMovement>() != null)
+            playerType = FindObjectOfType<PlayerMovement>().playerType;
+
         for (int i = 0; i < items.Count; i++)
         {
             if (items[i].name == "Skill_0")
             {
-                items[i].SetActive(tValue && InfoController.curSkill_0 != 0 && PlayerPrefs.GetInt("PlayerType") != 0 && PlayerPrefs.GetInt("PlayerType") == InfoController.curSkill_0id);
+                items[i].SetActive(tValue && InfoController.curSkill_0 != 0 && playerType != 0 && playerType == InfoController.curSkill_0id);
                 continue;
             }
 
             if (items[i].name == "Skill_1")
             {
-                items[i].SetActive(tValue && InfoController.curSkill_1 != 0 && PlayerPrefs.GetInt("PlayerType") != 0 && PlayerPrefs.GetInt("PlayerType") == InfoController.curSkill_1id);
+                items[i].SetActive(tValue && InfoController.curSkill_1 != 0 && playerType != 0 && playerType == InfoController.curSkill_1id);
                 continue;
             }
 
             if (items[i].name == "Bars")
             {
-                items[i].SetActive(tValue && PlayerPrefs.GetInt("PlayerType") != 0);
+                items[i].SetActive(tValue && playerType != 0);
                 continue;
             }
 
@@ -229,14 +233,15 @@ public class UIManager : MonoBehaviour
     public void removeItemFromGameButtons(GameObject item)
     {
         for (int i = 0; i < gameButtons.Count; i++)
-            if (gameButtons[i].name == item.name)
+            if (gameButtons[i] != null && gameButtons[i].name == item.name)
                 gameButtons.RemoveAt(i);
     }
 
     public void setGameButtons(bool value)
     {
         for (int i = 0; i < gameButtons.Count; i++)
-            gameButtons[i].SetActive(value);
+            if (gameButtons[i] != null)
+                gameButtons[i].SetActive(value);
     }
 
     public void setSkillCD_0(float value)
@@ -328,6 +333,11 @@ public class UIManager : MonoBehaviour
         bossHPBar.GetComponent<Slider>().maxValue = maxValue;
         bossHPBar.GetComponent<Slider>().value = value;
         bossHPBar.SetActive(true);
+    }
+
+    public void hideBossHPBar()
+    {
+        bossHPBar.SetActive(false);
     }
 
     public void goToMenu()

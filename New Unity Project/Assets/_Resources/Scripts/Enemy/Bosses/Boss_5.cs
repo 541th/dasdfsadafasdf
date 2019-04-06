@@ -56,7 +56,7 @@ public class Boss_5 : MonoBehaviour
         float timer = 0, sin, cos;
         Vector2 _n, res;
 
-        while (true)
+        while (partsParent != null)
         {
             if (rotate)
             {
@@ -106,14 +106,14 @@ public class Boss_5 : MonoBehaviour
                     shooted = false;
                     //if (Vector2.Distance(transform.position, ((targets.Count == 0) ? player.transform.position : targets[0].transform.position)) > 2)
                     {
-                        playerRandomPoint = new Vector2(player.transform.position.x + Random.Range(-6f, 6f),
-                            player.transform.position.y + Random.Range(-6f, 6f));
+                        playerRandomPoint = new Vector2(player.transform.position.x + Random.Range(-4f, 4f),
+                            player.transform.position.y + Random.Range(-4f, 4f));
 
                         if (gon.GetNodeByPos(playerRandomPoint) != null)
                             while (!gon.GetNodeByPos(playerRandomPoint).walkable)
                             {
-                                playerRandomPoint = new Vector2(player.transform.position.x + Random.Range(-6f, 6f),
-                                    player.transform.position.y + Random.Range(-6f, 6f));
+                                playerRandomPoint = new Vector2(player.transform.position.x + Random.Range(-4f, 4f),
+                                    player.transform.position.y + Random.Range(-4f, 4f));
                             }
                         else
                         {

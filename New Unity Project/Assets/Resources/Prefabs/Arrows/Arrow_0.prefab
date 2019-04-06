@@ -124,8 +124,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {x: 0, y: 0}
   ms: {x: 0, y: 0}
+  colliderEnabledTime: 0
   dontStop: 0
   hasParticle: 0
+  fly: 0
 --- !u!114 &1714211546219208651
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -138,7 +140,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35cda4fdbcd670c45872846cb1ae235e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 8
+  damage: 16
   randL: -4
   randH: 4
   isArrow: 1

@@ -14,6 +14,14 @@ public class SortingOrder : MonoBehaviour
 
     public bool dontChangeSortingOrger;
 
+    //КТО-НИБУДЬ ИЗ БУДУЩЕГО, ПОСЛУШАЙ МЕНЯ - МНЕ ОЧЕНЬ ЖАЛЬ ЗА ЭТОТ КОД! ЗДЕСЬ ЭТОГО НЕ ДОЛЖНО БЫТЬ! Я НЕ ХОЧУ ЭТОГО ДЕЛАТЬ, НО МНЕ ЛЕНЬ СОЗДАВАТЬ НОВЫЙ СКРИПТ ТОЛЬКО РАДИ ОДНОЙ ФУНКЦИИ!
+    //ДА И ВООБЩЕ СЕЙЧАС ШЕСТЬ УТРА, ПРОСТИ МЕНЯ
+    //ЭТИМ Я ХОЧУ ПОКАЗАТЬ КАК МНЕ ДЕЙСТВИТЕЛЬНО ЖАЛЬ
+    public void getPunchShake()
+    {
+        FindObjectOfType<CamFollow>().startSwordShake();
+    }
+
     private void Start()
     {
         if (!isParticle)

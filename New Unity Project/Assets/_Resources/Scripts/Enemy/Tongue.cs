@@ -32,6 +32,7 @@ public class Tongue : MonoBehaviour
 
         GameObject button = Instantiate(buttonPrefab);
         button.transform.SetParent(_t.parent);
+        button.transform.position = player.transform.position;
         FindObjectOfType<UIManager>().addItemToGameButtons(button);
 
         Vector2 target = -(_t.parent.position - player.position);

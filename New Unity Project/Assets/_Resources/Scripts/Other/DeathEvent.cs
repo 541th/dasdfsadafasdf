@@ -14,7 +14,7 @@ public class DeathEvent : MonoBehaviour
 
         StartCoroutine(soul());
 
-        FindObjectOfType<PlayerHP>().setAllFull();
+        //FindObjectOfType<PlayerHP>().setAllFull();
     }
 
     IEnumerator soul()

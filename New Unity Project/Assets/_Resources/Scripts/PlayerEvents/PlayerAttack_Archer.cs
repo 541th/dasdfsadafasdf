@@ -99,12 +99,11 @@ public class PlayerAttack_Archer : MonoBehaviour
         arrow.GetComponent<PlayerAttacker>().isLightning = isLightning;
         isLightning = false;
 
-        //SHAKING THE CAMERA
+        if (cam == null) cam = GameObject.Find("Main Camera").GetComponent<CamFollow>();
+        cam.startShakeArrow();
+
         if (GetComponent<PlayerMovement>().playerType == 2)
         {
-            if (cam == null) cam = GameObject.Find("Main Camera").GetComponent<CamFollow>();
-            cam.startShakeArrow();
-
             arrow.GetComponent<PlayerAttacker>().bleeding = Random.Range(1, 100) <= InfoController.perks[7].value;
             arrow.GetComponent<PlayerAttacker>().expl = Random.Range(1, 100) <= InfoController.perks[8].value;
         }

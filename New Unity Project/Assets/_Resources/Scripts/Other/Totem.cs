@@ -66,7 +66,7 @@ public class Totem : MonoBehaviour
 
             if (healTimer > 0.2f)
             {
-                if (playerInTrigger)_php.toHeal(2);
+                if (playerInTrigger) _php.toHeal(_php.getMaxHP() / 200);
 
                 healTimer = 0;
             }

@@ -10,7 +10,7 @@ public class TotemSpawner : MonoBehaviour
 
     void Start()
     {
-        GameObject totem = Instantiate(totemType[Random.Range(0, totemType.Length)]);
+        GameObject totem = Instantiate(totemType[Random.Range(0, totemType.Length)], transform);
         totem.transform.position = transform.position;
 
         totem.GetComponent<SpriteRenderer>().sprite = sprites[levelType];

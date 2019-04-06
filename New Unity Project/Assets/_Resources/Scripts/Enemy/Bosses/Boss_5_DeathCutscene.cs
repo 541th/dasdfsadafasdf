@@ -5,26 +5,28 @@ using UnityEngine.UI;
 
 public class Boss_5_DeathCutscene : MonoBehaviour
 {
-    [SerializeField] GameObject[] toWhite;
     [SerializeField] GameObject[] toDestr;
     [SerializeField] Material white, black;
     [SerializeField] GameObject Boss;
 
     [SerializeField] GameObject particlePrefab, lastExpl, canvas;
+
+    bool isCutScene;
     public IEnumerator finalCutscene()
     {
-        //yield return new WaitForSeconds(2);
+        if (isCutScene) yield break;
 
-        Destroy(GetComponent<Boss_5>());
+        isCutScene = true;
+
+        Destroy(FindObjectOfType<Boss_5>());
         FindObjectOfType<CamFollow>().stopCameraRotating();
-
-        for (int i = 0; i < toWhite.Length; i++)
-        {
-            toWhite[i].GetComponent<SpriteRenderer>().material = white;
-        }
 
         GameObject.Find("Player").transform.GetChild(0).GetComponent<SpriteRenderer>().material = white;
         GameObject.Find("Player").transform.GetChild(1).GetComponent<SpriteRenderer>().material = white;
+
+        GameObject.Find("Player").transform.GetChild(0).GetComponent<Animator>().SetBool("attack", false);
+        GameObject.Find("Player").transform.GetChild(0).GetComponent<Animator>().SetBool("run", false);
+        GameObject.Find("Player").transform.GetChild(1).GetComponent<Animator>().SetBool("run", false);
 
         for (int i = 0; i < toDestr.Length; i++)
         {
@@ -38,6 +40,7 @@ public class Boss_5_DeathCutscene : MonoBehaviour
         FindObjectOfType<CamFollow>().followTarget = camPoint;
 
         yield return new WaitForSeconds(1);
+        Boss.transform.GetComponent<SpriteRenderer>().material = white;
 
         Vector2 bossStartPos = Boss.transform.position;
 

@@ -114,6 +114,8 @@ public class CamFollow : MonoBehaviour
 
         if (followTarget == null) followTarget = GameObject.Find("Player");
         shotDir = followTarget.transform.GetChild(followTarget.transform.childCount - 1);
+
+        FindObjectOfType<PlayerHP>().setAllFull();
     }
 
     IEnumerator cutscene()
@@ -286,9 +288,14 @@ public class CamFollow : MonoBehaviour
             yield return new WaitForSeconds(1);
         }
 
+        blackScreen = FindObjectOfType<UIManager>().blackScreen;
+        blackScreenImage = blackScreen.GetComponent<UnityEngine.UI.Image>();
+        blackScreenText = blackScreen.transform.GetChild(0).GetComponent<UnityEngine.UI.Text>();
+
         while (blackScreenImage.color.a >= 0)
         {
             blackScreenText.color -= new Color(0, 0, 0, Time.deltaTime);
+
             blackScreenImage.color -= new Color(0, 0, 0, Time.deltaTime);
             yield return null;
         }
@@ -297,7 +304,7 @@ public class CamFollow : MonoBehaviour
     }
 
     float clampedX, clampedY, a_h, a_v;
-    Vector2 delta;
+    Vector2 delta, swordShakeDir;
     bool arrowShotShaking;
     // Update is called once per frame
     void Update()
@@ -307,12 +314,18 @@ public class CamFollow : MonoBehaviour
             if (shotDir == null)
                 shotDir = followTarget.transform.GetChild(followTarget.transform.childCount - 1);
 
-            a_h = CnInputManager.GetAxis("Attack_H") * 2;
-            a_v = CnInputManager.GetAxis("Attack_V") * 2;
+            a_h = CnInputManager.GetAxis("Attack_H");
+            a_v = CnInputManager.GetAxis("Attack_V");
+
+            delta = Vector2.zero;
+
             if (!arrowShotShaking)
-                delta = new Vector2(a_h, a_v);
-            else
-                delta = Vector2.zero;
+                delta = new Vector2(a_h, a_v) * 4;
+
+            if (swordShake)
+            {
+                delta += swordShakeDir;
+            }
 
             if (a_h != 0 || a_v != 0)
             {
@@ -336,15 +349,29 @@ public class CamFollow : MonoBehaviour
         StartCoroutine(arrowShotShake());
     }
 
-    public void punchShake()
-    {
-        transform.position += new Vector3(Random.Range(-.6f, .6f), Random.Range(-.6f, .6f));
-    }
-
     IEnumerator arrowShotShake()
     {
         arrowShotShaking = true;
-        yield return new WaitForSeconds(0.01f);
+        yield return new WaitForSeconds(0.02f);
         arrowShotShaking = false;
+    }
+
+    public void startSwordShake()
+    {
+        StartCoroutine(swordShakeEvent());
+    }
+
+    bool swordShake;
+    IEnumerator swordShakeEvent()
+    {
+        swordShake = true;
+        swordShakeDir = new Vector2(Random.Range(-4f, 4f), Random.Range(-4f, 4f));
+        yield return new WaitForSeconds(0.03f);
+        swordShake = false;
+    }
+
+    public void punchShake(float value)
+    {
+        transform.position += new Vector3(Random.Range(-value, value), Random.Range(-value, value));
     }
 }

@@ -209,6 +209,11 @@ namespace CnControls
 
         public void OnPointerUp(PointerEventData eventData)
         {
+            pointerUp();
+        }
+
+        public void pointerUp()
+        {
             // When we lift our finger, we reset everything to the initial state
             _baseTransform.anchoredPosition = _initialBasePosition;
             _stickTransform.anchoredPosition = _initialStickPosition;

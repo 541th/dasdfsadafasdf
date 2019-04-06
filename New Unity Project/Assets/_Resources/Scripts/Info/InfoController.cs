@@ -37,8 +37,11 @@ public class InfoController : MonoBehaviour
             for (int i = 0; i < 3; i++)
                 PlayerPrefs.SetFloat("SV_" + i, sV[i]);
 
-            PlayerPrefs.SetInt("CurSkillId_0", curSkill_0);
-            PlayerPrefs.SetInt("CurSkillId_1", curSkill_1);
+            PlayerPrefs.SetInt("CurSkill_0", curSkill_0);
+            PlayerPrefs.SetInt("CurSkill_1", curSkill_1);
+
+            PlayerPrefs.SetInt("CurSkillId_0", curSkill_0id);
+            PlayerPrefs.SetInt("CurSkillId_1", curSkill_1id);
         }
     }
 
@@ -53,8 +56,11 @@ public class InfoController : MonoBehaviour
         for (int i = 0; i < 3; i++)
             sV[i] = PlayerPrefs.GetFloat("SV_" + i);
 
-        curSkill_0 = PlayerPrefs.GetInt("CurSkillId_0");
-        curSkill_1 = PlayerPrefs.GetInt("CurSkillId_1");
+        curSkill_0 = PlayerPrefs.GetInt("CurSkill_0");
+        curSkill_1 = PlayerPrefs.GetInt("CurSkill_1");
+
+        curSkill_0id = PlayerPrefs.GetInt("CurSkillId_0");
+        curSkill_1id = PlayerPrefs.GetInt("CurSkillId_1");
 
         //PerkContainer[] perk = FindObjectsOfType<PerkContainer>();
 
@@ -242,7 +248,8 @@ public class InfoController : MonoBehaviour
         FindObjectOfType<UIManager>().setSkillIcon_0(_t.GetComponent<Image>());
         perksInfo.SetActive(false);
         curSkill_0 = id;
-        PlayerPrefs.SetInt("CurSkill_0id", PlayerPrefs.GetInt("PlayerType"));
+        curSkill_0id = FindObjectOfType<PlayerMovement>().playerType;
+        //PlayerPrefs.SetInt("CurSkill_0id", PlayerPrefs.GetInt("PlayerType"));
 
         if (curSkill_0 == curSkill_1) curSkill_1 = 0;
     }
@@ -252,7 +259,8 @@ public class InfoController : MonoBehaviour
         FindObjectOfType<UIManager>().setSkillIcon_1(_t.GetComponent<Image>());
         perksInfo.SetActive(false);
         curSkill_1 = id;
-        PlayerPrefs.SetInt("CurSkill_1id", PlayerPrefs.GetInt("PlayerType"));
+        curSkill_1id = FindObjectOfType<PlayerMovement>().playerType;
+        //PlayerPrefs.SetInt("CurSkill_1id", PlayerPrefs.GetInt("PlayerType"));
 
         if (curSkill_0 == curSkill_1) curSkill_0 = 0;
     }
@@ -274,15 +282,7 @@ public class InfoController : MonoBehaviour
     public void upPerk()
     {
         int _id = id - 16;
-
-        PlayerExp.points--;
-        infoPanel.transform.GetChild(2).GetComponent<Text>().text = "Points: " + PlayerExp.points;
-
-        if (PlayerExp.points == 0)
-        {
-            perksInfo.transform.GetChild(1).GetChild(3).gameObject.SetActive(false);
-        }
-
+        
         if (perks[_id].lvl < 5 && PlayerExp.points > 0)
         {
             perks[_id].lvl++;
@@ -295,6 +295,14 @@ public class InfoController : MonoBehaviour
             if (_id == 0 && player.GetComponent<PlayerMovement>().playerType == 1) FindObjectOfType<PlayerHP>().updateMaxHP();
             else if (_id == 5 && player.GetComponent<PlayerMovement>().playerType == 2) player.GetComponent<PlayerMovement>().updadeMS();
             else if (_id == 6 && player.GetComponent<PlayerMovement>().playerType == 2) FindObjectOfType<CamFollow>().updateCamSize();
+        }
+
+        PlayerExp.points--;
+        infoPanel.transform.GetChild(2).GetComponent<Text>().text = "Points: " + PlayerExp.points;
+
+        if (PlayerExp.points == 0)
+        {
+            perksInfo.transform.GetChild(1).GetChild(3).gameObject.SetActive(false);
         }
 
         if (perks[_id].lvl == 5)
@@ -420,14 +428,17 @@ public class InfoController : MonoBehaviour
 
         GameObject pentagram = Instantiate(Resources.Load("Prefabs/Effects/Pentagram_Fire") as GameObject);
         pentagram.transform.position = pm.transform.position;
-
+        
         pm.dontMove = true;
         pm.dontAttack = true;
+        pm.transform.GetChild(1).gameObject.SetActive(false);
+        pm.transform.GetChild(0).GetComponent<Animator>().SetTrigger("PentagramFire");
 
         yield return new WaitForSeconds(1f);
 
         pm.dontMove = false;
         pm.dontAttack = false;
+        pm.transform.GetChild(1).gameObject.SetActive(true);
 
         yield return new WaitForSeconds(.3f);
 

@@ -65,13 +65,13 @@ public class Enemy_0 : MonoBehaviour
                 {
                     dir = AI.chooseDir();
                     gotDir = true;
+                }
 
-                    RaycastHit2D ray = Physics2D.Raycast(_t.position, dir, 10, mask);
+                RaycastHit2D ray = Physics2D.Raycast(_t.position, dir, 2, mask);
 
-                    if (ray.collider != null && !ray.collider.isTrigger)
-                    {
-                        dir = AI.chooseDirectionWithException(AI.getDirByVector(dir));
-                    }
+                if (ray.collider != null)
+                {
+                    dir = AI.chooseDirectionWithException(AI.getDirByVector(dir));
                 }
 
                 walkCounter -= Time.deltaTime;

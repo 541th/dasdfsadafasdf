@@ -7,9 +7,11 @@ public class PlayerAttack_Warrior : MonoBehaviour
     bool isAttacking;
     Animator _aUp, _aDown;
     PlayerMovement _pm;
+    CamFollow cam;
 
     private void Start()
     {
+        cam = FindObjectOfType<CamFollow>();
         _aUp = transform.GetChild(0).GetComponent<Animator>();
         _aDown = transform.GetChild(1).GetComponent<Animator>();
         _pm = GetComponent<PlayerMovement>();
@@ -38,6 +40,11 @@ public class PlayerAttack_Warrior : MonoBehaviour
             isAttacking = false;
             _aUp.SetBool("attack", false);
         }
+    }
+
+    public void shakeCam()
+    {
+        cam.startShakeArrow();
     }
 
     public void skill_0()

@@ -11,16 +11,18 @@ public class EnemyHP : MonoBehaviour
     public float expForKill;
 
     [SerializeField] GameObject monetsPrefab;
-    [SerializeField] bool isMonets, chest;
+    [SerializeField] bool isMonets, chest, dontBleeding;
     [SerializeField] int maxAmountMonets;
 
     [SerializeField] Material defaultMaterial, blinkMaterial;
 
     private void Start()
     {
+        maxAmountMonets += FindObjectOfType<PlayerExp>().curLvl * 2;
         player = GameObject.Find("Player").transform;
 
-        maxHP = maxHP + (maxHP / 40) * FindObjectOfType<PlayerExp>().curLvl;
+        maxHP = maxHP + (maxHP / 10) * FindObjectOfType<PlayerExp>().curLvl;
+        expForKill = maxHP;
         HP = maxHP;
     }
 
@@ -49,7 +51,7 @@ public class EnemyHP : MonoBehaviour
 
     public void toDamage(int damage, bool isFlying, bool stan, bool bleeding, bool expl, bool sub, bool explMag)
     {
-        if (bleeding) StartCoroutine(bleedingEvent());
+        if (bleeding && !dontBleeding) StartCoroutine(bleedingEvent());
         if (expl) explEvent();
         if (sub)
         {
@@ -109,10 +111,12 @@ public class EnemyHP : MonoBehaviour
                 if (i == 0 && j == 0) continue;
 
                 GameObject arrow = Instantiate(arrowPrefab);
+                arrow.GetComponent<BoxCollider2D>().enabled = false;
+                arrow.GetComponent<ArrowFly>().colliderEnabledTime = 0.1f;
                 arrow.transform.position = transform.position;
 
-                arrow.GetComponent<ArrowFly>().target = new Vector2(i, j).normalized;
-                arrow.transform.eulerAngles = new Vector3(0, 0, Mathf.Atan2(i, j) * 180 / Mathf.PI);
+                arrow.GetComponent<ArrowFly>().target = new Vector2(-i, j).normalized;
+                arrow.transform.eulerAngles = new Vector3(0, 0, Mathf.Atan2(i, j) * 180 / Mathf.PI+ 90);
             }
         }
     }
@@ -375,6 +379,8 @@ public class EnemyHP : MonoBehaviour
 
         if (isBoss)
         {
+            FindObjectOfType<UIManager>().hideBossHPBar();
+
             PlayerPrefs.SetInt("level_" + (int.Parse(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name) + 1), 1);
 
             if (transform.parent.GetComponent<Animator>() != null)

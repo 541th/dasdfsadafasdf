@@ -5,8 +5,9 @@ using UnityEngine;
 public class ArrowFly : MonoBehaviour
 {
     public Vector2 target, ms;
+    public float colliderEnabledTime;
     [SerializeField] bool dontStop, hasParticle;
-    bool fly;
+    public bool fly;
     Rigidbody2D _rb;
 
     private void Start()
@@ -23,6 +24,16 @@ public class ArrowFly : MonoBehaviour
 
     private void Update()
     {
+        if (colliderEnabledTime > 0)
+        {
+            colliderEnabledTime -= Time.deltaTime;
+
+            if (colliderEnabledTime <= 0)
+            {
+                GetComponent<BoxCollider2D>().enabled = true;
+            }
+        }
+
         if (fly)
         {
             if (hasParticle) transform.GetChild(0).eulerAngles = Vector3.zero;

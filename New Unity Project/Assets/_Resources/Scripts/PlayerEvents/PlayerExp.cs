@@ -41,7 +41,6 @@ public class PlayerExp : MonoBehaviour
 
         slider.value = PlayerPrefs.GetFloat("EXP");
         points = PlayerPrefs.GetInt("Points");
-
         curExp = (int)slider.value;
     }
 
@@ -52,7 +51,7 @@ public class PlayerExp : MonoBehaviour
 
     public int getKoefByLvl()
     {
-        return 4 / curLvl;
+        return curLvl / 2;
     }
 
     IEnumerator doubleExpEvent()
@@ -147,7 +146,7 @@ public class PlayerExp : MonoBehaviour
                 curLvl++;
                 points += 2;
                 StartCoroutine(showNewLvl());
-                expToLvlUp += 60 * curLvl;
+                expToLvlUp = 120 * curLvl;
                 slider.maxValue = expToLvlUp;
                 GetComponent<PlayerHP>().lvlup();
             }
@@ -160,7 +159,7 @@ public class PlayerExp : MonoBehaviour
             curLvl++;
             points += 2;
             StartCoroutine(showNewLvl());
-            expToLvlUp += 60 * curLvl;
+            expToLvlUp = 120 * curLvl;
             slider.maxValue = expToLvlUp;
             GetComponent<PlayerHP>().lvlup();
         }

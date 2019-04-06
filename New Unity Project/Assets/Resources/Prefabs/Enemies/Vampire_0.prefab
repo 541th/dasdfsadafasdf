@@ -171,21 +171,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a27e3c8b64114db459f9726822a676b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HP: 60
-  maxHP: 60
+  HP: 160
+  maxHP: 160
   floatingNumbers: {fileID: 7304696037472265733, guid: 9d8b31a025a27d349bbe185a3b4e58c2,
     type: 3}
   slider: {fileID: 2338001907778222161}
-  expForKill: 80
+  expForKill: 160
   monetsPrefab: {fileID: 5607912052436826177, guid: 9302e88ff8a30d04a96c0d98bc0cb0b4,
     type: 3}
   isMonets: 1
+  chest: 0
+  dontBleeding: 0
   maxAmountMonets: 10
   defaultMaterial: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   blinkMaterial: {fileID: 2100000, guid: 9827d63a786847849b1d51a5ad5ab300, type: 2}
   divide: 1
   createSwill: 0
   isGhost: 0
+  dontFly: 1
   isBoss: 0
   isBossSleeping: 0
   isFinalCutscene: 0
@@ -379,6 +382,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 712d8dc1633ca684fa5fe8343fe62ea3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  delta: 0
   isParticle: 0
   dontSubParticle: 0
   dontChangeSortingOrger: 0

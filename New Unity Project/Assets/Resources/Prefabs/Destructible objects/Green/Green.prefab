@@ -276,12 +276,15 @@ MonoBehaviour:
   monetsPrefab: {fileID: 5607912052436826177, guid: 9302e88ff8a30d04a96c0d98bc0cb0b4,
     type: 3}
   isMonets: 1
+  chest: 0
+  dontBleeding: 1
   maxAmountMonets: 20
   defaultMaterial: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   blinkMaterial: {fileID: 2100000, guid: 9827d63a786847849b1d51a5ad5ab300, type: 2}
   divide: 1
   createSwill: 0
   isGhost: 0
+  dontFly: 0
   isBoss: 0
   isBossSleeping: 0
   isFinalCutscene: 0
@@ -300,11 +303,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parts:
-  - {fileID: 8018172447000975997, guid: 95b47334edc079b4490de0a0842ed15c, type: 3}
-  - {fileID: 311421558031050063, guid: 4717b84e7ad751843ab1ca5d457bb5d3, type: 3}
-  - {fileID: 311421558031050063, guid: 425524b1375f2124b85366b263ebf43c, type: 3}
-  - {fileID: 311421558031050063, guid: 263e8f32ea166374da43896aa88f3db1, type: 3}
-  - {fileID: 311421558031050063, guid: d4b6e64b41764ef4fbcb152f4a2ad3f7, type: 3}
+  - {fileID: 8018172447000975997, guid: a53694f03b115084fab99eb7e8502274, type: 3}
+  - {fileID: 311421558031050063, guid: f8afa8403cc02e846a19610c353f7e0a, type: 3}
+  - {fileID: 311421558031050063, guid: e2784656237e28143b467a84b0c89318, type: 3}
   expl: {fileID: 3197244309895875938, guid: c4f7f60ad29bf554da05b0bb164a501f, type: 3}
   isRandom: 0
 --- !u!61 &1331673124616119621

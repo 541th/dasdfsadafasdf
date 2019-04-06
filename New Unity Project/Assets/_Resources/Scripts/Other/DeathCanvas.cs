@@ -55,7 +55,7 @@ public class DeathCanvas : MonoBehaviour
 
             PlayerPrefs.SetInt("LevelType", levelType);
 
-            FindObjectOfType<PlayerHP>().setAllFull();
+            //FindObjectOfType<PlayerHP>().setAllFull();
 
             UnityEngine.SceneManagement.SceneManager.LoadScene(levelToLoad + "");
         }

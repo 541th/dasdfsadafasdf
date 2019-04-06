@@ -177,7 +177,7 @@ public class Necromancery : MonoBehaviour
 
         FindObjectOfType<EnemyManager>().addCount();
         GameObject _enemy = Instantiate(resurrectPrefab);
-        _enemy.transform.position = _t.position + new Vector3(Random.Range(-2f, 2f), Random.Range(-2f, 2f));
+        _enemy.transform.position = _t.position;
 
     }
 

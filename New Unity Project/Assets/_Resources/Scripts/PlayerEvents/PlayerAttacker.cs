@@ -11,6 +11,11 @@ public class PlayerAttacker : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (isArrow && GetComponent<ArrowFly>() != null && !GetComponent<ArrowFly>().fly)
+        {
+            return;
+        }
+
         if (collision.CompareTag("EnemyHP"))
         {
             int value = damage + Random.Range(randL, randH);
@@ -22,10 +27,12 @@ public class PlayerAttacker : MonoBehaviour
 
             if (FindObjectOfType<PlayerHP>().lessThan10()) value += (int)InfoController.perks[2].value;
 
-            if (FindObjectOfType<PlayerMovement>().playerType != 0 && FindObjectOfType<InventoryManager>().takedItems[FindObjectOfType<PlayerMovement>().playerType - 1, 3] != null) 
+            if (FindObjectOfType<PlayerMovement>().playerType != 0 && FindObjectOfType<InventoryManager>().takedItems[FindObjectOfType<PlayerMovement>().playerType - 1, 3] != null)
                 value += FindObjectOfType<InventoryManager>().takedItems[FindObjectOfType<PlayerMovement>().playerType - 1, 3].value / 2;
 
             if (value < 0) value = 1;
+
+            if (!isArrow) FindObjectOfType<CamFollow>().startShakeArrow();
 
             if (isLightning)
             {
@@ -37,7 +44,7 @@ public class PlayerAttacker : MonoBehaviour
             else
             if (!slow)
             {
-                if (collision.GetComponent<EnemyHP>() != null)  
+                if (collision.GetComponent<EnemyHP>() != null)
                     collision.GetComponent<EnemyHP>().toDamage((value) * (skill_2 ? 3 : 1), Random.Range(0, 3) == 0 && !isArrow, withStan, bleeding, expl, sub, explMag);
                 else
                     collision.GetComponent<PartsHP>().toDamage((value) * (skill_2 ? 3 : 1), Random.Range(0, 3) == 0 && !isArrow, withStan, bleeding, expl, sub, explMag);

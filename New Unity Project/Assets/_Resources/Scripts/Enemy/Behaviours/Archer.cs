@@ -60,13 +60,13 @@ public class Archer : MonoBehaviour
                 {
                     dir = AI.chooseDir();
                     gotDir = true;
+                }
 
-                    RaycastHit2D ray = Physics2D.Raycast(_t.position, dir, 10, mask);
+                RaycastHit2D ray = Physics2D.Raycast(_t.position, dir, 2, mask);
 
-                    if (ray.collider != null && !ray.collider.isTrigger)
-                    {
-                        dir = AI.chooseDirectionWithException(AI.getDirByVector(dir));
-                    }
+                if (ray.collider != null)
+                {
+                    dir = AI.chooseDirectionWithException(AI.getDirByVector(dir));
                 }
 
                 walkCounter -= Time.deltaTime;
@@ -182,9 +182,11 @@ public class Archer : MonoBehaviour
         GameObject _arrow = Instantiate(arrow);
         _arrow.transform.position = transform.position + new Vector3(0, 1, 0);
 
+        Vector3 target = player.transform.position - new Vector3(0, .2f);
+
         _arrow.GetComponent<EnemyArrowFly>().target = (player.transform.position - transform.position).normalized;
-        _arrow.transform.eulerAngles = new Vector3(0, 0, Mathf.Atan2((player.transform.position - transform.position).normalized.y, 
-            (player.transform.position - transform.position).normalized.x) * 180 / Mathf.PI);
+        _arrow.transform.eulerAngles = new Vector3(0, 0, Mathf.Atan2((target - transform.position).normalized.y, 
+            (target - transform.position).normalized.x) * 180 / Mathf.PI);
 
         shooted = false;
 

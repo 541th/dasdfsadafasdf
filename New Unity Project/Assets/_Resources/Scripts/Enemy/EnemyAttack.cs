@@ -11,7 +11,7 @@ public class EnemyAttack : MonoBehaviour
 
     private void Start()
     {
-        damage = damage + FindObjectOfType<PlayerExp>().curLvl;
+        damage = damage + FindObjectOfType<PlayerExp>().getKoefByLvl();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -27,7 +27,7 @@ public class EnemyAttack : MonoBehaviour
 
             if (slowDown) FindObjectOfType<PlayerHP>().slowDown(4);
 
-            if (isBoss) FindObjectOfType<CamFollow>().punchShake();
+            FindObjectOfType<CamFollow>().punchShake(isBoss ? 0.6f : 0.3f);
 
             if (arrow && GetComponent<EnemyArrowFly>() != null) GetComponent<EnemyArrowFly>().stop();
         }

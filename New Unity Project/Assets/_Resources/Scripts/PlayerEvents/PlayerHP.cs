@@ -11,22 +11,12 @@ public class PlayerHP : MonoBehaviour
 
     [SerializeField] Material defaultMaterial, blinkMaterial;
     InventoryManager _im;
-
-    private void OnLevelWasLoaded(int level)
-    {
-        if (PlayerPrefs.GetInt("Continue") == 0)
-            PlayerPrefs.SetInt("HP", startMax);
-    }
-
-    private void OnDestroy()
-    {
-        PlayerPrefs.SetInt("HP", startMax);
-    }
-
+    
     public void setAllFull()
     {
         created = false;
-        HPslider.value = 100000;
+        HPslider.maxValue = 200 + (FindObjectOfType<PlayerMovement>().playerType == 1 ? (int)(InfoController.perks[0].value) : 0) + FindObjectOfType<PlayerExp>().curLvl * 10;
+        HPslider.value = HPslider.maxValue;
         HP = (int)HPslider.value;
         maxHP = HP;
         startMax = maxHP;
@@ -34,7 +24,6 @@ public class PlayerHP : MonoBehaviour
 
     private void Start()
     {
-        HPslider.maxValue = PlayerPrefs.GetInt("HP") == 0 ? 200 : PlayerPrefs.GetInt("HP");
         HPslider.value = HPslider.maxValue;
 
         _im = FindObjectOfType<InventoryManager>();
@@ -58,7 +47,7 @@ public class PlayerHP : MonoBehaviour
 
     public bool lessThan10()
     {
-        return HP / maxHP < 0.1f;
+        return (HP / (float)maxHP) <= 0.3f;
     }
 
     public void createForceField()
@@ -69,18 +58,22 @@ public class PlayerHP : MonoBehaviour
     bool isField;
     IEnumerator fieldEvent()
     {
-        GameObject field = Instantiate(Resources.Load("Prefabs/Effects/ForceField_0") as GameObject, transform.position, Quaternion.identity);
+        GameObject field = Instantiate(Resources.Load("Prefabs/Effects/ForceField_0") as GameObject);
         field.transform.localScale = new Vector3(2, 2, 2);
         isField = true;
 
+        Transform t = GameObject.Find("Player").transform;
         Transform other = null;
-        for (int i = 0; i < transform.childCount; i++)
-            if (transform.GetChild(i).name == "Other")
+
+        for (int i = 0; i < t.childCount; i++)
+            if (t.GetChild(i).name == "Other")
             {
-                other = transform.GetChild(i);
+                other = t.GetChild(i);
                 break;
             }
+
         field.transform.SetParent(other);
+        field.transform.localPosition = Vector2.zero;
 
         yield return new WaitForSeconds(6);
 
@@ -118,6 +111,8 @@ public class PlayerHP : MonoBehaviour
 
         damage -= def / 3;
 
+        if (damage <= 0) damage = 1;
+
         GameObject.Find("Player").transform.GetChild(0).GetComponent<SpriteRenderer>().material = blinkMaterial;
         GameObject.Find("Player").transform.GetChild(1).GetComponent<SpriteRenderer>().material = blinkMaterial;
         StartCoroutine(sub(damage));
@@ -153,9 +148,56 @@ public class PlayerHP : MonoBehaviour
         {
             FindObjectOfType<CamFollow>().stopCameraRotating();
             created = true;
+
+            foreach(CnControls.SimpleJoystick item in FindObjectsOfType<CnControls.SimpleJoystick>())
+            {
+                item.pointerUp();
+            }
+
             FindObjectOfType<UIManager>().setAllItems(false);
             GameObject deathEffect = Instantiate(deathEffectPrefab);
         }
+    }
+
+    bool isLessThan10, isJagging;
+    public bool dam;
+    private void Update()
+    {
+        if (dam)
+        {
+            toDamage(100);
+            dam = false;
+        }
+
+        if (lessThan10() && !isJagging)
+        {
+            isJagging = true;
+
+            StartCoroutine(jaggingEvent());
+        }
+        else
+        {
+            if (!lessThan10() && isJagging)
+            {
+                isJagging = false;
+            }
+        }
+    }
+
+    IEnumerator jaggingEvent()
+    {
+        Vector3 startPos = HPslider.transform.GetChild(1).localPosition;
+
+        while (isJagging)
+        {
+            HPslider.transform.GetChild(1).position = HPslider.transform.GetChild(1).position + new Vector3(Random.Range(-.1f, .1f), Random.Range(-.1f, .1f));
+
+            yield return new WaitForSeconds(Random.Range(.06f, .1f));
+
+            HPslider.transform.GetChild(1).localPosition = startPos;
+        }
+
+        HPslider.transform.GetChild(1).localPosition = startPos;
     }
 
     bool created;
@@ -181,15 +223,17 @@ public class PlayerHP : MonoBehaviour
 
     public void updateMaxHP()
     {
-        maxHP = startMax + (int)(InfoController.perks[0].value) + FindObjectOfType<PlayerExp>().curLvl * 10;
+        maxHP = 200 + (FindObjectOfType<PlayerMovement>().playerType == 1 ? (int)(InfoController.perks[0].value) : 0) + FindObjectOfType<PlayerExp>().curLvl * 10;
+        startMax = maxHP;
         HP += 50;
-        HPslider.maxValue = startMax + (int)(InfoController.perks[0].value) + FindObjectOfType<PlayerExp>().curLvl * 10;
+        HPslider.maxValue = maxHP;
         HPslider.value += 50;
     }
 
     public void lvlup()
     {
-        maxHP = startMax + (int)(InfoController.perks[0].value) + FindObjectOfType<PlayerExp>().curLvl * 10;
+        maxHP = 200 + (FindObjectOfType<PlayerMovement>().playerType == 1 ? (int)(InfoController.perks[0].value) : 0) + FindObjectOfType<PlayerExp>().curLvl * 10;
+        startMax = maxHP;
         HP = maxHP;
         HPslider.maxValue = maxHP;
         HPslider.value = HP;

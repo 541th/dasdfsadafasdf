@@ -17,9 +17,6 @@ public class Boss_2 : MonoBehaviour
 
     int actionType;
     float actionTimer;
-    //0 - usuall attack 
-    //1 - spetial attack 1
-    //2 - spetial attack 2
 
     public Vector2 dir;
 
@@ -45,7 +42,7 @@ public class Boss_2 : MonoBehaviour
         _a.SetTrigger("Event_0");
         yield return new WaitForSeconds(.1f);
 
-        if (Random.Range(0, 2) == 0)
+        if (Random.Range(0, 1) == 0)//HERE 0,2
             FindObjectOfType<Boss_2_TilesGrid>().startLine(transform.position, player.transform.position);
         else
             FindObjectOfType<Boss_2_TilesGrid>().startEllipse(transform.position);
@@ -75,7 +72,7 @@ public class Boss_2 : MonoBehaviour
         if (actionTimer > spetialActionTime)
         {
             actionTimer = 0;
-            int action = Random.Range(0, 2);
+            int action = Random.Range(0, 1);//HERE 0,2
             if (action == 0) StartCoroutine(action_0());
             else StartCoroutine(action_1());
         }

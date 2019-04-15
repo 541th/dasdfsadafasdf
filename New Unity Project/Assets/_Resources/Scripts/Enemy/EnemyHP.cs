@@ -18,15 +18,35 @@ public class EnemyHP : MonoBehaviour
 
     private void Start()
     {
+        if (isBoss && PlayerPrefs.GetInt(transform.parent.name) == 1)
+        {
+            if (transform.parent.name == "Boss_5")
+            {
+                Destroy(transform.parent.gameObject);
+                return;
+            }
+
+            GameObject.Find("PortalEndObject").transform.GetChild(0).gameObject.SetActive(true);
+
+            transform.parent.position = new Vector3(PlayerPrefs.GetFloat(transform.parent.name + "x"), PlayerPrefs.GetFloat(transform.parent.name + "y"));
+
+            if (transform.parent.GetComponent<Animator>() != null)
+                transform.parent.GetComponent<Animator>().SetTrigger("Death");
+            else
+                Destroy(transform.parent.gameObject);
+
+            return;
+        }
+
         maxAmountMonets += FindObjectOfType<PlayerExp>().curLvl * 2;
         player = GameObject.Find("Player").transform;
 
         maxHP = maxHP + (maxHP / 10) * FindObjectOfType<PlayerExp>().curLvl;
-        expForKill = maxHP;
+        expForKill = !dontAddExp ? maxHP : 0;
         HP = maxHP;
     }
 
-    [SerializeField] bool divide, createSwill, isGhost;
+    [SerializeField] bool divide, createSwill, isGhost, dontAddExp;
 
     public void toHealth(int value)
     {
@@ -75,10 +95,10 @@ public class EnemyHP : MonoBehaviour
                 res = damage + "";
             }
             else
-            res = "промах";
+            res = LanguageLines.getLine(12);
         }
 
-        InfoController.addExp(expForKill / 10);
+        InfoController.addExp(damage / 2);
         GameObject fn = Instantiate(floatingNumbers, transform.position + new Vector3(0, 0.4f), Quaternion.identity);
         fn.transform.GetChild(0).GetComponent<FloatingNumbers>().setText(res);
 
@@ -112,7 +132,7 @@ public class EnemyHP : MonoBehaviour
 
                 GameObject arrow = Instantiate(arrowPrefab);
                 arrow.GetComponent<BoxCollider2D>().enabled = false;
-                arrow.GetComponent<ArrowFly>().colliderEnabledTime = 0.1f;
+                arrow.GetComponent<ArrowFly>().colliderEnabledTime = 0.16f;
                 arrow.transform.position = transform.position;
 
                 arrow.GetComponent<ArrowFly>().target = new Vector2(-i, j).normalized;
@@ -171,10 +191,10 @@ public class EnemyHP : MonoBehaviour
                 res = damage + "";
             }
             else
-                res = "промах";
+                res = LanguageLines.getLine(12);
         }
 
-        InfoController.addExp(expForKill / 10);
+        InfoController.addExp(damage/2);
         GameObject fn = Instantiate(floatingNumbers, transform.position + new Vector3(0, 0.4f), Quaternion.identity);
         fn.transform.GetChild(0).GetComponent<FloatingNumbers>().setText(res);
 
@@ -206,9 +226,9 @@ public class EnemyHP : MonoBehaviour
                 res = damage + "";
             }
             else
-                res = "промах";
+                res = LanguageLines.getLine(12);
         }
-        InfoController.addExp(expForKill / 10);
+        InfoController.addExp(damage/2);
 
         GameObject _l = Instantiate(Resources.Load("Prefabs/Arrows/ChainLightningTrigger") as GameObject, transform.position, Quaternion.identity);
         _l.GetComponent<ChainLightning>()._e.Add(gameObject);
@@ -243,9 +263,9 @@ public class EnemyHP : MonoBehaviour
                 res = damage + "";
             }
             else
-                res = "промах";
+                res = LanguageLines.getLine(12);
         }
-        InfoController.addExp(expForKill / 10);
+        InfoController.addExp(damage/2);
 
         GameObject _le = Instantiate(Resources.Load("Prefabs/Effects/Lightning") as GameObject, transform.position, Quaternion.identity);
         Destroy(_le, 0.4f);
@@ -330,6 +350,10 @@ public class EnemyHP : MonoBehaviour
 
             if (isBoss)
             {
+                PlayerPrefs.SetInt(transform.parent.name, 1);
+                PlayerPrefs.SetFloat(transform.parent.name + "x", transform.parent.position.x);
+                PlayerPrefs.SetFloat(transform.parent.name + "y", transform.parent.position.y);
+
                 FindObjectOfType<CamFollow>().stopCameraRotating();
                 GameObject.Find("PortalEndObject").transform.GetChild(0).gameObject.SetActive(true);
             }

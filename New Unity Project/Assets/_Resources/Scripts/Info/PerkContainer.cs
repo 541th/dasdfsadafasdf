@@ -12,8 +12,8 @@ public class PerkContainer : MonoBehaviour
     public void openPerksInfo()
     {
         FindObjectOfType<InfoController>().showPerksInfo(
-            key0, 
-            key1 + ((skill) ? "" : " + "),
+            LanguageLines.getLine(key0),
+            LanguageLines.getLine(key1) + ((skill) ? "" : " + "),
             mult * ((!skill) ? InfoController.perks[id - 16].lvl + 1: 1) + "", 
             skill, 
             id, 

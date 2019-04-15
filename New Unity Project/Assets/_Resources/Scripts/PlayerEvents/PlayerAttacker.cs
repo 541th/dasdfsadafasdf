@@ -22,7 +22,7 @@ public class PlayerAttacker : MonoBehaviour
 
             value = (int)AttackModifiers.getModifiedValue(value);
 
-            value += (int)InfoController.perks[3].value;
+            value += FindObjectOfType<PlayerMovement>().playerType == 1 ? (int)InfoController.perks[3].value : 0;
             if (modifyWithMagPerk) value += (int)InfoController.perks[13].value;
 
             if (FindObjectOfType<PlayerHP>().lessThan10()) value += (int)InfoController.perks[2].value;
@@ -30,9 +30,12 @@ public class PlayerAttacker : MonoBehaviour
             if (FindObjectOfType<PlayerMovement>().playerType != 0 && FindObjectOfType<InventoryManager>().takedItems[FindObjectOfType<PlayerMovement>().playerType - 1, 3] != null)
                 value += FindObjectOfType<InventoryManager>().takedItems[FindObjectOfType<PlayerMovement>().playerType - 1, 3].value / 2;
 
+            if (withStan) value /= 2;
+
             if (value < 0) value = 1;
 
             if (!isArrow) FindObjectOfType<CamFollow>().startShakeArrow();
+
 
             if (isLightning)
             {

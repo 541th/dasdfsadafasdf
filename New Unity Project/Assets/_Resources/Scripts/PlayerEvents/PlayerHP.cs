@@ -85,10 +85,11 @@ public class PlayerHP : MonoBehaviour
     public void toDamage(int damage)
     {
         GameObject fn = Instantiate(floatingNumbers, transform.position + new Vector3(0, 0.4f), Quaternion.identity);
+
         if (FindObjectOfType<PlayerMovement>().dontAttack)
         {
             //GameObject fn = Instantiate(floatingNumbers, transform.position + new Vector3(0, 0.4f), Quaternion.identity);
-            fn.transform.GetChild(0).GetComponent<FloatingNumbers>().setText("промах");
+            fn.transform.GetChild(0).GetComponent<FloatingNumbers>().setText(LanguageLines.getLine(12));
             fn.transform.localScale /= 2;
             return;
         }

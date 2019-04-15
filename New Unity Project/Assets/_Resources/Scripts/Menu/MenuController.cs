@@ -5,13 +5,38 @@ using UnityEngine.UI;
 
 public class MenuController : MonoBehaviour
 {
-    [SerializeField] GameObject newGameAsking, continueButton, BG, buttons, pressOnScreen;
+    [SerializeField] GameObject newGameAsking, continueButton, BG, buttons, pressOnScreen, languageButton;
 
     void Start()
     {
         continueButton.SetActive(PlayerPrefs.GetInt("Started") == 1);
         buttons.SetActive(false);
         pressOnScreen.SetActive(true);
+
+        if (Application.systemLanguage.ToString() == "Russian" && PlayerPrefs.GetInt("LanguageSetted") == 0)
+            PlayerPrefs.SetInt("CurLanguage", 1);
+
+        PlayerPrefs.SetInt("LanguageSetted", 1);
+
+        languageButton.GetComponent<Image>().sprite = PlayerPrefs.GetInt("CurLanguage") == 0 ? flag_eng : flag_ru;
+
+        foreach (TextLanguageChanger item in FindObjectsOfType<TextLanguageChanger>())
+        {
+            item.change();
+        }
+    }
+
+    [SerializeField] Sprite flag_ru, flag_eng;
+    public void changeLanguage()
+    {
+        PlayerPrefs.SetInt("CurLanguage", PlayerPrefs.GetInt("CurLanguage") == 0 ? 1 : 0);
+
+        languageButton.GetComponent<Image>().sprite = PlayerPrefs.GetInt("CurLanguage") == 0 ? flag_eng : flag_ru;
+
+        foreach (TextLanguageChanger item in FindObjectsOfType<TextLanguageChanger>())
+        {
+            item.change();
+        }
     }
 
     public void continueGame()
@@ -47,7 +72,11 @@ public class MenuController : MonoBehaviour
 
     public void startNewGame()
     {
+        int language = PlayerPrefs.GetInt("CurLanguage");
+
         PlayerPrefs.DeleteAll();
+
+        PlayerPrefs.SetInt("CurLanguage", language);
 
         PlayerPrefs.SetInt("CutScene", 1);
         PlayerPrefs.SetInt("Started", 1);

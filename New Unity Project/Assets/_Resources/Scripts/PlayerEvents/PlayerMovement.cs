@@ -33,7 +33,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void updadeMS()
     {
-        ms = startMS + InfoController.perks[5].value;
+        ms = startMS + (playerType == 2 ? InfoController.perks[5].value : 0);
     }
 
     public void setStartValues()
@@ -43,6 +43,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (playerType == 0)
         {
+            transform.GetChild(1).gameObject.SetActive(false);
             FindObjectOfType<UIManager>().items[1].transform.GetChild(0).gameObject.SetActive(false);
             FindObjectOfType<UIManager>().items[1].transform.GetChild(1).gameObject.SetActive(false);
             Destroy(transform.GetChild(0).GetChild(0).gameObject);
@@ -85,7 +86,7 @@ public class PlayerMovement : MonoBehaviour
 
         PlayerPrefs.SetInt("CutScene", 0);
 
-        ms += InfoController.perks[5].value;
+        updadeMS();
 
         _aUp = transform.GetChild(0).GetComponent<Animator>();
         _aDown = transform.GetChild(1).GetComponent<Animator>();
@@ -93,6 +94,8 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
+        AttackModifiers.clear();
+
         _aUp = transform.GetChild(0).GetComponent<Animator>();
         _aDown = transform.GetChild(1).GetComponent<Animator>();
 
@@ -184,7 +187,6 @@ public class PlayerMovement : MonoBehaviour
         if ((h != 0 || v != 0) && !isGlide && !dontMove)
         {
             FindObjectOfType<UIManager>().glideFalse();
-            StartCoroutine(glideReturn());
             StartCoroutine(startGlide());
         }
     }
@@ -204,7 +206,7 @@ public class PlayerMovement : MonoBehaviour
             Instantiate(smoke, transform.position - new Vector3(0, 0.4f), Quaternion.identity);
             _t -= Time.deltaTime;
 
-            _rb.velocity = new Vector3(target.x * (80 + InfoController.perks[9].value), target.y * (80 + InfoController.perks[9].value), 0);
+            _rb.velocity = new Vector3(target.x * (80 + (playerType == 2 ? InfoController.perks[9].value : 0)), target.y * (80 + (playerType == 2 ? InfoController.perks[9].value : 0)), 0);
 
             yield return null;
         }
@@ -213,6 +215,7 @@ public class PlayerMovement : MonoBehaviour
 
         _t = 0.2f;
 
+
         while (_t > 0)
         {
             Instantiate(smoke, transform.position - new Vector3(0, 0.4f), Quaternion.identity);
@@ -220,21 +223,6 @@ public class PlayerMovement : MonoBehaviour
 
             yield return null;
         }
-
-    }
-
-    public float glideTimer;
-    IEnumerator glideReturn()
-    {
-        float timer = glideTimer;
-
-        while (timer >= 0)
-        {
-            timer -= Time.deltaTime;
-            yield return new WaitForEndOfFrame();
-        }
-
-        FindObjectOfType<UIManager>().glideReturn();
     }
 
     public void skill_4()
@@ -255,7 +243,7 @@ public class PlayerMovement : MonoBehaviour
         GameObject rage = Instantiate(Resources.Load("Prefabs/Effects/PlayerRage") as GameObject);
         Transform other = null;
 
-        AttackModifiers.addModifier('*', 3);
+        AttackModifiers.addModifier('*', 2);
 
         for (int i = 0; i < transform.childCount; i++)
             if (transform.GetChild(i).name == "Other")
@@ -269,7 +257,7 @@ public class PlayerMovement : MonoBehaviour
 
         yield return new WaitForSeconds(10);
 
-        AttackModifiers.removeModifier('*', 3);
+        AttackModifiers.removeModifier('*', 2);
         inRage = false;
         Destroy(rage);
     }

@@ -84,7 +84,7 @@ public class UIManager : MonoBehaviour
 
     void updateMonets()
     {
-        monetsText.text = "Монеты: " + monetsAmount;
+        monetsText.text = LanguageLines.getLine(26) + " " + monetsAmount;
     }
 
     public void addMonets(int value)
@@ -119,6 +119,7 @@ public class UIManager : MonoBehaviour
 
     public void glideFalse()
     {
+        StartCoroutine(glideReturnEvent());
         glideButton.GetComponent<Button>().interactable = false;
         glideButton.GetComponent<Image>().color = new Color(glideButton.GetComponent<Image>().color.r, glideButton.GetComponent<Image>().color.g, glideButton.GetComponent<Image>().color.b, 0.05f);
     }
@@ -126,6 +127,20 @@ public class UIManager : MonoBehaviour
     public void glideReturn()
     {
         StartCoroutine(returning());
+    }
+
+    public float glideTimer;
+    IEnumerator glideReturnEvent()
+    {
+        float timer = glideTimer;
+
+        while (timer >= 0)
+        {
+            timer -= Time.deltaTime;
+            yield return new WaitForEndOfFrame();
+        }
+
+        glideReturn();
     }
 
     IEnumerator returning()

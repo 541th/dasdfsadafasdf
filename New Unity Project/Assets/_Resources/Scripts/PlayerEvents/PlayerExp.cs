@@ -27,7 +27,6 @@ public class PlayerExp : MonoBehaviour
         PlayerPrefs.SetFloat("EXP", curExp);
         PlayerPrefs.SetFloat("EXPToLvlUp", expToLvlUp);
         PlayerPrefs.SetInt("Points", points);
-        PlayerPrefs.SetInt("CurLvl", curLvl);
     }
 
     private void Start()
@@ -89,7 +88,7 @@ public class PlayerExp : MonoBehaviour
         GameObject newLvl = Instantiate(Resources.Load("Prefabs/NewLvl") as GameObject, GameObject.Find("Main Camera").transform.GetChild(0));
         newLvl.transform.localPosition = new Vector2(0, 120);
         newLvl.GetComponent<Text>().color = new Color(1, 1, 1, 0);
-        newLvl.GetComponent<Text>().text = "Новый уровень\n" + curLvl;
+        newLvl.GetComponent<Text>().text = LanguageLines.getLine(13) + "\n" + curLvl;
 
         float timer = 0, deltaTime = 0;
         while (timer < 1)
@@ -144,9 +143,10 @@ public class PlayerExp : MonoBehaviour
                 slider.value = 0;
                 curExp = 0;
                 curLvl++;
+                PlayerPrefs.SetInt("CurLvl", curLvl);
                 points += 2;
                 StartCoroutine(showNewLvl());
-                expToLvlUp = 120 * curLvl;
+                expToLvlUp = 200 * curLvl;
                 slider.maxValue = expToLvlUp;
                 GetComponent<PlayerHP>().lvlup();
             }
@@ -157,9 +157,10 @@ public class PlayerExp : MonoBehaviour
             slider.value = 0;
             curExp = 0;
             curLvl++;
+            PlayerPrefs.SetInt("CurLvl", curLvl);
             points += 2;
             StartCoroutine(showNewLvl());
-            expToLvlUp = 120 * curLvl;
+            expToLvlUp = 200 * curLvl;
             slider.maxValue = expToLvlUp;
             GetComponent<PlayerHP>().lvlup();
         }

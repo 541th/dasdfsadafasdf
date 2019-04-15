@@ -15,7 +15,8 @@ public class CamFollow : MonoBehaviour
 
     public void updateCamSize()
     { 
-        GetComponent<Camera>().orthographicSize = 6 + InfoController.perks[6].value;
+        if (_pm == null) _pm = FindObjectOfType<PlayerMovement>();
+        GetComponent<Camera>().orthographicSize = 6 + (_pm.playerType == 2 ? InfoController.perks[6].value : 0);
     }
 
     public void setCamAsUsuall()
@@ -61,7 +62,8 @@ public class CamFollow : MonoBehaviour
     IEnumerator returnCamPos()
     {
         returning = true;
-        float camSizeUsuall = 6 + (FindObjectOfType<PlayerMovement>().playerType == 2 ? InfoController.perks[6].value : 0);
+        if (_pm == null) _pm = FindObjectOfType<PlayerMovement>();
+        float camSizeUsuall = 6 + (_pm.playerType == 2 ? InfoController.perks[6].value : 0);
 
         int sizeSign = GetComponent<Camera>().orthographicSize - camSizeUsuall > 0 ? 1 : -1;
 
@@ -137,6 +139,9 @@ public class CamFollow : MonoBehaviour
             yield return null;
         }
 
+        GameObject.Find("Player").transform.GetChild(0).GetComponent<Animator>().SetFloat("lmx", 1);
+        GameObject.Find("Player").transform.GetChild(0).GetComponent<Animator>().SetFloat("lmy", 1);
+
         blackScreen.SetActive(false);
 
         dialogueBox.SetActive(true);
@@ -147,12 +152,12 @@ public class CamFollow : MonoBehaviour
 
         string[] textNodes = new string[6];
 
-        textNodes[0] = "Привет. Очередной искатель приключений?";
-        textNodes[1] = "Ну-ну.";
-        textNodes[2] = "Много горячих голов положила эта проклятая Башня.";
-        textNodes[3] = "Но если хочешь попытать счастья - добро пожаловать.";
-        textNodes[4] = "Рядом с Башней ошиваются куча торговцев. Можешь поискать что-нибудь у них.";
-        textNodes[5] = "Удачи.";
+        textNodes[0] = LanguageLines.getLine(14);
+        textNodes[1] = LanguageLines.getLine(15);
+        textNodes[2] = LanguageLines.getLine(16);
+        textNodes[3] = LanguageLines.getLine(17);
+        textNodes[4] = LanguageLines.getLine(18);
+        textNodes[5] = LanguageLines.getLine(19);
 
         while (curNode < textNodes.Length)
         {
@@ -266,7 +271,8 @@ public class CamFollow : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
         PlayerPrefs.SetInt("Continue", 0);
 
-        GetComponent<Camera>().orthographicSize = 6 + (FindObjectOfType<PlayerMovement>().playerType == 2 ? InfoController.perks[6].value : 0);
+        if (_pm == null) _pm = FindObjectOfType<PlayerMovement>();
+        GetComponent<Camera>().orthographicSize = 6 + (_pm.playerType == 2 ? InfoController.perks[6].value : 0);
 
         if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name != "City" && UnityEngine.SceneManagement.SceneManager.GetActiveScene().name != "Menu")
         {
@@ -277,7 +283,7 @@ public class CamFollow : MonoBehaviour
                 blackScreenText = blackScreen.transform.GetChild(0).GetComponent<UnityEngine.UI.Text>();
             }
 
-            blackScreenText.text = "Уровень " + UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
+            blackScreenText.text = LanguageLines.getLine(33) + "" + UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
 
             while (blackScreenText.color.a < 1)
             {
@@ -303,6 +309,15 @@ public class CamFollow : MonoBehaviour
         blackScreen.SetActive(false);
     }
 
+    PlayerMovement _pm;
+
+    float getCamSizeUsuall()
+    {
+        if (_pm == null) _pm = FindObjectOfType<PlayerMovement>();
+
+        return 6 + (_pm.playerType == 2 ? InfoController.perks[6].value : 0);
+    }
+
     float clampedX, clampedY, a_h, a_v;
     Vector2 delta, swordShakeDir;
     bool arrowShotShaking;
@@ -313,6 +328,9 @@ public class CamFollow : MonoBehaviour
         {
             if (shotDir == null)
                 shotDir = followTarget.transform.GetChild(followTarget.transform.childCount - 1);
+
+            GetComponent<Camera>().orthographicSize = Mathf.Lerp(GetComponent<Camera>().orthographicSize, 
+                getCamSizeUsuall() + new Vector2(CnInputManager.GetAxis("Horizontal"), CnInputManager.GetAxis("Vertical")).magnitude / 2, moveSpeed * Time.deltaTime);
 
             a_h = CnInputManager.GetAxis("Attack_H");
             a_v = CnInputManager.GetAxis("Attack_V");

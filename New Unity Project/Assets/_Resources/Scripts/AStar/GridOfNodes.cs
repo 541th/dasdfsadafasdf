@@ -138,7 +138,17 @@ public class GridOfNodes : MonoBehaviour
 
     public GridsNode GetNodeByPos(Vector2 pos)
     {
-        return nodes[(int)(pos.x) << 1, (int)(pos.y) << 1];
+        for (int grade = 0; grade < 3; grade++)
+        {
+            for (int x = (int)(pos.x) - grade; x <= (int)(pos.x) + grade; x++)
+                for (int y = (int)(pos.y) - grade; y <= (int)(pos.y) + grade; y++)
+                {
+                    if (nodes[x << 1, y << 1].walkable)
+                        return nodes[x << 1, y << 1];
+                }
+        }
+
+        return nodes[(int)(pos.x) << 1, (int)(pos.y) << 1]; ;
     }
 
     private void OnDrawGizmos()

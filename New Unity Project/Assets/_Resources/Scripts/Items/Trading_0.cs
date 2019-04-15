@@ -56,7 +56,7 @@ public class Trading_0 : MonoBehaviour
 
             confirmation.transform.GetChild(1).GetComponent<Text>().color = new Color((v1 - v2) > 0 ? 0 : 250, (v1 - v2) > 0 ? 250 : 0, 0);
 
-            monets.transform.GetChild(2).GetComponent<Text>().text = "стоим.:\n\n" + v1 * 40;
+            monets.transform.GetChild(2).GetComponent<Text>().text = LanguageLines.getLine(20) + "\n\n" + v1 * 40;
             monets.transform.GetChild(2).gameObject.SetActive(true);
         }
         else

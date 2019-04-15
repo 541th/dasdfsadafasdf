@@ -9,13 +9,13 @@ public class Trading_2 : MonoBehaviour
     int amount;
     private void Start()
     {
-        amount = Random.Range(6, 8);
+        amount = Random.Range(6, 20);
         buttons.transform.GetChild(1).GetChild(0).GetComponent<Text>().text = "1";
     }
 
     public void OnValueChanged()
     {
-        monets.transform.GetChild(2).GetComponent<Text>().text = "стоим.:\n\n" + buttons.transform.GetChild(0).GetComponent<Slider>().value * 80;
+        monets.transform.GetChild(2).GetComponent<Text>().text = LanguageLines.getLine(20) + "\n\n" + buttons.transform.GetChild(0).GetComponent<Slider>().value * 80;
         buttons.transform.GetChild(1).GetChild(0).GetComponent<Text>().text = buttons.transform.GetChild(0).GetComponent<Slider>().value + "";
     }
 
@@ -25,10 +25,12 @@ public class Trading_2 : MonoBehaviour
         {
             amount -= (int)buttons.transform.GetChild(0).GetComponent<Slider>().value;
             monets.transform.GetChild(1).GetComponent<Text>().text = FindObjectOfType<UIManager>().monetsAmount + "";
+
+            FindObjectOfType<UIManager>().addPotion((int)buttons.transform.GetChild(0).GetComponent<Slider>().value);
             
             buttons.transform.GetChild(0).GetComponent<Slider>().maxValue = amount;
 
-            monets.transform.GetChild(2).GetComponent<Text>().text = "стоим.:\n\n" + (buttons.transform.GetChild(0).GetComponent<Slider>().value * 80);
+            monets.transform.GetChild(2).GetComponent<Text>().text = LanguageLines.getLine(20) + "\n\n" + (buttons.transform.GetChild(0).GetComponent<Slider>().value * 80);
             buttons.transform.GetChild(1).GetChild(0).GetComponent<Text>().text = buttons.transform.GetChild(0).GetComponent<Slider>().value +  "";
         }
 
@@ -47,7 +49,7 @@ public class Trading_2 : MonoBehaviour
         FindObjectOfType<UIManager>().setAllItems(false);
         panel.SetActive(true);
         monets.transform.GetChild(1).GetComponent<Text>().text = FindObjectOfType<UIManager>().monetsAmount + "";
-        monets.transform.GetChild(2).GetComponent<Text>().text = "стоим.:\n\n" + 80;
+        monets.transform.GetChild(2).GetComponent<Text>().text = LanguageLines.getLine(20) + "\n\n" + 80;
 
         transform.GetChild(0).gameObject.SetActive(false);
     }

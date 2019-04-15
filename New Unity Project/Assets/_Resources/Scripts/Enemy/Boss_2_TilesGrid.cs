@@ -66,23 +66,7 @@ public class Boss_2_TilesGrid : MonoBehaviour
 
         int x2 = (int)Mathf.Abs((endPos.x - .5f) / 1.3f);
         int y2 = (int)Mathf.Abs((endPos.y - 30f) / 1.3f);
-
-        int temp;
-
-        if (x1 > x2)
-        {
-            temp = x2;
-            x2 = x1;
-            x1 = temp;
-        }
-
-        if (y1 > y2)
-        {
-            temp = y2;
-            y2 = y1;
-            y1 = temp;
-        }
-
+        
         StartCoroutine(lineEvent(x1, y1, x2, y2));
     }
 
@@ -120,7 +104,8 @@ public class Boss_2_TilesGrid : MonoBehaviour
             while (e >= 0)
             {
                 y += ySign;
-                e -= 2 * dx;
+                e -= 2 * dx * -xSign;
+                yield return null;
             }
 
             x += xSign;

@@ -283,6 +283,7 @@ MonoBehaviour:
   divide: 1
   createSwill: 0
   isGhost: 0
+  dontAddExp: 1
   dontFly: 0
   isBoss: 0
   isBossSleeping: 0

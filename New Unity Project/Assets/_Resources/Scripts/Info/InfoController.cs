@@ -312,6 +312,7 @@ public class InfoController : MonoBehaviour
         }
     }
 
+    /*
     IEnumerator buildBanner()
     {
         float timer = 4;
@@ -335,6 +336,7 @@ public class InfoController : MonoBehaviour
             yield return null;
         }
     }
+    */
 
     IEnumerator throwNet()
     {
@@ -350,7 +352,7 @@ public class InfoController : MonoBehaviour
 
             if (Time.timeScale == 1)
             {
-                if (Input.GetMouseButtonUp(0))
+                if (Input.GetMouseButton(0))
                 {
                     GameObject net = Instantiate(Resources.Load("Prefabs/TrappingNet") as GameObject);
                     net.transform.position = pm.transform.position;
@@ -381,7 +383,18 @@ public class InfoController : MonoBehaviour
         GameObject roots = Instantiate(Resources.Load("Prefabs/TrappingRoots") as GameObject);
         roots.transform.position = pm.transform.position;
 
-        yield return new WaitForSeconds(6);
+        pm.dontMove = true;
+        pm.dontAttack = true;
+        pm.transform.GetChild(1).gameObject.SetActive(false);
+        pm.transform.GetChild(0).GetComponent<Animator>().SetTrigger("skill");
+
+        yield return new WaitForSeconds(.6f);
+
+        pm.dontMove = false;
+        pm.dontAttack = false;
+        pm.transform.GetChild(1).gameObject.SetActive(true);
+
+        yield return new WaitForSeconds(5f);
 
         roots.GetComponent<Animator>().SetTrigger("End");
         Destroy(roots, 1);
@@ -469,11 +482,33 @@ public class InfoController : MonoBehaviour
         Destroy(pentagram);
     }
 
+    IEnumerator skill_2()
+    {
+        if (pm == null)
+            pm = FindObjectOfType<PlayerMovement>();
+
+        GameObject pentagram = Instantiate(Resources.Load("Prefabs/Effects/MagArrowExpl_0") as GameObject);
+        pentagram.transform.position = pm.transform.position;
+
+        pm.dontMove = true;
+        pm.dontAttack = true;
+        pm.transform.GetChild(0).GetComponent<Animator>().SetTrigger("skill_2");
+
+        yield return new WaitForSeconds(.4f);
+
+        pm.dontMove = false;
+        pm.dontAttack = false;
+
+        yield return new WaitForSeconds(.3f);
+
+        Destroy(pentagram);
+    }
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.K))
         {
-            StartCoroutine(pentagram_I());
+            FindObjectOfType<PlayerAttack_Warrior>().skill_1();
         }
     }
 
@@ -489,23 +524,26 @@ public class InfoController : MonoBehaviour
                 break;
             case 2:
                 FindObjectOfType<PlayerAttack_Warrior>().skill_1();
-                FindObjectOfType<UIManager>().setSkillCD_0(14);
+                FindObjectOfType<UIManager>().setSkillCD_0(10);
                 break;
             case 3:
-                FindObjectOfType<PlayerAttack_Warrior>().skill_2();
+                StartCoroutine(skill_2());
                 FindObjectOfType<UIManager>().setSkillCD_0(12);
                 break;
             case 4:
-                StartCoroutine(buildBanner());
-                FindObjectOfType<UIManager>().setSkillCD_0(38);
+                GameObject banner = Instantiate(Resources.Load("Prefabs/Banner") as GameObject);
+                banner.transform.position = GameObject.Find("Player").transform.position;
+                Destroy(banner, 10);
+                //StartCoroutine(buildBanner());
+                FindObjectOfType<UIManager>().setSkillCD_0(20);
                 break;
             case 5:
                 FindObjectOfType<PlayerMovement>().skill_4();
-                FindObjectOfType<UIManager>().setSkillCD_0(18);
+                FindObjectOfType<UIManager>().setSkillCD_0(16);
                 break;
             case 6:
                 FindObjectOfType<PlayerMovement>().skill_5();
-                FindObjectOfType<UIManager>().setSkillCD_0(30);
+                FindObjectOfType<UIManager>().setSkillCD_0(20);
                 break;
             case 7:
                 FindObjectOfType<PlayerAttack_Archer>().isHotShot = true;
@@ -513,35 +551,35 @@ public class InfoController : MonoBehaviour
                 break;
             case 8:
                 StartCoroutine(throwNet());
-                FindObjectOfType<UIManager>().setSkillCD_0(16);
+                FindObjectOfType<UIManager>().setSkillCD_0(14);
                 break;
             case 9:
                 StartCoroutine(roots());
-                FindObjectOfType<UIManager>().setSkillCD_0(28);
+                FindObjectOfType<UIManager>().setSkillCD_0(20);
                 break;
             case 10:
                 FindObjectOfType<PlayerAttack_Archer>().skill_8();
-                FindObjectOfType<UIManager>().setSkillCD_0(18);
+                FindObjectOfType<UIManager>().setSkillCD_0(14);
                 break;
             case 11:
                 StartCoroutine(pentagram_F());
-                FindObjectOfType<UIManager>().setSkillCD_0(17 - perks[14].value);
+                FindObjectOfType<UIManager>().setSkillCD_0(12);
                 break;
             case 12:
                 StartCoroutine(pentagram_I());
-                FindObjectOfType<UIManager>().setSkillCD_0(14 - perks[14].value);
+                FindObjectOfType<UIManager>().setSkillCD_0(12);
                 break;
             case 13:
                 FindObjectOfType<PlayerAttack_Archer>().isLightning = true;
-                FindObjectOfType<UIManager>().setSkillCD_0(13 - perks[14].value);
+                FindObjectOfType<UIManager>().setSkillCD_0(7);
                 break;
             case 14:
                 FindObjectOfType<PlayerHP>().createForceField();
-                FindObjectOfType<UIManager>().setSkillCD_0(28 - perks[14].value);
+                FindObjectOfType<UIManager>().setSkillCD_0(20);
                 break;
             case 15:
                 StartCoroutine(hurricane());
-                FindObjectOfType<UIManager>().setSkillCD_0(30 - perks[14].value);
+                FindObjectOfType<UIManager>().setSkillCD_0(16);
                 break;
         }
     }
@@ -558,23 +596,26 @@ public class InfoController : MonoBehaviour
                 break;
             case 2:
                 FindObjectOfType<PlayerAttack_Warrior>().skill_1();
-                FindObjectOfType<UIManager>().setSkillCD_1(14);
+                FindObjectOfType<UIManager>().setSkillCD_1(10);
                 break;
             case 3:
-                FindObjectOfType<PlayerAttack_Warrior>().skill_2();
+                StartCoroutine(skill_2());
                 FindObjectOfType<UIManager>().setSkillCD_1(12);
                 break;
             case 4:
-                StartCoroutine(buildBanner());
-                FindObjectOfType<UIManager>().setSkillCD_1(38);
+                GameObject banner = Instantiate(Resources.Load("Prefabs/Banner") as GameObject);
+                banner.transform.position = GameObject.Find("Player").transform.position;
+                Destroy(banner, 10);
+                //StartCoroutine(buildBanner());
+                FindObjectOfType<UIManager>().setSkillCD_1(20);
                 break;
             case 5:
                 FindObjectOfType<PlayerMovement>().skill_4();
-                FindObjectOfType<UIManager>().setSkillCD_1(18);
+                FindObjectOfType<UIManager>().setSkillCD_1(16);
                 break;
             case 6:
                 FindObjectOfType<PlayerMovement>().skill_5();
-                FindObjectOfType<UIManager>().setSkillCD_1(30);
+                FindObjectOfType<UIManager>().setSkillCD_1(20);
                 break;
             case 7:
                 FindObjectOfType<PlayerAttack_Archer>().isHotShot = true;
@@ -582,35 +623,35 @@ public class InfoController : MonoBehaviour
                 break;
             case 8:
                 StartCoroutine(throwNet());
-                FindObjectOfType<UIManager>().setSkillCD_1(16);
+                FindObjectOfType<UIManager>().setSkillCD_1(14);
                 break;
             case 9:
                 StartCoroutine(roots());
-                FindObjectOfType<UIManager>().setSkillCD_1(28);
+                FindObjectOfType<UIManager>().setSkillCD_1(20);
                 break;
             case 10:
                 FindObjectOfType<PlayerAttack_Archer>().skill_8();
-                FindObjectOfType<UIManager>().setSkillCD_1(18);
+                FindObjectOfType<UIManager>().setSkillCD_1(14);
                 break;
             case 11:
                 StartCoroutine(pentagram_F());
-                FindObjectOfType<UIManager>().setSkillCD_1(17);
+                FindObjectOfType<UIManager>().setSkillCD_1(12);
                 break;
             case 12:
                 StartCoroutine(pentagram_I());
-                FindObjectOfType<UIManager>().setSkillCD_1(14);
+                FindObjectOfType<UIManager>().setSkillCD_1(12);
                 break;
             case 13:
                 FindObjectOfType<PlayerAttack_Archer>().isLightning = true;
-                FindObjectOfType<UIManager>().setSkillCD_1(13);
+                FindObjectOfType<UIManager>().setSkillCD_1(7);
                 break;
             case 14:
                 FindObjectOfType<PlayerHP>().createForceField();
-                FindObjectOfType<UIManager>().setSkillCD_1(28);
+                FindObjectOfType<UIManager>().setSkillCD_1(20);
                 break;
             case 15:
                 StartCoroutine(hurricane());
-                FindObjectOfType<UIManager>().setSkillCD_1(30);
+                FindObjectOfType<UIManager>().setSkillCD_1(16);
                 break;
         }
     }

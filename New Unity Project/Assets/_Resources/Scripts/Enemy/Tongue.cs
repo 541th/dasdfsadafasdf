@@ -24,7 +24,11 @@ public class Tongue : MonoBehaviour
     {
         player = GameObject.Find("Player").transform;
 
-        if (player.GetComponent<PlayerMovement>().dontMove) yield break;
+        if (player.GetComponent<PlayerMovement>().dontMove)
+        {
+            destr(null);
+            yield break;
+        }
 
         Transform _t = transform;
 
@@ -77,7 +81,7 @@ public class Tongue : MonoBehaviour
 
             if (blinkTimer > .4f)
             {
-                FindObjectOfType<PlayerHP>().toDamage(Random.Range(1, 10) + _pe.getKoefByLvl());
+                FindObjectOfType<PlayerHP>().toDamage(Random.Range(1, 6) + _pe.getKoefByLvl());
                 blinkTimer = 0;
             }
             else

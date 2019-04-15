@@ -9546,6 +9546,7 @@ GameObject:
   - component: {fileID: 33590544}
   - component: {fileID: 33590546}
   - component: {fileID: 33590545}
+  - component: {fileID: 939840553}
   m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
@@ -9614,6 +9615,19 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: "\u041D\u0410\u0417\u0410\u0414"
+--- !u!114 &939840553
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 33590543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 276f20244bb371d49b02573ac915d73a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lineId: 31
 --- !u!1 &34914456
 GameObject:
   m_ObjectHideFlags: 0
@@ -10034,10 +10048,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c2bca878894b824ea5adc99495830dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  key0: "\u041B\u0443\u0447\u043D\u0438\u043A \u043D\u0430\u043F\u0440\u0430\u0432\u043B\u044F\u0435\u0442
-    \u0432\u0435\u0442\u0435\u0440, \u043F\u043E\u0432\u044B\u0448\u0430\u044F \u0441\u0432\u043E\u044E
-    \u0441\u043A\u043E\u0440\u043E\u0441\u0442\u044C \u0430\u0442\u0430\u043A\u0438"
-  key1: "\u0423\u043C\u0435\u043D\u0438\u0435"
+  key0: 71
+  key1: 51
   id: 10
   lvl: 4000
   mult: 0
@@ -15219,9 +15231,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c2bca878894b824ea5adc99495830dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  key0: "\u0423 \u0441\u0442\u0440\u0435\u043B\u044B \u043F\u043E\u0432\u044B\u0448\u0430\u0435\u0442\u0441\u044F
-    \u0448\u0430\u043D\u0441 \u0432\u0437\u043E\u0440\u0432\u0430\u0442\u044C\u0441\u044F"
-  key1: "\u0428\u0430\u043D\u0441"
+  key0: 66
+  key1: 65
   id: 24
   lvl: 1850
   mult: 5
@@ -15366,6 +15377,7 @@ GameObject:
   - component: {fileID: 244448317}
   - component: {fileID: 244448319}
   - component: {fileID: 244448318}
+  - component: {fileID: 939840562}
   m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
@@ -15434,6 +15446,19 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: "\u0432\u043E\u0438\u043D"
+--- !u!114 &939840562
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 244448316}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 276f20244bb371d49b02573ac915d73a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lineId: 35
 --- !u!1 &280228488
 GameObject:
   m_ObjectHideFlags: 0
@@ -15575,6 +15600,7 @@ GameObject:
   - component: {fileID: 284822499}
   - component: {fileID: 284822501}
   - component: {fileID: 284822500}
+  - component: {fileID: 939840568}
   m_Layer: 5
   m_Name: Text (1)
   m_TagString: Untagged
@@ -15643,6 +15669,19 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: "\u043B\u0443\u0447\u043D\u0438\u043A"
+--- !u!114 &939840568
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 284822498}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 276f20244bb371d49b02573ac915d73a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lineId: 39
 --- !u!1 &290029482
 GameObject:
   m_ObjectHideFlags: 0
@@ -15785,11 +15824,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c2bca878894b824ea5adc99495830dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  key0: "\u041B\u0443\u0447\u043D\u0438\u043A \u0437\u0430\u0440\u044F\u0436\u0430\u0435\u0442
-    \u0441\u043B\u0435\u0434\u0443\u044E\u0449\u0443\u044E \u0441\u0442\u0440\u0435\u043B\u0443,
-    \u043A\u043E\u0442\u043E\u0440\u0430\u044F \u043F\u0440\u043E\u0431\u0438\u0432\u0430\u0435\u0442
-    \u043F\u0440\u043E\u0442\u0438\u0432\u043D\u0438\u043A\u043E\u0432"
-  key1: "\u0423\u043C\u0435\u043D\u0438\u0435"
+  key0: 68
+  key1: 51
   id: 7
   lvl: 2630
   mult: 0
@@ -17143,8 +17179,8 @@ RectTransform:
   m_Father: {fileID: 1594291947}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 0.75}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -17437,11 +17473,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c2bca878894b824ea5adc99495830dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  key0: "\u0415\u0441\u043B\u0438 \u0437\u0434\u043E\u0440\u043E\u0432\u044C\u0435
-    \u043F\u0430\u0434\u0430\u0435\u0442 \u043D\u0438\u0436\u0435 10%, \u0442\u043E
-    \u0432\u043E\u0438\u043D \u043D\u0430\u0447\u0438\u043D\u0430\u0435\u0442 \u0431\u0438\u0442\u044C\u0441\u044F
-    \u0441\u0438\u043B\u044C\u043D\u0435\u0435"
-  key1: "\u0423\u0440\u043E\u043D"
+  key0: 48
+  key1: 53
   id: 18
   lvl: 1300
   mult: 4
@@ -17662,9 +17695,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c2bca878894b824ea5adc99495830dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  key0: "\u0423\u0432\u0435\u043B\u0438\u0447\u0435\u043D\u0438\u0435 \u0440\u0430\u0434\u0438\u0443\u0441\u0430
-    \u043E\u0431\u0437\u043E\u0440\u0430 \u043B\u0443\u0447\u043D\u0438\u043A\u0430"
-  key1: "\u0420\u0430\u0434\u0438\u0443\u0441"
+  key0: 61
+  key1: 62
   id: 22
   lvl: 1300
   mult: 0.2
@@ -17680,6 +17712,7 @@ GameObject:
   - component: {fileID: 489062276}
   - component: {fileID: 489062278}
   - component: {fileID: 489062277}
+  - component: {fileID: 939840555}
   m_Layer: 5
   m_Name: GameObject
   m_TagString: Untagged
@@ -17748,6 +17781,19 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: "\u0412 \u0433\u043E\u0440\u043E\u0434"
+--- !u!114 &939840555
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 489062275}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 276f20244bb371d49b02573ac915d73a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lineId: 23
 --- !u!1 &489650971
 GameObject:
   m_ObjectHideFlags: 0
@@ -19834,6 +19880,7 @@ GameObject:
   - component: {fileID: 814149630}
   - component: {fileID: 814149632}
   - component: {fileID: 814149631}
+  - component: {fileID: 939840561}
   m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
@@ -19902,6 +19949,19 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: "\u0441\u043B\u043E\u0442 1"
+--- !u!114 &939840561
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 814149629}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 276f20244bb371d49b02573ac915d73a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lineId: 36
 --- !u!1 &819288969
 GameObject:
   m_ObjectHideFlags: 0
@@ -20267,9 +20327,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c2bca878894b824ea5adc99495830dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  key0: "\u0423\u0432\u0435\u043B\u0438\u0447\u0435\u043D\u0438\u0435 \u0441\u043A\u043E\u0440\u043E\u0441\u0442\u0438
-    \u0441\u043A\u043E\u043B\u044C\u0436\u0435\u043D\u0438\u044F"
-  key1: "\u0421\u043A\u043E\u0440\u043E\u0441\u0442\u044C"
+  key0: 67
+  key1: 60
   id: 25
   lvl: 2630
   mult: 10
@@ -20694,10 +20753,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c2bca878894b824ea5adc99495830dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  key0: "\u0423\u0434\u0430\u0440 \u0440\u0443\u043A\u043E\u044F\u0442\u044C\u044E
-    \u043C\u0435\u0447\u0430, \u0447\u0442\u043E \u043F\u0440\u0438\u0432\u043E\u0434\u0438\u0442
-    \u0432\u0440\u0430\u0433\u043E\u0432 \u0432 \u0437\u0430\u043C\u0435\u0448\u0430\u0442\u0435\u043B\u044C\u0441\u0442\u0432\u043E"
-  key1: "\u0423\u043C\u0435\u043D\u0438\u0435"
+  key0: 54
+  key1: 51
   id: 2
   lvl: 2630
   mult: 0
@@ -21598,6 +21655,7 @@ GameObject:
   - component: {fileID: 1110764011}
   - component: {fileID: 1110764013}
   - component: {fileID: 1110764012}
+  - component: {fileID: 939840554}
   m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
@@ -21666,6 +21724,19 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: "\u0418\u041D\u0424\u041E\u0420\u041C\u0410\u0426\u0418\u042F"
+--- !u!114 &939840554
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1110764010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 276f20244bb371d49b02573ac915d73a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lineId: 30
 --- !u!1 &1115992626
 GameObject:
   m_ObjectHideFlags: 0
@@ -21751,6 +21822,7 @@ GameObject:
   - component: {fileID: 1120498624}
   - component: {fileID: 1120498626}
   - component: {fileID: 1120498625}
+  - component: {fileID: 939840552}
   m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
@@ -21819,6 +21891,19 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: "\u041F\u0440\u0435\u0434\u043C\u0435\u0442\u044B"
+--- !u!114 &939840552
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1120498623}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 276f20244bb371d49b02573ac915d73a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lineId: 34
 --- !u!1 &1136934576
 GameObject:
   m_ObjectHideFlags: 0
@@ -21961,13 +22046,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c2bca878894b824ea5adc99495830dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  key0: "\u041B\u0443\u0447\u043D\u0438\u043A \u043F\u0440\u0438\u0437\u044B\u0432\u0430\u0435\u0442
-    \u0441\u0438\u043B\u044B \u043F\u0440\u0438\u0440\u043E\u0434\u044B \u0441\u0435\u0431\u0435
-    \u043D\u0430 \u0437\u0430\u0449\u0438\u0442\u0443 - \u0432\u043E\u043A\u0440\u0443\u0433
-    \u043F\u043E\u044F\u0432\u043B\u044F\u044E\u0442\u0441\u044F \u043A\u043E\u0440\u043D\u0438,
-    \u043A\u043E\u0442\u043E\u0440\u044B\u0435 \u0437\u0430\u043C\u0435\u0434\u043B\u044F\u044E\u0442
-    \u0432\u0440\u0430\u0433\u043E\u0432"
-  key1: "\u0423\u043C\u0435\u043D\u0438\u0435"
+  key0: 70
+  key1: 51
   id: 9
   lvl: 4000
   mult: 0
@@ -22267,9 +22347,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c2bca878894b824ea5adc99495830dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  key0: "\u0423\u0432\u0435\u043B\u0438\u0447\u0435\u043D\u0438\u0435 \u0443\u0440\u043E\u043D\u0430
-    \u043E\u0442 \u0441\u043A\u043E\u043B\u044C\u0436\u0435\u043D\u0438\u044F"
-  key1: "\u0423\u0440\u043E\u043D"
+  key0: 47
+  key1: 53
   id: 17
   lvl: 1300
   mult: 4
@@ -22801,6 +22880,7 @@ GameObject:
   - component: {fileID: 1285628333}
   - component: {fileID: 1285628335}
   - component: {fileID: 1285628334}
+  - component: {fileID: 939840551}
   m_Layer: 5
   m_Name: Monets
   m_TagString: Untagged
@@ -22869,6 +22949,19 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: "\u041C\u043E\u043D\u0435\u0442\u044B: 0"
+--- !u!114 &939840551
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1285628332}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 276f20244bb371d49b02573ac915d73a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lineId: 26
 --- !u!1 &1309606103
 GameObject:
   m_ObjectHideFlags: 0
@@ -23214,8 +23307,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c2bca878894b824ea5adc99495830dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  key0: "\u0423\u0432\u0435\u043B\u0438\u0447\u0435\u043D\u0438\u0435 \u0437\u0434\u043E\u0440\u043E\u0432\u044C\u044F"
-  key1: "\u0417\u0434\u043E\u0440\u043E\u0432\u044C\u0435"
+  key0: 46
+  key1: 52
   id: 16
   lvl: 600
   mult: 50
@@ -23738,11 +23831,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c2bca878894b824ea5adc99495830dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  key0: "\u0412 \u0443\u043A\u0430\u0437\u0430\u043D\u043D\u0443\u044E \u0442\u043E\u0447\u043A\u0443
-    \u043B\u0443\u0447\u043D\u0438\u043A \u0432\u044B\u043F\u0443\u0441\u043A\u0430\u0435\u0442
-    \u0441\u0435\u0442\u044C, \u043A\u043E\u0442\u043E\u0440\u0430\u044F \u043D\u0435
-    \u0434\u0430\u0435\u0442 \u0432\u0440\u0430\u0433\u0430\u043C \u0434\u0432\u0438\u043D\u0443\u0442\u044C\u0441\u044F"
-  key1: "\u0423\u043C\u0435\u043D\u0438\u0435"
+  key0: 69
+  key1: 51
   id: 8
   lvl: 3300
   mult: 0
@@ -24075,10 +24165,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c2bca878894b824ea5adc99495830dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  key0: "\u0423 \u0441\u0442\u0440\u0435\u043B\u044B \u043F\u043E\u0432\u044B\u0448\u0430\u0435\u0442\u0441\u044F
-    \u0448\u0430\u043D\u0441 \u0432\u044B\u0437\u0432\u0430\u0442\u044C \u043A\u0440\u043E\u0432\u043E\u0442\u0435\u0447\u0435\u043D\u0438\u0435
-    \u0443 \u043F\u0440\u043E\u0442\u0438\u0432\u043D\u0438\u043A\u0430"
-  key1: "\u0428\u0430\u043D\u0441"
+  key0: 64
+  key1: 65
   id: 23
   lvl: 1850
   mult: 5
@@ -24094,6 +24182,7 @@ GameObject:
   - component: {fileID: 1571178291}
   - component: {fileID: 1571178293}
   - component: {fileID: 1571178292}
+  - component: {fileID: 939840560}
   m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
@@ -24162,6 +24251,19 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: "\u0441\u043B\u043E\u0442 2"
+--- !u!114 &939840560
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1571178290}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 276f20244bb371d49b02573ac915d73a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lineId: 37
 --- !u!1 &1578616478
 GameObject:
   m_ObjectHideFlags: 0
@@ -24410,6 +24512,7 @@ GameObject:
   - component: {fileID: 1598923043}
   - component: {fileID: 1598923045}
   - component: {fileID: 1598923044}
+  - component: {fileID: 939840565}
   m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
@@ -24478,6 +24581,19 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: "\u043F\u0440\u043E\u043A\u0430\u0447\u0430\u0442\u044C"
+--- !u!114 &939840565
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1598923042}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 276f20244bb371d49b02573ac915d73a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lineId: 38
 --- !u!1 &1609213736
 GameObject:
   m_ObjectHideFlags: 0
@@ -24620,9 +24736,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c2bca878894b824ea5adc99495830dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  key0: "\u0423\u0432\u0435\u043B\u0438\u0447\u0435\u043D\u0438\u0435 \u0441\u043A\u043E\u0440\u043E\u0441\u0442\u0438
-    \u0431\u0435\u0433\u0430"
-  key1: "\u0421\u043A\u043E\u0440\u043E\u0441\u0442\u044C"
+  key0: 59
+  key1: 60
   id: 21
   lvl: 600
   mult: 1
@@ -24748,6 +24863,7 @@ GameObject:
   - component: {fileID: 1628172562}
   - component: {fileID: 1628172564}
   - component: {fileID: 1628172563}
+  - component: {fileID: 939840570}
   m_Layer: 5
   m_Name: Text (2)
   m_TagString: Untagged
@@ -24816,6 +24932,19 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: "\u043C\u0430\u0433"
+--- !u!114 &939840570
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1628172561}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 276f20244bb371d49b02573ac915d73a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lineId: 40
 --- !u!1 &1647291382
 GameObject:
   m_ObjectHideFlags: 0
@@ -24827,6 +24956,7 @@ GameObject:
   - component: {fileID: 1647291383}
   - component: {fileID: 1647291385}
   - component: {fileID: 1647291384}
+  - component: {fileID: 939840566}
   m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
@@ -24895,6 +25025,19 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: "\u043F\u0440\u043E\u043A\u0430\u0447\u0430\u0442\u044C"
+--- !u!114 &939840566
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1647291382}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 276f20244bb371d49b02573ac915d73a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lineId: 38
 --- !u!1 &1698580828
 GameObject:
   m_ObjectHideFlags: 0
@@ -25216,12 +25359,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c2bca878894b824ea5adc99495830dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  key0: "\u0423\u0432\u0435\u043B\u0438\u0447\u0435\u043D\u0438\u0435 \u0441\u043A\u043E\u0440\u043E\u0441\u0442\u0438
-    \u043F\u0435\u0440\u0435\u0434\u0432\u0438\u0436\u0435\u043D\u0438\u044F \u0438
-    \u043F\u043E\u0437\u0432\u043E\u043B\u044F\u0435\u0442 \u0443\u0432\u0435\u0440\u043D\u0443\u0442\u044C\u0441\u044F
-    \u043E\u0442 \u0432\u0441\u0435\u0445 \u0444\u0438\u0437\u0438\u0447\u0435\u0441\u043A\u0438\u0445
-    \u0430\u0442\u0430\u043A"
-  key1: "\u0423\u043C\u0435\u043D\u0438\u0435"
+  key0: 63
+  key1: 51
   id: 6
   lvl: 1850
   mult: 0
@@ -25368,8 +25507,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c2bca878894b824ea5adc99495830dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  key0: "\u0423\u0432\u0435\u043B\u0438\u0447\u0435\u043D\u0438\u0435 \u0443\u0440\u043E\u043D\u0430"
-  key1: "\u0423\u0440\u043E\u043D"
+  key0: 49
+  key1: 53
   id: 19
   lvl: 1850
   mult: 3
@@ -25533,6 +25672,7 @@ GameObject:
   - component: {fileID: 1744262145}
   - component: {fileID: 1744262147}
   - component: {fileID: 1744262146}
+  - component: {fileID: 939840550}
   m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
@@ -25601,6 +25741,19 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: "\u0412 \u041C\u0415\u041D\u042E"
+--- !u!114 &939840550
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1744262144}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 276f20244bb371d49b02573ac915d73a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lineId: 32
 --- !u!1 &1754118518
 GameObject:
   m_ObjectHideFlags: 0
@@ -25850,6 +26003,7 @@ GameObject:
   - component: {fileID: 1830718104}
   - component: {fileID: 1830718106}
   - component: {fileID: 1830718105}
+  - component: {fileID: 939840556}
   m_Layer: 5
   m_Name: GameObject
   m_TagString: Untagged
@@ -25918,6 +26072,19 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: "\u041D\u0430\u0447\u0430\u0442\u044C \u0437\u0430\u043D\u043E\u0432\u043E"
+--- !u!114 &939840556
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1830718103}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 276f20244bb371d49b02573ac915d73a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lineId: 25
 --- !u!1 &1850311964
 GameObject:
   m_ObjectHideFlags: 0
@@ -26746,9 +26913,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c2bca878894b824ea5adc99495830dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  key0: "\u0423\u0432\u0435\u043B\u0438\u0447\u0435\u043D\u0438\u0435 \u0432\u0440\u0435\u043C\u0435\u043D\u0438
-    \u043E\u0442 \u043E\u0433\u043B\u0443\u0448\u0435\u043D\u0438\u044F"
-  key1: "\u041E\u0433\u043B\u0443\u0448\u0435\u043D\u0438\u0435"
+  key0: 56
+  key1: 85
   id: 20
   lvl: 3300
   mult: 0.4
@@ -27513,12 +27679,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c2bca878894b824ea5adc99495830dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  key0: "\u0412\u043E\u0438\u043D \u0432\u043F\u0430\u0434\u0430\u0435\u0442 \u0432
-    \u044F\u0440\u043E\u0441\u0442\u044C, \u0432 \u043A\u043E\u0442\u043E\u0440\u043E\u0439
-    \u043E\u043D \u043D\u0430\u043D\u043E\u0441\u0438\u0442 \u0434\u043E\u043F\u043E\u043B\u043D\u0438\u0442\u0435\u043B\u044C\u043D\u044B\u0439
-    \u0443\u0440\u043E\u043D, \u043D\u043E \u0438 \u0443\u0440\u043E\u043D \u043F\u043E
-    \u043D\u0435\u043C\u0443 \u0442\u043E\u0436\u0435 \u0443\u0432\u0435\u043B\u0438\u0447\u0435\u043D"
-  key1: "\u0423\u043C\u0435\u043D\u0438\u0435"
+  key0: 58
+  key1: 51
   id: 5
   lvl: 4000
   mult: 0
@@ -28377,9 +28539,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c2bca878894b824ea5adc99495830dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  key0: "\u0426\u0435\u043F\u043D\u0430\u044F \u043C\u043E\u043B\u043D\u0438\u044F
-    \u0441\u043B\u0435\u0434\u0443\u044E\u0449\u0435\u0439 \u0430\u0442\u0430\u043A\u043E\u0439"
-  key1: "\u0423\u043C\u0435\u043D\u0438\u0435"
+  key0: 80
+  key1: 51
   id: 13
   lvl: 2630
   mult: 0
@@ -28526,9 +28687,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c2bca878894b824ea5adc99495830dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  key0: "\u0417\u0435\u043B\u044C\u044F \u0432\u043E\u0441\u0441\u0442\u0430\u043D\u0430\u0432\u043B\u0438\u0432\u0430\u044E\u0442
-    \u0431\u043E\u043B\u044C\u0448\u0435 \u0437\u0434\u043E\u0440\u043E\u0432\u044C\u044F"
-  key1: "\u041C\u043D\u043E\u0436\u0438\u0442\u0435\u043B\u044C"
+  key0: 75
+  key1: 76
   id: 28
   lvl: 1850
   mult: 0.6
@@ -28749,9 +28909,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c2bca878894b824ea5adc99495830dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  key0: "\u0423\u043C\u0435\u043D\u044C\u0448\u0435\u043D\u0438\u0435 \u0432\u0440\u0435\u043C\u0435\u043D\u0438
-    \u043F\u0435\u0440\u0435\u0437\u0430\u0440\u044F\u0434\u043A\u0438 \u0441\u043F\u043E\u0441\u043E\u0431\u043D\u043E\u0441\u0442\u0435\u0439"
-  key1: "\u0423\u043C\u0435\u043D\u044C\u0448\u0435\u043D\u0438\u0435"
+  key0: 81
+  key1: 82
   id: 30
   lvl: 3300
   mult: 1
@@ -29011,11 +29170,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c2bca878894b824ea5adc99495830dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  key0: "\u0412\u043E\u0438\u043D \u0441\u0442\u0430\u0432\u0438\u0442 \u0437\u043D\u0430\u043C\u044F
-    \u0432 \u0443\u043A\u0430\u0437\u0430\u043D\u043D\u0443\u044E \u0442\u043E\u0447\u043A\u0443,
-    \u0447\u0442\u043E \u0443\u0432\u0435\u043B\u0438\u0447\u0438\u0432\u0430\u0435\u0442
-    \u0435\u0433\u043E \u0437\u0434\u043E\u0440\u043E\u0432\u044C\u0435"
-  key1: "\u0423\u043C\u0435\u043D\u0438\u0435"
+  key0: 57
+  key1: 51
   id: 4
   lvl: 4000
   mult: 0
@@ -29385,10 +29541,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c2bca878894b824ea5adc99495830dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  key0: "\u041A\u0430\u0436\u0434\u0430\u044F \u0430\u0442\u0430\u043A\u0430 \u0443\u043C\u0435\u043D\u044C\u0448\u0430\u0435\u0442
-    \u0441\u0438\u043B\u044B \u0432\u0440\u0430\u0433\u0430"
-  key1: "\u0423\u043C\u0435\u043D\u044C\u0448\u0435\u043D\u0438\u0435 \u0443\u0440\u043E\u043D\u0430
-    \u0432 %"
+  key0: 72
+  key1: 73
   id: 26
   lvl: 600
   mult: 4
@@ -29609,9 +29763,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c2bca878894b824ea5adc99495830dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  key0: "\u0423 \u0430\u0442\u0430\u043A\u0438 \u043F\u043E\u0432\u044B\u0448\u0430\u0435\u0442\u0441\u044F
-    \u0448\u0430\u043D\u0441 \u0432\u0437\u043E\u0440\u0432\u0430\u0442\u044C\u0441\u044F"
-  key1: "\u0428\u0430\u043D\u0441"
+  key0: 74
+  key1: 65
   id: 27
   lvl: 1300
   mult: 5
@@ -30401,6 +30554,7 @@ MonoBehaviour:
   potionsAmount: 0
   monetsText: {fileID: 1285628334}
   monetsAmount: 401
+  glideTimer: 1
   gameMenu: {fileID: 775321819}
   infoCanvas: {fileID: 672605049955035372}
   bossHPBar: {fileID: 982752485}
@@ -31107,11 +31261,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c2bca878894b824ea5adc99495830dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  key0: "\u0412\u043E\u0438\u043D \u043A\u043E\u043D\u0446\u0435\u043D\u0442\u0440\u0438\u0440\u0443\u0435\u0442
-    \u0441\u0432\u043E\u044E \u044D\u043D\u0435\u0440\u0433\u0438\u044E, \u0447\u0442\u043E\u0431\u044B
-    \u043D\u0430\u043D\u0435\u0441\u0442\u0438 \u0443\u0434\u0430\u0440 \u0441 \u0434\u043E\u043F\u043E\u043B\u043D\u0438\u0442\u0435\u043B\u044C\u043D\u044B\u043C
-    \u0443\u0440\u043E\u043D\u043E\u043C"
-  key1: "\u0423\u043C\u0435\u043D\u0438\u0435"
+  key0: 55
+  key1: 51
   id: 3
   lvl: 3300
   mult: 0
@@ -31708,7 +31859,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 81, y: 11.3}
+  m_AnchoredPosition: {x: 81, y: -140.3}
   m_SizeDelta: {x: 60, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5468355173814003459
@@ -31813,10 +31964,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c2bca878894b824ea5adc99495830dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  key0: "\u0423\u0440\u043E\u043D \u043E\u0442 \u0432\u0441\u0435\u0445 \u0443\u043C\u0435\u043D\u0438\u0439"
-  key1: "\u0423\u0440\u043E\u043D"
+  key0: 77
+  key1: 53
   id: 29
-  lvl: 1850
+  lvl: 3300
   mult: 4
   skill: 0
 --- !u!1 &5172631466794132712
@@ -32539,12 +32690,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c2bca878894b824ea5adc99495830dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  key0: "\u041C\u0430\u0433 \u043E\u0431\u0440\u0430\u0449\u0430\u0435\u0442\u0441\u044F
-    \u043A \u044D\u043D\u0435\u0440\u0433\u0438\u0438 \u0432\u043D\u0443\u0442\u0440\u0438
-    \u0441\u0435\u0431\u044F, \u0447\u0442\u043E\u0431\u044B \u0441\u043E\u0437\u0434\u0430\u0442\u044C
-    \u044D\u043D\u0435\u0440\u0433\u0435\u0442\u0438\u0447\u0435\u0441\u043A\u0438\u0439
-    \u0449\u0438\u0442"
-  key1: "\u0423\u043C\u0435\u043D\u0438\u0435"
+  key0: 83
+  key1: 51
   id: 14
   lvl: 4000
   mult: 0
@@ -32891,13 +33038,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c2bca878894b824ea5adc99495830dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  key0: "\u041C\u0430\u0433 \u043A\u043E\u043D\u0446\u0435\u043D\u0442\u0440\u0438\u0440\u0443\u0435\u0442
-    \u0432\u0441\u044E \u0441\u0432\u043E\u044E \u044D\u043D\u0435\u0440\u0433\u0438\u044E,
-    \u0447\u0442\u043E\u0431\u044B \u043D\u0430\u043D\u0435\u0441\u0442\u0438 \u0443\u0440\u043E\u043D
-    \u0445\u043E\u043B\u043E\u0434\u043E\u043C \u0432\u043E\u043A\u0440\u0443\u0433
-    \u0441\u0435\u0431\u044F \u0438 \u0437\u0430\u043C\u0435\u0434\u043B\u0438\u0442\u044C
-    \u0432\u0440\u0430\u0433\u043E\u0432"
-  key1: "\u0423\u043C\u0435\u043D\u0438\u0435"
+  key0: 79
+  key1: 51
   id: 12
   lvl: 2630
   mult: 0
@@ -33193,11 +33335,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c2bca878894b824ea5adc99495830dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  key0: "\u041C\u0430\u0433 \u043A\u043E\u043D\u0446\u0435\u043D\u0442\u0440\u0438\u0440\u0443\u0435\u0442
-    \u0432\u0441\u044E \u0441\u0432\u043E\u044E \u044D\u043D\u0435\u0440\u0433\u0438\u044E,
-    \u0447\u0442\u043E\u0431\u044B \u043D\u0430\u043D\u0435\u0441\u0442\u0438 \u0443\u0440\u043E\u043D
-    \u043E\u0433\u043D\u0435\u043C \u0432\u043E\u043A\u0440\u0443\u0433 \u0441\u0435\u0431\u044F"
-  key1: "\u0423\u043C\u0435\u043D\u0438\u0435"
+  key0: 78
+  key1: 51
   id: 11
   lvl: 2630
   mult: 0
@@ -33344,10 +33483,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c2bca878894b824ea5adc99495830dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  key0: "\u0412\u043E\u0438\u043D \u043E\u0431\u0440\u0443\u0448\u0438\u0432\u0430\u0435\u0442
-    \u043D\u0430 \u0432\u0440\u0430\u0433\u043E\u0432 \u0448\u043A\u0432\u0430\u043B
-    \u0443\u0434\u0430\u0440\u043E\u0432"
-  key1: "\u0423\u043C\u0435\u043D\u0438\u0435"
+  key0: 50
+  key1: 51
   id: 1
   lvl: 2630
   mult: 0
@@ -34418,13 +34555,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c2bca878894b824ea5adc99495830dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  key0: "\u0412 \u0443\u043A\u0430\u0437\u0430\u043D\u043D\u043E\u0439 \u0442\u043E\u0447\u043A\u0435
-    \u043C\u0430\u0433 \u0441\u043E\u0437\u0434\u0430\u0435\u0442 \u0443\u0440\u0430\u0433\u0430\u043D,
-    \u043A\u043E\u0442\u043E\u0440\u044B\u0439 \u0437\u0430\u043C\u0435\u0434\u043B\u044F\u0435\u0442
-    \u043F\u0440\u043E\u0442\u0438\u0432\u043D\u0438\u043A\u043E\u0432 \u0438 \u0434\u0435\u043B\u0430\u0435\u0442
-    \u0438\u0445 \u0431\u043E\u043B\u0435\u0435 \u0443\u044F\u0437\u0432\u0438\u043C\u044B\u043C\u0438
-    \u043A \u043F\u043E\u043B\u0443\u0447\u0430\u0435\u043C\u043E\u043C\u0443 \u0443\u0440\u043E\u043D\u0443"
-  key1: "\u0423\u043C\u0435\u043D\u0438\u0435"
+  key0: 84
+  key1: 51
   id: 15
   lvl: 4000
   mult: 0

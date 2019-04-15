@@ -312,7 +312,7 @@ public class Boss_5 : MonoBehaviour
                     if (rh && rh.transform.CompareTag("Player") && damTimer > .1f)
                     {
                         damTimer = 0;
-                        _php.toDamage(4 + _pe.getKoefByLvl());
+                        _php.toDamage(_pe.getKoefByLvl() * 2);
                     }
 
                     LineRenderer lr = part.GetComponent<LineRenderer>();

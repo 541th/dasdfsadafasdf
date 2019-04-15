@@ -50,18 +50,12 @@ public class PlayerAttack_Warrior : MonoBehaviour
     public void skill_0()
     {
         _aUp.SetTrigger("skill_0");
-        _aDown.SetTrigger("skill_0");
+        //_aDown.SetTrigger("skill_0");
     }
 
     public void skill_1()
     {
         _aUp.SetTrigger("skill_1");
-        _aDown.SetTrigger("skill_1");
-    }
-
-    public void skill_2()
-    {
-        _aUp.SetTrigger("skill_1");
-        _aDown.SetTrigger("skill_2");
+        //_aDown.SetTrigger("skill_1");
     }
 }

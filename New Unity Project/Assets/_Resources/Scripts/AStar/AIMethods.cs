@@ -110,7 +110,7 @@ public class AIMethods : MonoBehaviour {
     HashSet<GridsNode> closedSet;
     public List<Vector2> setDestination(Vector2 from, Vector2 to)
     {
-        to += new Vector2(0, 0.3f);
+        //to += new Vector2(0, 0.3f);
             
         if (gon == null)
             gon = FindObjectOfType<GridOfNodes>();
@@ -200,7 +200,11 @@ public class AIMethods : MonoBehaviour {
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.transform.CompareTag("Player") && collision.transform.GetComponent<PlayerMovement>().isGlide)
-            GetComponentInChildren<EnemyHP>().toDamage(Random.Range(4, 10) + (int)InfoController.perks[1].value, true, false, false, false, false, false);
+        {
+            GetComponentInChildren<EnemyHP>().toDamage(Random.Range(4, 10) * PlayerPrefs.GetInt("CurLvl") / 2 + 
+                (collision.transform.GetComponent<PlayerMovement>().playerType == 1 ? (int)InfoController.perks[1].value : 0),
+                true, false, false, false, false, false);
+        }
     }
 
     GameObject OCI;

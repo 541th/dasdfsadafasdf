@@ -22880,7 +22880,6 @@ GameObject:
   - component: {fileID: 1285628333}
   - component: {fileID: 1285628335}
   - component: {fileID: 1285628334}
-  - component: {fileID: 939840551}
   m_Layer: 5
   m_Name: Monets
   m_TagString: Untagged
@@ -22949,19 +22948,6 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: "\u041C\u043E\u043D\u0435\u0442\u044B: 0"
---- !u!114 &939840551
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1285628332}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 276f20244bb371d49b02573ac915d73a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lineId: 26
 --- !u!1 &1309606103
 GameObject:
   m_ObjectHideFlags: 0
@@ -28026,6 +28012,7 @@ MonoBehaviour:
   perksInfo: {fileID: 665324668}
   infoPanel: {fileID: 1965311141779510964}
   items: {fileID: 3974867777965365676}
+  monetsText: {fileID: 1285628332}
   empty: {fileID: 21300192, guid: 740f367d1839ab0429fe60d514b34426, type: 3}
 --- !u!1 &810223084668523247
 GameObject:
@@ -30553,7 +30540,7 @@ MonoBehaviour:
   potionText: {fileID: 1200449872}
   potionsAmount: 0
   monetsText: {fileID: 1285628334}
-  monetsAmount: 401
+  monetsAmount: 0
   glideTimer: 1
   gameMenu: {fileID: 775321819}
   infoCanvas: {fileID: 672605049955035372}
@@ -34668,22 +34655,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: 1.4
       objectReference: {fileID: 0}
-    - target: {fileID: 22483060, guid: 943b21e331e945146beb63726ff855df, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 22483060, guid: 943b21e331e945146beb63726ff855df, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 22483060, guid: 943b21e331e945146beb63726ff855df, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 60
-      objectReference: {fileID: 0}
-    - target: {fileID: 22483060, guid: 943b21e331e945146beb63726ff855df, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 60
-      objectReference: {fileID: 0}
     - target: {fileID: 22486632, guid: 943b21e331e945146beb63726ff855df, type: 3}
       propertyPath: m_AnchorMin.x
       value: 0.5
@@ -34715,6 +34686,22 @@ PrefabInstance:
     - target: {fileID: 22486632, guid: 943b21e331e945146beb63726ff855df, type: 3}
       propertyPath: m_SizeDelta.y
       value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 22483060, guid: 943b21e331e945146beb63726ff855df, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 22483060, guid: 943b21e331e945146beb63726ff855df, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 22483060, guid: 943b21e331e945146beb63726ff855df, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 22483060, guid: 943b21e331e945146beb63726ff855df, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 133826, guid: 943b21e331e945146beb63726ff855df, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -34867,22 +34854,6 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 22483060, guid: 943b21e331e945146beb63726ff855df, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -99.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 22483060, guid: 943b21e331e945146beb63726ff855df, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 99.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 22483060, guid: 943b21e331e945146beb63726ff855df, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 60
-      objectReference: {fileID: 0}
-    - target: {fileID: 22483060, guid: 943b21e331e945146beb63726ff855df, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 60
-      objectReference: {fileID: 0}
     - target: {fileID: 22486632, guid: 943b21e331e945146beb63726ff855df, type: 3}
       propertyPath: m_AnchorMin.x
       value: 0.5
@@ -34914,6 +34885,22 @@ PrefabInstance:
     - target: {fileID: 22486632, guid: 943b21e331e945146beb63726ff855df, type: 3}
       propertyPath: m_SizeDelta.y
       value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 22483060, guid: 943b21e331e945146beb63726ff855df, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -99.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 22483060, guid: 943b21e331e945146beb63726ff855df, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 99.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 22483060, guid: 943b21e331e945146beb63726ff855df, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 22483060, guid: 943b21e331e945146beb63726ff855df, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 133826, guid: 943b21e331e945146beb63726ff855df, type: 3}
       propertyPath: m_StaticEditorFlags

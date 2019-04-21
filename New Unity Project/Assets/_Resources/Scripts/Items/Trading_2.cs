@@ -12,7 +12,7 @@ public class Trading_2 : MonoBehaviour
         amount = Random.Range(6, 20);
         buttons.transform.GetChild(1).GetChild(0).GetComponent<Text>().text = "1";
     }
-
+    
     public void OnValueChanged()
     {
         monets.transform.GetChild(2).GetComponent<Text>().text = LanguageLines.getLine(20) + "\n\n" + buttons.transform.GetChild(0).GetComponent<Slider>().value * 80;
@@ -48,8 +48,8 @@ public class Trading_2 : MonoBehaviour
 
         FindObjectOfType<UIManager>().setAllItems(false);
         panel.SetActive(true);
-        monets.transform.GetChild(1).GetComponent<Text>().text = FindObjectOfType<UIManager>().monetsAmount + "";
         monets.transform.GetChild(2).GetComponent<Text>().text = LanguageLines.getLine(20) + "\n\n" + 80;
+        monets.transform.GetChild(1).GetComponent<Text>().text = FindObjectOfType<UIManager>().monetsAmount + "";
 
         transform.GetChild(0).gameObject.SetActive(false);
     }

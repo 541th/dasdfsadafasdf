@@ -197,6 +197,7 @@ public class Uterus_0 : MonoBehaviour
             yield return new WaitForSeconds(0.1f);
         }
 
+        FindObjectOfType<EnemyManager>().subCount();
         Destroy(gameObject);
     }
 

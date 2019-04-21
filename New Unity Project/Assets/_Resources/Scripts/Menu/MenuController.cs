@@ -77,6 +77,7 @@ public class MenuController : MonoBehaviour
         PlayerPrefs.DeleteAll();
 
         PlayerPrefs.SetInt("CurLanguage", language);
+        PlayerPrefs.SetInt("LanguageSetted", 1);
 
         PlayerPrefs.SetInt("CutScene", 1);
         PlayerPrefs.SetInt("Started", 1);
@@ -85,6 +86,14 @@ public class MenuController : MonoBehaviour
         newGameAsking.SetActive(false);
 
         StartCoroutine(loadCity());
+    }
+
+    public void startNewGameAsking()
+    {
+        if (PlayerPrefs.GetInt("Started") == 1)
+            newGameAsking.SetActive(true);
+        else
+            startNewGame();
     }
 
     IEnumerator loadCity()

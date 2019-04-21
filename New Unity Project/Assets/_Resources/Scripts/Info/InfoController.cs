@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class InfoController : MonoBehaviour
 {
-    [SerializeField] GameObject perksPanel, perksInfo, infoPanel, items;
+    [SerializeField] GameObject perksPanel, perksInfo, infoPanel, items, monetsText;
     static PlayerMovement pm;
     public static Perks[] perks = new Perks[15];
     public static bool[] skills = new bool[15];
@@ -112,6 +112,8 @@ public class InfoController : MonoBehaviour
         infoPanel.transform.GetChild(0).GetComponent<Text>().text = "HP: " + FindObjectOfType<PlayerHP>().getCurHP() + "/" + FindObjectOfType<PlayerHP>().getMaxHP();
         infoPanel.transform.GetChild(1).GetComponent<Text>().text = "LVL: " + FindObjectOfType<PlayerExp>().curLvl;
         infoPanel.transform.GetChild(2).GetComponent<Text>().text = "Points: " + PlayerExp.points;
+
+        monetsText.GetComponent<Text>().text = LanguageLines.getLine(26) + " " + FindObjectOfType<UIManager>().monetsAmount;
 
         setExpSV(id);
         setExpSV(id);
@@ -441,7 +443,9 @@ public class InfoController : MonoBehaviour
 
         GameObject pentagram = Instantiate(Resources.Load("Prefabs/Effects/Pentagram_Fire") as GameObject);
         pentagram.transform.position = pm.transform.position;
-        
+
+        pm.GetComponent<PlayerAttack_Archer>().canAttack = false;
+
         pm.dontMove = true;
         pm.dontAttack = true;
         pm.transform.GetChild(1).gameObject.SetActive(false);
@@ -452,6 +456,8 @@ public class InfoController : MonoBehaviour
         pm.dontMove = false;
         pm.dontAttack = false;
         pm.transform.GetChild(1).gameObject.SetActive(true);
+
+        pm.GetComponent<PlayerAttack_Archer>().canAttack = true;
 
         yield return new WaitForSeconds(.3f);
 
@@ -466,6 +472,8 @@ public class InfoController : MonoBehaviour
         GameObject pentagram = Instantiate(Resources.Load("Prefabs/Effects/Pentagram_Ice") as GameObject);
         pentagram.transform.position = pm.transform.position;
 
+        pm.GetComponent<PlayerAttack_Archer>().canAttack = false;
+
         pm.dontMove = true;
         pm.dontAttack = true;
         pm.transform.GetChild(1).gameObject.SetActive(false);
@@ -476,6 +484,8 @@ public class InfoController : MonoBehaviour
         pm.dontMove = false;
         pm.dontAttack = false;
         pm.transform.GetChild(1).gameObject.SetActive(true);
+
+        pm.GetComponent<PlayerAttack_Archer>().canAttack = false;
 
         yield return new WaitForSeconds(.3f);
 
@@ -508,7 +518,7 @@ public class InfoController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.K))
         {
-            FindObjectOfType<PlayerAttack_Warrior>().skill_1();
+            StartCoroutine(pentagram_F());
         }
     }
 

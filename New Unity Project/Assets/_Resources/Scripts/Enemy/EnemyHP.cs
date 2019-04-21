@@ -154,6 +154,8 @@ public class EnemyHP : MonoBehaviour
         GameObject bleed = Instantiate(Resources.Load("Prefabs/Effects/Bleeding") as GameObject, transform.position - new Vector3(0, 0.3f), Quaternion.identity);
         bleed.transform.SetParent(transform);
 
+        PlayerExp _pe = FindObjectOfType<PlayerExp>();
+
         while (bleedTimer >= 0)
         {
             damTimer += Time.deltaTime;
@@ -162,7 +164,7 @@ public class EnemyHP : MonoBehaviour
             if (damTimer > 0.3f)
             {
                 damTimer = 0;
-                toDamage(1, false, false, false, false, false, false);
+                toDamage(_pe.getKoefByLvl(), false, false, false, false, false, false);
             }
 
             yield return null;

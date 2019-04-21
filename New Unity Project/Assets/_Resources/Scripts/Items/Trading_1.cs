@@ -86,6 +86,7 @@ public class Trading_1 : MonoBehaviour
     {
         FindObjectOfType<UIManager>().setAllItems(false);
         panel.SetActive(true);
+
         monets.transform.GetChild(1).GetComponent<Text>().text = FindObjectOfType<UIManager>().monetsAmount + "";
 
         transform.GetChild(0).gameObject.SetActive(false);

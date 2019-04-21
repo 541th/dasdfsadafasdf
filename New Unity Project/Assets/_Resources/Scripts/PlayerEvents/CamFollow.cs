@@ -283,7 +283,7 @@ public class CamFollow : MonoBehaviour
                 blackScreenText = blackScreen.transform.GetChild(0).GetComponent<UnityEngine.UI.Text>();
             }
 
-            blackScreenText.text = LanguageLines.getLine(33) + "" + UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
+            blackScreenText.text = LanguageLines.getLine(33) + " " + UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
 
             while (blackScreenText.color.a < 1)
             {
